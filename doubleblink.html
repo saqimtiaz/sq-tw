@@ -195,6 +195,8 @@ Error message and password prompt
 
 <li>$:/_sq/Stories/Templates/StoryTogglePageControl</li>
 
+<li>$:/_sq/Stories/widgets/action-addtohistory</li>
+
 <li>$:/.giffmex/.Stylesheet4tiddlyblink</li>
 
 <li>$:/.giffmex/actions/new-journal</li>
@@ -235,6 +237,8 @@ Error message and password prompt
 
 <li>$:/config/NewJournal/Title</li>
 
+<li>$:/config/PageControlButtons/Visibility/$:/_sq/Stories/Templates/StoryTogglePageControl</li>
+
 <li>$:/config/RelinkOnRename</li>
 
 <li>$:/config/SyncFilter</li>
@@ -252,8 +256,6 @@ Error message and password prompt
 <li>$:/DefaultTiddlers</li>
 
 <li>$:/fullscreen-editor</li>
-
-<li>$:/Import</li>
 
 <li>$:/Import!!popup-April 14th, 2020</li>
 
@@ -297,11 +299,7 @@ Error message and password prompt
 
 <li>$:/sk/WhiteList</li>
 
-<li>$:/state/sidebar</li>
-
-<li>$:/state/tab-2027485122</li>
-
-<li>$:/state/tab-390999370</li>
+<li>$:/state/tab/moresidebar-65670323</li>
 
 <li>$:/state/tab/sidebar-1206596165</li>
 
@@ -391,7 +389,7 @@ placeholder:&quot;&quot; &gt;&gt;</pre>
 &quot;$:/core/ui/ListItemTemplate&quot;
 placeholder:&quot;&quot; &gt;&gt;</pre>
 </div>
-<div created="20170629173808777" modified="20200414145004354" title="$:/_sq/Stories/config/openLinkDivert" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170629173808777" modified="20200416233724756" title="$:/_sq/Stories/config/openLinkDivert" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>top</pre>
 </div>
 <div caption="Two Story Layout" created="20170616185336118" modified="20200416183744216" tags="$:/tags/ControlPanel/Appearance" title="$:/_sq/Stories/config/Settings" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -457,7 +455,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 
 &lt;&lt;divertTiddlerButton&gt;&gt;</pre>
 </div>
-<div created="20170609055347900" list="[[Filter error: Missing [ in filter expression]]" list-before="" modified="20200415214229080" tags="$:/tags/ViewToolbar" title="$:/_sq/Stories/divertTiddlerMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170609055347900" list="[[Filter error: Missing [ in filter expression]]" list-before="" modified="20200416234307054" tags="$:/tags/ViewToolbar" title="$:/_sq/Stories/divertTiddlerMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define __me()
 [[$(currentTiddler)$]]
 \end
@@ -465,6 +463,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 \define divertTiddlerButton()
 &lt;$set name=&quot;activeStoryList&quot; value=&lt;&lt;tv-story-list&gt;&gt; &gt;
 &lt;$set name=&quot;otherStoryList&quot; filter=&quot;[enlist{$:/_sq/Stories/StoriesList!!list}] -[&lt;tv-story-list&gt;]&quot; select=&quot;0&quot;&gt;
+&lt;$set name=&quot;otherHistoryList&quot; filter=&quot;[enlist{$:/_sq/Stories/HistoriesList!!list}] -[&lt;tv-history-list&gt;]&quot; select=&quot;0&quot;&gt;
 	&lt;$button class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
 		&lt;$action-listops $tiddler=&lt;&lt;activeStoryList&gt;&gt; $subfilter=&quot;+[remove&lt;__me&gt;]&quot;/&gt;
 		&lt;$reveal state=&quot;$:/_sq/Stories/config/openLinkDivert&quot; type=&quot;nomatch&quot; text=&quot;top&quot; default=&quot;top&quot;&gt;
@@ -473,8 +472,10 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 		&lt;$reveal state=&quot;$:/_sq/Stories/config/openLinkDivert&quot; type=&quot;match&quot; text=&quot;top&quot; default=&quot;top&quot;&gt;
 			&lt;$action-listops $tiddler=&lt;&lt;otherStoryList&gt;&gt; $subfilter=&quot;+[prepend&lt;__me&gt;]&quot;/&gt;
 		&lt;/$reveal&gt;
+		&lt;$action-addtohistory $history=&lt;&lt;otherHistoryList&gt;&gt; $title=&lt;&lt;currentTiddler&gt;&gt; /&gt;
 		&lt;span class=&quot;sq-button-divert-right sq-button-divert&quot;&gt;{{$:/_sq/Stories/icons/divert-right.svg}}&lt;/span&gt;&lt;span class=&quot;sq-button-divert-left sq-button-divert&quot;&gt;{{$:/_sq/Stories/icons/divert-left.svg}}&lt;/span&gt;
 	&lt;/$button&gt;
+&lt;/$set&gt;
 &lt;/$set&gt;
 &lt;/$set&gt;
 \end
@@ -832,7 +833,7 @@ margin-right: 0;
 <div created="20170610072420739" list="$:/_sq/Stories/Story2StoryList $:/StoryList" modified="20200414145004320" tags="" title="$:/_sq/Stories/StoriesList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200416145221206" current-tiddler="Stories-overview" modified="20200416185449428" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="1" bag="default">
+<div created="20200416145221206" current-tiddler="$:/_sq/Stories/config/Settings" modified="20200416235232925" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="2" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
@@ -978,19 +979,30 @@ margin-right: 0;
         }
     },
     {
-        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;title&quot;: &quot;TiddlyBlink&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 323.296875,
-            &quot;left&quot;: 894.5,
-            &quot;width&quot;: 101.6875,
-            &quot;right&quot;: 996.1875,
-            &quot;bottom&quot;: 342.296875,
+            &quot;top&quot;: 336.84375,
+            &quot;left&quot;: 2259,
+            &quot;width&quot;: 67.078125,
+            &quot;right&quot;: 2326.078125,
+            &quot;bottom&quot;: 355.84375,
+            &quot;height&quot;: 19
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 215.34375,
+            &quot;left&quot;: 2321.1875,
+            &quot;width&quot;: 182.21875,
+            &quot;right&quot;: 2503.40625,
+            &quot;bottom&quot;: 234.34375,
             &quot;height&quot;: 19
         }
     }
 ]</pre>
 </div>
-<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200416185539398" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="3" bag="default">
+<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200416235237699" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="6" bag="default">
 <pre></pre>
 </div>
 <div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200415213938365" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -1045,7 +1057,7 @@ margin-right: 0;
 &lt;/$reveal&gt;
 </pre>
 </div>
-<div created="20170617182141154" modified="20200414161106051" tags="$:/tags/PageControls" title="$:/_sq/Stories/Templates/StoryTogglePageControl" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="{{$:/_sq/Stories/icons/bars.svg}} Show right pane" created="20170617182141154" description="Show right pane for second story" modified="20200416201721527" tags="$:/tags/PageControls" title="$:/_sq/Stories/Templates/StoryTogglePageControl" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;span class=&quot;sq-twostoriesonly&quot;&gt;
 	&lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;nomatch&quot; text=&quot;no&quot; default=&quot;no&quot;&gt;
 		&lt;$button set=&quot;$:/config/_sq/Stories/story2&quot; setTo=&quot;no&quot; tooltip=&quot;&quot; aria-label=&quot;&quot; class=&quot;tc-btn-invisible tc-btn-storytwotoggle&quot;&gt;{{$:/_sq/Stories/icons/bars-empty.svg}} &lt;/$button&gt;
@@ -1054,6 +1066,70 @@ margin-right: 0;
 &lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;match&quot; text=&quot;no&quot; default=&quot;no&quot;&gt;
 	&lt;$button set=&quot;$:/config/_sq/Stories/story2&quot; setTo=&quot;yes&quot; tooltip=&quot;&quot; aria-label=&quot;&quot; class=&quot;tc-btn-invisible tc-btn-storytwotoggle&quot;&gt;{{$:/_sq/Stories/icons/bars.svg}}&lt;/$button&gt;
 &lt;/$reveal&gt;</pre>
+</div>
+<div created="20200416232452797" modified="20200416234746904" module-type="widget" tags="" title="$:/_sq/Stories/widgets/action-addtohistory" type="application/javascript" revision="0" bag="default">
+<pre>/*\
+type: application/javascript
+module-type: widget
+
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
+
+var AddToHistoryWidget = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};
+
+/*
+Inherit from the base widget class
+*/
+AddToHistoryWidget.prototype = new Widget();
+
+/*
+Render this widget into the DOM
+*/
+AddToHistoryWidget.prototype.render = function(parent,nextSibling) {
+	this.computeAttributes();
+	this.execute();
+};
+
+/*
+Compute the internal state of the widget
+*/
+AddToHistoryWidget.prototype.execute = function() {
+	this.historyTitle = this.getAttribute(&quot;$history&quot;,this.getVariable(&quot;tv-history-title&quot;));
+	this.newTitle = this.getAttribute(&quot;$title&quot;);
+};
+
+/*
+Refresh the widget by ensuring our attributes are up to date
+*/
+AddToHistoryWidget.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	if(changedAttributes[&quot;$historyTitle&quot;] || changedAttributes[&quot;$title&quot;]) {
+		this.refreshSelf();
+		return true;
+	}
+	return this.refreshChildren(changedTiddlers);
+};
+
+/*
+Invoke the action associated with this widget
+*/
+AddToHistoryWidget.prototype.invokeAction = function(triggeringWidget,event) {
+	this.wiki.addToHistory(this.newTitle,{},this.historyTitle);	
+	return true; // Action was invoked
+};
+
+exports[&quot;action-addtohistory&quot;] = AddToHistoryWidget;
+
+})();</pre>
 </div>
 <div created="20191010123116672" modified="20200416185406939" tags="tb $:/tags/Stylesheet" title="$:/.giffmex/.Stylesheet4tiddlyblink" type="text/css" revision="0" bag="default">
 <pre>/*BOXES*/
@@ -1306,7 +1382,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 
 &lt;/span&gt;</pre>
 </div>
-<div caption="search results in context" created="20200102141715979" modified="20200416185406922" tags="tb refs" title="$:/.giffmex/ViewTemplate/refscontext" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="search results in context" created="20200102141715979" modified="20200416235423818" tags="refs tb" title="$:/.giffmex/ViewTemplate/refscontext" type="text/vnd.tiddlywiki" revision="3" bag="default">
 <pre>\define mycrit() (?i)\b$(searchspx)$\b
 
 &lt;hr&gt;References: 
@@ -1317,7 +1393,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 &lt;/$vars&gt;
 </pre>
 </div>
-<div caption="links" created="20200126143031898" modified="20200416185406921" tags="tb refs $:/tags/ViewTemplate" title="$:/.giffmex/ViewTemplate/refslinks" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="links" created="20200126143031898" modified="20200416235423818" tags="refs tb $:/tags/ViewTemplate" title="$:/.giffmex/ViewTemplate/refslinks" type="text/vnd.tiddlywiki" revision="3" bag="default">
 <pre>\define mycrit() (?i)\b$(searchspx)$\b
 
 &lt;hr&gt;References: 
@@ -1328,7 +1404,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 &lt;/$vars&gt;
 </pre>
 </div>
-<div caption="simple transclusion" created="20200126142157739" modified="20200416185406919" tags="tb refs" title="$:/.giffmex/ViewTemplate/refstranscludeclean" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="simple transclusion" created="20200126142157739" modified="20200416235416276" tags="refs tb" title="$:/.giffmex/ViewTemplate/refstranscludeclean" type="text/vnd.tiddlywiki" revision="3" bag="default">
 <pre>&lt;hr&gt;
 
 References: &lt;br&gt;
@@ -1495,6 +1571,9 @@ placeholder=&quot;$placeholder$&quot;/&gt;
 </div>
 <div created="20191225174624729" modified="20200416185406971" tags="tb" title="$:/config/NewJournal/Title" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>YYYY-0MM / 0DD / 0hh:0mm:0ss /</pre>
+</div>
+<div created="20200416201744386" modified="20200416201748533" title="$:/config/PageControlButtons/Visibility/$:/_sq/Stories/Templates/StoryTogglePageControl" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>show</pre>
 </div>
 <div created="20200106214031452" modified="20200416185406907" tags="tb" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
@@ -10915,11 +10994,6 @@ exports.has = function(source,operator,options) {
 <div created="20200304200133691" list="$:/jd/fullscreen-editor/EditButton $:/.giffmex/ViewToolbar/new-note-here-datetime $:/.giffmex/ViewTemplate/refscontext TiddlyBlink" modified="20200416185406903" tags="tb" title="$:/fullscreen-editor" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div status="complete" title="$:/Import" revision="2" bag="default">
-<pre>The following tiddlers were imported:
-
-# [[TiddlyBlink]]</pre>
-</div>
 <div created="20200416080413118" modified="20200416080439507" title="$:/Import!!popup-April 14th, 2020" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
 </div>
@@ -12079,22 +12153,16 @@ exports.context = contextWidget;
     }
 }</pre>
 </div>
-<div created="20200414222832782" modified="20200416185758031" title="$:/SiteTitle" type="text/vnd.tiddlywiki" revision="65" bag="default">
+<div created="20200414222832782" modified="20200416185759433" title="$:/SiteTitle" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>DoubleBlink</pre>
 </div>
 <div caption="Words to never consider as CamelCase links" created="20150210172146298" creator="Stephen" description="Words that should never be considered as CamelCase wikiwords. Separate the individual words with commas (,)." modified="20200416185406947" modifier="Stephen" tags="tb ske" title="$:/sk/WhiteList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>LeDoux,McCloud,McDonald,TiddlyWiki,TiddlyWiki5,CamelCase,DuBay,McGraw,McCullough,LeGrange,NaCl,MeOH,EtOH,PiB,TiddlyTools,ResetFind,WikiText,WinBuilder,WinPE,ProgramData,TiddlyFox,GuillermoMartin,AndrewFraser,RochesterMNwalkers,DEdwardsCalgary,WalkaboutMM,HarveyG,McCoy,GeForce,SideBar,AirBnB,PayPal,LeBron,JavaScript,ExpressJet,CutePDF,McClouds,McElroy,McGovern,TableHelper,ShadowTiddler,WikiWords</pre>
 </div>
-<div created="20200416185554989" modified="20200416185557827" title="$:/state/sidebar" revision="2" bag="default">
-<pre>yes</pre>
+<div created="20200416235228622" modified="20200416235228622" title="$:/state/tab/moresidebar-65670323" revision="1" bag="default">
+<pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200416185645682" modified="20200416185645682" title="$:/state/tab-2027485122" revision="1" bag="default">
-<pre>$:/core/ui/ControlPanel/StoryView</pre>
-</div>
-<div created="20200416185644618" modified="20200416185740014" title="$:/state/tab-390999370" revision="3" bag="default">
-<pre>$:/core/ui/ControlPanel/Info</pre>
-</div>
-<div created="20200416185457675" modified="20200416185640363" title="$:/state/tab/sidebar-1206596165" revision="4" bag="default">
+<div created="20200416235221524" modified="20200416235436279" title="$:/state/tab/sidebar-1206596165" revision="5" bag="default">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
@@ -12112,7 +12180,7 @@ exports.context = contextWidget;
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20200416185537826" list="[[TiddlyBlink home]]" modified="20200416185735608" title="$:/StoryList" revision="15" bag="default">
+<div list="[[TiddlyBlink home]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div created="20200127163609843" list="$:/jd/fullscreen-editor/EditButton $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200416185406963" tags="tb" title="$:/tags/EditToolbar" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12306,10 +12374,10 @@ exports.context = contextWidget;
 <div created="20200127172539001" modified="20200416185419828" tags="tb" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20200127165334843" modified="20200416185707984" tags="tb" title="$:/view" type="text/vnd.tiddlywiki" revision="5" bag="default">
+<div created="20200127165334843" modified="20200416233036460" tags="tb" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>zoomin</pre>
 </div>
-<div created="20170608100342738" list="" modified="20200416185053980" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170608100342738" list="" modified="20200416234505504" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define if-two-stories(twoStoryText, twoStoryNoSidebarText, oneStoryText)
 &lt;$reveal state=&quot;$:/state/story2&quot; type=&quot;match&quot; text=&quot;yes&quot;&gt;
 $twoStoryText$
@@ -12353,12 +12421,13 @@ $oneStoryText$
 *$:/_sq/Stories/icons/divert-right.svg
 *$:/_sq/Stories/icons/bars.svg
 *$:/_sq/Stories/icons/bars-empty.svg
+*$:/_sq/Stories/widgets/action-addtohistory
 *$:/config/_sq/Stories/story2
 
 
 </pre>
 </div>
-<div created="20200125152105770" modified="20200304194714120" tags=".sidebyside tb meta" title="TiddlyBlink" revision="1" bag="default">
+<div created="20200125152105770" modified="20200416185537153" tags=".sidebyside tb meta" title="TiddlyBlink" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Welcome to TiddlyBlink! ~TiddlyBlink is an adaptation of TiddlyWiki with the goal of helping you see connections between your ideas, and move quickly from one idea to another. It was inspired by the bi-directional linking found in Roam (https://roamresearch.com/), but built with capabilities already available in ~TiddlyWiki (https://tiddlywiki.com). See my example file [ext[here|https://giffmex.org/gifts/tiddlyblinkexample.html]].&lt;br&gt;&lt;br&gt;
 
 ''The basic idea:''
