@@ -299,9 +299,7 @@ Error message and password prompt
 
 <li>$:/sk/WhiteList</li>
 
-<li>$:/state/tab/moresidebar-65670323</li>
-
-<li>$:/state/tab/sidebar-1206596165</li>
+<li>$:/state/sidebar</li>
 
 <li>$:/status/IsAnonymous</li>
 
@@ -600,7 +598,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 	return event;
 });</pre>
 </div>
-<div created="20170608102837192" modified="20200416182222541" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170608102837192" modified="20200417002011871" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define if-fluid-fixed(text,disableText)
 &lt;$reveal state=&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot; type=&quot;match&quot; text=&quot;fluid-fixed&quot;&gt;
 $text$
@@ -747,9 +745,14 @@ $oneStoryText$
 	width: 49%;
 }
 
+.tc-story-river.sq-story-rivertwo {
+	padding-left: 0;
+}
+
 .sq-story-rivertwo-scrollable {
 	width:calc((100% - 0px - 60px)/2);
 }
+
 }
 
 @media (min-width: {{$:/_sq/Stories/config/twostorybreakpoint}}) and (max-width: {{$:/_sq/Stories/config/sidebaroverlaybreakpoint}}) {
@@ -833,7 +836,7 @@ margin-right: 0;
 <div created="20170610072420739" list="$:/_sq/Stories/Story2StoryList $:/StoryList" modified="20200414145004320" tags="" title="$:/_sq/Stories/StoriesList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200416145221206" current-tiddler="$:/_sq/Stories/config/Settings" modified="20200416235232925" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="2" bag="default">
+<div created="20200416145221206" current-tiddler="$:/_sq/Stories/divertTiddlerMacro" modified="20200416165721280" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
@@ -977,32 +980,10 @@ margin-right: 0;
             &quot;bottom&quot;: 558.640625,
             &quot;height&quot;: 19
         }
-    },
-    {
-        &quot;title&quot;: &quot;TiddlyBlink&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 336.84375,
-            &quot;left&quot;: 2259,
-            &quot;width&quot;: 67.078125,
-            &quot;right&quot;: 2326.078125,
-            &quot;bottom&quot;: 355.84375,
-            &quot;height&quot;: 19
-        }
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 215.34375,
-            &quot;left&quot;: 2321.1875,
-            &quot;width&quot;: 182.21875,
-            &quot;right&quot;: 2503.40625,
-            &quot;bottom&quot;: 234.34375,
-            &quot;height&quot;: 19
-        }
     }
 ]</pre>
 </div>
-<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200416235237699" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="6" bag="default">
+<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200416235238732" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200415213938365" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -1029,10 +1010,9 @@ margin-right: 0;
 &lt;/div&gt;
 </pre>
 </div>
-<div created="20170608171610013" list-after="$:/core/ui/PageTemplate/story" modified="20200416151016243" tags="$:/tags/PageTemplate" title="$:/_sq/Stories/Templates/Story2Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;match&quot; text=&quot;yes&quot; default=&quot;no&quot; retain=&quot;yes&quot; animate=&quot;no&quot;&gt;
+<div created="20170608171610013" list-after="$:/core/ui/PageTemplate/story" modified="20200417001340354" tags="$:/tags/PageTemplate" title="$:/_sq/Stories/Templates/Story2Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;match&quot; text=&quot;yes&quot; default=&quot;no&quot; retain=&quot;yes&quot; animate=&quot;no&quot; tag=&quot;section&quot; class=&quot;tc-story-river tc-storytwo-river sq-story-rivertwo&quot;&gt;
 &lt;$navigator story=&quot;$:/_sq/Stories/Story2StoryList&quot; history=&quot;$:/_sq/Stories/Story2HistoryList&quot; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;
-&lt;section class=&quot;tc-story-river tc-storytwo-river sq-story-rivertwo&quot;&gt;
 &lt;$scrollable class=&quot;sq-story-rivertwo-scrollable&quot;  fallthrough=&quot;no&quot;&gt;
 &lt;$list filter=&quot;[list[$:/_sq/Stories/Story2StoryList]]&quot; history=&quot;$:/_sq/Stories/Story2HistoryList&quot; template=&quot;$:/core/ui/ViewTemplate&quot; editTemplate=&quot;$:/core/ui/EditTemplate&quot;  storyview={{$:/_sq/Stories/config/Story2-storyview}}&gt;
 &lt;div&gt;
@@ -1040,10 +1020,7 @@ margin-right: 0;
 &lt;/div&gt;
 &lt;/$list&gt;
 &lt;/$scrollable&gt;
-&lt;/section&gt;
-
 &lt;/$navigator&gt;
-
 &lt;/$reveal&gt;</pre>
 </div>
 <div created="20170608172531552" modified="20200414145004303" title="$:/_sq/Stories/Templates/StoryToggleMenu" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -1382,7 +1359,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 
 &lt;/span&gt;</pre>
 </div>
-<div caption="search results in context" created="20200102141715979" modified="20200416235423818" tags="refs tb" title="$:/.giffmex/ViewTemplate/refscontext" type="text/vnd.tiddlywiki" revision="3" bag="default">
+<div caption="search results in context" created="20200102141715979" modified="20200416235424840" tags="refs tb" title="$:/.giffmex/ViewTemplate/refscontext" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define mycrit() (?i)\b$(searchspx)$\b
 
 &lt;hr&gt;References: 
@@ -1393,7 +1370,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 &lt;/$vars&gt;
 </pre>
 </div>
-<div caption="links" created="20200126143031898" modified="20200416235423818" tags="refs tb $:/tags/ViewTemplate" title="$:/.giffmex/ViewTemplate/refslinks" type="text/vnd.tiddlywiki" revision="3" bag="default">
+<div caption="links" created="20200126143031898" modified="20200416235424842" tags="refs tb $:/tags/ViewTemplate" title="$:/.giffmex/ViewTemplate/refslinks" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define mycrit() (?i)\b$(searchspx)$\b
 
 &lt;hr&gt;References: 
@@ -1404,7 +1381,7 @@ Click here: {{$:/core/ui/Buttons/palette}}
 &lt;/$vars&gt;
 </pre>
 </div>
-<div caption="simple transclusion" created="20200126142157739" modified="20200416235416276" tags="refs tb" title="$:/.giffmex/ViewTemplate/refstranscludeclean" type="text/vnd.tiddlywiki" revision="3" bag="default">
+<div caption="simple transclusion" created="20200126142157739" modified="20200416235417300" tags="refs tb" title="$:/.giffmex/ViewTemplate/refstranscludeclean" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;hr&gt;
 
 References: &lt;br&gt;
@@ -1563,7 +1540,7 @@ placeholder=&quot;$placeholder$&quot;/&gt;
 &lt;/$reveal&gt;
 \end</pre>
 </div>
-<div created="20170615081040584" modified="20200416180915283" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170615081040584" modified="20200417001346880" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
 </div>
 <div created="20191215203357897" modified="20200416185406967" tags="tb" title="$:/config/EditorTypeMappings/text/vnd.tiddlywiki" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12159,11 +12136,8 @@ exports.context = contextWidget;
 <div caption="Words to never consider as CamelCase links" created="20150210172146298" creator="Stephen" description="Words that should never be considered as CamelCase wikiwords. Separate the individual words with commas (,)." modified="20200416185406947" modifier="Stephen" tags="tb ske" title="$:/sk/WhiteList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>LeDoux,McCloud,McDonald,TiddlyWiki,TiddlyWiki5,CamelCase,DuBay,McGraw,McCullough,LeGrange,NaCl,MeOH,EtOH,PiB,TiddlyTools,ResetFind,WikiText,WinBuilder,WinPE,ProgramData,TiddlyFox,GuillermoMartin,AndrewFraser,RochesterMNwalkers,DEdwardsCalgary,WalkaboutMM,HarveyG,McCoy,GeForce,SideBar,AirBnB,PayPal,LeBron,JavaScript,ExpressJet,CutePDF,McClouds,McElroy,McGovern,TableHelper,ShadowTiddler,WikiWords</pre>
 </div>
-<div created="20200416235228622" modified="20200416235228622" title="$:/state/tab/moresidebar-65670323" revision="1" bag="default">
-<pre>$:/core/ui/MoreSideBar/System</pre>
-</div>
-<div created="20200416235221524" modified="20200416235436279" title="$:/state/tab/sidebar-1206596165" revision="5" bag="default">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200417002015765" modified="20200417002356214" title="$:/state/sidebar" revision="34" bag="default">
+<pre>yes</pre>
 </div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
 <pre>yes</pre>
