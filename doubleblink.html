@@ -151,6 +151,8 @@ Error message and password prompt
 
 <li>$:/_sq/Stories/config/Settings</li>
 
+<li>$:/_sq/Stories/config/showRiverDropZones</li>
+
 <li>$:/_sq/Stories/config/sidebaroverlaybreakpoint</li>
 
 <li>$:/_sq/Stories/config/snippets/viewswitcher</li>
@@ -178,6 +180,8 @@ Error message and password prompt
 <li>$:/_sq/Stories/icons/divert-right.svg</li>
 
 <li>$:/_sq/Stories/LinkKeybindings</li>
+
+<li>$:/_sq/Stories/startup-actions</li>
 
 <li>$:/_sq/Stories/Stories.css</li>
 
@@ -241,8 +245,6 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
-<li>$:/config/SyncFilter</li>
-
 <li>$:/config/Tiddlers/TitleLinks</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/.giffmex/ViewToolbar/viewrefscheckboxes</li>
@@ -299,7 +301,17 @@ Error message and password prompt
 
 <li>$:/sk/WhiteList</li>
 
-<li>$:/state/sidebar</li>
+<li>$:/state/ShowPaletteEditor</li>
+
+<li>$:/state/tab--1564888072</li>
+
+<li>$:/state/tab-2027485122</li>
+
+<li>$:/state/tab-390999370</li>
+
+<li>$:/state/tab/moresidebar-65670323</li>
+
+<li>$:/state/tab/sidebar-1206596165</li>
 
 <li>$:/status/IsAnonymous</li>
 
@@ -387,18 +399,21 @@ placeholder:&quot;&quot; &gt;&gt;</pre>
 &quot;$:/core/ui/ListItemTemplate&quot;
 placeholder:&quot;&quot; &gt;&gt;</pre>
 </div>
-<div created="20170629173808777" modified="20200416233724756" title="$:/_sq/Stories/config/openLinkDivert" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170629173808777" modified="20200417210345408" title="$:/_sq/Stories/config/openLinkDivert" type="text/vnd.tiddlywiki" revision="4" bag="default">
 <pre>top</pre>
 </div>
-<div caption="Two Story Layout" created="20170616185336118" modified="20200416183744216" tags="$:/tags/ControlPanel/Appearance" title="$:/_sq/Stories/config/Settings" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="Two Story Layout" created="20170616185336118" modified="20200417205814872" tags="$:/tags/ControlPanel/Appearance" title="$:/_sq/Stories/config/Settings" type="text/vnd.tiddlywiki" revision="8" bag="default">
 <pre>|[[Minimum width to show the second story|$:/_sq/Stories/config/twostorybreakpoint]] |&lt;$edit-text tiddler=&quot;$:/_sq/Stories/config/twostorybreakpoint&quot; default=&quot;&quot; tag=&quot;input&quot;/&gt; |
 |[[Minimum width to show non-overlapping sidebar|$:/_sq/Stories/config/sidebaroverlaybreakpoint]] |&lt;$edit-text tiddler=&quot;$:/_sq/Stories/config/sidebaroverlaybreakpoint&quot; default=&quot;&quot; tag=&quot;input&quot;/&gt; |
-|[[Open tiddlers at top or bottom of story when using divert button|$:/_sq/Stories/config/openLinkDivert]] | &lt;$edit-text tiddler=&quot;$:/_sq/Stories/config/openLinkDivert&quot; default=&quot;top&quot; tag=&quot;input&quot; /&gt;|
+|[[Open tiddlers at top or bottom of story when using divert button|$:/_sq/Stories/config/openLinkDivert]] | &lt;$select tiddler=&quot;$:/_sq/Stories/config/openLinkDivert&quot; default=&quot;top&quot;&gt;&lt;option value=&quot;top&quot;&gt;top&lt;/option&gt;&lt;option value=&quot;bottom&quot;&gt;bottom&lt;/option&gt;&lt;/$select&gt;|
+|&lt;$link to=&quot;$:/_sq/Stories/config/showRiverDropZones&quot;&gt;Show dropzones above each story&lt;/$link&gt;|&lt;$checkbox tiddler=&quot;$:/_sq/Stories/config/showRiverDropZones&quot; field=&quot;text&quot; checked=&quot;enable&quot; unchecked=&quot;disable&quot; default=&quot;disable&quot;&gt;&lt;/$checkbox&gt;|
+|[[Story view for second story|$:/_sq/Stories/config/Story2-storyview]]:|{{$:/_sq/Stories/config/snippets/viewswitcher}}|
 
-&lt;!--
-Story view for second story:
-{{$:/_sq/Stories/config/snippets/viewswitcher}}
---&gt;</pre>
+
+</pre>
+</div>
+<div created="20200417170940547" modified="20200417171534194" title="$:/_sq/Stories/config/showRiverDropZones" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>disable</pre>
 </div>
 <div created="20170616192704225" modified="20200416182732404" title="$:/_sq/Stories/config/sidebaroverlaybreakpoint" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>1500px</pre>
@@ -421,7 +436,7 @@ $:/core/images/storyview-$(storyview)$
 &lt;/div&gt;
 &lt;/$linkcatcher&gt;</pre>
 </div>
-<div created="20200415213157946" modified="20200416183735403" tags="" title="$:/_sq/Stories/config/Story2-storyview" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200415213157946" modified="20200417205213704" tags="" title="$:/_sq/Stories/config/Story2-storyview" type="text/vnd.tiddlywiki" revision="2" bag="default">
 <pre>classic</pre>
 </div>
 <div created="20170616192701335" modified="20200416182753284" title="$:/_sq/Stories/config/twostorybreakpoint" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -598,7 +613,10 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 	return event;
 });</pre>
 </div>
-<div created="20170608102837192" modified="20200417002011871" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200417171756341" modified="20200417172054199" tags="$:/tags/StartupAction/Browser" title="$:/_sq/Stories/startup-actions" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;$action-deletetiddler $tiddler=&quot;$:/_sq/Stories/Story2HistoryList&quot;/&gt;</pre>
+</div>
+<div created="20170608102837192" modified="20200417185921428" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="4" bag="default">
 <pre>\define if-fluid-fixed(text,disableText)
 &lt;$reveal state=&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot; type=&quot;match&quot; text=&quot;fluid-fixed&quot;&gt;
 $text$
@@ -646,6 +664,14 @@ $oneStoryText$
 .sq-button-divert {
 	display: none;
 }
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar{width:10px}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb{background:#a5a5a5;border-radius:10px}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb:hover{background:#6f6f6f}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb:active{background:#333}
 
 &lt;&lt;if-two-stories twoStoryCommon:&quot;&quot;&quot;
 @media (min-width: {{$:/_sq/Stories/config/twostorybreakpoint}}) {
@@ -830,167 +856,411 @@ $oneStoryText$
 margin-right: 0;
 }
 }
+
 &lt;/pre&gt;
 </pre>
 </div>
 <div created="20170610072420739" list="$:/_sq/Stories/Story2StoryList $:/StoryList" modified="20200414145004320" tags="" title="$:/_sq/Stories/StoriesList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200416145221206" current-tiddler="$:/_sq/Stories/divertTiddlerMacro" modified="20200416165721280" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="0" bag="default">
+<div created="20200417172500226" current-tiddler="Stories-overview" modified="20200417211115070" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="72" bag="default">
 <pre>[
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
+        &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 499.640625,
-            &quot;left&quot;: 2248.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 2462.046875,
-            &quot;bottom&quot;: 518.640625,
+            &quot;top&quot;: 994.921875,
+            &quot;left&quot;: 1190,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 1291.6875,
+            &quot;bottom&quot;: 1013.921875,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 519.640625,
-            &quot;left&quot;: 2248.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 2462.046875,
-            &quot;bottom&quot;: 538.640625,
-            &quot;height&quot;: 19
+            &quot;top&quot;: 876.21875,
+            &quot;left&quot;: 1221.5,
+            &quot;width&quot;: 162.046875,
+            &quot;right&quot;: 1383.546875,
+            &quot;bottom&quot;: 896.21875,
+            &quot;height&quot;: 20
         }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
     },
     {
         &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 439.640625,
-            &quot;left&quot;: 2248.421875,
-            &quot;width&quot;: 105.828125,
-            &quot;right&quot;: 2354.25,
-            &quot;bottom&quot;: 458.640625,
+            &quot;top&quot;: 994.921875,
+            &quot;left&quot;: 1190,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 1291.6875,
+            &quot;bottom&quot;: 1013.921875,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 519.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 538.640625,
-            &quot;height&quot;: 19
+            &quot;top&quot;: 876.21875,
+            &quot;left&quot;: 1230,
+            &quot;width&quot;: 162.046875,
+            &quot;right&quot;: 1392.046875,
+            &quot;bottom&quot;: 896.21875,
+            &quot;height&quot;: 20
         }
     },
     {
-        &quot;title&quot;: &quot;Stories-overview&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 439.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 105.828125,
-            &quot;right&quot;: 1714.25,
-            &quot;bottom&quot;: 458.640625,
-            &quot;height&quot;: 19
-        }
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 519.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 538.640625,
-            &quot;height&quot;: 19
-        }
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
     },
     {
-        &quot;title&quot;: &quot;Stories-overview&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 439.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 105.828125,
-            &quot;right&quot;: 1714.25,
-            &quot;bottom&quot;: 458.640625,
-            &quot;height&quot;: 19
-        }
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 519.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 538.640625,
-            &quot;height&quot;: 19
-        }
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
-        &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 519.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 538.640625,
-            &quot;height&quot;: 19
-        }
+        &quot;title&quot;: &quot;Draft of 'Stories-overview'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
     },
     {
         &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 439.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 105.828125,
-            &quot;right&quot;: 1714.25,
-            &quot;bottom&quot;: 458.640625,
+            &quot;top&quot;: 994.921875,
+            &quot;left&quot;: 1190,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 1291.6875,
+            &quot;bottom&quot;: 1013.921875,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
+        &quot;title&quot;: &quot;$:/config/Tiddlers/TitleLinks&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 539.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 558.640625,
+            &quot;top&quot;: 486.21875,
+            &quot;left&quot;: 1230,
+            &quot;width&quot;: 183.515625,
+            &quot;right&quot;: 1413.515625,
+            &quot;bottom&quot;: 506.21875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/config/Tiddlers/TitleLinks&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 686.21875,
+            &quot;left&quot;: 1230,
+            &quot;width&quot;: 183.515625,
+            &quot;right&quot;: 1413.515625,
+            &quot;bottom&quot;: 706.21875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 876.21875,
+            &quot;left&quot;: 1230,
+            &quot;width&quot;: 162.046875,
+            &quot;right&quot;: 1392.046875,
+            &quot;bottom&quot;: 896.21875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 1142.921875,
+            &quot;left&quot;: 774,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 875.6875,
+            &quot;bottom&quot;: 1161.921875,
             &quot;height&quot;: 19
         }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryTogglePageControl&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 586.21875,
+            &quot;left&quot;: 814,
+            &quot;width&quot;: 326.734375,
+            &quot;right&quot;: 1140.734375,
+            &quot;bottom&quot;: 606.21875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Templates/StoryTogglePageControl'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryTogglePageControl&quot;
     },
     {
         &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryToggleMenu&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 479.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 274.34375,
-            &quot;right&quot;: 1882.765625,
-            &quot;bottom&quot;: 498.640625,
+            &quot;top&quot;: 604.21875,
+            &quot;left&quot;: 814,
+            &quot;width&quot;: 283.546875,
+            &quot;right&quot;: 1097.546875,
+            &quot;bottom&quot;: 624.21875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Templates/StoryToggleMenu'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryToggleMenu&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Templates/StoryTogglePageControl'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Templates/StoryToggleMenu'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryTogglePageControl&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/Templates/StoryToggleMenu&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/twostorybreakpoint&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 201.296875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 274.8125,
+            &quot;right&quot;: 1056.8125,
+            &quot;bottom&quot;: 221.296875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;TiddlyBlink home&quot;,
+        &quot;fromPageRect&quot;: {}
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 418.34375,
+            &quot;left&quot;: 1433.421875,
+            &quot;width&quot;: 182.21875,
+            &quot;right&quot;: 1615.640625,
+            &quot;bottom&quot;: 437.34375,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/divertTiddlerMacro&quot;,
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/snippets/viewswitcher&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 539.640625,
-            &quot;left&quot;: 1608.421875,
-            &quot;width&quot;: 213.625,
-            &quot;right&quot;: 1822.046875,
-            &quot;bottom&quot;: 558.640625,
+            &quot;top&quot;: 617.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 178.4375,
+            &quot;right&quot;: 960.4375,
+            &quot;bottom&quot;: 637.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/snippets/viewswitcher&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 617.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 178.4375,
+            &quot;right&quot;: 960.4375,
+            &quot;bottom&quot;: 637.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/snippets/viewswitcher'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/snippets/viewswitcher&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Story2-storyview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 632.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 178.4375,
+            &quot;right&quot;: 960.4375,
+            &quot;bottom&quot;: 652.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/twostorybreakpoint&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 962.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 274.8125,
+            &quot;right&quot;: 1056.8125,
+            &quot;bottom&quot;: 982.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/sidebaroverlaybreakpoint&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 940.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 328.328125,
+            &quot;right&quot;: 1110.328125,
+            &quot;bottom&quot;: 960.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 1227.921875,
+            &quot;left&quot;: 774,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 875.6875,
+            &quot;bottom&quot;: 1246.921875,
             &quot;height&quot;: 19
         }
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Story2-storyview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 1109.921875,
+            &quot;left&quot;: 782,
+            &quot;width&quot;: 178.4375,
+            &quot;right&quot;: 960.4375,
+            &quot;bottom&quot;: 1129.921875,
+            &quot;height&quot;: 20
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 1181.921875,
+            &quot;left&quot;: 774,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 875.6875,
+            &quot;bottom&quot;: 1200.921875,
+            &quot;height&quot;: 19
+        }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/config/Settings'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Stories-overview'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Stories-overview'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Stories-overview&quot;
     }
 ]</pre>
 </div>
-<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200416235238732" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200417210945285" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="90" bag="default">
 <pre></pre>
 </div>
-<div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200415213938365" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200417170915429" tags="$:/tags/AboveStory" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define drop-actions()
 &lt;$action-listops $tiddler=&lt;&lt;otherStoryList&gt;&gt; $subfilter=&quot;+[remove&lt;actionTiddler&gt;]&quot;/&gt; 
 &lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;
 \end
+&lt;$reveal state=&quot;$:/_sq/Stories/config/showRiverDropZones&quot; text=&quot;enable&quot; type=&quot;match&quot; default=&quot;disable&quot;&gt;
 &lt;div class=&quot;sq-storydropzone-container sq-twostoriesonly&quot;&gt;
 	&lt;div class=&quot;sq-storydropzone-newtiddlerbutton  tc-page-controls&quot;&gt;
 		&lt;$transclude tiddler=&quot;$:/core/ui/Buttons/new-tiddler&quot;/&gt;
@@ -1008,17 +1278,36 @@ margin-right: 0;
 		&lt;/$set&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-</pre>
+&lt;/$reveal&gt;</pre>
 </div>
-<div created="20170608171610013" list-after="$:/core/ui/PageTemplate/story" modified="20200417001340354" tags="$:/tags/PageTemplate" title="$:/_sq/Stories/Templates/Story2Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;match&quot; text=&quot;yes&quot; default=&quot;no&quot; retain=&quot;yes&quot; animate=&quot;no&quot; tag=&quot;section&quot; class=&quot;tc-story-river tc-storytwo-river sq-story-rivertwo&quot;&gt;
+<div created="20170608171610013" list-after="$:/core/ui/PageTemplate/story" modified="20200417170619889" tags="$:/tags/PageTemplate" title="$:/_sq/Stories/Templates/Story2Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\whitespace trim
+&lt;$reveal state=&quot;$:/config/_sq/Stories/story2&quot; type=&quot;match&quot; text=&quot;yes&quot; default=&quot;no&quot; retain=&quot;yes&quot; animate=&quot;no&quot; tag=&quot;section&quot; class=&quot;tc-story-river tc-storytwo-river sq-story-rivertwo&quot;&gt;
 &lt;$navigator story=&quot;$:/_sq/Stories/Story2StoryList&quot; history=&quot;$:/_sq/Stories/Story2HistoryList&quot; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;
 &lt;$scrollable class=&quot;sq-story-rivertwo-scrollable&quot;  fallthrough=&quot;no&quot;&gt;
+&lt;section class=&quot;story-backdrop&quot;&gt;
+
+&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]&quot;&gt;
+
+&lt;$transclude/&gt;
+
+&lt;/$list&gt;
+
+&lt;/section&gt;
 &lt;$list filter=&quot;[list[$:/_sq/Stories/Story2StoryList]]&quot; history=&quot;$:/_sq/Stories/Story2HistoryList&quot; template=&quot;$:/core/ui/ViewTemplate&quot; editTemplate=&quot;$:/core/ui/EditTemplate&quot;  storyview={{$:/_sq/Stories/config/Story2-storyview}}&gt;
 &lt;div&gt;
 &lt;$transclude/&gt;
 &lt;/div&gt;
 &lt;/$list&gt;
+&lt;section class=&quot;story-frontdrop&quot;&gt;
+
+&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]&quot;&gt;
+
+&lt;$transclude/&gt;
+
+&lt;/$list&gt;
+
+&lt;/section&gt;
 &lt;/$scrollable&gt;
 &lt;/$navigator&gt;
 &lt;/$reveal&gt;</pre>
@@ -1540,7 +1829,7 @@ placeholder=&quot;$placeholder$&quot;/&gt;
 &lt;/$reveal&gt;
 \end</pre>
 </div>
-<div created="20170615081040584" modified="20200417001346880" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170615081040584" modified="20200417170626546" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
 </div>
 <div created="20191215203357897" modified="20200416185406967" tags="tb" title="$:/config/EditorTypeMappings/text/vnd.tiddlywiki" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -1555,11 +1844,8 @@ placeholder=&quot;$placeholder$&quot;/&gt;
 <div created="20200106214031452" modified="20200416185406907" tags="tb" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
 </div>
-<div created="20200416165642800" modified="20200416165708926" title="$:/config/SyncFilter" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>[is[tiddler]] -[[$:/HistoryList]] -[[$:/Import]] -[[$:/isEncrypted]] -[prefix[$:/status/]] -[prefix[$:/state/]] -[prefix[$:/temp/]] -[[$:/_sq/Stories/Story2HistoryList]]</pre>
-</div>
-<div created="20200414150157768" modified="20200414150158791" title="$:/config/Tiddlers/TitleLinks" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>yes</pre>
+<div created="20200414150157768" modified="20200417084646064" title="$:/config/Tiddlers/TitleLinks" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>no</pre>
 </div>
 <div created="20200210145131741" modified="20200416185406905" tags="tb" title="$:/config/ViewToolbarButtons/Visibility/$:/.giffmex/ViewToolbar/viewrefscheckboxes" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>hide</pre>
@@ -11005,8 +11291,8 @@ exports.has = function(source,operator,options) {
 &lt;/$button&gt;
 &lt;/$navigator&gt;</pre>
 </div>
-<div created="20200228210954683" modified="20200416185406965" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>$:/palettes/TiddlyBlink</pre>
+<div created="20200228210954683" modified="20200417174306360" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="4" bag="default">
+<pre>$:/palettes/Vanilla</pre>
 </div>
 <div created="20200222183545341" description="the opposite of TiddlyWiki's usual color scheme" modified="20200416185406902" name="TiddlyBlink" tags="tb $:/tags/Palette" title="$:/palettes/TiddlyBlink" type="application/x-tiddler-dictionary" revision="0" bag="default">
 <pre>alert-background: #ffe476
@@ -12136,8 +12422,23 @@ exports.context = contextWidget;
 <div caption="Words to never consider as CamelCase links" created="20150210172146298" creator="Stephen" description="Words that should never be considered as CamelCase wikiwords. Separate the individual words with commas (,)." modified="20200416185406947" modifier="Stephen" tags="tb ske" title="$:/sk/WhiteList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>LeDoux,McCloud,McDonald,TiddlyWiki,TiddlyWiki5,CamelCase,DuBay,McGraw,McCullough,LeGrange,NaCl,MeOH,EtOH,PiB,TiddlyTools,ResetFind,WikiText,WinBuilder,WinPE,ProgramData,TiddlyFox,GuillermoMartin,AndrewFraser,RochesterMNwalkers,DEdwardsCalgary,WalkaboutMM,HarveyG,McCoy,GeForce,SideBar,AirBnB,PayPal,LeBron,JavaScript,ExpressJet,CutePDF,McClouds,McElroy,McGovern,TableHelper,ShadowTiddler,WikiWords</pre>
 </div>
-<div created="20200417002015765" modified="20200417002356214" title="$:/state/sidebar" revision="34" bag="default">
+<div created="20200417174307362" modified="20200417174307362" title="$:/state/ShowPaletteEditor" revision="1" bag="default">
 <pre>yes</pre>
+</div>
+<div created="20200417205227888" modified="20200417205232108" title="$:/state/tab--1564888072" revision="2" bag="default">
+<pre>$:/core/ui/ControlPanel/Basics</pre>
+</div>
+<div created="20200417174254638" modified="20200417174301882" title="$:/state/tab-2027485122" revision="3" bag="default">
+<pre>$:/core/ui/ControlPanel/Palette</pre>
+</div>
+<div created="20200417174252988" modified="20200417205235280" title="$:/state/tab-390999370" revision="4" bag="default">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
+</div>
+<div created="20200417173717873" modified="20200417190008940" title="$:/state/tab/moresidebar-65670323" revision="5" bag="default">
+<pre>$:/core/ui/MoreSideBar/Shadows</pre>
+</div>
+<div created="20200417173713675" modified="20200417190043366" title="$:/state/tab/sidebar-1206596165" revision="11" bag="default">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
 <pre>yes</pre>
@@ -12154,7 +12455,7 @@ exports.context = contextWidget;
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div list="[[TiddlyBlink home]]" title="$:/StoryList" revision="1" bag="default">
+<div created="20200417172445410" list="[[TiddlyBlink home]]" modified="20200417210357288" title="$:/StoryList" revision="43" bag="default">
 <pre></pre>
 </div>
 <div created="20200127163609843" list="$:/jd/fullscreen-editor/EditButton $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200416185406963" tags="tb" title="$:/tags/EditToolbar" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12348,10 +12649,10 @@ exports.context = contextWidget;
 <div created="20200127172539001" modified="20200416185419828" tags="tb" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20200127165334843" modified="20200416233036460" tags="tb" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>zoomin</pre>
+<div created="20200127165334843" modified="20200417170602032" tags="tb" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>classic</pre>
 </div>
-<div created="20170608100342738" list="" modified="20200416234505504" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170608100342738" list="" modified="20200417211115069" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="2" bag="default">
 <pre>\define if-two-stories(twoStoryText, twoStoryNoSidebarText, oneStoryText)
 &lt;$reveal state=&quot;$:/state/story2&quot; type=&quot;match&quot; text=&quot;yes&quot;&gt;
 $twoStoryText$
@@ -12364,12 +12665,11 @@ $oneStoryText$
 &lt;/$reveal&gt;
 \end
 
-!shadow tiddler overrides
-* $:/core/ui/SideBar/Open
-* $:/config/SyncFilter
-
 !Recommended settings:
 * $:/config/Tiddlers/TitleLinks -&gt; yes
+
+!shadow tiddler overrides
+* $:/core/ui/SideBar/Open
 * $:/themes/tiddlywiki/vanilla/options/sidebarlayout -&gt; fluid-fixed
 
 !sq tiddlers
@@ -12378,13 +12678,16 @@ $oneStoryText$
 *$:/_sq/Stories/config/Story2-storyview
 *$:/_sq/Stories/config/twostorybreakpoint
 *$:/_sq/Stories/config/sidebaroverlaybreakpoint
+*$:/_sq/Stories/config/showRiverDropZones
 *$:/_sq/Stories/config/openLinkDivert
+*$:/_sq/Stories/config/snippets/viewswitcher
 *$:/_sq/Stories/divertTiddlerMacro
 *$:/_sq/Stories/divertTiddlerEditMacro
 *$:/_sq/Stories/HistoriesList
 *$:/_sq/Stories/LinkKeybindings
 *$:/_sq/Stories/EditTiddlerHook
 *$:/_sq/Stories/CorePatch/ButtonDispatchMessage
+*$:/_sq/Stories/Templates/RiverDropZone
 *$:/_sq/Stories/Stories.css
 *$:/_sq/Stories/StoriesList
 *$:/_sq/Stories/Story2HistoryList
@@ -12396,7 +12699,9 @@ $oneStoryText$
 *$:/_sq/Stories/icons/bars.svg
 *$:/_sq/Stories/icons/bars-empty.svg
 *$:/_sq/Stories/widgets/action-addtohistory
+*$:/_sq/Stories/startup-actions
 *$:/config/_sq/Stories/story2
+
 
 
 </pre>
