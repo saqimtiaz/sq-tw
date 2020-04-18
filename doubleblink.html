@@ -299,13 +299,17 @@ Error message and password prompt
 
 <li>$:/sk/WhiteList</li>
 
-<li>$:/state/ShowPaletteEditor</li>
+<li>$:/state/sidebar</li>
 
 <li>$:/state/tab-2027485122</li>
 
 <li>$:/state/tab-390999370</li>
 
+<li>$:/state/tab/moresidebar-65670323</li>
+
 <li>$:/state/tab/sidebar-1206596165</li>
+
+<li>$:/state/tabs/controlpanel/toolbars-1609250566</li>
 
 <li>$:/status/IsAnonymous</li>
 
@@ -443,11 +447,11 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 	this.dispatchEvent({type: this.message, param: this.param, tiddlerTitle: this.getVariable(&quot;currentTiddler&quot;), event: event, navigateFromNode: this});
 };</pre>
 </div>
-<div created="20170616074148780" list-before="$:/core/ui/Buttons/delete" modified="20200415214313385" tags="$:/tags/EditToolbar" title="$:/_sq/Stories/divertTiddlerEditMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="{{$:/_sq/Stories/icons/divert-right.svg}}" created="20170616074148780" description="divert right/left" list-before="$:/core/ui/Buttons/delete" modified="20200418165609957" tags="$:/tags/EditToolbar" title="$:/_sq/Stories/divertTiddlerEditMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define divertTiddlerButton()
 &lt;$set name=&quot;original&quot; value={{!!draft.title}}&gt;
 &lt;$set name=&quot;otherStoryList&quot;  filter=&quot;[enlist{$:/_sq/Stories/StoriesList!!list}] -[&lt;tv-story-list&gt;]&quot; select=&quot;0&quot;&gt;
-	&lt;$button class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
+	&lt;$button class=&lt;&lt;tv-config-toolbar-class&gt;&gt; tooltip=&quot;divert left/right&quot;&gt;
 		&lt;$reveal state=&quot;$:/_sq/Stories/config/openLinkDivert&quot; type=&quot;nomatch&quot; text=&quot;top&quot; default=&quot;top&quot;&gt;
 			&lt;$action-listops $tiddler=&lt;&lt;otherStoryList&gt;&gt; $subfilter=&lt;&lt;original&gt;&gt;/&gt;
 		&lt;/$reveal&gt;
@@ -462,7 +466,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 
 &lt;&lt;divertTiddlerButton&gt;&gt;</pre>
 </div>
-<div created="20170609055347900" list="[[Filter error: Missing [ in filter expression]]" list-before="" modified="20200416234307054" tags="$:/tags/ViewToolbar" title="$:/_sq/Stories/divertTiddlerMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="{{$:/_sq/Stories/icons/divert-right.svg}} divert left/right" created="20170609055347900" description="Divert left/right" list="[[Filter error: Missing [ in filter expression]]" list-before="" modified="20200418165609954" tags="$:/tags/ViewToolbar" title="$:/_sq/Stories/divertTiddlerMacro" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define __me()
 [[$(currentTiddler)$]]
 \end
@@ -470,8 +474,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 \define divertTiddlerButton()
 &lt;$set name=&quot;activeStoryList&quot; value=&lt;&lt;tv-story-list&gt;&gt; &gt;
 &lt;$set name=&quot;otherStoryList&quot; filter=&quot;[enlist{$:/_sq/Stories/StoriesList!!list}] -[&lt;tv-story-list&gt;]&quot; select=&quot;0&quot;&gt;
-&lt;$set name=&quot;otherHistoryList&quot; filter=&quot;[enlist{$:/_sq/Stories/HistoriesList!!list}] -[&lt;tv-history-list&gt;]&quot; select=&quot;0&quot;&gt;
-	&lt;$button class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
+	&lt;$button class=&lt;&lt;tv-config-toolbar-class&gt;&gt; tooltip=&quot;divert left/rigtht&quot;&gt;
 		&lt;$action-listops $tiddler=&lt;&lt;activeStoryList&gt;&gt; $subfilter=&quot;+[remove&lt;__me&gt;]&quot;/&gt;
 		&lt;$reveal state=&quot;$:/_sq/Stories/config/openLinkDivert&quot; type=&quot;nomatch&quot; text=&quot;top&quot; default=&quot;top&quot;&gt;
 			&lt;$action-listops $tiddler=&lt;&lt;otherStoryList&gt;&gt; $subfilter=&lt;&lt;__me&gt;&gt;/&gt;
@@ -479,10 +482,8 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 		&lt;$reveal state=&quot;$:/_sq/Stories/config/openLinkDivert&quot; type=&quot;match&quot; text=&quot;top&quot; default=&quot;top&quot;&gt;
 			&lt;$action-listops $tiddler=&lt;&lt;otherStoryList&gt;&gt; $subfilter=&quot;+[prepend&lt;__me&gt;]&quot;/&gt;
 		&lt;/$reveal&gt;
-		&lt;$action-addtohistory $history=&lt;&lt;otherHistoryList&gt;&gt; $title=&lt;&lt;currentTiddler&gt;&gt; /&gt;
 		&lt;span class=&quot;sq-button-divert-right sq-button-divert&quot;&gt;{{$:/_sq/Stories/icons/divert-right.svg}}&lt;/span&gt;&lt;span class=&quot;sq-button-divert-left sq-button-divert&quot;&gt;{{$:/_sq/Stories/icons/divert-left.svg}}&lt;/span&gt;
 	&lt;/$button&gt;
-&lt;/$set&gt;
 &lt;/$set&gt;
 &lt;/$set&gt;
 \end
@@ -610,7 +611,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 <div created="20200417171756341" modified="20200417172054199" tags="$:/tags/StartupAction/Browser" title="$:/_sq/Stories/startup-actions" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$action-deletetiddler $tiddler=&quot;$:/_sq/Stories/Story2HistoryList&quot;/&gt;</pre>
 </div>
-<div created="20170608102837192" modified="20200418091407269" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="8" bag="default">
+<div created="20170608102837192" modified="20200418175515557" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="1" bag="default">
 <pre>\define if-fluid-fixed(text,disableText)
 &lt;$reveal state=&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot; type=&quot;match&quot; text=&quot;fluid-fixed&quot;&gt;
 $text$
@@ -655,7 +656,7 @@ $oneStoryText$
 	fill: #aaa;
 }
 
-.sq-button-divert {
+.tc-story-river .sq-button-divert-left{
 	display: none;
 }
 
@@ -880,76 +881,68 @@ margin-right: 0;
 <div created="20170610072420739" list="$:/_sq/Stories/Story2StoryList $:/StoryList" modified="20200414145004320" tags="" title="$:/_sq/Stories/StoriesList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200418083416787" current-tiddler="$:/core/ui/SideBar/Open" modified="20200418110505519" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="24" bag="default">
+<div created="20200418171605614" current-tiddler="Stories-overview" modified="20200418175603774" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="12" bag="default">
 <pre>[
     {
-        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;,
+        &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 458.34375,
-            &quot;left&quot;: 1966.640625,
-            &quot;width&quot;: 151.015625,
-            &quot;right&quot;: 2117.65625,
-            &quot;bottom&quot;: 477.34375,
+            &quot;top&quot;: 1181.921875,
+            &quot;left&quot;: 689,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 790.6875,
+            &quot;bottom&quot;: 1200.921875,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;Draft of '$:/core/ui/SideBar/Open'&quot;
+        &quot;title&quot;: &quot;Draft of 'Stories-overview'&quot;
     },
     {
-        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;
+        &quot;title&quot;: &quot;Stories-overview&quot;
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 739.296875,
-            &quot;left&quot;: 1072,
-            &quot;width&quot;: 162.046875,
-            &quot;right&quot;: 1234.046875,
-            &quot;bottom&quot;: 759.296875,
+            &quot;top&quot;: 558.21875,
+            &quot;left&quot;: 729,
+            &quot;width&quot;: 195.234375,
+            &quot;right&quot;: 924.234375,
+            &quot;bottom&quot;: 578.21875,
             &quot;height&quot;: 20
         }
     },
     {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
+        &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 403.625,
-            &quot;left&quot;: 1949.640625,
-            &quot;width&quot;: 156.578125,
-            &quot;right&quot;: 2106.21875,
-            &quot;bottom&quot;: 422.625,
+            &quot;top&quot;: 831.921875,
+            &quot;left&quot;: 870,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 971.6875,
+            &quot;bottom&quot;: 850.921875,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
+        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 831.921875,
+            &quot;left&quot;: 870,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 971.6875,
+            &quot;bottom&quot;: 850.921875,
+            &quot;height&quot;: 19
+        }
     },
     {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
+        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 564.21875,
+            &quot;left&quot;: 910,
+            &quot;width&quot;: 162.046875,
+            &quot;right&quot;: 1072.046875,
+            &quot;bottom&quot;: 584.21875,
+            &quot;height&quot;: 20
+        }
     },
     {
         &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
@@ -959,45 +952,40 @@ margin-right: 0;
     },
     {
         &quot;title&quot;: &quot;TiddlyBlink&quot;,
-        &quot;fromPageRect&quot;: {}
-    },
-    {
-        &quot;title&quot;: &quot;Stories-overview&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 1102.921875,
-            &quot;left&quot;: 1040.5,
-            &quot;width&quot;: 101.6875,
-            &quot;right&quot;: 1142.1875,
-            &quot;bottom&quot;: 1121.921875,
+            &quot;top&quot;: 356.84375,
+            &quot;left&quot;: 2259,
+            &quot;width&quot;: 67.078125,
+            &quot;right&quot;: 2326.078125,
+            &quot;bottom&quot;: 375.84375,
             &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;,
+        &quot;title&quot;: &quot;$:/_sq/Stories/config/Settings&quot;,
         &quot;fromPageRect&quot;: {
-            &quot;top&quot;: 454.21875,
-            &quot;left&quot;: 1080.5,
-            &quot;width&quot;: 161.8125,
-            &quot;right&quot;: 1242.3125,
-            &quot;bottom&quot;: 474.21875,
-            &quot;height&quot;: 20
+            &quot;top&quot;: 315.34375,
+            &quot;left&quot;: 2321.1875,
+            &quot;width&quot;: 182.21875,
+            &quot;right&quot;: 2503.40625,
+            &quot;bottom&quot;: 334.34375,
+            &quot;height&quot;: 19
         }
     },
     {
-        &quot;title&quot;: &quot;Draft of '$:/core/ui/SideBar/Open'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of '$:/core/ui/SideBar/Open'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;
+        &quot;title&quot;: &quot;Stories-overview&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 1080.921875,
+            &quot;left&quot;: 1190,
+            &quot;width&quot;: 101.6875,
+            &quot;right&quot;: 1291.6875,
+            &quot;bottom&quot;: 1099.921875,
+            &quot;height&quot;: 19
+        }
     }
 ]</pre>
 </div>
-<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200418105953129" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="40" bag="default">
+<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings Stories-overview" modified="20200418175603774" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="19" bag="default">
 <pre></pre>
 </div>
 <div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200417170915429" tags="$:/tags/AboveStory" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10920,7 +10908,7 @@ exports.has = function(source,operator,options) {
 })();
 </pre>
 </div>
-<div caption="{{$:/language/SideBar/Open/Caption}}" created="20170609174945253" modified="20200418110505519" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Open" type="text/vnd.tiddlywiki" revision="3" bag="default">
+<div caption="{{$:/language/SideBar/Open/Caption}}" created="20170609174945253" modified="20200418110506804" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Open" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define lingo-base() $:/language/CloseAll/
 
@@ -11025,7 +11013,7 @@ $button$
 &lt;/$button&gt;
 &lt;/$navigator&gt;</pre>
 </div>
-<div created="20200228210954683" modified="20200418091439820" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="8" bag="default">
+<div created="20200228210954683" modified="20200418091440964" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/palettes/Vanilla</pre>
 </div>
 <div created="20200222183545341" description="the opposite of TiddlyWiki's usual color scheme" modified="20200416185406902" name="TiddlyBlink" tags="tb $:/tags/Palette" title="$:/palettes/TiddlyBlink" type="application/x-tiddler-dictionary" revision="0" bag="default">
@@ -12156,17 +12144,23 @@ exports.context = contextWidget;
 <div caption="Words to never consider as CamelCase links" created="20150210172146298" creator="Stephen" description="Words that should never be considered as CamelCase wikiwords. Separate the individual words with commas (,)." modified="20200416185406947" modifier="Stephen" tags="tb ske" title="$:/sk/WhiteList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>LeDoux,McCloud,McDonald,TiddlyWiki,TiddlyWiki5,CamelCase,DuBay,McGraw,McCullough,LeGrange,NaCl,MeOH,EtOH,PiB,TiddlyTools,ResetFind,WikiText,WinBuilder,WinPE,ProgramData,TiddlyFox,GuillermoMartin,AndrewFraser,RochesterMNwalkers,DEdwardsCalgary,WalkaboutMM,HarveyG,McCoy,GeForce,SideBar,AirBnB,PayPal,LeBron,JavaScript,ExpressJet,CutePDF,McClouds,McElroy,McGovern,TableHelper,ShadowTiddler,WikiWords</pre>
 </div>
-<div created="20200418085658254" modified="20200418085658254" title="$:/state/ShowPaletteEditor" revision="1" bag="default">
+<div created="20200418165619535" modified="20200418165621185" title="$:/state/sidebar" revision="2" bag="default">
 <pre>yes</pre>
 </div>
-<div created="20200418085655098" modified="20200418085655098" title="$:/state/tab-2027485122" revision="1" bag="default">
-<pre>$:/core/ui/ControlPanel/Palette</pre>
+<div created="20200418165628371" modified="20200418165628371" title="$:/state/tab-2027485122" revision="1" bag="default">
+<pre>$:/core/ui/ControlPanel/Toolbars</pre>
 </div>
-<div created="20200418085654224" modified="20200418085654224" title="$:/state/tab-390999370" revision="1" bag="default">
+<div created="20200418165626601" modified="20200418165626601" title="$:/state/tab-390999370" revision="1" bag="default">
 <pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
-<div created="20200418083451599" modified="20200418110604142" title="$:/state/tab/sidebar-1206596165" revision="24" bag="default">
+<div created="20200418173341362" modified="20200418173341362" title="$:/state/tab/moresidebar-65670323" revision="1" bag="default">
+<pre>$:/core/ui/MoreSideBar/System</pre>
+</div>
+<div created="20200418173340272" modified="20200418175546822" title="$:/state/tab/sidebar-1206596165" revision="4" bag="default">
 <pre>$:/core/ui/SideBar/Open</pre>
+</div>
+<div created="20200418165641105" modified="20200418165649339" title="$:/state/tabs/controlpanel/toolbars-1609250566" revision="2" bag="default">
+<pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
 <pre>yes</pre>
@@ -12183,7 +12177,7 @@ exports.context = contextWidget;
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20200418083453137" list="[[TiddlyBlink home]]" modified="20200418105947137" title="$:/StoryList" revision="32" bag="default">
+<div created="20200418165624301" list="[[TiddlyBlink home]]" modified="20200418175548610" title="$:/StoryList" revision="5" bag="default">
 <pre></pre>
 </div>
 <div created="20200127163609843" list="$:/jd/fullscreen-editor/EditButton $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200416185406963" tags="tb" title="$:/tags/EditToolbar" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12380,7 +12374,7 @@ exports.context = contextWidget;
 <div created="20200127165334843" modified="20200417170602032" tags="tb" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>classic</pre>
 </div>
-<div created="20170608100342738" list="" modified="20200417211116113" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170608100342738" list="" modified="20200418171613243" tags="tw-demo tw5 stories tw" title="Stories-overview" type="text/vnd.tiddlywiki" revision="1" bag="default">
 <pre>\define if-two-stories(twoStoryText, twoStoryNoSidebarText, oneStoryText)
 &lt;$reveal state=&quot;$:/state/story2&quot; type=&quot;match&quot; text=&quot;yes&quot;&gt;
 $twoStoryText$
@@ -12392,6 +12386,8 @@ $twoStoryNoSidebarText$
 $oneStoryText$
 &lt;/$reveal&gt;
 \end
+
+&lt;$button class=&quot;tc-tag-label tc-btn-invisible&quot; dragFilter=&quot;[prefix[$:/_sq/Stories]]  $:/core/ui/SideBar/Open $:/config/_sq/Stories/story2 $:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot;&gt;Drag me to install&lt;/$button&gt;
 
 !Recommended settings:
 * $:/config/Tiddlers/TitleLinks -&gt; yes
