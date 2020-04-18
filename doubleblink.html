@@ -213,8 +213,6 @@ Error message and password prompt
 
 <li>$:/.giffmex/meta/TiddlyBlink.gears.and.doo-hickeys</li>
 
-<li>$:/.giffmex/sidebar/parallel</li>
-
 <li>$:/.giffmex/sidebar/parallel2</li>
 
 <li>$:/.giffmex/sidebar/tabs/tiddlyblinkcontrols</li>
@@ -301,7 +299,7 @@ Error message and password prompt
 
 <li>$:/sk/WhiteList</li>
 
-<li>$:/state/sidebar</li>
+<li>$:/state/tab/sidebar-1206596165</li>
 
 <li>$:/status/IsAnonymous</li>
 
@@ -402,7 +400,7 @@ placeholder:&quot;&quot; &gt;&gt;</pre>
 
 </pre>
 </div>
-<div created="20200417170940547" modified="20200417171534194" title="$:/_sq/Stories/config/showRiverDropZones" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200417170940547" modified="20200417233130361" title="$:/_sq/Stories/config/showRiverDropZones" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>disable</pre>
 </div>
 <div created="20170616192704225" modified="20200416182732404" title="$:/_sq/Stories/config/sidebaroverlaybreakpoint" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -606,7 +604,7 @@ ButtonWidget.prototype.dispatchMessage = function(event) {
 <div created="20200417171756341" modified="20200417172054199" tags="$:/tags/StartupAction/Browser" title="$:/_sq/Stories/startup-actions" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$action-deletetiddler $tiddler=&quot;$:/_sq/Stories/Story2HistoryList&quot;/&gt;</pre>
 </div>
-<div created="20170608102837192" modified="20200417232932989" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="1" bag="default">
+<div created="20170608102837192" modified="20200417232934199" tags="$:/tags/Stylesheet" title="$:/_sq/Stories/Stories.css" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define if-fluid-fixed(text,disableText)
 &lt;$reveal state=&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot; type=&quot;match&quot; text=&quot;fluid-fixed&quot;&gt;
 $text$
@@ -854,17 +852,22 @@ margin-right: 0;
 <div created="20170610072420739" list="$:/_sq/Stories/Story2StoryList $:/StoryList" modified="20200414145004320" tags="" title="$:/_sq/Stories/StoriesList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200417232915006" current-tiddler="$:/_sq/Stories/Stories.css" modified="20200417232932989" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="2" bag="default">
+<div created="20200418083416787" current-tiddler="$:/core/ui/SideBar/Open" modified="20200418083416787" title="$:/_sq/Stories/Story2HistoryList" type="application/json" revision="1" bag="default">
 <pre>[
     {
-        &quot;title&quot;: &quot;Draft of '$:/_sq/Stories/Stories.css'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/_sq/Stories/Stories.css&quot;
+        &quot;title&quot;: &quot;$:/core/ui/SideBar/Open&quot;,
+        &quot;fromPageRect&quot;: {
+            &quot;top&quot;: 458.34375,
+            &quot;left&quot;: 1966.640625,
+            &quot;width&quot;: 151.015625,
+            &quot;right&quot;: 2117.65625,
+            &quot;bottom&quot;: 477.34375,
+            &quot;height&quot;: 19
+        }
     }
 ]</pre>
 </div>
-<div created="20170615140314952" list="TiddlyBlink $:/_sq/Stories/config/Settings" modified="20200417232806805" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="4" bag="default">
+<div created="20170615140314952" list="Stories-overview $:/_sq/Stories/config/Settings TiddlyBlink $:/core/ui/SideBar/Open" modified="20200418083600231" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki" revision="3" bag="default">
 <pre></pre>
 </div>
 <div created="20170609191118712" list-before="$:/core/ui/PageTemplate/story" modified="20200417170915429" tags="$:/tags/AboveStory" title="$:/_sq/Stories/Templates/RiverDropZone" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -1220,13 +1223,8 @@ with
 *The blue clock button in the sidebar activates $:/.giffmex/buttons/newnote-datetime . This is set up to create a new tiddler with a date and timestamp in the title.
 *Clicking on a checkmark in the ~TiddlyBlink tab tags one of three tiddlers ($:/.giffmex/ViewTemplate/refscontext, $:/.giffmex/ViewTemplate/refslinks, $:/.giffmex/ViewTemplate/refstranscludeclean and $:/.giffmex/ViewTemplate/refstranscludecollapse) with the tag ~$:/tags/ViewTemplate, making them show up under the tiddler. Those three tiddlers grab all the text references to the current tiddler, and format them into either links, transclusions, or highlighted search results in context. The latter uses the [[ContextPlugin|$:/plugins/danielo515/ContextPlugin]]. </pre>
 </div>
-<div created="20190624061203012" creator="Gloom" modified="20200416185406928" modifier="Gloom" purposedesc="text edit box for Show tiddler sidebar" tags="tb #template $:/.giffmex/sidebar/parallel2" title="$:/.giffmex/sidebar/parallel" type="application/x-tiddler" revision="0" bag="default">
-<pre>Paste a tiddler title to view tiddler in tab: &lt;$edit-text tiddler=&quot;$:/temp/sbartidddisplayvalue&quot; placeholder=&quot;tiddler title&quot; tag=&quot;input&quot; type=&quot;text&quot;/&gt;</pre>
-</div>
-<div caption="parallel" created="20190624061500276" creator="Gloom" infodesc="For temporarily displaying a tiddler in the sidebar (without having to tag it). Type the tiddler title in the text field and tiddler will sidpay below it." modified="20200416185406926" modifier="Gloom" tags="tb $:/tags/SideBar *sidebar" title="$:/.giffmex/sidebar/parallel2" tooltip="For temporarily displaying a tiddler in the sidebar (without having to tag it)" type="application/x-tiddler" revision="0" bag="default">
-<pre>{{$:/.giffmex/sidebar/parallel}} &lt;br&gt;&lt;h2&gt;&lt;$list filter=&quot;[{$:/temp/sbartidddisplayvalue}is[tiddler]]&quot; emptyMessage=&quot;tiddler doesn't exist&quot; &gt;&lt;/$list&gt;&lt;/h2&gt;
-
-&lt;$transclude tiddler={{$:/temp/sbartidddisplayvalue}} mode=&quot;block&quot; /&gt;</pre>
+<div caption="parallel" created="20190624061500276" creator="Gloom" infodesc="For temporarily displaying a tiddler in the sidebar (without having to tag it). Type the tiddler title in the text field and tiddler will sidpay below it." modified="20200416185406926" modifier="Gloom" tags="tb $:/tags/SideBar *sidebar" title="$:/.giffmex/sidebar/parallel2" tooltip="For temporarily displaying a tiddler in the sidebar (without having to tag it)" type="application/x-tiddler" {{$="/.giffmex/sidebar/parallel}} &lt;br&gt;&lt;h2&gt;&lt;$list filter=&quot;[{$:/temp/sbartidddisplayvalue}is[tiddler]]&quot; emptyMessage=&quot;tiddler doesn't exist&quot; &gt;&lt;/$list&gt;&lt;/h2&gt;" revision="0" bag="default">
+<pre>&lt;$transclude tiddler={{$:/temp/sbartidddisplayvalue}} mode=&quot;block&quot; /&gt;</pre>
 </div>
 <div caption="{{$:/core/images/options-button}}" created="20200129233103456" modified="20200416185406924" tags="tb $:/tags/SideBar" title="$:/.giffmex/sidebar/tabs/tiddlyblinkcontrols" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define tagreset() 
@@ -10792,66 +10790,57 @@ exports.has = function(source,operator,options) {
 })();
 </pre>
 </div>
-<div caption="{{$:/language/SideBar/Open/Caption}}" created="20170609174945253" modified="20200416180345619" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Open" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\define lingo-base() $:/language/CloseAll/
+<div caption="{{$:/language/SideBar/Open/Caption}}" created="20170609174945253" modified="20200418083202316" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Open" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\whitespace trim
+\define lingo-base() $:/language/CloseAll/
 
 \define drop-actions()
-&lt;$action-listops $tiddler=&lt;&lt;_story&gt;&gt; $subfilter=&quot;+[insertbefore:currentTiddler&lt;actionTiddler&gt;]&quot;/&gt;
+&lt;$action-listops $tiddler=&lt;&lt;tv-story-list&gt;&gt; $subfilter=&quot;+[insertbefore:currentTiddler&lt;actionTiddler&gt;]&quot;/&gt;
 \end
 
-''Left Pane''
+\define placeholder()
+&lt;div class=&quot;tc-droppable-placeholder&quot;/&gt;
+\end
 
-&lt;$vars _story=&quot;$:/StoryList&quot; _history=&quot;$:/HistoryList&quot;&gt;
-&lt;$list filter=&quot;[list&lt;_story&gt;]&quot; history=&lt;&lt;_history&gt;&gt; storyview=&quot;pop&quot;&gt;
-&lt;div style=&quot;position: relative;&quot;&gt;
+\define droppable-item(button)
+\whitespace trim
 &lt;$droppable actions=&lt;&lt;drop-actions&gt;&gt;&gt;
-&lt;div class=&quot;tc-droppable-placeholder&quot;&gt;
-&amp;nbsp;
-&lt;/div&gt;
+&lt;&lt;placeholder&gt;&gt;
 &lt;div&gt;
-&lt;$button message=&quot;tm-close-tiddler&quot; tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&amp;times;&lt;/$button&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
+$button$
 &lt;/div&gt;
 &lt;/$droppable&gt;
+\end
+
+\define open-tiddler-list()
+&lt;div class=&quot;tc-sidebar-tab-open&quot;&gt;
+&lt;$list filter=&quot;[list&lt;tv-story-list&gt;]&quot; history=&lt;&lt;tv-history-list&gt;&gt; storyview=&quot;pop&quot;&gt;
+&lt;div class=&quot;tc-sidebar-tab-open-item&quot;&gt;
+&lt;$macrocall $name=&quot;droppable-item&quot; button=&quot;&quot;&quot;&lt;$button message=&quot;tm-close-tiddler&quot; tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;{{$:/core/images/close-button}}&lt;/$button&gt;&amp;nbsp;&lt;$link to={{!!title}}&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;&quot;&quot;&quot;/&gt;
 &lt;/div&gt;
 &lt;/$list&gt;
 &lt;$tiddler tiddler=&quot;&quot;&gt;
-&lt;$droppable actions=&lt;&lt;drop-actions&gt;&gt;&gt;
-&lt;div class=&quot;tc-droppable-placeholder&quot;&gt;
-&amp;nbsp;
+&lt;div&gt;
+&lt;$macrocall $name=&quot;droppable-item&quot; button=&quot;&quot;&quot;&lt;$button message=&quot;tm-close-all-tiddlers&quot; class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&lt;&lt;lingo Button&gt;&gt;&lt;/$button&gt;&quot;&quot;&quot;/&gt;
 &lt;/div&gt;
-&lt;$button message=&quot;tm-close-all-tiddlers&quot; class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&lt;&lt;lingo Button&gt;&gt;&lt;/$button&gt;
-&lt;/$droppable&gt;
 &lt;/$tiddler&gt;
-&lt;/$vars&gt;
+&lt;/div&gt;
+\end
+
+
+''Left Pane''
+
+&lt;&lt;open-tiddler-list&gt;&gt;
 &lt;div class=&quot;sq-twostoriesonly&quot;&gt;
 
 ---
 
 ''Right Pane''
 
-&lt;$set name=&quot;_story&quot;  filter=&quot;[enlist{$:/_sq/Stories/StoriesList!!list}] -[&lt;tv-story-list&gt;]&quot; select=&quot;0&quot;&gt;
-&lt;$set name=&quot;_history&quot;  filter=&quot;[enlist{$:/_sq/Stories/HistoriesList!!list}] -[&lt;tv-history-list&gt;]&quot; select=&quot;0&quot;&gt;
-&lt;$navigator story=&lt;&lt;_story&gt;&gt;  history=&lt;&lt;_history&gt;&gt; &gt;
-&lt;$list filter=&quot;[list&lt;_story&gt;]&quot; history=&lt;&lt;_history&gt;&gt; storyview=&quot;pop&quot;&gt;
-&lt;div style=&quot;position: relative;&quot;&gt;
-&lt;$droppable actions=&lt;&lt;drop-actions&gt;&gt;&gt;
-&lt;div class=&quot;tc-droppable-placeholder&quot;&gt;
-&amp;nbsp;
-&lt;/div&gt;
-&lt;div&gt;
-&lt;$button message=&quot;tm-close-tiddler&quot; tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&amp;times;&lt;/$button&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
-&lt;/div&gt;
-&lt;/$droppable&gt;
-&lt;/div&gt;
-&lt;/$list&gt;
-&lt;$tiddler tiddler=&quot;&quot;&gt;
-&lt;$droppable actions=&lt;&lt;drop-actions&gt;&gt;&gt;
-&lt;div class=&quot;tc-droppable-placeholder&quot;&gt;
-&amp;nbsp;
-&lt;/div&gt;
-&lt;$button message=&quot;tm-close-all-tiddlers&quot; class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&lt;&lt;lingo Button&gt;&gt;&lt;/$button&gt;
-&lt;/$droppable&gt;
-&lt;/$tiddler&gt;
+&lt;$set name=&quot;tv-story-list&quot;  filter=&quot;[enlist{$:/_sq/Stories/StoriesList!!list}] -[&lt;tv-story-list&gt;]&quot; select=&quot;0&quot;&gt;
+&lt;$set name=&quot;tv-history-list&quot;  filter=&quot;[enlist{$:/_sq/Stories/HistoriesList!!list}] -[&lt;tv-history-list&gt;]&quot; select=&quot;0&quot;&gt;
+&lt;$navigator story=&lt;&lt;tv-story-list&gt;&gt;  history=&lt;&lt;tv-history-list&gt;&gt; &gt;
+&lt;&lt;open-tiddler-list&gt;&gt;
 &lt;/$navigator&gt;
 &lt;/$set&gt;
 &lt;/$set&gt;
@@ -10903,7 +10892,7 @@ exports.has = function(source,operator,options) {
 &lt;/$button&gt;
 &lt;/$navigator&gt;</pre>
 </div>
-<div created="20200228210954683" modified="20200417174308135" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200228210954683" modified="20200418083548812" tags="tb" title="$:/palette" type="text/vnd.tiddlywiki" revision="2" bag="default">
 <pre>$:/palettes/Vanilla</pre>
 </div>
 <div created="20200222183545341" description="the opposite of TiddlyWiki's usual color scheme" modified="20200416185406902" name="TiddlyBlink" tags="tb $:/tags/Palette" title="$:/palettes/TiddlyBlink" type="application/x-tiddler-dictionary" revision="0" bag="default">
@@ -12034,8 +12023,8 @@ exports.context = contextWidget;
 <div caption="Words to never consider as CamelCase links" created="20150210172146298" creator="Stephen" description="Words that should never be considered as CamelCase wikiwords. Separate the individual words with commas (,)." modified="20200416185406947" modifier="Stephen" tags="tb ske" title="$:/sk/WhiteList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>LeDoux,McCloud,McDonald,TiddlyWiki,TiddlyWiki5,CamelCase,DuBay,McGraw,McCullough,LeGrange,NaCl,MeOH,EtOH,PiB,TiddlyTools,ResetFind,WikiText,WinBuilder,WinPE,ProgramData,TiddlyFox,GuillermoMartin,AndrewFraser,RochesterMNwalkers,DEdwardsCalgary,WalkaboutMM,HarveyG,McCoy,GeForce,SideBar,AirBnB,PayPal,LeBron,JavaScript,ExpressJet,CutePDF,McClouds,McElroy,McGovern,TableHelper,ShadowTiddler,WikiWords</pre>
 </div>
-<div created="20200417232833541" modified="20200417233017788" title="$:/state/sidebar" revision="6" bag="default">
-<pre>yes</pre>
+<div created="20200418083451599" modified="20200418083553395" title="$:/state/tab/sidebar-1206596165" revision="6" bag="default">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
 <pre>yes</pre>
@@ -12052,7 +12041,7 @@ exports.context = contextWidget;
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div list="[[TiddlyBlink home]]" title="$:/StoryList" revision="1" bag="default">
+<div created="20200418083453137" list="[[TiddlyBlink home]]" modified="20200418083453137" title="$:/StoryList" revision="4" bag="default">
 <pre></pre>
 </div>
 <div created="20200127163609843" list="$:/jd/fullscreen-editor/EditButton $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200416185406963" tags="tb" title="$:/tags/EditToolbar" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12322,7 +12311,7 @@ Below each tiddler (note card) is a list of links to any other tiddlers that lin
 
 &lt;span class=&quot;indent1&quot;&gt;&lt;$list filter=&quot;[is[system]tag[meta]sort[title]]&quot;&gt;&lt;$link&gt;&lt;$view field=&quot;caption&quot;/&gt;&lt;/$link&gt;&lt;br&gt;&lt;/$list&gt;&lt;/span&gt;</pre>
 </div>
-<div created="20200128030902225" modified="20200416185406878" tags="tb meta" title="TiddlyBlink home" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200128030902225" list="Stories-overview" modified="20200418082349849" tags="tb meta" title="TiddlyBlink home" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;tabs &quot;TiddlyBlink .topicList .sourcesList .hideList&quot; &quot;TiddlyBlink&quot; &gt;&gt;</pre>
 </div>
 
