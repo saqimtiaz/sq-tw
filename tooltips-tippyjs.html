@@ -171,6 +171,8 @@ Error message and password prompt
 
 <li>For the viewtemplate</li>
 
+<li>HelloThere</li>
+
 </ul>
 </p>
 
@@ -9567,7 +9569,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[LinkWidget tweak]]</pre>
+# [[HelloThere]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -9632,9 +9634,9 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
-<div created="20200420230501645" list="[[For the viewtemplate]] $:/config/ui/EditTemplate $:/MyEditTemplate $:/sq/LinkWidgetTweak" modified="20200420230828388" title="$:/StoryList">
+<div created="20200420231053235" list="[[For the viewtemplate]] $:/config/ui/EditTemplate $:/MyEditTemplate $:/sq/LinkWidgetTweak HelloThere" modified="20200420231212987" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9650,19 +9652,19 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;https://tiddlywiki.com/empty.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/saq/Downloads/tooltips-tippyjs.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;tiddlywiki.com&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;tiddlywiki.com&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;https:&quot;
+            &quot;text&quot;: &quot;file:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -9670,7 +9672,7 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/empty.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/saq/Downloads/tooltips-tippyjs.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -9678,7 +9680,7 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;https://tiddlywiki.com&quot;
+            &quot;text&quot;: &quot;file://&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
@@ -9804,11 +9806,13 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
     }
 }</pre>
 </div>
-<div created="20200420230623508" excerpt="Add this macro at the top\define tv-wikilink-excerpt()
+<div created="20200420230623508" excerpt="Add this macro at the top of your view template:\define tv-wikilink-excerpt()
+&lt;$text text={{{ [{!!excerpt}encodehtml[]] " modified="20200420231251178" tags="" title="For the viewtemplate">
+<pre>\define tv-wikilink-excerpt()
 &lt;$text text={{{ [{!!excerpt}encodehtml[]] }}} /&gt;
 \end
-This should" modified="20200420230759541" tags="" title="For the viewtemplate">
-<pre>Add this macro at the top
+
+Add this macro at the top of your view template:
 
 ```
 \define tv-wikilink-excerpt()
@@ -9818,8 +9822,57 @@ This should" modified="20200420230759541" tags="" title="For the viewtemplate">
 ```
 
 This should give you html for the links that is ready to support tippy.js
+Eg:
 
+[[HelloThere]]
 </pre>
+</div>
+<div created="20130822170200000" excerpt="Have you ever had the feeling that your head is not quite big enough to hold everything you need to remember?Welcome to " list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200420231057050" tags="TableOfContents" title="HelloThere" type="text/vnd.tiddlywiki">
+<pre>''Have you ever had the feeling that your head is not quite big enough to hold everything you need to remember?''
+
+Welcome to TiddlyWiki, a unique [[non-linear|Philosophy of Tiddlers]] notebook for [[capturing|Creating and editing tiddlers]], [[organising|Structuring TiddlyWiki]] and [[sharing|Sharing your tiddlers with others]] complex insformation.
+
+Use it to keep your [[to-do list|TaskManagementExample]], to plan an [[essay or novel|&quot;TiddlyWiki for Scholars&quot; by Alberto Molina]], or to organise your wedding. Record every thought that crosses your brain, or build a flexible and responsive website.
+
+&lt;div style=&quot;font-size:0.7em;text-align:center;margin-top:2em;margin-bottom:2em;&quot;&gt;
+&lt;&lt;list-thumbnails filter:&quot;[tag[HelloThumbnail]]&quot; width:&quot;168&quot; height:&quot;95&quot;&gt;&gt;
+&lt;/div&gt;
+
+Unlike conventional online services, TiddlyWiki lets you choose where to keep your data, guaranteeing that in the decades to come you will [[still be able to use|Future Proof]] the notes you take today.
+
+&lt;div style=&quot;font-size:0.7em;text-align:center;margin:3em auto;&quot;&gt;
+&lt;a href=&quot;http://groups.google.com/group/TiddlyWiki&quot; class=&quot;tc-btn-big-green&quot; style=&quot;border-radius:4px;background-color:#FF8C19;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+{{$:/core/images/help}} Forum
+&lt;/a&gt;
+&lt;a href=&quot;https://www.youtube.com/c/JeremyRuston&quot; class=&quot;tc-btn-big-green&quot; style=&quot;border-radius:4px;background-color:#e52d27;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+{{$:/core/images/video}} ~YouTube
+&lt;/a&gt;
+&lt;a href=&quot;https://twitter.com/TiddlyWiki&quot; class=&quot;tc-btn-big-green&quot; style=&quot;border-radius:4px;background-color:#5E9FCA;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+{{$:/core/images/twitter}} Twitter
+&lt;/a&gt;
+&lt;a href=&quot;https://github.com/Jermolene/TiddlyWiki5&quot; class=&quot;tc-btn-big-green&quot; style=&quot;border-radius:4px;background-color:#444;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+{{$:/core/images/github}} ~GitHub
+&lt;/a&gt;
+&lt;a href=&quot;https://gitter.im/TiddlyWiki/public&quot; class=&quot;tc-btn-big-green&quot; style=&quot;border-radius:4px;background-color:#753a88;background-image:linear-gradient(to left,#cc2b5e,#753a88);&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+{{$:/core/images/gitter}} Gitter
+&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;&lt;&lt;.tc-big-quote
+''The ~TiddlyWiki is the best software I've ever found for organising my ideas.''
+
+It's well worth spending an hour or so playing with it to see how it can help you. This will be time well-spent and will change how you think and how you organise your ideas.
+&lt;&lt;&lt; [[Joe Armstrong, Co-inventor of Erlang|https://joearms.github.io/]]
+
+&lt;&lt;&lt;.tc-big-quote
+''~TiddlyWiki gets a Gearhead rating of 6 out of 5 (it's that good).''
+
+Finding code that works flawlessly after just two or three years is magical enough but after seven years?!
+&lt;&lt;&lt; [[Mark Gibbs, Network World|http://www.networkworld.com/article/3028098/open-source-tools/tiddlywiki-a-free-open-source-wiki-revisited.html]]
+
+&lt;div style=&quot;font-size:0.7em;text-align:center;margin:3em auto;&quot;&gt;
+&lt;a href=&quot;https://www.producthunt.com/posts/tiddlywiki-2?utm_source=badge-top-post-badge&amp;utm_medium=badge&amp;utm_souce=badge-tiddlywiki-2&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=193414&amp;theme=dark&amp;period=daily&quot; alt=&quot;TiddlyWiki - The open source non-linear notebook | Product Hunt Embed&quot; style=&quot;width: 250px; height: 54px;&quot; width=&quot;250px&quot; height=&quot;54px&quot; /&gt;&lt;/a&gt;
+&lt;/div&gt;</pre>
 </div>
 
 
