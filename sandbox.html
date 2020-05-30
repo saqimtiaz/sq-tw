@@ -9909,7 +9909,7 @@ exports.compileFilter = function(filterString) {
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[image.png]]</pre>
+# [[$:/plugins/sq/bullets/action-ifconfirmed.js]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10170,13 +10170,13 @@ h2 {margin-top: 2.5em;}</pre>
 <div created="20200522191113307" modified="20200522191118947" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200522171734749" modified="20200523074928424" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/More</pre>
+<div created="20200522171734749" modified="20200530155901916" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200523074242809" list="GettingStarted" modified="20200523074932863" title="$:/StoryList">
+<div list="GettingStarted" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200522184515465" modified="20200522184542964" title="$:/temp/advancedsearch">
@@ -10349,8 +10349,11 @@ h2 {margin-top: 2.5em;}</pre>
     }
 }</pre>
 </div>
-<div bag="default" created="20200126200804413" modified="20200522173309782" module-type="widget" revision="0" tags="" title="ActionIfConfirmedWidget" type="application/javascript">
+<div bag="default" created="20200126200804413" modified="20200530155841655" module-type="widget" revision="0" tags="" title="ActionIfConfirmedWidget" type="application/javascript">
 <pre>/*\
+
+type: application/javascript
+module-type: widget
 
 Prompt user for confirmation before executing actions contained inside the widget.
 If the user cancels, the actions are not executed.
@@ -10364,10 +10367,6 @@ Example:
 
 Parameters:
 $message : message to display
-
-type: application/javascript
-module-type: widget
-
 
 \*/
 (function(){
@@ -10393,7 +10392,8 @@ Render this widget into the DOM
 IfConfirmedWidget.prototype.render = function(parent,nextSibling) {
 	this.computeAttributes();
 	this.execute();
-	//this.renderChildren(parent,nextSibling);
+	this.parentDomNode = parent;
+	this.renderChildren(parent,nextSibling);
 };
 
 /*
