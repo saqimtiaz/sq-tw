@@ -160,6 +160,10 @@ Error message and password prompt
 
 <li>$:/isEncrypted</li>
 
+<li>$:/plugins/sq/bullets/delete-hook/actions</li>
+
+<li>$:/plugins/sq/bullets/delete-hook/hook</li>
+
 <li>$:/SiteSubtitle</li>
 
 <li>$:/SiteTitle</li>
@@ -193,6 +197,8 @@ Error message and password prompt
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
 <li>$:/themes/tiddlywiki/vanilla</li>
+
+<li>action-withselection</li>
 
 <li>ActionIfConfirmedWidget</li>
 
@@ -9909,10 +9915,48 @@ exports.compileFilter = function(filterString) {
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/sq/bullets/action-ifconfirmed.js]]</pre>
+# [[$:/plugins/sq/bullets/delete-hook/hook]]
+# [[$:/plugins/sq/bullets/delete-hook/actions]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
+</div>
+<div created="20200527200401408" modified="20200527234136578" tags="$:/tags/deleteTiddlerAction" title="$:/plugins/sq/bullets/delete-hook/actions" type="text/vnd.tiddlywiki">
+<pre>&lt;$list filter=&quot;[&lt;currentTiddler&gt;has[sq-bullet-uuid]has[sq-bullet-parent]]&quot;&gt;
+&lt;$action-listops $tiddler={{{[sq-bullet-uuid{!!sq-bullet-parent}]}}} $field=&quot;sq-bullets&quot; $subfilter=&quot;-[&lt;currentTiddler&gt;]&quot; /&gt;
+&lt;$list variable=&quot;count&quot; filter=&quot;[enlist{!!sq-bullets}count[]!match[0]]&quot;&gt;
+&lt;$action-ifconfirmed  $message={{{[&lt;count&gt;addprefix[Do you also want to delete all ]addsuffix[ child bullets for this tiddler?]]}}}&gt;
+&lt;$action-deletetiddler $filter=&quot;[enlist{!!sq-bullets}]&quot;/&gt;
+&lt;/$action-ifconfirmed&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;</pre>
+</div>
+<div created="20200527200020053" modified="20200527205551878" module-type="startup" tags="" title="$:/plugins/sq/bullets/delete-hook/hook" type="application/javascript">
+<pre>$tw.hooks.addHook(&quot;th-deleting-tiddler&quot;,function(tiddler) {
+	if(tiddler.fields[&quot;draft.of&quot;]) {
+		return;
+	}
+	
+	var executeDeleteHookTiddlers = function(tag) {
+		$tw.utils.each($tw.wiki.filterTiddlers(&quot;[all[shadows+tiddlers]tag[&quot; + tag + &quot;]!has[draft.of]]&quot;),function(title) {
+			var parser = $tw.wiki.parseText(&quot;text/vnd.tiddlywiki&quot;,$tw.wiki.getTiddlerText(title),{
+					parentWidget: $tw.rootWidget,
+					document: this.document
+				}),
+				widgetNode = $tw.wiki.makeWidget(parser,{
+					parentWidget: $tw.rootWidget,
+					document: this.document,
+					variables: {currentTiddler : tiddler.fields.title}
+				});
+			var container = this.document.createElement(&quot;div&quot;);
+			widgetNode.render(container,null);
+			widgetNode.invokeActions(this,null);	
+		});
+	}
+	
+	executeDeleteHookTiddlers(&quot;$:/tags/deleteTiddlerAction&quot;);
+
+});</pre>
 </div>
 <div created="20200522171635467" modified="20200523074632585" title="$:/SiteSubtitle">
 <pre>@@float:left;
@@ -10170,13 +10214,13 @@ h2 {margin-top: 2.5em;}</pre>
 <div created="20200522191113307" modified="20200522191118947" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200522171734749" modified="20200530155901916" title="$:/state/tab/sidebar--595412856">
+<div created="20200522171734749" modified="20200531061803519" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
-<div list="GettingStarted" title="$:/StoryList">
+<div created="20200531061701107" list="GettingStarted" modified="20200531061957332" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200522184515465" modified="20200522184542964" title="$:/temp/advancedsearch">
@@ -10349,6 +10393,98 @@ h2 {margin-top: 2.5em;}</pre>
     }
 }</pre>
 </div>
+<div created="20200530221216369" modified="20200531061639381" module-type="widget" tags="" title="action-withselection" type="application/javascript">
+<pre>/*\
+
+title: $:/plugins/sq/bullets/action-withselection.js
+type: application/javascript
+module-type: widget
+
+Triggers actions contained within, providing certain variables.
+For use in conjunction with the keyboard widget
+selectionStart : start position in characters of the selection
+selectionEnd: end position in characters of the selection
+
+Example:
+
+\define kb-actions()
+&lt;$action-withselection&gt;
+&lt;$action-setfield $tiddler=debug text=&lt;&lt;_selection&gt;&gt; start=&lt;&lt;_selectionStart&gt;&gt; end=&lt;&lt;_selectionEnd&gt;&gt;/&gt;
+&lt;/$action-withselection&gt;
+\end
+
+&lt;$keyboard key=&quot;Enter&quot; actions=&lt;&lt;kb-actions&gt;&gt; &gt;
+&lt;$edit-text tiddler=&quot;temp&quot;/&gt;
+&lt;/$keyboard&gt;
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
+
+var WithSelectionWidget = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};
+
+/*
+Inherit from the base widget class
+*/
+WithSelectionWidget.prototype = new Widget();
+
+/*
+Render this widget into the DOM
+*/
+WithSelectionWidget.prototype.render = function(parent,nextSibling) {
+	this.computeAttributes();
+	this.execute();
+	this.parentDomNode = parent;
+	this.renderChildren(parent,nextSibling);
+};
+
+/*
+Compute the internal state of the widget
+*/
+WithSelectionWidget.prototype.execute = function() {
+	this.makeChildWidgets();
+};
+
+/*
+Refresh the widget by ensuring our attributes are up to date
+*/
+WithSelectionWidget.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	return this.refreshChildren(changedTiddlers);
+};
+
+/*
+Invoke the action associated with this widget
+*/
+WithSelectionWidget.prototype.invokeAction = function(triggeringWidget,event) {
+	
+	var selection = window.getSelection();
+	var el = selection.focusNode.children[0];
+	if(selection) {
+		this.setVariable(&quot;_selectionStart&quot;,el.selectionStart);
+		this.setVariable(&quot;_selectionEnd&quot;,el.selectionEnd);
+		this.setVariable(&quot;_selection&quot;,selection);
+	}
+	this.invokeActions(this,event);
+	return true;
+	
+};
+
+WithSelectionWidget.prototype.allowActionPropagation = function() {
+	return false;
+};
+
+exports[&quot;action-withselection&quot;] = WithSelectionWidget;
+
+})();</pre>
+</div>
 <div bag="default" created="20200126200804413" modified="20200530155841655" module-type="widget" revision="0" tags="" title="ActionIfConfirmedWidget" type="application/javascript">
 <pre>/*\
 
@@ -10437,7 +10573,7 @@ exports[&quot;action-ifconfirmed&quot;] = IfConfirmedWidget;
 
 })();</pre>
 </div>
-<div bag="default" created="20200127122207643" modified="20200522173354692" module-type="widget" revision="0" tags="widget" title="ActionWithInputWidget" type="application/javascript">
+<div bag="default" created="20200127122207643" modified="20200531061601349" module-type="widget" revision="0" tags="widget" title="ActionWithInputWidget" type="application/javascript">
 <pre>/*\
 
 Prompt user for input before executing actions contained inside the widget.
@@ -10485,7 +10621,8 @@ Render this widget into the DOM
 WithInputWidget.prototype.render = function(parent,nextSibling) {
 	this.computeAttributes();
 	this.execute();
-	//this.renderChildren(parent,nextSibling);
+	this.parentDomNode = parent;
+	this.renderChildren(parent,nextSibling);
 };
 
 /*
@@ -10550,7 +10687,7 @@ Further ideas:
 * turn show-range-values macro into a template that can be called, so I still call the macro but all its doing is transcluding state tiddler with a template
 *customizable field names instead of low and high</pre>
 </div>
-<div created="20200522172703816" modified="20200523075056454" title="GettingStarted">
+<div created="20200522172703816" modified="20200531062102377" title="GettingStarted">
 <pre>@@background-color:yellow;
 !USE WITH CARE 
 
@@ -10570,7 +10707,13 @@ Your tiddlers may be exterminated.
 
 * ActionWithInputWidget - prompt user for input and execute contained actions with input available as a string in the variable userInput
 * ActionIfConfirmedWidget - prompt user for confirmation and execute contained actions only if confirmed
+* [[action-withselection]] - invoke actions contained within, providing variables for the selection value, selection start and selection end markers. For use with keyboard widget.
 * [[DualRangeWidget|DualRangeDemo]] to set upper and lower bounds of a range
+
+!!Hooks
+
+*[[Tag based delete tiddler actions|$:/plugins/sq/bullets/delete-hook/hook]]
+** [[Example|$:/plugins/sq/bullets/delete-hook/actions]]
 
 !!Filters
 
