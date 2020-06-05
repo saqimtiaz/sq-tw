@@ -347,6 +347,12 @@ Error message and password prompt
 
 <li>Roadmap/20200605085058183</li>
 
+<li>Roadmap/20200605105000154</li>
+
+<li>Roadmap/20200605105048447</li>
+
+<li>Roadmap/20200605105305334</li>
+
 <li>Stream</li>
 
 <li>The Tell-Tale Heart by Poe</li>
@@ -10991,7 +10997,7 @@ very-muted-foreground: #888888</pre>
         },
         &quot;$:/plugins/sq/bullets/btn-dblclick&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/bullets/btn-dblclick&quot;,
-            &quot;text&quot;: &quot;/*\\\n\ntitle: $:/plugins/sq/bullets/btn-dblclick\ntype: application/javascript\nmodule-type: widget-subclass\n\n\\*/\n(function(){\n\t\nexports.baseClass = \&quot;button\&quot;;\n\nexports.name = \&quot;btn-dblclick\&quot;;\n\t\nexports.constructor = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\nexports.prototype = {};\t\n\nexports.prototype.render = function(parent,nextSibling) {\n\tvar self = this;\n\t// Remember parent\n\tthis.parentDomNode = parent;\n\t// Compute attributes and execute state\n\tthis.computeAttributes();\n\tthis.execute();\n\t// Create element\n\tvar tag = \&quot;div\&quot;;\n\tif(this.buttonTag &amp;&amp; $tw.config.htmlUnsafeElements.indexOf(this.buttonTag) === -1) {\n\t\ttag = this.buttonTag;\n\t}\n\tvar domNode = this.document.createElement(tag);\n\tvar classes = this[\&quot;class\&quot;].split(\&quot; \&quot;) || [];\n\tdomNode.className = classes.join(\&quot; \&quot;);\t\n\tdomNode.addEventListener(\&quot;dblclick\&quot;,function(event) {\n\t\tevent.preventDefault();\n\t\tif(self.set || self.setTitle) {\n\t\t\tself.setTiddler();\n\t\t}\n\t\tif(self.actions) {\n\t\t\tself.invokeActionString(self.actions,self,event);\n\t\t}\n\t\tvar x = self.invokeActions(self,event);\n\t\treturn true;\n\t},false);\n\tparent.insertBefore(domNode,nextSibling);\n\tthis.renderChildren(domNode,null);\n\tthis.domNodes.push(domNode);\t\n}\t\n\t\n})();&quot;,
+            &quot;text&quot;: &quot;/*\\\n\ntitle: $:/plugins/sq/bullets/btn-dblclick\ntype: application/javascript\nmodule-type: widget-subclass\n\n\\*/\n(function(){\n\t\nexports.baseClass = \&quot;button\&quot;;\n\nexports.name = \&quot;btn-dblclick\&quot;;\n\t\nexports.constructor = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\nexports.prototype = {};\t\n\nexports.prototype.render = function(parent,nextSibling) {\n\tvar self = this;\n\t// Remember parent\n\tthis.parentDomNode = parent;\n\t// Compute attributes and execute state\n\tthis.computeAttributes();\n\tthis.execute();\n\t// Create element\n\tvar tag = \&quot;div\&quot;;\n\tif(this.buttonTag &amp;&amp; $tw.config.htmlUnsafeElements.indexOf(this.buttonTag) === -1) {\n\t\ttag = this.buttonTag;\n\t}\n\tvar domNode = this.document.createElement(tag);\n\tvar classes = this[\&quot;class\&quot;].split(\&quot; \&quot;) || [];\n\tdomNode.className = classes.join(\&quot; \&quot;);\t\n\tdomNode.addEventListener(\&quot;dblclick\&quot;,function(event) {\n\t\tevent.preventDefault();\n\t\tif (window.getSelection) {\n\t\t\twindow.getSelection().removeAllRanges();\n\t\t} else if (document.selection) {\n\t\t\tdocument.selection.empty();\n\t\t}\n\t\tif(self.set || self.setTitle) {\n\t\t\tself.setTiddler();\n\t\t}\n\t\tif(self.actions) {\n\t\t\tself.invokeActionString(self.actions,self,event);\n\t\t}\n\t\tvar x = self.invokeActions(self,event);\n\t\treturn true;\n\t},false);\n\tparent.insertBefore(domNode,nextSibling);\n\tthis.renderChildren(domNode,null);\n\tthis.domNodes.push(domNode);\t\n}\t\n\t\n})();&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget-subclass&quot;
         },
@@ -11250,7 +11256,7 @@ very-muted-foreground: #888888</pre>
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div list="Stream Roadmap Kafka [[The Tell-Tale Heart by Poe]] [[My Notes]]" title="$:/StoryList" revision="2" bag="default">
+<div list="Stream Roadmap Kafka [[The Tell-Tale Heart by Poe]] [[My Notes]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -11588,7 +11594,7 @@ Examples:
 <div created="20200602185731587" modified="20200605075440063" sq-bullet-parent="15148810-0243-40c7-975d-105caa3648ce" sq-bullet-uuid="c9597ab6-80f3-4e97-b4ad-55fb36034df7" sq-bullets="" title="Roadmap/20200602185731587" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Consider different styling for default bullet</pre>
 </div>
-<div created="20200603061628734" modified="20200605085059670" sq-bullet-parent="d8fa2052-4315-4089-82f3-357aa40ab1a1" sq-bullet-uuid="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullets="Roadmap/20200605085058183" title="Roadmap/20200603061628734" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200603061628734" modified="20200605105306377" sq-bullet-parent="d8fa2052-4315-4089-82f3-357aa40ab1a1" sq-bullet-uuid="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullets="Roadmap/20200605085058183 Roadmap/20200605105000154 Roadmap/20200605105048447 Roadmap/20200605105305334" title="Roadmap/20200603061628734" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>''NOW''</pre>
 </div>
 <div created="20200603061644288" modified="20200605085022675" sq-bullet-parent="d8fa2052-4315-4089-82f3-357aa40ab1a1" sq-bullet-uuid="0cf1c82c-9f8a-45f2-8d13-0c7981132b4b" sq-bullets="Roadmap/20200603080248881 Roadmap/20200529194547325 Roadmap/20200605084858221 Roadmap/20200529194658065 Roadmap/20200604065744372 Roadmap/20200604134248020" title="Roadmap/20200603061644288" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -11626,6 +11632,15 @@ Examples:
 </div>
 <div created="20200605085058183" modified="20200605085114293" sq-bullet-parent="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullet-uuid="eabd5ef9-dd85-43a6-bdc0-98210cefdc01" title="Roadmap/20200605085058183" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>investigate possibility of a unified keyboard widget instance with event delegation</pre>
+</div>
+<div created="20200605105000154" modified="20200605105009342" sq-bullet-parent="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullet-uuid="6bb8d735-cf96-42c3-867c-50b5bb9c5328" title="Roadmap/20200605105000154" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>conditional assignment of keys to kb widget?</pre>
+</div>
+<div created="20200605105048448" modified="20200605105110519" sq-bullet-parent="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullet-uuid="a1513be4-4616-4c17-9e36-9cfcc009520b" title="Roadmap/20200605105048447" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>assignment of kb widget via template?</pre>
+</div>
+<div created="20200605105305334" modified="20200605105310726" sq-bullet-parent="6ab26a23-c5b5-461b-b0b4-08400dc8cb5d" sq-bullet-uuid="3c9e7c6d-c1e7-43fb-bf45-69298d192414" title="Roadmap/20200605105305334" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>as list operator</pre>
 </div>
 <div created="20200526161435997" modified="20200602090208747" tags="" title="Stream" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>@@background-color:yellow;font-weight:bold;
