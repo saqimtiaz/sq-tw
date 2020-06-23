@@ -184,6 +184,8 @@ Error message and password prompt
 
 <li>$:/plugins/sq/bullets/delete-hook/hook</li>
 
+<li>$:/plugins/sq/NodeJSExternalFiles</li>
+
 <li>$:/plugins/sq/streams/btn-dblclick</li>
 
 <li>$:/plugins/sq/streams/contextmenu/contextmenu</li>
@@ -10068,8 +10070,7 @@ mode=&quot;inline&quot;/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edi
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/sq/streams/contextmenu/contextmenu]]
-# [[$:/plugins/sq/streams/btn-dblclick]]</pre>
+# [[$:/plugins/sq/NodeJSExternalFiles]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10110,6 +10111,79 @@ mode=&quot;inline&quot;/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edi
 	executeDeleteHookTiddlers(&quot;$:/tags/deleteTiddlerAction&quot;);
 
 });</pre>
+</div>
+<div bag="default" core-version="&gt;=5.0.0" created="20200623132351412" dependents="" description="Import to files folder on node.js" list="" modified="20200623132441955" plugin-type="plugin" revision="0" title="$:/plugins/sq/NodeJSExternalFiles" type="application/json" version="0.1 alpha">
+<pre>{
+&quot;tiddlers&quot;: {
+&quot;$:/sq/ServerImages/Styles&quot;: {
+    &quot;text&quot;: &quot;.sq-import-table {width:100%;}\n.sq-import-table input {width:90%;}&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+    &quot;title&quot;: &quot;$:/sq/ServerImages/Styles&quot;,
+    &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
+    &quot;modified&quot;: &quot;20200427065648626&quot;,
+    &quot;created&quot;: &quot;20200427065544654&quot;
+},
+
+&quot;$:/core/ui/ImportListing&quot;: {
+    &quot;text&quot;: &quot;\\define lingo-base() $:/language/Import/\n \n\\define messageField()\nmessage-$(payloadTiddler)$\n\\end\n\n\\define selectionField()\nselection-$(payloadTiddler)$\n\\end\n\n\\define renameField()\nrename-$(payloadTiddler)$\n\\end\n\n\\define newImportTitleTiddler() $:/temp/NewImportTitle-$(payloadTiddler)$\n\n\\define previewPopupState()\n$(currentTiddler)$!!popup-$(payloadTiddler)$\n\\end\n\n\\define renameFieldState()\n$:/state/import-rename-$(payloadTiddler)$\n\\end\n\n\\define select-all-actions()\n&lt;$list filter=\&quot;[all[current]plugintiddlers[]sort[title]]\&quot; variable=\&quot;payloadTiddler\&quot;&gt;\n&lt;$action-setfield $field={{{ [&lt;payloadTiddler&gt;addprefix[selection-]] }}} $value={{$:/state/import/select-all}}/&gt;\n&lt;/$list&gt;\n\\end\n\n&lt;table class=\&quot;sq-import-table\&quot;&gt;\n&lt;tbody&gt;\n&lt;tr&gt; \n&lt;th&gt;\n&lt;$checkbox tiddler=\&quot;$:/state/import/select-all\&quot; field=\&quot;text\&quot; checked=\&quot;checked\&quot; unchecked=\&quot;unchecked\&quot; default=\&quot;checked\&quot; actions=&lt;&lt;select-all-actions&gt;&gt;&gt;\n&lt;&lt;lingo Listing/Select/Caption&gt;&gt;\n&lt;/$checkbox&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Title/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Status/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;/tr&gt;\n&lt;$list filter=\&quot;[all[current]plugintiddlers[]sort[title]]\&quot; variable=\&quot;payloadTiddler\&quot;&gt;\n&lt;tr&gt;\n&lt;td&gt;\n&lt;$checkbox field=&lt;&lt;selectionField&gt;&gt; checked=\&quot;checked\&quot; unchecked=\&quot;unchecked\&quot; default=\&quot;checked\&quot;/&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; stateTitle=&lt;&lt;renameFieldState&gt;&gt; text=\&quot;yes\&quot; tag=\&quot;div\&quot;&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot; tag=\&quot;div\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;yes\&quot;&gt;\n{{$:/core/images/right-arrow}}&amp;nbsp;&lt;$text text={{{[&lt;currentTiddler&gt;get&lt;renameField&gt;minlength[1]else&lt;payloadTiddler&gt;]}}}/&gt;\n&lt;/$button&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot; setTitle=&lt;&lt;renameFieldState&gt;&gt; setTo=\&quot;yes\&quot; tooltip=\&quot;rename tiddler before importing\&quot;&gt;{{$:/core/images/edit-button}}&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot; tag=\&quot;div\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;no\&quot;&gt;\n{{$:/core/images/down-arrow}}&amp;nbsp;&lt;$text text=&lt;&lt;payloadTiddler&gt;&gt;/&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;match\&quot; stateTitle=&lt;&lt;renameFieldState&gt;&gt; text=\&quot;yes\&quot; tag=\&quot;div\&quot;&gt;\n&lt;$edit-text tiddler=&lt;&lt;newImportTitleTiddler&gt;&gt;  default=&lt;&lt;payloadTiddler&gt;&gt; tag=\&quot;input\&quot;/&gt;&lt;$button  class=\&quot;tc-btn-invisible\&quot; setTitle=&lt;&lt;renameFieldState&gt;&gt; setTo=\&quot;no\&quot; tooltip=\&quot;cancel rename\&quot;&gt;{{$:/core/images/close-button}}&lt;$action-deletetiddler $tiddler=&lt;&lt;newImportTitleTiddler&gt;&gt;/&gt;&lt;/$button&gt;&lt;$button  class=\&quot;tc-btn-invisible\&quot; setTitle=&lt;&lt;renameFieldState&gt;&gt; setTo=\&quot;no\&quot; tooltip=\&quot;rename tiddler\&quot;&gt;{{$:/core/images/done-button}}&lt;$action-setfield $field=&lt;&lt;renameField&gt;&gt; $value={{{[&lt;newImportTitleTiddler&gt;get[text]]}}} /&gt;&lt;$action-deletetiddler $tiddler=&lt;&lt;newImportTitleTiddler&gt;&gt;/&gt;&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$view field=&lt;&lt;messageField&gt;&gt;/&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td colspan=\&quot;3\&quot;&gt;\n&lt;$reveal type=\&quot;match\&quot; text=\&quot;yes\&quot; state=&lt;&lt;previewPopupState&gt;&gt; tag=\&quot;div\&quot;&gt;\n&lt;$list filter=\&quot;[{$:/state/importpreviewtype}has[text]]\&quot; variable=\&quot;listItem\&quot; emptyMessage={{$:/core/ui/ImportPreviews/Text}}&gt;\n&lt;$transclude tiddler={{$:/state/importpreviewtype}}/&gt;\n&lt;/$list&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+    &quot;title&quot;: &quot;$:/core/ui/ImportListing&quot;,
+    &quot;modified&quot;: &quot;20200427132231205&quot;,
+    &quot;created&quot;: &quot;20200425201907969&quot;
+},
+
+&quot;$:/core/ui/ViewTemplate/import&quot;: {
+    &quot;created&quot;: &quot;20200424200802765&quot;,
+    &quot;text&quot;: &quot;\\define lingo-base() $:/language/Import/\n\n\\define external-file-actions()\n&lt;$list filter=\&quot;[all[current]plugintiddlers[]sort[title]]\&quot; variable=\&quot;payloadTiddler\&quot;&gt;\n&lt;$action-setfield $field={{{ [&lt;payloadTiddler&gt;addprefix[external-]] }}} $value={{$:/state/import/select-all}}/&gt;\n&lt;/$list&gt;\n\\end\n\n\\define buttons()\n&lt;$button message=\&quot;tm-delete-tiddler\&quot; param=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;&lt;lingo Listing/Cancel/Caption&gt;&gt;&lt;/$button&gt;\n&lt;$button message=\&quot;tm-perform-import\&quot; param=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;&lt;lingo Listing/Import/Caption&gt;&gt;&lt;/$button&gt;\n&lt;&lt;lingo Listing/Preview&gt;&gt; &lt;$select tiddler=\&quot;$:/state/importpreviewtype\&quot; default=\&quot;$:/core/ui/ImportPreviews/Text\&quot;&gt;\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/ImportPreview]!has[draft.of]]\&quot;&gt;\n&lt;option value=&lt;&lt;currentTiddler&gt;&gt;&gt;{{!!caption}}&lt;/option&gt;\n&lt;/$list&gt;\n&lt;/$select&gt;\n\\end\n\n&lt;$list filter=\&quot;[all[current]field:plugin-type[import]]\&quot;&gt;\n\n&lt;div class=\&quot;tc-import\&quot;&gt;\n\n&lt;&lt;lingo Listing/Hint&gt;&gt;\n\n&lt;&lt;buttons&gt;&gt;\n\n{{||$:/core/ui/ImportListing}}\n\n&lt;&lt;buttons&gt;&gt;\n&lt;$checkbox tiddler=\&quot;$:/config/sq/SaveAsExternalFile\&quot; field=\&quot;text\&quot; checked=\&quot;yes\&quot; unchecked=\&quot;no\&quot; default=\&quot;yes\&quot;&gt;Import binary files as external attachments:&lt;/$checkbox&gt;\n\n&lt;/div&gt;\n\n&lt;/$list&gt;&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+    &quot;title&quot;: &quot;$:/core/ui/ViewTemplate/import&quot;,
+    &quot;tags&quot;: &quot;$:/tags/ViewTemplate&quot;,
+    &quot;modified&quot;: &quot;20200623132256033&quot;
+},
+
+&quot;$:/sq/ServerImages/NavigatorTweak&quot;: {
+    &quot;text&quot;: &quot;var NavigatorWidget = require(\&quot;$:/core/modules/widgets/navigator.js\&quot;).navigator;\n\nNavigatorWidget.prototype.handlePerformImportEvent = function(event) {\n\tvar self = this,\n\t\timportTiddler = this.wiki.getTiddler(event.param),\n\t\timportData = this.wiki.getTiddlerDataCached(event.param,{tiddlers: {}}),\n\t\timportReport = [];\n\t// Add the tiddlers to the store\n\timportReport.push($tw.language.getString(\&quot;Import/Imported/Hint\&quot;) + \&quot;\\n\&quot;);\n\t$tw.utils.each(importData.tiddlers,function(tiddlerFields) {\n\t\tvar title = tiddlerFields.title;\n\t\tif(title &amp;&amp; importTiddler &amp;&amp; importTiddler.fields[\&quot;selection-\&quot; + title] !== \&quot;unchecked\&quot;) {\n\t\t\tif($tw.utils.hop(importTiddler.fields,[\&quot;rename-\&quot; + title])) {\n\t\t\t\tvar tiddler = new $tw.Tiddler(tiddlerFields,{title : importTiddler.fields[\&quot;rename-\&quot; + title]});\n\t\t\t} else {\n\t\t\t\tvar tiddler = new $tw.Tiddler(tiddlerFields);\n\t\t\t}\n\t\t\ttiddler = $tw.hooks.invokeHook(\&quot;th-importing-tiddler\&quot;,tiddler);\n\t\t\tself.wiki.addTiddler(tiddler);\n\t\t\timportReport.push(\&quot;# [[\&quot; + tiddler.fields.title + \&quot;]]\&quot;);\n\t\t}\n\t});\n\t// Replace the $:/Import tiddler with an import report\n\tthis.wiki.addTiddler(new $tw.Tiddler({\n\t\ttitle: event.param,\n\t\ttext: importReport.join(\&quot;\\n\&quot;),\n\t\t\&quot;status\&quot;: \&quot;complete\&quot;\n\t}));\n\t// Navigate to the $:/Import tiddler\n\tthis.addToHistory([event.param]);\n\t// Trigger an autosave\n\t$tw.rootWidget.dispatchEvent({type: \&quot;tm-auto-save-wiki\&quot;});\n};&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;application/javascript&quot;,
+    &quot;title&quot;: &quot;$:/sq/ServerImages/NavigatorTweak&quot;,
+    &quot;tags&quot;: &quot;&quot;,
+    &quot;module-type&quot;: &quot;startup&quot;,
+    &quot;modified&quot;: &quot;20200425223926898&quot;,
+    &quot;created&quot;: &quot;20200425213958687&quot;
+},
+
+&quot;$:/sq/ServerImages/ServerImages&quot;: {
+    &quot;created&quot;: &quot;20200423232749510&quot;,
+    &quot;text&quot;: &quot;/*\\\ntitle: $:/sq/ServerImages/ServerImages.js\ntype: application/javascript\nmodule-type: startup\n\nThis adds a hook for the \&quot;th-importing-tiddler\&quot;\n\n\\*/\n(function () {\n\n\t/*jslint node: true, browser: true */\n\t/*global $tw: false */\n\t\&quot;use strict\&quot;;\n\n\t// Export name and synchronous status\n\texports.name = \&quot;sq-server-images\&quot;;\n\texports.platforms = [\&quot;browser\&quot;];\n\texports.after = [\&quot;render\&quot;];\n\texports.synchronous = true;\n\n\texports.startup = function() {\n\tfunction updateProgress(e) {\n\t\t// TODO make this work in different browsers\n\t\t/*\n\t\tif (e.lengthComputable) {\n\t\tvar percentComplete = e.loaded/e.total*100;\n\t\t} else {\n\t\tvar percentComplete = -1;\n\t\t}\n\t\tconsole.log(percentComplete);\n\t\t*/\n\t}\n\tfunction transferComplete(e) {\n\t\tconsole.log('Complete!!');\n\t}\n\tfunction transferFailed(e) {\n\t\tconsole.log('Failed!');\n\t}\n\tfunction transferCanceled(e) {\n\t\tconsole.log('Cancelled!')\n\t}\n\t// Add the hook to the wiki in the browser\n\t$tw.hooks.addHook(\&quot;th-importing-tiddler\&quot;, function(tiddler) {\n\t\t\n\t\tvar saveAsExternal = $tw.wiki.getTextReference(\&quot;!!text\&quot;,\&quot;yes\&quot;,\&quot;$:/config/sq/SaveAsExternalFile\&quot;) === \&quot;yes\&quot; ? true : false;\n\t\tif(!saveAsExternal) {\n\t\t\treturn tiddler;\n\t\t}\n\t\t\n\t\t// Figure out if the thing being imported is something that should be\n\t\t// saved on the server.\n\t\tvar mediaTypes = ['image/gif', 'image/x-icon', 'image/jpeg', 'image/jpeg', 'image/png', 'image/svg+xml', 'application/pdf', 'application/zip', 'application/font-woff', 'application/x-font-ttf', 'audio/ogg', 'video/mp4', 'audio/mp3', 'audio/mp4'];\n\t\tif (mediaTypes.indexOf(tiddler.fields.type) &gt; -1 &amp;&amp; !tiddler.fields._canonical_uri) {\n\t\t\t// Check if this is set up to use HTTP post or websockets to save the\n\t\t\t// image on the server.\n\t\t\tvar request = new XMLHttpRequest();\n\t\t\trequest.upload.addEventListener('progress', updateProgress);\n\t\t\trequest.upload.addEventListener('load', transferComplete);\n\t\t\trequest.upload.addEventListener('error', transferFailed);\n\t\t\trequest.upload.addEventListener('abort', transferCanceled);\n\n\t\t\tvar uploadURL = '/api/upload';\n\t\t\trequest.open('POST', uploadURL, true);\n\n\t\t\tvar thing = {\n\t\t\t\ttiddler: tiddler\n\t\t\t}\n\n\t\t\trequest.setRequestHeader(\&quot;X-Requested-With\&quot;,\&quot;TiddlyWiki\&quot;);\n\t\t\trequest.send(JSON.stringify(thing));\n\n\t\t\t// Change the tiddler fields and stuff\n\t\t\tvar fields = {};\n\t\t\tvar uri = '/files/'+tiddler.fields.title;\n\t\t\t//Use tw.utils.generateTiddlerFilePath //remove / etc from title\n\t\t\t//https://github.com/Jermolene/TiddlyWiki5/blob/master/core/modules/utils/filesystem.js#L321\n\t\t\tfields.title = tiddler.fields.title;\n\t\t\tfields.type = tiddler.fields.type;\n\t\t\tfields._canonical_uri = uri;\n\t\t\treturn new $tw.Tiddler(fields);\n\t\t} else {\n\t\t\treturn tiddler;\n\t\t}\n\t});\n\t}\n\n})();&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;application/javascript&quot;,
+    &quot;title&quot;: &quot;$:/sq/ServerImages/ServerImages&quot;,
+    &quot;tags&quot;: &quot;&quot;,
+    &quot;module-type&quot;: &quot;startup&quot;,
+    &quot;modified&quot;: &quot;20200623132346552&quot;
+},
+
+&quot;$:/sq/ServerRoutes/post-upload&quot;: {
+    &quot;text&quot;: &quot;/*\\\ntitle: $:/sq/ServerRoutes/post-upload.js\ntype: application/javascript\nmodule-type: route\n\nPOST /^\\/api\\/upload/\n\nUpload media\n\n\\*/\n(function() {\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.method = \&quot;POST\&quot;;\n\nexports.path = new RegExp('^\\/api\\/upload');\nexports.bodyFormat = \&quot;stream\&quot;;\nexports.handler = function(request,response,state) {\n\tconst fs = require('fs')\n\tconst path = require('path')\n\tconst buffer = require('buffer')\n\t\n\tlet body = ''\n\t\n\trequest.on('data', function(chunk){\n\t\tbody += chunk;\n\t\t// We limit the size of an upload to 10mb for now.\n\t\tif(body.length &gt; 10e6) {\n\t\t\tresponse.writeHead(413, {'Content-Type': 'text/plain'}).end();\n\t\t\trequest.connection.destroy();\n\t\t}\n\t});\n\t\n\trequest.on('end', function() {\n\t\ttry {\n\t\t\tlet bodyData = JSON.parse(body)\n\n\t\t\tconst filesPath = path.resolve($tw.boot.wikiTiddlersPath, \&quot;../files\&quot;);\n\t\t\t\t//Use tw.utils.generateTiddlerFilePath //remove illegal characters from title\n\t\t\t\t//https://github.com/Jermolene/TiddlyWiki5/blob/master/core/modules/utils/filesystem.js#L321\t\t\n\t\t\t\t//ability to specify relative path as subdirectory of files?\n\t\t\t$tw.utils.createDirectory(filesPath);\n\t\t\tconst buf = Buffer.from(bodyData.tiddler.fields.text,'base64');\n\t\t\tconst filename = path.join(filesPath, bodyData.tiddler.fields.title);\n\t\t\tfs.writeFile(path.join(filesPath, bodyData.tiddler.fields.title), buf, function(error) {\n\t\t\t\tif (error) {\n\t\t\t\t\tconsole.log(error);\n\t\t\t\t} else {\n\t\t\t\t\tconsole.log(\&quot;External file saved: \&quot; + filename);\n\t\t\t\t\tresponse.setHeader('Content-Type', 'application/json');\n\t\t\t\t\tresponse.end(JSON.stringify( {\n\t\t\t\t\t\t\&quot;success\&quot;: \&quot;saved \&quot; + bodyData.tiddler.fields.title,\n\t\t\t\t\t\t\&quot;status\&quot;: 200,\n\t\t\t\t\t\t\&quot;_canonical_uri\&quot;:\t \&quot;files/\&quot; + bodyData.tiddler.fields.title,\n\t\t\t\t\t\t\&quot;tiddler\&quot;: bodyData.tiddler.fields.title\n\t\t\t\t\t}));\n\t\t\t\t\t\t//return true;\n\t\t\t\t\t}\n\t\t\t});\n\t\t} catch (e) {\n\t\t\tconsole.log('Error parsing uploaded file', e, {'level': 2});\n\t\t\tresponse.writeHead(400);\n\t\t\tresponse.end();\n\t\t}\n\t})\n};\n\n}());&quot;,
+    &quot;bag&quot;: &quot;default&quot;,
+    &quot;revision&quot;: &quot;0&quot;,
+    &quot;type&quot;: &quot;application/javascript&quot;,
+    &quot;title&quot;: &quot;$:/sq/ServerRoutes/post-upload&quot;,
+    &quot;tags&quot;: &quot;&quot;,
+    &quot;module-type&quot;: &quot;route&quot;,
+    &quot;modified&quot;: &quot;20200423234819014&quot;,
+    &quot;created&quot;: &quot;20200423232422657&quot;
+}
+}
+}</pre>
 </div>
 <div module-type="widget-subclass" title="$:/plugins/sq/streams/btn-dblclick" type="application/javascript">
 <pre>/*\
@@ -10967,7 +11041,7 @@ $:/config/EditTemplateFields/Visibility/$(currentField)$
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="GettingStarted" title="$:/StoryList">
+<div created="20200623132849497" list="GettingStarted" modified="20200623132849497" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
@@ -11376,7 +11450,7 @@ Further ideas:
 * turn show-range-values macro into a template that can be called, so I still call the macro but all its doing is transcluding state tiddler with a template
 *customizable field names instead of low and high</pre>
 </div>
-<div created="20200522172703816" modified="20200619191229673" title="GettingStarted">
+<div created="20200522172703816" modified="20200623132941093" title="GettingStarted">
 <pre>@@background-color:yellow;
 !USE WITH CARE 
 
@@ -11398,8 +11472,13 @@ Your tiddlers may be exterminated.
 * ActionIfConfirmedWidget - prompt user for confirmation and execute contained actions only if confirmed
 * [[action-withselection]] - invoke actions contained within, providing variables for the selection value, selection start and selection end markers. For use with keyboard widget.
 * [[DualRangeWidget|DualRangeDemo]] to set upper and lower bounds of a range
-* [[ContextMenu||$:/plugins/sq/streams/contextmenu/contextmenu]] usage similar to button widget, to trigger a popup or execute actions on right click.
-* [[DoubleClick||$:/plugins/sq/streams/btn-dblclick]] usage similar to button widget, execute actions on double click.
+* [[ContextMenu|$:/plugins/sq/streams/contextmenu/contextmenu]] usage similar to button widget, to trigger a popup or execute actions on right click.
+* [[DoubleClick|$:/plugins/sq/streams/btn-dblclick]] usage similar to button widget, execute actions on double click.
+
+!!Plugins
+
+* [[NodeJS import as External Files |$:/plugins/sq/NodeJSExternalFiles]]
+** based on input and code from Arlen and Jed
 
 !!Hooks
 
@@ -11411,7 +11490,7 @@ Your tiddlers may be exterminated.
 * [[ZeropadFilter|$:/sq/filters/zeropad]] zeropad a string to a given length `[[1]zeropad[3]]`
 
 !! UI tweaks
-&lt;&lt;tag $:/squi&gt;&gt;
+&lt;&lt;tag $:/sq/ui&gt;&gt;
 
 !!Core tweaks
 
