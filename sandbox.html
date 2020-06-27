@@ -154,6 +154,8 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
+<li>$:/config/sq/SaveAsExternalFile</li>
+
 <li>$:/config/sq/ui/edit-inline/inline-controls</li>
 
 <li>$:/config/TiddlerInfo/Mode</li>
@@ -168,6 +170,8 @@ Error message and password prompt
 
 <li>$:/core/ui/Buttons/close</li>
 
+<li>$:/core/ui/EditorToolbar/picture-dropdown</li>
+
 <li>$:/core/ui/TiddlerInfo/Fields</li>
 
 <li>$:/core/ui/ViewTemplate/body</li>
@@ -175,8 +179,6 @@ Error message and password prompt
 <li>$:/core/ui/ViewTemplate/tags</li>
 
 <li>$:/DefaultTiddlers</li>
-
-<li>$:/Import</li>
 
 <li>$:/isEncrypted</li>
 
@@ -204,11 +206,15 @@ Error message and password prompt
 
 <li>$:/sq/sandbox/styles</li>
 
+<li>$:/sq/ui/EditorToolbar/inline-image-import</li>
+
 <li>$:/sq/ui/icons/inline-edit</li>
 
 <li>$:/sq/ui/icons/inline-edit2</li>
 
 <li>$:/sq/ui/icons/inline-edit3</li>
+
+<li>$:/sq/ui/styles/EditorToolbar/inline-image-import</li>
 
 <li>$:/sq/ui/styles/ViewTemplate/body-editinline</li>
 
@@ -284,6 +290,9 @@ Error message and password prompt
 </div>
 <div created="20200619144922917" modified="20200619183739555" tags="$:/sq/ui" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
+</div>
+<div created="20200627063041198" modified="20200627063041199" title="$:/config/sq/SaveAsExternalFile">
+<pre>no</pre>
 </div>
 <div created="20200618185013027" modified="20200619061550834" tags="$:/sq/ui" title="$:/config/sq/ui/edit-inline/inline-controls">
 <pre>no</pre>
@@ -10019,6 +10028,40 @@ exports.compileFilter = function(filterString) {
 \end
 &lt;&lt;close-btn&gt;&gt;</pre>
 </div>
+<div created="20200626203715955" modified="20200627064112454" tags="$:/sq/ui $:/sq/ui/inline-image-import" title="$:/core/ui/EditorToolbar/picture-dropdown">
+<pre>\define replacement-text()
+[img[$(imageTitle)$]]
+\end
+
+\define post-import-actions()
+&lt;$list filter=&quot;[[$:/Import]links[]]&quot; variable=&quot;imageTitle&quot;&gt;
+&lt;$action-sendmessage
+	$message=&quot;tm-edit-text-operation&quot;
+	$param=&quot;replace-selection&quot;
+	text=&lt;&lt;replacement-text&gt;&gt;
+/&gt;
+&lt;/$list&gt;
+\end
+
+{{||$:/sq/ui/EditorToolbar/inline-image-import}}
+
+''{{$:/language/Buttons/Picture/Hint}}''
+
+&lt;$macrocall $name=&quot;image-picker&quot; actions=&quot;&quot;&quot;
+
+&lt;$action-sendmessage
+	$message=&quot;tm-edit-text-operation&quot;
+	$param=&quot;replace-selection&quot;
+	text=&lt;&lt;replacement-text&gt;&gt;
+/&gt;
+
+&lt;$action-deletetiddler
+	$tiddler=&lt;&lt;dropdown-state&gt;&gt;
+/&gt;
+
+&quot;&quot;&quot;/&gt;
+</pre>
+</div>
 <div caption="{{$:/language/TiddlerInfo/Fields/Caption}}" created="20200617210142664" modified="20200619061550835" tags="$:/tags/TiddlerInfo $:/sq/ui" title="$:/core/ui/TiddlerInfo/Fields">
 <pre>&lt;$transclude tiddler=&quot;$:/sq/ui/ViewTemplate/fields&quot;/&gt;
 </pre>
@@ -10066,11 +10109,6 @@ mode=&quot;inline&quot;/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edi
 </div>
 <div created="20200522221941549" modified="20200522221941549" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
-</div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[$:/plugins/sq/NodeJSExternalFiles]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10555,6 +10593,39 @@ exports.zeropad = function(source,operator,options) {
 
 h2 {margin-top: 2.5em;}</pre>
 </div>
+<div created="20200626203659100" modified="20200627064117790" tags="$:/sq/ui $:/sq/ui/inline-image-import" title="$:/sq/ui/EditorToolbar/inline-image-import">
+<pre>\define lingo-base() $:/language/Import/
+
+\define buttons()
+&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-delete-tiddler&quot; param=&quot;$:/Import&quot;&gt;&lt;&lt;lingo Listing/Cancel/Caption&gt;&gt;&lt;/$button&gt;
+&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-perform-import&quot; param=&quot;$:/Import&quot; actions=&lt;&lt;post-import-actions&gt;&gt; &gt;Import &amp; insert&lt;/$button&gt;
+\end
+
+&lt;$navigator&gt;
+
+&lt;$dropzone class=&quot;sq-dropzone-picture&quot;&gt;
+&lt;em&gt;Drop images here to import&lt;/em&gt;
+&lt;div class=&quot;tc-import&quot;&gt;
+&lt;$list filter=&quot;[[$:/Import]field:plugin-type[import]]&quot;&gt;
+{{$:/Import||$:/core/ui/ImportListing}}
+&lt;$list filter=&quot;[[$:/sq/ServerImages/ServerImages]shadowsource[]]&quot; variable=&quot;_NULL&quot;&gt;&lt;$checkbox tiddler=&quot;$:/config/sq/SaveAsExternalFile&quot; field=&quot;text&quot; checked=&quot;yes&quot; unchecked=&quot;no&quot; default=&quot;yes&quot;&gt;Import images as external files&lt;/$checkbox&gt;&lt;/$list&gt;
+&lt;&lt;buttons&gt;&gt;
+&lt;/$list&gt;
+
+&lt;$list filter=&quot;[[$:/Import]status[complete]]&quot;&gt;
+
+{{$:/Import}}
+&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-delete-tiddler&quot; param=&quot;$:/Import&quot;&gt;Clear&lt;/$button&gt;
+&lt;/$list&gt;
+
+&lt;/div&gt;
+&lt;/$dropzone&gt;
+
+
+
+&lt;/$navigator&gt;
+</pre>
+</div>
 <div created="20200618192436891" modified="20200619061550837" tags="$:/sq/ui" title="$:/sq/ui/icons/inline-edit">
 <pre>&lt;svg width=&quot;22pt&quot; height=&quot;22pt&quot; class=&quot;tc-image-edit-button tc-image-button&quot; viewBox=&quot;0 0 512 512&quot;&gt;&lt;path d=&quot;M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z&quot;/&gt;&lt;/svg&gt;</pre>
 </div>
@@ -10571,6 +10642,33 @@ h2 {margin-top: 2.5em;}</pre>
   &lt;/g&gt;
 &lt;/svg&gt;
 </pre>
+</div>
+<div created="20200626205048842" modified="20200627064123204" tags="$:/tags/Stylesheet $:/sq/ui $:/sq/ui/inline-image-import" title="$:/sq/ui/styles/EditorToolbar/inline-image-import">
+<pre>.sq-dropzone-picture {
+	padding: 10px;
+	min-height: 50px;
+	width: 600px;
+	border: 1px solid &lt;&lt;color tiddler-controls-foreground&gt;&gt;;
+	line-height:30px;
+	text-align:center;
+}
+
+.sq-dropzone-picture table {
+	width: 100%;
+}
+
+.sq-dropzone-picture.tc-dragover {
+	border: 2px dashed &lt;&lt;color dropzone-background&gt;&gt;;
+}
+
+.tc-drop-down .sq-dropzone-picture img {
+	width: 100%;
+}
+
+.tc-drop-down .sq-dropzone-picture button {
+	display:inline;
+	width: auto;
+}</pre>
 </div>
 <div created="20200616144011863" modified="20200619165036167" tags="$:/tags/Stylesheet $:/sq/ui" title="$:/sq/ui/styles/ViewTemplate/body-editinline">
 <pre>.sq-editinline-body {
@@ -11041,7 +11139,7 @@ $:/config/EditTemplateFields/Visibility/$(currentField)$
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200623132849497" list="GettingStarted" modified="20200623132849497" title="$:/StoryList">
+<div created="20200627063945447" list="GettingStarted $:/core/ui/EditorToolbar/picture-dropdown $:/sq/ui/EditorToolbar/inline-image-import $:/sq/ui/styles/EditorToolbar/inline-image-import" modified="20200627064051086" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
@@ -11450,7 +11548,7 @@ Further ideas:
 * turn show-range-values macro into a template that can be called, so I still call the macro but all its doing is transcluding state tiddler with a template
 *customizable field names instead of low and high</pre>
 </div>
-<div created="20200522172703816" modified="20200623132941093" title="GettingStarted">
+<div created="20200522172703816" modified="20200627064226018" title="GettingStarted">
 <pre>@@background-color:yellow;
 !USE WITH CARE 
 
@@ -11490,7 +11588,9 @@ Your tiddlers may be exterminated.
 * [[ZeropadFilter|$:/sq/filters/zeropad]] zeropad a string to a given length `[[1]zeropad[3]]`
 
 !! UI tweaks
-&lt;&lt;tag $:/sq/ui&gt;&gt;
+
+*All UI tweaks: &lt;&lt;tag $:/sq/ui&gt;&gt;
+* Image import in the editor: &lt;&lt;tag $:/sq/ui/inline-image-import&gt;&gt;
 
 !!Core tweaks
 
