@@ -197,6 +197,10 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
+<li>$:/config/sq/SaveAsExternalFile</li>
+
+<li>$:/config/tiddlyweb/host</li>
+
 <li>$:/core</li>
 
 <li>$:/core/modules/widgets/action-createtiddler.js</li>
@@ -223,6 +227,8 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/tab/sidebar-1206596165</li>
+
 <li>$:/status/IsAnonymous</li>
 
 <li>$:/status/IsLoggedIn</li>
@@ -247,13 +253,15 @@ Error message and password prompt
 
 <li>Considerations and Known Issues</li>
 
-<li>convert fields</li>
-
 <li>Customizing bullet titles</li>
 
 <li>Data Structure</li>
 
 <li>Demos</li>
+
+<li>export</li>
+
+<li>export2</li>
 
 <li>handle</li>
 
@@ -360,6 +368,28 @@ Error message and password prompt
 <li>Roadmap/20200610164058043</li>
 
 <li>Roadmap/20200610185807828</li>
+
+<li>Roadmap/20200611084002366</li>
+
+<li>Roadmap/20200611084012008</li>
+
+<li>Roadmap/20200611084024096</li>
+
+<li>Roadmap/20200611084032440</li>
+
+<li>Roadmap/20200611084040670</li>
+
+<li>Roadmap/20200611161522720</li>
+
+<li>Roadmap/20200618161227802</li>
+
+<li>Roadmap/20200621182107828</li>
+
+<li>Roadmap/20200621183806046</li>
+
+<li>Roadmap/20200629110455507</li>
+
+<li>Roadmap/20200629110458273</li>
 
 <li>Streams</li>
 
@@ -490,6 +520,12 @@ Oh, would I could describe these conceptions, could impress upon paper all that 
 </div>
 <div bag="default" created="20200528004422450" modified="20200608203552580" revision="0" stream-list="$:/bullets/ef708b45-7873-478a-9778-bae39856f825" stream-type="default" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki">
 <pre>yes</pre>
+</div>
+<div bag="default" created="20200623132506589" modified="20200623132535991" revision="0" title="$:/config/sq/SaveAsExternalFile" type="text/vnd.tiddlywiki">
+<pre>yes</pre>
+</div>
+<div bag="default" created="20200617211746879" modified="20200617211846156" revision="0" title="$:/config/tiddlyweb/host" type="text/vnd.tiddlywiki">
+<pre></pre>
 </div>
 <div author="JeremyRuston" bag="default" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" plugin-priority="0" plugin-type="plugin" revision="0" title="$:/core" type="application/json" version="5.1.22-prerelease">
 <pre>{
@@ -10888,7 +10924,7 @@ wikilist-button-foreground: #000</pre>
 &lt;$action-setfield $tiddler=&quot;debug&quot; text=&lt;&lt;oldTiddler&gt;&gt; new=&lt;&lt;newTiddler&gt;&gt; parent={{{[sq-bullet-uuid{!!sq-bullet-parent}]}}} /&gt;
 &lt;/$list&gt;</pre>
 </div>
-<div author="Saq Imtiaz" bag="default" core-version="&gt;=5.1.22" dependents="" description="Streams - a different way to write" list="" plugin-type="plugin" revision="0" source="" title="$:/plugins/sq/streams" type="application/json" version="0.1.8">
+<div author="Saq Imtiaz" bag="default" core-version="&gt;=5.1.22" dependents="" description="Streams - a different way to write" list="" plugin-type="plugin" revision="0" source="" title="$:/plugins/sq/streams" type="application/json" version="0.1.9">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/sq/streams/action-macros&quot;: {
@@ -10956,7 +10992,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/plugins/sq/streams/contextmenu/contextmenu-styles&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams/contextmenu/contextmenu-styles&quot;,
-            &quot;text&quot;: &quot;.sq-contextmenu {\n\tpadding: 12px 0;\n\tbox-shadow: rgba(0, 0, 0, 0.40) 0px 2px 20px;\n\tfont-family: \&quot;Segoe UI\&quot;, Roboto, Helvetica, Arial;\n\tfont-size: 13px;\n\tmargin-top: 4px;\n\tmin-width: 100px;\n\tmax-width: 240px;\n\tleft: -16px;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder-radius: 6px;\n\tborder: 1px solid #dce0e2;\n\ttransition: opacity 200ms ease 0s, transform 200ms ease 0s;\n}\n\n.sq-contextmenu .tc-menu-list-item {\n\tpadding: 0 18px;\n\tline-height: 24px;\n\twhite-space: nowrap;\n\tcolor: #4b5155;\n\tcursor: default !important;\n\ttext-indent: 0;\n}\n\n.sq-contextmenu-itemwrapper {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n\tposition: relative;\t\n}\n\n.sq-contextmenu-itemtext {\n\tdisplay: flex;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\tflex-grow: 1;\n\toverflow: hidden;\t\n}\n\n.sq-contextmenu-itemicon {\n\tcolor: #b7bcbf;\n\tmargin-left: 16px;\n\tmin-width: 22px;\t\n}\n\n.sq-contextmenu-divider {\n\tborder-top-width: 1px;\n\tborder-top-color: #eceef0;\n\tborder-top-style: solid;\n\tmargin: 6px 0;\n}&quot;,
+            &quot;text&quot;: &quot;.sq-contextmenu {\n\tpadding: 12px 0;\n\tbox-shadow: rgba(0, 0, 0, 0.40) 0px 2px 20px;\n\tfont-family: \&quot;Segoe UI\&quot;, Roboto, Helvetica, Arial;\n\tfont-size: 13px;\n\tmargin-top: 4px;\n\tmin-width: 100px;\n\tmax-width: 240px;\n\tleft: -16px;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder-radius: 6px;\n\tborder: 1px solid #dce0e2;\n\ttransition: opacity 200ms ease 0s, transform 200ms ease 0s;\n\tmargin-top: 30px;\n}\n\n.sq-contextmenu .tc-menu-list-item {\n\tpadding: 0 18px;\n\tline-height: 24px;\n\twhite-space: nowrap;\n\tcolor: #4b5155;\n\tcursor: default !important;\n\ttext-indent: 0;\n}\n\n.sq-contextmenu-itemwrapper {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n\tposition: relative;\t\n}\n\n.sq-contextmenu-itemtext {\n\tdisplay: flex;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\tflex-grow: 1;\n\toverflow: hidden;\t\n}\n\n.sq-contextmenu-itemicon {\n\tcolor: #b7bcbf;\n\tmargin-left: 16px;\n\tmin-width: 22px;\t\n}\n\n.sq-contextmenu-divider {\n\tborder-top-width: 1px;\n\tborder-top-color: #eceef0;\n\tborder-top-style: solid;\n\tmargin: 6px 0;\n}&quot;,
             &quot;created&quot;: &quot;20200602120854810&quot;,
             &quot;modified&quot;: &quot;20200603055942655&quot;,
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
@@ -10968,7 +11004,7 @@ wikilist-button-foreground: #000</pre>
             &quot;modified&quot;: &quot;20200603055942658&quot;,
             &quot;tags&quot;: &quot;&quot;,
             &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;\\define menu-item(title,subtitle:\&quot;\&quot;,actions:\&quot;\&quot;)\n\t\t&lt;$button class=\&quot;tc-menu-list-item tc-btn-invisible\&quot; actions=&lt;&lt;__actions__&gt;&gt; &gt;\n\t\t\t&lt;span class=\&quot;sq-contextmenu-itemwrapper\&quot;&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemtext\&quot;&gt;$title$&lt;/span&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemicon\&quot;&gt;$subtitle$&lt;/span&gt;\n\t\t\t&lt;/span&gt;\n\t\t&lt;/$button&gt;\n\\end\n\n\\define menu-divider() &lt;div class=\&quot;sq-contextmenu-divider\&quot;/&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; state=&lt;&lt;contextmenu-state&gt;&gt;  position=\&quot;belowleft\&quot; tag=\&quot;div\&quot;&gt;\n\t&lt;div class=\&quot;tc-drop-down sq-contextmenu\&quot;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Open\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate/&gt;\&quot;\&quot;\&quot;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Rename\&quot; subtitle=\&quot;Alt+R\&quot; actions=&lt;&lt;rename-node-actions&gt;&gt;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Delete\&quot; subtitle=\&quot;Delete\&quot; actions=&lt;&lt;delete-node-actions&gt;&gt;/&gt;\n\t\t&lt;&lt;menu-divider&gt;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Keyboard Shortcuts (?)\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=\&quot;Keyboard Shortcuts\&quot;/&gt;\&quot;\&quot;\&quot;/&gt;\n\t&lt;/div&gt;\n&lt;/$reveal&gt;&quot;
+            &quot;text&quot;: &quot;\\define menu-item(title,subtitle:\&quot;\&quot;,actions:\&quot;\&quot;)\n\t\t&lt;$button class=\&quot;tc-menu-list-item tc-btn-invisible\&quot; actions=&lt;&lt;__actions__&gt;&gt; &gt;\n\t\t\t&lt;span class=\&quot;sq-contextmenu-itemwrapper\&quot;&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemtext\&quot;&gt;$title$&lt;/span&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemicon\&quot;&gt;$subtitle$&lt;/span&gt;\n\t\t\t&lt;/span&gt;\n\t\t&lt;/$button&gt;\n\\end\n\n\\define menu-divider() &lt;div class=\&quot;sq-contextmenu-divider\&quot;/&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; state=&lt;&lt;contextmenu-state&gt;&gt;  position=\&quot;left\&quot; tag=\&quot;div\&quot;&gt;\n\t&lt;div class=\&quot;tc-drop-down sq-contextmenu\&quot;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Open\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate/&gt;\&quot;\&quot;\&quot;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Rename\&quot; subtitle=\&quot;Alt+R\&quot; actions=&lt;&lt;rename-node-actions&gt;&gt;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Delete\&quot; subtitle=\&quot;Delete\&quot; actions=&lt;&lt;delete-node-actions&gt;&gt;/&gt;\n\t\t&lt;&lt;menu-divider&gt;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Keyboard Shortcuts (?)\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=\&quot;Keyboard Shortcuts\&quot;/&gt;\&quot;\&quot;\&quot;/&gt;\n\t&lt;/div&gt;\n&lt;/$reveal&gt;&quot;
         },
         &quot;$:/plugins/sq/streams/contextmenu/contextmenu&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams/contextmenu/contextmenu&quot;,
@@ -11056,7 +11092,7 @@ wikilist-button-foreground: #000</pre>
             &quot;created&quot;: &quot;20170922203553093&quot;,
             &quot;modified&quot;: &quot;20170927050808722&quot;,
             &quot;tags&quot;: &quot;[[$:/tags/Stylesheet]]&quot;,
-            &quot;text&quot;: &quot;.stream-root {\r\n\tmargin-left: -1em;\r\n}\n\n.stream-row {\r\n    display: flex;\r\n    flex: 0 0 auto;\r\n}\n\n.stream-row-children {\r\n\tdisplay:flex;\r\n\tflex: 0 0 auto;\r\n\tflex-direction: column;\r\n\tpadding-left: 0.5em;\r\n\tborder-left: 1px solid &lt;&lt;color message-border&gt;&gt;;\r\n\tmargin-left: 29px;\r\n}\n\n.stream-row-children.stream-row-children-empty {\r\n\tborder-left: none;\r\n}\n\n.stream-node-disabled,\r\n.stream-droppable.tc-droppable.stream-node-disabled + div{\r\n\tbackground-color: &lt;&lt;color tiddler-editor-border&gt;&gt;;\r\n}\n\n.stream-row-selected,\r\n.stream-droppable.tc-droppable.stream-row-selected + div {\r\n\tbackground: &lt;&lt;color notification-background&gt;&gt;;\r\n\tcolor: &lt;&lt;color message-foreground&gt;&gt;;\r\n}\n\n.stream-droppable.tc-droppable.stream-node-disabled + div + .stream-droppable.tc-droppable.tc-dragover &gt; .tc-droppable-placeholder {\r\n\tdisplay: none;\r\n}\n\n.stream-droppable.tc-droppable.stream-node-disabled + div + .stream-droppable.tc-droppable.tc-dragover {\r\n\tcursor: not-allowed;\r\n}\n\n.stream-droppable.tc-droppable.tc-dragover &gt; .tc-droppable-placeholder {\r\n\tmargin-left: 29px;\r\n\tline-height: 5px;\r\n\theight: 5px;\r\n\tborder: 2px solid &lt;&lt;color dropzone-background&gt;&gt;;\r\n\tbackground-color: &lt;&lt;color dropzone-background&gt;&gt;;\r\n}\n\n.stream-droppable-spacer {\r\n\theight: 0.3em;\r\n}\n\n.stream-node-control {\r\n\tdisplay: flex;\r\n    flex: 0 0 45px;\r\n    padding-top: 4px;\r\n    padding-left: 4px;\r\n}\n\n.stream-node-control .stream-node-collapser,\r\n.stream-node-control .stream-node-handle-wrapper {\r\n    display: flex;\r\n    height: 13px;\r\n    width: 13px;\r\n    margin-top: 4px;\r\n    border-radius: 50%;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\n\n.stream-node-control.stream-node-control-addnew .stream-node-handle-wrapper {\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tmargin-top: 0;\r\n}\n\n.stream-node-control.stream-node-control-addnew .stream-node-collapser {\r\n\twidth: 16px;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg {\r\n\topacity: 0.8;\r\n}\n\n\r\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg circle {\r\n\tfill: &lt;&lt;color tiddler-controls-foreground&gt;&gt;;\r\n\topacity: 0.6;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg line.line {\r\n\tstroke: &lt;&lt;color foreground&gt;&gt;;\r\n\topacity: 1;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible:hover svg circle {\r\n\tfill: &lt;&lt;color tiddler-controls-foreground-hover&gt;&gt;;\r\n}\n\n.stream-node-control .stream-node-collapser {\r\n\theight: 13px;\r\n\twidth: 20px;\r\n\topacity:0;\r\n}\n\n.stream-row-nochildren .stream-node-collapser {\r\n\tvisibility: hidden;\r\n}\n\n.stream-row:hover .stream-node-collapser,\r\n.stream-row-children-collapsed.stream-row:hover .stream-node-collapser {\r\n\topacity: 0.4;\r\n}\n\n.stream-row:hover .stream-node-collapser:hover,\r\n.stream-row-children-collapsed.stream-row:hover .stream-node-collapser:hover {\r\n\topacity: 0.9;\r\n}\n\n.stream-row-children-collapsed .stream-node-control .stream-node-collapser {\r\n\topacity: 0.4;\r\n}\n\n.stream-node-collapser button.tc-btn-invisible,\r\n.stream-node-collapser button.tc-btn-invisible:focus {\r\n\toutline: none;\r\n}\n\n.stream-node-collapser svg {\r\n\ttransform: rotateZ(90deg);\r\n\ttransition: transform 200ms ease-in-out 0s;\r\n}\n\n.stream-row-children-collapsed .stream-node-collapser svg {\r\n\ttransform: rotateZ(0deg);\r\n}\n\n.stream-node-control .stream-node-handle-wrapper .stream-node-handle {\r\n\twidth: 9px;\r\n\theight: 9px;\r\n\tdisplay: flex;\r\n\talign-items : center;\r\n}\n\n.stream-node-control .stream-node-handle-wrapper .stream-node-handle-inner {\r\n    border-radius: 50%;\r\n    width: 6px;\r\n    height: 6px;\r\n    background-color: &lt;&lt;color foreground&gt;&gt;;\r\n\topacity: 0.3;\r\n}\n\n/*\r\n.stream-row:hover .stream-node-control .stream-node-handle-wrapper .stream-node-handle-inner {\r\n\topacity: 0.7;\r\n}\r\n*/\n\n.stream-row:hover .stream-node-control .stream-node-handle-wrapper:hover .stream-node-handle-inner {\r\n\topacity: 1;\r\n} \n\n.stream-node-control.sq-contextmenu-active .stream-node-handle-wrapper .stream-node-handle-inner {\r\n\tborder: 5px solid #5778d8; /*b74e4e*/\r\n\topacity: 1;\r\n}\n\n\r\n.stream-node-block {\r\n    overflow-wrap: break-word;\r\n\tmax-width: 550px;\r\n    min-height: calc(1.5em + 8px);\r\n    box-sizing: border-box;\r\n    margin-top: -1px;\r\n    min-width: 100px;\r\n    width: 100%;\r\n    line-height: 1.5em;\r\n    cursor: text;\r\n    padding-top: 4px;\r\n    padding-bottom: 4px;\r\n\t/*white-space: pre-wrap;*/\r\n}\n\n.stream-node-block textarea {\r\n\twidth: 100%;\r\n\toutline-color: &lt;&lt;color tiddler-editor-border&gt;&gt;;\r\n\tborder: 1px solid &lt;&lt;color tiddler-editor-border&gt;&gt;;\n\n\tresize: none;\r\n}\n\n.stream-node-block textarea.streams-editor {\r\n\tline-height:1.5em;\r\n\tmargin-bottom: 0.6em;\r\n}\n\n.stream-node-block p:first-child {\r\n\tmargin-top:0;\r\n}\n\n.stream-node-block p:last-child {\r\n\tmargin-bottom:0;\r\n}\n\nspan.sq-breadcrumbs-fragment {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    display: inline-block;\r\n    text-overflow: ellipsis;\r\n    max-width: 500px;\r\n}\n\nspan.sq-breadcrumbs-fragment a.tc-tiddlylink {\r\n\tcolor: &lt;&lt;color foreground&gt;&gt;;\r\n}\n\n/*** framed engine styles ***/\n\n.tc-tiddler-frame .stream-node-block input.tc-edit-texteditor,\r\n.tc-tiddler-frame .stream-node-block textarea.tc-edit-texteditor,\r\n.tc-tiddler-frame .stream-node-block iframe.tc-edit-texteditor {\r\n\tbackground: &lt;&lt;color background&gt;&gt; !important;\r\n\tmargin-top:0;\r\n\tmargin-bottom: -1.6em;\r\n}\n\n&lt;$reveal state=\&quot;$:/config/sq/streams/enable-edit-toolbar\&quot; type=\&quot;nomatch\&quot; text=\&quot;yes\&quot;&gt;\r\n.stream-node-block .tc-editor-toolbar {\r\n\tdisplay: none;\r\n}\r\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/sq/streams/global-drag-state\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n/** active drag css **/\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/sq/streams/global-drag-state\&quot; type=\&quot;nomatch\&quot; text=\&quot;yes\&quot;&gt;\n\n/**no active drag css **/\n\n&lt;/$reveal&gt;&quot;
+            &quot;text&quot;: &quot;.stream-root {\r\n\tmargin-left: -1em;\r\n}\n\n.stream-row {\r\n    display: flex;\r\n    flex: 0 0 auto;\r\n}\n\n.stream-row-children {\r\n\tdisplay:flex;\r\n\tflex: 0 0 auto;\r\n\tflex-direction: column;\r\n\t/*padding-left: 0.5em;*/\r\n\tborder-left: 1px solid &lt;&lt;color message-border&gt;&gt;;\r\n\tmargin-left: 30px;\r\n}\n\n.stream-row-children.stream-row-children-empty {\r\n\tborder-left: none;\r\n}\n\n.stream-node-disabled,\r\n.stream-droppable.tc-droppable.stream-node-disabled + div{\r\n\tbackground-color: &lt;&lt;color tiddler-editor-border&gt;&gt;;\r\n}\n\n.stream-row-selected,\r\n.stream-droppable.tc-droppable.stream-row-selected + div {\r\n\tbackground: &lt;&lt;color notification-background&gt;&gt;;\r\n\tcolor: &lt;&lt;color message-foreground&gt;&gt;;\r\n}\n\n.stream-droppable.tc-droppable.stream-node-disabled + div + .stream-droppable.tc-droppable.tc-dragover &gt; .tc-droppable-placeholder {\r\n\tdisplay: none;\r\n}\n\n.stream-droppable.tc-droppable.stream-node-disabled + div + .stream-droppable.tc-droppable.tc-dragover {\r\n\tcursor: not-allowed;\r\n}\n\n.stream-droppable.tc-droppable.tc-dragover &gt; .tc-droppable-placeholder {\r\n\tmargin-left: 29px;\r\n\tline-height: 5px;\r\n\theight: 5px;\r\n\tborder: 2px solid &lt;&lt;color dropzone-background&gt;&gt;;\r\n\tbackground-color: &lt;&lt;color dropzone-background&gt;&gt;;\r\n}\n\n.stream-droppable-spacer {\r\n\theight: 0.3em;\r\n}\n\n.stream-node-control {\r\n\tdisplay: flex;\r\n    flex: 0 0 45px;\r\n    padding-top: 4px;\r\n    padding-left: 4px;\r\n}\n\n.stream-node-control .stream-node-collapser,\r\n.stream-node-control .stream-node-handle-wrapper {\r\n    display: flex;\r\n    height: 13px;\r\n    width: 13px;\r\n    margin-top: 4px;\r\n    border-radius: 50%;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\n\n.stream-node-control.stream-node-control-addnew .stream-node-handle-wrapper {\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tmargin-top: 0;\r\n}\n\n.stream-node-control.stream-node-control-addnew .stream-node-collapser {\r\n\twidth: 16px;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg {\r\n\topacity: 0.8;\r\n}\n\n\r\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg circle {\r\n\tfill: &lt;&lt;color tiddler-controls-foreground&gt;&gt;;\r\n\topacity: 0.6;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible svg line.line {\r\n\tstroke: &lt;&lt;color foreground&gt;&gt;;\r\n\topacity: 1;\r\n}\n\n.stream-node-control.stream-node-control-addnew div.tc-btn-invisible:hover svg circle {\r\n\tfill: &lt;&lt;color tiddler-controls-foreground-hover&gt;&gt;;\r\n}\n\n.stream-node-control .stream-node-collapser {\r\n\theight: 13px;\r\n\twidth: 20px;\r\n\topacity:0;\r\n}\n\n.stream-row-nochildren .stream-node-collapser {\r\n\tvisibility: hidden;\r\n}\n\n.stream-row:hover .stream-node-collapser,\r\n.stream-row-children-collapsed.stream-row:hover .stream-node-collapser {\r\n\topacity: 0.4;\r\n}\n\n.stream-row:hover .stream-node-collapser:hover,\r\n.stream-row-children-collapsed.stream-row:hover .stream-node-collapser:hover {\r\n\topacity: 0.9;\r\n}\n\n.stream-row-children-collapsed .stream-node-control .stream-node-collapser {\r\n\topacity: 0.4;\r\n}\n\n.stream-node-collapser button.tc-btn-invisible,\r\n.stream-node-collapser button.tc-btn-invisible:focus {\r\n\toutline: none;\r\n}\n\n.stream-node-collapser svg {\r\n\ttransform: rotateZ(90deg);\r\n\ttransition: transform 200ms ease-in-out 0s;\r\n}\n\n.stream-row-children-collapsed .stream-node-collapser svg {\r\n\ttransform: rotateZ(0deg);\r\n}\n\n.stream-node-control .stream-node-handle-wrapper .stream-node-handle {\r\n\twidth: 13px;\r\n\theight: 13px;\r\n\tdisplay: flex;\r\n\talign-items : center;\r\n\tjustify-content: center;\r\n}\n\n.stream-node-control .stream-node-handle-wrapper .stream-node-handle-inner {\r\n    border-radius: 50%;\r\n    width: 6px;\r\n    height: 6px;\r\n    background-color: &lt;&lt;color foreground&gt;&gt;;\r\n\topacity: 0.3;\r\n}\n\n/*\r\n.stream-row:hover .stream-node-control .stream-node-handle-wrapper .stream-node-handle-inner {\r\n\topacity: 0.7;\r\n}\r\n*/\n\n.stream-row:hover .stream-node-control .stream-node-handle-wrapper:hover .stream-node-handle-inner {\r\n\topacity: 1;\r\n} \n\n.stream-node-control.sq-contextmenu-active .stream-node-handle-wrapper .stream-node-handle-inner {\r\n\tborder: 5px solid #5778d8; /*b74e4e*/\r\n\topacity: 1;\r\n}\n\n\r\n.stream-node-block {\r\n    overflow-wrap: break-word;\r\n\tmax-width: 550px;\r\n    min-height: calc(1.5em + 8px);\r\n    box-sizing: border-box;\r\n    margin-top: -1px;\r\n    min-width: 100px;\r\n    width: 100%;\r\n    line-height: 1.5em;\r\n    cursor: text;\r\n    padding-top: 4px;\r\n    padding-bottom: 4px;\r\n\t/*white-space: pre-wrap;*/\r\n}\n\n.stream-node-block textarea {\r\n\twidth: 100%;\r\n\toutline-color: &lt;&lt;color tiddler-editor-border&gt;&gt;;\r\n\tborder: 1px solid &lt;&lt;color tiddler-editor-border&gt;&gt;;\n\n\tresize: none;\r\n}\n\n.stream-node-block textarea.streams-editor {\r\n\tline-height:1.5em;\r\n\tmargin-bottom: 0.6em;\r\n}\n\n.stream-node-block p:first-child {\r\n\tmargin-top:0;\r\n}\n\n.stream-node-block p:last-child {\r\n\tmargin-bottom:0;\r\n}\n\nspan.sq-breadcrumbs-fragment {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    display: inline-block;\r\n    text-overflow: ellipsis;\r\n    max-width: 500px;\r\n}\n\nspan.sq-breadcrumbs-fragment a.tc-tiddlylink {\r\n\tcolor: &lt;&lt;color foreground&gt;&gt;;\r\n}\n\n/*** framed engine styles ***/\n\n.tc-tiddler-frame .stream-node-block input.tc-edit-texteditor,\r\n.tc-tiddler-frame .stream-node-block textarea.tc-edit-texteditor,\r\n.tc-tiddler-frame .stream-node-block iframe.tc-edit-texteditor {\r\n\tbackground: &lt;&lt;color background&gt;&gt; !important;\r\n\tmargin-top:0;\r\n\tmargin-bottom: -1.6em;\r\n}\n\n&lt;$reveal state=\&quot;$:/config/sq/streams/enable-edit-toolbar\&quot; type=\&quot;nomatch\&quot; text=\&quot;yes\&quot;&gt;\r\n.stream-node-block .tc-editor-toolbar {\r\n\tdisplay: none;\r\n}\r\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/sq/streams/global-drag-state\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n/** active drag css **/\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/sq/streams/global-drag-state\&quot; type=\&quot;nomatch\&quot; text=\&quot;yes\&quot;&gt;\n\n/**no active drag css **/\n\n&lt;/$reveal&gt;&quot;
         },
         &quot;$:/plugins/sq/streams/action-ifconfirmed.js&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams/action-ifconfirmed.js&quot;,
@@ -11167,6 +11203,9 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" created="20200524075311048" modified="20200602185545744" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Streams</pre>
 </div>
+<div created="20200705164213085" modified="20200705164226559" title="$:/state/tab/sidebar-1206596165">
+<pre>$:/core/ui/SideBar/Open</pre>
+</div>
 <div bag="default" revision="1" title="$:/status/IsAnonymous">
 <pre>yes</pre>
 </div>
@@ -11177,12 +11216,12 @@ wikilist-button-foreground: #000</pre>
 <pre>no</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList">
+<div created="20200705164218065" list="Streams Demos [[Keyboard Shortcuts]]" modified="20200705164229820" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -11198,19 +11237,19 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;https://saqimtiaz.github.io/sq-tw/streams.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/saq/Downloads/tiddlywiki%20(62).html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;https:&quot;
+            &quot;text&quot;: &quot;file:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -11218,7 +11257,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/sq-tw/streams.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/saq/Downloads/tiddlywiki%20(62).html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -11226,7 +11265,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;https://saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;file://&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
@@ -11369,26 +11408,7 @@ Examples for [[Customizing bullet titles]] </pre>
 <pre>* copy or transclude to another tiddler via drag and drop doesn't yet copy nested nodes
 </pre>
 </div>
-<div bag="default" created="20200608155730827" modified="20200608203850636" revision="0" tags="" title="convert fields" type="text/vnd.tiddlywiki">
-<pre>&lt;$button&gt;convert
-&lt;$list filter=&quot;[has[sq-bullet-parent]]&quot;&gt;
-	&lt;$action-setfield $tiddler=&lt;&lt;currentTiddler&gt;&gt; parent={{{[sq-bullet-uuid{!!sq-bullet-parent}]}}} $field=&quot;sq-bullet-parent&quot;/&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;
-
-&lt;$button&gt;convert
-&lt;$list filter=&quot;[has[sq-bullet-uuid]]&quot;&gt;
-	&lt;$action-setfield $tiddler=&lt;&lt;currentTiddler&gt;&gt; stream-type=&quot;default&quot; $field=&quot;sq-bullet-uuid&quot;/&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;
-
-&lt;$button&gt;convert
-&lt;$list filter=&quot;[has[sq-bullets]]&quot;&gt;
-	&lt;$action-setfield $tiddler=&lt;&lt;currentTiddler&gt;&gt; stream-list={{!!sq-bullets}} $field=&quot;sq-bullets&quot;/&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div bag="default" created="20200529161121459" modified="20200609175939441" revision="0" tags="" title="Customizing bullet titles" type="text/vnd.tiddlywiki">
+<div bag="default" created="20200529161121459" modified="20200703153235913" revision="0" tags="" title="Customizing bullet titles" type="text/vnd.tiddlywiki">
 <pre>`$:/config/sq/bullets/new-bullet-title` is wikified to get the title of a new bullet
 
 Choose a structure that is likely to be unique
@@ -11403,7 +11423,8 @@ Examples:
 * `$:/streams/&lt;&lt;now &quot;[UTC]YYYY0MM0DD0hh0mm0ssXXX&quot;&gt;&gt;`
 * `&lt;&lt;stream-root-title&gt;&gt;/&lt;&lt;now &quot;[UTC]YYYY0MM0DD0hh0mm0ssXXX&quot;&gt;&gt;`
 * `&lt;&lt;parent&gt;&gt;/&lt;&lt;now &quot;[UTC]YYYY0MM0DD0hh0mm0ssXXX&quot;&gt;&gt;`
-* `$:/&lt;&lt;parent&gt;&gt;/&lt;&lt;now &quot;[UTC]YYYY0MM0DD0hh0mm0ssXXX&quot;&gt;&gt;`</pre>
+* `$:/&lt;&lt;parent&gt;&gt;/&lt;&lt;now &quot;[UTC]YYYY0MM0DD0hh0mm0ssXXX&quot;&gt;&gt;`
+* `&lt;$macrocall $name=&quot;unusedtitle&quot; baseName=&lt;&lt;stream-root-title&gt;&gt;/&gt;`</pre>
 </div>
 <div bag="default" created="20200609182019083" modified="20200609183013737" revision="0" tags="" title="Data Structure" type="text/vnd.tiddlywiki">
 <pre>''Streams'' uses the following tiddler fields to maintain the structure of a stream:
@@ -11427,6 +11448,75 @@ Play around with the tiddlers:
 * Or create any new tiddler (any title), save it and look for the + button.
 
 Also trying dragging nodes between them, with and without the shift and ctrl modifiers.</pre>
+</div>
+<div bag="default" created="20200613180541149" modified="20200629060543974" revision="0" tags="" title="export" type="text/vnd.tiddlywiki">
+<pre>\define print-row-as-list()
+\whitespace trim
+	&lt;li&gt;{{!!text}}
+	&lt;$list filter=&quot;[&lt;currentTiddler&gt;has[stream-list]]&quot; variable=&quot;_NULL&quot;&gt;
+		&lt;ul&gt;
+		&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+			&lt;&lt;print-row-as-list&gt;&gt;
+		&lt;/$list&gt;
+		&lt;/ul&gt;
+	&lt;/$list&gt;
+	&lt;/li&gt;
+\end
+
+\define export-stream-as-list(tiddler)
+\whitespace trim
+&lt;$set name=&quot;currentTiddler&quot; value=&quot;$tiddler$&quot;&gt;
+&lt;ul&gt;
+&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+	&lt;&lt;print-row-as-list&gt;&gt;
+&lt;/$list&gt;
+&lt;/ul&gt;
+&lt;/$set&gt;
+\end
+
+&lt;&lt;export-stream-as-list Roadmap&gt;&gt;
+
+&lt;$button&gt;
+&lt;$wikify name=&quot;stream-html&quot; text=&lt;&lt;export-stream-as-list Roadmap&gt;&gt; output=&quot;html&quot; &gt;
+&lt;$action-sendmessage $message=&quot;tm-copy-to-clipboard&quot; $param=&lt;&lt;stream-html&gt;&gt;/&gt;
+&lt;/$wikify&gt;
+Copy to clipboard as HTML
+&lt;/$button&gt;</pre>
+</div>
+<div bag="default" created="20200613220953869" modified="20200629061101783" revision="0" tags="" title="export2" type="text/vnd.tiddlywiki">
+<pre>\define print-row()
+\whitespace trim
+	&lt;$(innerTag)$&gt;{{!!text}}
+	&lt;$list filter=&quot;[&lt;currentTiddler&gt;has[stream-list]]&quot; variable=&quot;_NULL&quot;&gt;
+		&lt;$(outerTag)$&gt;
+		&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+			&lt;&lt;print-row&gt;&gt;
+		&lt;/$list&gt;
+		&lt;/$(outerTag)$&gt;
+	&lt;/$list&gt;
+	&lt;/$(innerTag)$&gt;
+\end
+
+\define print-stream()
+\whitespace trim
+&lt;$(outerTag)$&gt;
+&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+	&lt;&lt;print-row&gt;&gt;
+&lt;/$list&gt;
+&lt;/$(outerTag)$&gt;
+\end
+
+\define export-stream(tiddler:&quot;&quot; outerTag:&quot;article&quot; innerTag:&quot;section&quot;)
+\whitespace trim
+&lt;$vars outerTag=&quot;$outerTag$&quot; innerTag=&quot;$innerTag$&quot; currentTiddler=&quot;$tiddler$&quot;&gt;
+&lt;&lt;print-stream&gt;&gt;
+&lt;/$vars&gt;
+\end
+
+&lt;&lt;export-stream tiddler:Roadmap&gt;&gt;
+
+&lt;&lt;export-stream tiddler:Roadmap outerTag:ul innerTag:li&gt;&gt;
+</pre>
 </div>
 <div bag="default" created="20200604161718811" modified="20200604162141693" revision="0" title="handle" type="text/vnd.tiddlywiki">
 <pre>&lt;svg width=&quot;24&quot; height=&quot;24&quot;&gt;&lt;path d=&quot;M9.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-5-5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z&quot; fill=&quot;currentColor&quot;&gt;&lt;/path&gt;&lt;/svg&gt;</pre>
@@ -11472,7 +11562,7 @@ Also trying dragging nodes between them, with and without the shift and ctrl mod
 <div bag="default" created="20200529194337589" modified="20200608203552573" parent="Roadmap" revision="0" stream-list="Roadmap/20200529194401660 Roadmap/20200529194347297 Roadmap/20200529194452679 Roadmap/20200530163625318 Roadmap/20200530093438013" stream-type="default" title="Renaming child bullets" type="text/vnd.tiddlywiki">
 <pre>''Handle renaming of child bullets''</pre>
 </div>
-<div bag="default" created="20200529194255472" modified="20200610163824953" revision="0" stream-list="Roadmap/20200603061628734 Roadmap/20200603061644288 Roadmap/20200603080031070 Roadmap/20200603080053308 Roadmap/20200603061701306" stream-type="default" tags="" title="Roadmap" type="text/vnd.tiddlywiki">
+<div bag="default" created="20200529194255472" modified="20200705163918985" revision="0" stream-list="Roadmap/20200603061628734 Roadmap/20200603061644288 Roadmap/20200603080031070 Roadmap/20200603080053308 Roadmap/20200603061701306 Roadmap/20200629110455507 Roadmap/20200629110458273" stream-type="default" tags="" title="Roadmap" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 <div bag="default" created="20200609202824572" modified="20200609203206890" revision="0" tags="" title="Roadmap - graph" type="text/vnd.tiddlywiki">
@@ -11557,11 +11647,11 @@ Also trying dragging nodes between them, with and without the shift and ctrl mod
 <div bag="default" created="20200602185731587" modified="20200608164620859" parent="Roadmap/20200603080053308" revision="0" sq-bullets="" stream-type="default" title="Roadmap/20200602185731587" type="text/vnd.tiddlywiki">
 <pre>Consider different styling for default bullet</pre>
 </div>
-<div bag="default" created="20200603061628734" modified="20200610171241259" parent="Roadmap" revision="0" stream-list="" stream-type="default" title="Roadmap/20200603061628734" type="text/vnd.tiddlywiki">
+<div bag="default" created="20200603061628734" modified="20200705163354639" parent="Roadmap" revision="0" stream-list="Roadmap/20200611084024096 Roadmap/20200611161522720 Roadmap/20200618161227802 Roadmap/20200621182107828 Roadmap/20200621183806046" stream-type="default" title="Roadmap/20200603061628734" type="text/vnd.tiddlywiki">
 <pre>''NOW''</pre>
 </div>
-<div bag="default" created="20200603061644288" modified="20200610142549322" parent="Roadmap" revision="0" stream-list="Roadmap/20200529194547325 Roadmap/20200605084858221 Roadmap/20200604134248020 Roadmap/20200604065744372 Roadmap/20200529194658065 Roadmap/20200610124950834 Roadmap/20200610140955526" stream-type="default" title="Roadmap/20200603061644288" type="text/vnd.tiddlywiki">
-<pre>''Version 1.0'' (target end of June - safe to use)</pre>
+<div bag="default" created="20200603061644288" modified="20200705163916980" parent="Roadmap" revision="0" stream-list="Roadmap/20200529194547325 Roadmap/20200605084858221 Roadmap/20200604134248020 Roadmap/20200604065744372 Roadmap/20200529194658065 Roadmap/20200610124950834 Roadmap/20200610140955526" stream-type="default" title="Roadmap/20200603061644288" type="text/vnd.tiddlywiki">
+<pre>''Version 1.0'' (target end of July)</pre>
 </div>
 <div bag="default" created="20200603061701306" modified="20200608203552543" parent="Roadmap" revision="0" stream-list="Roadmap/20200603075946737 Roadmap/20200603080002096 Roadmap/20200529194535497 Roadmap/20200530202542060" stream-type="default" title="Roadmap/20200603061701306" type="text/vnd.tiddlywiki">
 <pre>''Version 2.0''</pre>
@@ -11572,7 +11662,7 @@ Also trying dragging nodes between them, with and without the shift and ctrl mod
 <div bag="default" created="20200603080031071" modified="20200608203552540" parent="Roadmap" revision="0" stream-list="Roadmap/20200603080216097 Roadmap/20200603080220159 Roadmap/20200603080450235 Roadmap/20200529194302912 Roadmap/20200601055300889 Roadmap/20200601112649988" stream-type="default" title="Roadmap/20200603080031070" type="text/vnd.tiddlywiki">
 <pre>''Version 1.1''</pre>
 </div>
-<div bag="default" created="20200603080053308" modified="20200608203552536" parent="Roadmap" revision="0" stream-list="Roadmap/20200530164700963 Roadmap/20200604141942211 Roadmap/20200529194625951 Roadmap/20200529194612594 Roadmap/20200601061030769 Roadmap/20200529194502833 Roadmap/20200602185731587 Roadmap/20200605131251442" stream-type="default" title="Roadmap/20200603080053308" type="text/vnd.tiddlywiki">
+<div bag="default" created="20200603080053308" modified="20200611084013481" parent="Roadmap" revision="0" stream-list="Roadmap/20200530164700963 Roadmap/20200604141942211 Roadmap/20200529194625951 Roadmap/20200529194612594 Roadmap/20200601061030769 Roadmap/20200529194502833 Roadmap/20200602185731587 Roadmap/20200605131251442 Roadmap/20200611084002366 Roadmap/20200611084012008" stream-type="default" title="Roadmap/20200603080053308" type="text/vnd.tiddlywiki">
 <pre>''Other Ideas''</pre>
 </div>
 <div bag="default" created="20200604055204123" modified="20200610185808926" parent="Roadmap/20200605084858221" revision="0" stream-list="Roadmap/20200610162113978 Roadmap/20200610162103404 Roadmap/20200610164058043 Roadmap/20200610185807828" stream-type="default" title="Roadmap/20200604055204123" type="text/vnd.tiddlywiki">
@@ -11616,6 +11706,44 @@ Also trying dragging nodes between them, with and without the shift and ctrl mod
 </div>
 <div bag="default" created="20200610185807828" modified="20200610185824024" parent="Roadmap/20200604055204123" revision="0" stream-type="default" title="Roadmap/20200610185807828" type="text/vnd.tiddlywiki">
 <pre>Ship with own color palette, that uses default color palette where possible?</pre>
+</div>
+<div bag="default" created="20200611084002367" modified="20200611084012476" parent="Roadmap/20200603080053308" revision="0" stream-type="default" title="Roadmap/20200611084002366" type="text/vnd.tiddlywiki">
+<pre>extensible context menu, ability to add commands</pre>
+</div>
+<div bag="default" created="20200611084012009" modified="20200611084020664" parent="Roadmap/20200603080053308" revision="0" stream-type="default" title="Roadmap/20200611084012008" type="text/vnd.tiddlywiki">
+<pre>context menu that applies to entire stream</pre>
+</div>
+<div bag="default" created="20200611084024096" modified="20200611161524757" parent="Roadmap/20200603061628734" revision="0" stream-list="Roadmap/20200611084032440 Roadmap/20200611084040670" stream-type="default" title="Roadmap/20200611084024096" type="text/vnd.tiddlywiki">
+<pre>document examples of working with stream tiddlers</pre>
+</div>
+<div bag="default" created="20200611084032440" modified="20200611084041418" parent="Roadmap/20200611084024096" revision="0" stream-type="default" title="Roadmap/20200611084032440" type="text/vnd.tiddlywiki">
+<pre>changing titles to use first line of text</pre>
+</div>
+<div bag="default" created="20200611084040671" modified="20200611084054209" parent="Roadmap/20200611084024096" revision="0" stream-type="default" title="Roadmap/20200611084040670" type="text/vnd.tiddlywiki">
+<pre>exporting as HTML list, or article and section tags</pre>
+</div>
+<div bag="default" created="20200611161522721" modified="20200611161551830" parent="Roadmap/20200603061628734" revision="0" stream-type="default" title="Roadmap/20200611161522720" type="text/vnd.tiddlywiki">
+<pre>Consider inserting a new node before current one, if caret position is at the start of non-empty text</pre>
+</div>
+<div bag="default" created="20200618161227802" modified="20200618161242320" parent="Roadmap/20200603061628734" revision="0" stream-type="default" title="Roadmap/20200618161227802" type="text/vnd.tiddlywiki">
+<pre>Use new rename hook to remove relink dependency?</pre>
+</div>
+<div bag="default" created="20200621182107829" modified="20200621182126663" parent="Roadmap/20200603061628734" revision="0" stream-type="default" title="Roadmap/20200621182107828" type="text/vnd.tiddlywiki">
+<pre>UI ideas re: modals
+
+https://getbootstrap.com/docs/3.4/javascript/#popovers
+
+http://www.uxforthemasses.com/wp-content/uploads/2015/08/LinkedIn-edit-example.jpg</pre>
+</div>
+<div bag="default" created="20200621183806046" modified="20200621183819154" parent="Roadmap/20200603061628734" revision="0" stream-type="default" title="Roadmap/20200621183806046" type="text/vnd.tiddlywiki">
+<pre>Integration with kin filter
+https://github.com/bimlas/tw5-kin-filter</pre>
+</div>
+<div bag="default" created="20200629110455508" modified="20200629110459935" parent="Roadmap" revision="0" stream-type="default" title="Roadmap/20200629110455507" type="text/vnd.tiddlywiki">
+<pre>ok</pre>
+</div>
+<div bag="default" created="20200629110458274" modified="20200629110459940" parent="Roadmap" revision="0" stream-type="default" title="Roadmap/20200629110458273" type="text/vnd.tiddlywiki">
+<pre></pre>
 </div>
 <div bag="default" created="20200526161435997" modified="20200610092626405" revision="0" tags="" title="Streams" type="text/vnd.tiddlywiki">
 <pre>@@background-color:yellow;font-weight:bold;
