@@ -417,6 +417,8 @@ Error message and password prompt
 
 <li>Working with streams tiddlers</li>
 
+<li>Working with streams tiddlers/Export</li>
+
 </ul>
 </p>
 
@@ -11354,7 +11356,7 @@ wikilist-button-foreground: #000</pre>
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div list="Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList" revision="1" bag="default">
+<div created="20200706172603905" list="Streams Demos [[Keyboard Shortcuts]]" modified="20200706172603905" title="$:/StoryList" type="text/vnd.tiddlywiki" revision="2" bag="default">
 <pre></pre>
 </div>
 <div created="20200706164134654" modified="20200706165333919" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -11851,8 +11853,61 @@ Eventually this will be further developed to make it easy to create different ty
 <div created="20200526031758656" modified="20200608203626689" stream-list="$:/bullets/906a73e0-14bb-4827-93a7-984ee3426318 $:/bullets/6f785d3a-8bd4-498f-9c79-3b1bcc40a4f2 $:/bullets/2a5b9877-1574-42ca-888c-28b9136923f9 $:/bullets/3cca5d37-171f-4d86-8fd3-e456fa69c42d $:/bullets/34f3ff97-aab0-4c1a-af28-faf5128e4be6" stream-type="default" title="Werther" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200706162230878" modified="20200706162259897" stream-list="[[Data Structure]]" stream-type="default" tags="" title="Working with streams tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200706162230878" modified="20200706172400298" stream-list="[[Data Structure]] [[Working with streams tiddlers/Export]]" stream-type="default" tags="" title="Working with streams tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
+</div>
+<div created="20200706171822795" modified="20200706172400313" parent="Working with streams tiddlers" stream-type="default" title="Working with streams tiddlers/Export" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Here is an example of a macro that can be used to export a stream using a custom HTML structure:
+
+```
+\define print-row()
+\whitespace trim
+	&lt;$(innerTag)$&gt;{{!!text}}
+	&lt;$list filter=&quot;[&lt;currentTiddler&gt;has[stream-list]]&quot; variable=&quot;_NULL&quot;&gt;
+		&lt;$(outerTag)$&gt;
+		&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+			&lt;&lt;print-row&gt;&gt;
+		&lt;/$list&gt;
+		&lt;/$(outerTag)$&gt;
+	&lt;/$list&gt;
+	&lt;/$(innerTag)$&gt;
+\end
+
+\define print-stream()
+\whitespace trim
+&lt;$(outerTag)$&gt;
+&lt;$list filter=&quot;[enlist{!!stream-list}is[tiddler]]&quot;&gt;
+	&lt;&lt;print-row&gt;&gt;
+&lt;/$list&gt;
+&lt;/$(outerTag)$&gt;
+\end
+
+\define export-stream(tiddler:&quot;&quot; outerTag:&quot;article&quot; innerTag:&quot;section&quot;)
+\whitespace trim
+&lt;$vars outerTag=&quot;$outerTag$&quot; innerTag=&quot;$innerTag$&quot; currentTiddler=&quot;$tiddler$&quot;&gt;
+&lt;&lt;print-stream&gt;&gt;
+&lt;/$vars&gt;
+\end
+
+```
+
+Try the following:
+
+* `&lt;&lt;export-stream tiddler:Roadmap&gt;&gt;` to export using article and section tags
+* `&lt;&lt;export-stream tiddler:Roadmap outerTag:ul innerTag:li&gt;&gt;` to export as a list in HTML
+
+If you need a copy to clipboard button it would look something like this:
+
+```
+&lt;$button&gt;
+&lt;$wikify name=&quot;stream-html&quot; text=&lt;&lt;export-stream tiddler:Roadmap&gt;&gt; output=&quot;html&quot; &gt;
+&lt;$action-sendmessage $message=&quot;tm-copy-to-clipboard&quot; $param=&lt;&lt;stream-html&gt;&gt;/&gt;
+&lt;/$wikify&gt;
+Copy stream to clipboard as HTML
+&lt;/$button&gt;
+```
+
+Similarly you can write recursive macros to output as just flat text (with no structure or hierarchy) or wiki text list syntax (assuming you have no multi-line content).</pre>
 </div>
 
 
