@@ -199,6 +199,8 @@ Error message and password prompt
 
 <li>$:/config/sq/SaveAsExternalFile</li>
 
+<li>$:/config/sq/streams/deco</li>
+
 <li>$:/config/tiddlyweb/host</li>
 
 <li>$:/core</li>
@@ -227,8 +229,6 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
-<li>$:/state/tab/sidebar--595412856</li>
-
 <li>$:/status/IsAnonymous</li>
 
 <li>$:/status/IsLoggedIn</li>
@@ -240,6 +240,8 @@ Error message and password prompt
 <li>$:/status/UserName</li>
 
 <li>$:/StoryList</li>
+
+<li>$:/streams/contextmenu/flatten</li>
 
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
@@ -256,6 +258,8 @@ Error message and password prompt
 <li>Data Structure</li>
 
 <li>Demos</li>
+
+<li>Extending the Context Menu</li>
 
 <li>handle</li>
 
@@ -517,6 +521,9 @@ Oh, would I could describe these conceptions, could impress upon paper all that 
 </div>
 <div created="20200623132506589" modified="20200623132535991" title="$:/config/sq/SaveAsExternalFile" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
+</div>
+<div created="20200706164626195" modified="20200706164630202" title="$:/config/sq/streams/deco" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>#</pre>
 </div>
 <div created="20200617211746879" modified="20200617211846156" title="$:/config/tiddlyweb/host" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
@@ -11133,7 +11140,7 @@ wikilist-button-foreground: #000</pre>
             &quot;modified&quot;: &quot;20200603055942658&quot;,
             &quot;tags&quot;: &quot;&quot;,
             &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;\\define menu-item(title,subtitle:\&quot;\&quot;,actions:\&quot;\&quot;)\n\t\t&lt;$button class=\&quot;tc-menu-list-item tc-btn-invisible\&quot; actions=&lt;&lt;__actions__&gt;&gt; &gt;\n\t\t\t&lt;span class=\&quot;sq-contextmenu-itemwrapper\&quot;&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemtext\&quot;&gt;$title$&lt;/span&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemicon\&quot;&gt;$subtitle$&lt;/span&gt;\n\t\t\t&lt;/span&gt;\n\t\t&lt;/$button&gt;\n\\end\n\n\\define menu-divider() &lt;div class=\&quot;sq-contextmenu-divider\&quot;/&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; state=&lt;&lt;contextmenu-state&gt;&gt;  position=\&quot;left\&quot; tag=\&quot;div\&quot;&gt;\n\t&lt;div class=\&quot;tc-drop-down sq-contextmenu\&quot;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Open\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate/&gt;\&quot;\&quot;\&quot;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Rename\&quot; subtitle=\&quot;Alt+R\&quot; actions=&lt;&lt;rename-node-actions&gt;&gt;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Delete\&quot; subtitle=\&quot;Delete\&quot; actions=&lt;&lt;delete-node-actions&gt;&gt;/&gt;\n\t\t&lt;&lt;menu-divider&gt;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Keyboard Shortcuts (?)\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=\&quot;Keyboard Shortcuts\&quot;/&gt;\&quot;\&quot;\&quot;/&gt;\n\t&lt;/div&gt;\n&lt;/$reveal&gt;&quot;
+            &quot;text&quot;: &quot;\\define menu-item(title,subtitle:\&quot;\&quot;,actions:\&quot;\&quot;)\n\t\t&lt;$button class=\&quot;tc-menu-list-item tc-btn-invisible\&quot; actions=&lt;&lt;__actions__&gt;&gt; &gt;\n\t\t\t&lt;span class=\&quot;sq-contextmenu-itemwrapper\&quot;&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemtext\&quot;&gt;$title$&lt;/span&gt;\n\t\t\t\t&lt;span class=\&quot;sq-contextmenu-itemicon\&quot;&gt;$subtitle$&lt;/span&gt;\n\t\t\t&lt;/span&gt;\n\t\t&lt;/$button&gt;\n\\end\n\n\\define menu-divider() &lt;div class=\&quot;sq-contextmenu-divider\&quot;/&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; state=&lt;&lt;contextmenu-state&gt;&gt;  position=\&quot;left\&quot; tag=\&quot;div\&quot;&gt;\n\t&lt;div class=\&quot;tc-drop-down sq-contextmenu\&quot;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Open\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate/&gt;\&quot;\&quot;\&quot;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Rename\&quot; subtitle=\&quot;Alt+R\&quot; actions=&lt;&lt;rename-node-actions&gt;&gt;/&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Delete\&quot; subtitle=\&quot;Delete\&quot; actions=&lt;&lt;delete-node-actions&gt;&gt;/&gt;\n\t\t&lt;$list filter=\&quot;[tag[$:/tags/streams/contextmenu]]\&quot; variable=\&quot;listItem\&quot;&gt;\n\t\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title={{{[&lt;listItem&gt;get[sq-contextmenu-name]]}}} subtitle={{{[&lt;listItem&gt;get[sq-contextmenu-subtitle]]}}} actions={{{[&lt;listItem&gt;get[text]]}}} /&gt;\n\t\t&lt;/$list&gt;\n\t\t&lt;&lt;menu-divider&gt;&gt;\n\t\t&lt;$macrocall $name=\&quot;menu-item\&quot; title=\&quot;Keyboard Shortcuts (?)\&quot; actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=\&quot;Keyboard Shortcuts\&quot;/&gt;\&quot;\&quot;\&quot;/&gt;\n\t&lt;/div&gt;\n&lt;/$reveal&gt;&quot;
         },
         &quot;$:/plugins/sq/streams/contextmenu/contextmenu&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams/contextmenu/contextmenu&quot;,
@@ -11332,9 +11339,6 @@ wikilist-button-foreground: #000</pre>
 <div created="20200524075311048" modified="20200602185545744" title="$:/SiteTitle" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Streams</pre>
 </div>
-<div created="20200706162829797" modified="20200706162920607" title="$:/state/tab/sidebar--595412856" revision="8" bag="default">
-<pre>$:/core/ui/SideBar/Open</pre>
-</div>
 <div title="$:/status/IsAnonymous" revision="1" bag="default">
 <pre>yes</pre>
 </div>
@@ -11350,8 +11354,14 @@ wikilist-button-foreground: #000</pre>
 <div title="$:/status/UserName" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20200706162821023" list="Streams Demos [[Working with streams tiddlers]] [[Keyboard Shortcuts]]" modified="20200706162914942" title="$:/StoryList" revision="21" bag="default">
+<div list="Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
+</div>
+<div created="20200706164134654" modified="20200706165333919" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;!-- code from Jan --&gt;
+&lt;$action-sendmessage $message=&quot;tm-modal&quot; $param=&quot;$:/plugins/sq/streams/implode-node-modal&quot; startTiddler=&lt;&lt;currentTiddler&gt;&gt;/&gt;
+&lt;&lt;export-flat&gt;&gt;
+&lt;$action-setfield $tiddler=&quot;$:/temp/NewStreamTitle&quot; text=&lt;&lt;currentTiddler&gt;&gt;/&gt;</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
 <pre>{
@@ -11525,6 +11535,18 @@ Also trying dragging nodes between them, with and without the shift and ctrl mod
 A stream visualized as a graph:
 
 * [[Roadmap - graph]]</pre>
+</div>
+<div created="20200706165011599" modified="20200706165255025" title="Extending the Context Menu" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The context menu can be extended with additional commands by adding tiddlers with the tag: `$:/tags/streams/contextmenu`
+
+An example of the format and fields required by such a tiddler: [[$:/streams/contextmenu/flatten]]
+
+Required fields:
+
+* `sq-contextmenu-name` : the name of the command.
+* `sq-contextmenu-subtitle` : the keyboard shortcut (note that this does not automatically create the shortcut, this text is descriptive only).
+* `text` : actions to be triggered when this command is clicked.
+</pre>
 </div>
 <div created="20200604161718811" modified="20200604162141693" title="handle" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;svg width=&quot;24&quot; height=&quot;24&quot;&gt;&lt;path d=&quot;M9.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-5-5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z&quot; fill=&quot;currentColor&quot;&gt;&lt;/path&gt;&lt;/svg&gt;</pre>
@@ -11750,7 +11772,7 @@ https://github.com/bimlas/tw5-kin-filter</pre>
 <div created="20200629110458274" modified="20200629110459940" parent="Roadmap" stream-type="default" title="Roadmap/20200629110458273" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20200526161435997" modified="20200610092626405" tags="" title="Streams" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20200526161435997" modified="20200706165438177" tags="" title="Streams" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>@@background-color:yellow;font-weight:bold;
 This is in active development. Back up your wiki regularly.
 @@
@@ -11763,10 +11785,12 @@ A stream consists of multiple tiddlers, that we refer to as nodes. By default, a
 
 * [[Demos]]
 * [[Keyboard Shortcuts]]
-* [[Data Structure]]
 * [[Installation]]
+* [[Data Structure]]
 * [[Configuration]]
+* [[Working with streams tiddlers]]
 * [[Roadmap]]
+* [[Extending the Context Menu]]
 
 ---
 
