@@ -9836,7 +9836,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div created="20200708072651315" modified="20200708184225884" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200708072649889" modified="20200708184828494" title="$:/state/tab/sidebar--595412856">
+<div created="20200708072649889" modified="20200708215314537" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200708161154999" modified="20200708161154999" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -9845,7 +9845,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200708184817807" list="[[Draft of 'RikerIpsum']] $:/core/ui/EditTemplate/body/editor framedcomp reveal-widget-tweak" modified="20200708184817807" title="$:/StoryList">
+<div list="[[Draft of 'RikerIpsum']] $:/core/ui/EditTemplate/body/editor framedcomp reveal-widget-tweak" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200708104200777" modified="20200708141220378" title="$:/temp/advancedsearch">
@@ -9864,7 +9864,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200708184752516&quot;
+            &quot;text&quot;: &quot;20200708215257872&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10106,7 +10106,7 @@ FramedEngine.prototype.handleClickEvent = function(event) {
 	}
 }</pre>
 </div>
-<div created="20200708171229379" modified="20200708184350099" module-type="startup" tags="" title="framedcomp" type="application/javascript">
+<div created="20200708171229379" modified="20200708215252919" module-type="startup" tags="" title="framedcomp" type="application/javascript">
 <pre>/*\
 type: application/javascript
 module-type: library
@@ -10127,7 +10127,8 @@ function FramedCompEngine(options) {
 	console.log(&quot;bada&quot;);
 	
 	$tw.utils.addEventListeners(this.iframeDoc, [
-	{name: &quot;selectionchange&quot;, handlerObject: this, handlerMethod: &quot;handleSelectionChange&quot;}
+	{name: &quot;selectionchange&quot;, handlerObject: this, handlerMethod: &quot;handleSelectionChange&quot;},
+	{name: &quot;select&quot;, handlerObject: this, handlerMethod: &quot;handleSelectionChange&quot;}
 	]);
 	
 	/*
@@ -10142,6 +10143,9 @@ FramedCompEngine.prototype = Object.create(FramedEngine.prototype);
 FramedCompEngine.prototype.constructor = FramedCompEngine;
 
 FramedCompEngine.prototype.handleSelectionChange = function(event) {
+	if(event &amp;&amp; event.type == &quot;select&quot;) {
+		this.selectEvent = true;
+	}
 	if(this.domNode.selectionStart != this.domNode.selectionEnd ) {
 		//console.log(&quot;selection&quot;);
 		$tw.popup.cancel(0);
@@ -10202,8 +10206,11 @@ var getCaretCoordinates = require(&quot;$:/plugins/snowgoon88/edit-comptext/curs
 var old_sq_handleClickEvent = FramedEngine.prototype.handleClickEvent;
 FramedEngine.prototype.handleClickEvent = function(event) {
 	old_sq_handleClickEvent.apply(this,arguments);
-		this.lastSelectionEnd = null;
-		//$tw.popup.cancel(0);
+	this.lastSelectionEnd = null;
+	if(this.selectEvent &amp;&amp; this.domNode.selectionStart == this.domNode.selectionEnd) {
+		this.selectEvent = null;
+		$tw.popup.cancel(0);
+	}	
 }
 
 
