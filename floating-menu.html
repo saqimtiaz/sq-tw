@@ -143,6 +143,8 @@ Error message and password prompt
 
 <li>$:/config/AutoSave</li>
 
+<li>$:/config/TiddlerInfo/Mode</li>
+
 <li>$:/core</li>
 
 <li>$:/core/ui/EditTemplate/body/editor</li>
@@ -161,6 +163,8 @@ Error message and password prompt
 
 <li>$:/state/ShowPaletteEditor</li>
 
+<li>$:/state/tab--1498284803</li>
+
 <li>$:/state/tab--1963855381</li>
 
 <li>$:/state/tab-1749438307</li>
@@ -173,7 +177,11 @@ Error message and password prompt
 
 <li>$:/StoryList</li>
 
+<li>$:/temp/advancedsearch</li>
+
 <li>$:/temp/info-plugin</li>
+
+<li>$:/temp/search</li>
 
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
@@ -203,6 +211,9 @@ Error message and password prompt
 <div id="storeArea" style="display:none;">
 <div created="20200708071606729" modified="20200708071606729" title="$:/config/AutoSave">
 <pre>no</pre>
+</div>
+<div created="20200708110348017" modified="20200708110348017" title="$:/config/TiddlerInfo/Mode">
+<pre>sticky</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.23-prerelease">
 <pre>{
@@ -9805,23 +9816,29 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div created="20200708072956592" modified="20200708072956592" title="$:/state/ShowPaletteEditor">
 <pre>yes</pre>
 </div>
+<div created="20200708104202253" modified="20200708104205166" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/System</pre>
+</div>
 <div created="20200708072954590" modified="20200708072954590" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
 </div>
-<div created="20200708071605858" modified="20200708072953172" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20200708071605858" modified="20200708110345485" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
 </div>
 <div created="20200708072651315" modified="20200708072700895" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Shadows</pre>
 </div>
-<div created="20200708072649889" modified="20200708072723495" title="$:/state/tab/sidebar--595412856">
+<div created="20200708072649889" modified="20200708104234912" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200708073454357" list="[[Draft of 'RikerIpsum']] styles $:/core/ui/EditTemplate/body/editor" modified="20200708073457129" title="$:/StoryList">
+<div list="[[Draft of 'RikerIpsum']] styles $:/core/ui/EditTemplate/body/editor framed-engine-tweak" title="$:/StoryList">
 <pre></pre>
+</div>
+<div created="20200708104200777" modified="20200708104200777" title="$:/temp/advancedsearch">
+<pre>$:/state/floating-menu-768443785</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -9836,7 +9853,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200708073451117&quot;
+            &quot;text&quot;: &quot;20200708123220659&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -9884,6 +9901,9 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         }
     }
 }</pre>
+</div>
+<div created="20200708104159901" modified="20200708104200777" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease">
 <pre>{
@@ -9994,10 +10014,10 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
     }
 }</pre>
 </div>
-<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200708073107505" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
-<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. Why don't we just give everybody a promotion and call it a night - 'Commander'? Some days you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as we feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll alert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
+<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200708110307128" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
+<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. Why don't we just give everybody a promotion and call it a night - 'Commander'? Some dae feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll ays you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as wlert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
 </div>
-<div created="20200707145445363" modified="20200708071441528" module-type="startup" tags="" title="framed-engine-tweak" type="application/javascript">
+<div created="20200707145445363" modified="20200708123216932" module-type="startup" tags="" title="framed-engine-tweak" type="application/javascript">
 <pre>var FramedEngine = require(&quot;$:/core/modules/editor/engines/framed.js&quot;).FramedEngine;
 var getCaretCoordinates = require(&quot;$:/plugins/snowgoon88/edit-comptext/cursor-position.js&quot;);
 
@@ -10005,8 +10025,8 @@ var old_sq_handleClickEvent = FramedEngine.prototype.handleClickEvent;
 FramedEngine.prototype.handleClickEvent = function(event) {
 	old_sq_handleClickEvent.apply(this,arguments);
 	if(this.domNode.selectionStart != this.domNode.selectionEnd &amp;&amp; this.domNode.selectionEnd != this.lastSelectionEnd ) {
-		console.log(&quot;selection&quot;);
-		
+		//console.log(&quot;selection&quot;);
+		$tw.popup.cancel(0);
 		this.lastSelectionEnd = this.domNode.selectionEnd;
 		
 		var areaNode = this.domNode;
@@ -10018,8 +10038,13 @@ FramedEngine.prototype.handleClickEvent = function(event) {
 
 		//var _left = (offsetLeft+areaNode.offsetLeft-areaNode.scrollLeft+coord.left);
 		var _left = (offsetLeft+areaNode.offsetLeft-areaNode.scrollLeft);
-		var _top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top-fontSize*4);
-
+		var top;
+		if(coord.top &lt; fontSize *4) {
+			coord = getCaretCoordinates(areaNode, areaNode.selectionEnd);
+			_top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top+fontSize*2);
+		} else {
+			_top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top-fontSize*4);
+		}
 		var actionState = &quot;$:/state/floating-menu&quot;;
 		actionState = actionState + &quot;-&quot; + this.widget.getStateQualifier();
 		//console.log(qualifiedState);
@@ -10027,6 +10052,7 @@ FramedEngine.prototype.handleClickEvent = function(event) {
 		$tw.popup.triggerPopup({
 			domNode: null,
 			force: true,
+			noStateReference : true,
 			domNodeRect: {
 				left: _left,
 				top: _top,
