@@ -143,6 +143,8 @@ Error message and password prompt
 
 <li>$:/config/AutoSave</li>
 
+<li>$:/config/sq/floating-toolbar/button-list</li>
+
 <li>$:/config/TiddlerInfo/Mode</li>
 
 <li>$:/core</li>
@@ -173,6 +175,8 @@ Error message and password prompt
 
 <li>$:/state/tab/sidebar--595412856</li>
 
+<li>$:/state/tabs/controlpanel/toolbars-1345989671</li>
+
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
@@ -187,13 +191,21 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>config</li>
+
 <li>Draft of 'RikerIpsum'</li>
 
 <li>framed-engine-tweak</li>
 
+<li>framedcomp</li>
+
+<li>reveal-widget-tweak</li>
+
 <li>RikerIpsum</li>
 
 <li>styles</li>
+
+<li>toolbar-btn-config-template</li>
 
 </ul>
 </p>
@@ -211,6 +223,9 @@ Error message and password prompt
 <div id="storeArea" style="display:none;">
 <div created="20200708071606729" modified="20200708071606729" title="$:/config/AutoSave">
 <pre>no</pre>
+</div>
+<div created="20200708133423525" list="$:/core/ui/EditorToolbar/bold $:/core/ui/EditorToolbar/italic $:/core/ui/EditorToolbar/underline $:/core/ui/EditorToolbar/strikethrough $:/core/ui/EditorToolbar/mono-line $:/core/ui/EditorToolbar/mono-block $:/core/ui/EditorToolbar/quote $:/core/ui/EditorToolbar/list-bullet $:/core/ui/EditorToolbar/list-number $:/core/ui/EditorToolbar/heading-1 $:/core/ui/EditorToolbar/heading-2 $:/core/ui/EditorToolbar/heading-3 $:/core/ui/EditorToolbar/link $:/core/ui/EditorToolbar/linkify $:/core/ui/EditorToolbar/transcludify $:/core/ui/EditorToolbar/picture $:/core/ui/EditorToolbar/excise" modified="20200708182717587" tags="" title="$:/config/sq/floating-toolbar/button-list">
+<pre></pre>
 </div>
 <div created="20200708110348017" modified="20200708110348017" title="$:/config/TiddlerInfo/Mode">
 <pre>sticky</pre>
@@ -9614,7 +9629,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200706204638413" modified="20200708072805754" title="$:/core/ui/EditTemplate/body/editor">
+<div created="20200706204638413" modified="20200708161844464" title="$:/core/ui/EditTemplate/body/editor">
 <pre>&lt;div style=&quot;position:relative;&quot;&gt;
 &lt;$edit
 
@@ -9632,21 +9647,14 @@ Error message and password prompt
 
 &gt;&lt;$reveal type=&quot;popup&quot; state=&lt;&lt;qualify $:/state/floating-menu&gt;&gt;  class=&quot;sq-float-editor-menu&quot;&gt;&lt;$list
 
-  filter=&quot;[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]!has[draft.of]]&quot;
-
-&gt;&lt;$reveal
-
-  type=&quot;nomatch&quot;
-  state=&lt;&lt;config-visibility-title&gt;&gt;
-  text=&quot;hide&quot;
-  class=&quot;tc-text-editor-toolbar-item-wrapper&quot;
+  filter=&quot;[list[$:/config/sq/floating-toolbar/button-list]]&quot;
 
 &gt;&lt;$transclude
 
   tiddler=&quot;$:/core/ui/EditTemplate/body/toolbar/button&quot;
   mode=&quot;inline&quot;
 
-/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$reveal&gt;&lt;/$set&gt;&lt;/$edit&gt;
+/&gt;&lt;/$list&gt;&lt;/$reveal&gt;&lt;/$set&gt;&lt;/$edit&gt;
 &lt;/div&gt;
 </pre>
 </div>
@@ -9656,7 +9664,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[HelloThere]]</pre>
+# [[reveal-widget-tweak]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -9816,29 +9824,32 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div created="20200708072956592" modified="20200708072956592" title="$:/state/ShowPaletteEditor">
 <pre>yes</pre>
 </div>
-<div created="20200708104202253" modified="20200708104205166" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/System</pre>
+<div created="20200708104202253" modified="20200708141221675" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
-<div created="20200708072954590" modified="20200708072954590" title="$:/state/tab--1963855381">
-<pre>$:/core/ui/ControlPanel/Palette</pre>
+<div created="20200708072954590" modified="20200708161153941" title="$:/state/tab--1963855381">
+<pre>$:/core/ui/ControlPanel/Toolbars</pre>
 </div>
-<div created="20200708071605858" modified="20200708110345485" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Settings</pre>
+<div created="20200708071605858" modified="20200708161152011" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
-<div created="20200708072651315" modified="20200708072700895" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/Shadows</pre>
+<div created="20200708072651315" modified="20200708184225884" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200708072649889" modified="20200708104234912" title="$:/state/tab/sidebar--595412856">
+<div created="20200708072649889" modified="20200708184828494" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
+</div>
+<div created="20200708161154999" modified="20200708161154999" title="$:/state/tabs/controlpanel/toolbars-1345989671">
+<pre>$:/core/ui/ControlPanel/Toolbars/EditorToolbar</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Draft of 'RikerIpsum']] styles $:/core/ui/EditTemplate/body/editor framed-engine-tweak" title="$:/StoryList">
+<div created="20200708184817807" list="[[Draft of 'RikerIpsum']] $:/core/ui/EditTemplate/body/editor framedcomp reveal-widget-tweak" modified="20200708184817807" title="$:/StoryList">
 <pre></pre>
 </div>
-<div created="20200708104200777" modified="20200708104200777" title="$:/temp/advancedsearch">
-<pre>$:/state/floating-menu-768443785</pre>
+<div created="20200708104200777" modified="20200708141220378" title="$:/temp/advancedsearch">
+<pre>close</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -9853,7 +9864,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200708123220659&quot;
+            &quot;text&quot;: &quot;20200708184752516&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -9902,7 +9913,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
     }
 }</pre>
 </div>
-<div created="20200708104159901" modified="20200708104200777" title="$:/temp/search">
+<div created="20200708104159901" modified="20200708141220378" title="$:/temp/search">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease">
@@ -10014,10 +10025,26 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
     }
 }</pre>
 </div>
-<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200708110307128" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
-<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. Why don't we just give everybody a promotion and call it a night - 'Commander'? Some dae feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll ays you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as wlert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
+<div created="20200708133716018" modified="20200708160948846" tags="" title="config">
+<pre>Floating toolbar buttons:
+&lt;div class=&quot;toolbar-config-enabled-btn&quot;&gt;
+&lt;&lt;list-links-draggable tiddler:$:/config/sq/floating-toolbar/button-list itemTemplate:toolbar-btn-config-template&gt;&gt;
+&lt;/div&gt;
+
+
+All buttons:
+&lt;div style=&quot;column-count:3;&quot; class=&quot;toolbar-config-all-btn&quot;&gt;
+&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/EditorToolbar]] -[list[$:/config/sq/floating-toolbar/button-list]]&quot; template=toolbar-btn-config-template/&gt;
+&lt;/div&gt;</pre>
 </div>
-<div created="20200707145445363" modified="20200708123216932" module-type="startup" tags="" title="framed-engine-tweak" type="application/javascript">
+<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" modified="20200708182804723" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
+<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. 
+
+Why don't we just give everybody a promotion and call it a night - 'Commander'? Some dae feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll ays you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as wlert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! 
+
+Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
+</div>
+<div created="20200707145445363" modified="20200708180755912" tags="" title="framed-engine-tweak" type="application/javascript">
 <pre>var FramedEngine = require(&quot;$:/core/modules/editor/engines/framed.js&quot;).FramedEngine;
 var getCaretCoordinates = require(&quot;$:/plugins/snowgoon88/edit-comptext/cursor-position.js&quot;);
 
@@ -10079,10 +10106,149 @@ FramedEngine.prototype.handleClickEvent = function(event) {
 	}
 }</pre>
 </div>
-<div created="20130822170200000" list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200708072814509" tags="TableOfContents" title="RikerIpsum" type="text/vnd.tiddlywiki">
-<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. Why don't we just give everybody a promotion and call it a night - 'Commander'? Some days you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as we feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll alert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
+<div created="20200708171229379" modified="20200708184350099" module-type="startup" tags="" title="framedcomp" type="application/javascript">
+<pre>/*\
+type: application/javascript
+module-type: library
+Taken from $:/core/modules/editor/engines/framed.js
+Text editor engine based on a simple input or textarea within an iframe. This is done so that the selection is preserved even when clicking away from the textarea
+\*/
+(function(){
+
+/*jslint node: true,browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+
+var FramedEngine = require(&quot;$:/core/modules/editor/engines/framed.js&quot;).FramedEngine;
+	
+function FramedCompEngine(options) {
+	FramedEngine.call(this,options);
+	console.log(&quot;bada&quot;);
+	
+	$tw.utils.addEventListeners(this.iframeDoc, [
+	{name: &quot;selectionchange&quot;, handlerObject: this, handlerMethod: &quot;handleSelectionChange&quot;}
+	]);
+	
+	/*
+	this.iframeDoc.addEventListener('selectionchange', () =&gt; {
+		console.log(&quot;selection changed&quot;);
+	});
+	*/
+};
+
+FramedCompEngine.prototype = Object.create(FramedEngine.prototype);
+
+FramedCompEngine.prototype.constructor = FramedCompEngine;
+
+FramedCompEngine.prototype.handleSelectionChange = function(event) {
+	if(this.domNode.selectionStart != this.domNode.selectionEnd ) {
+		//console.log(&quot;selection&quot;);
+		$tw.popup.cancel(0);
+		this.lastSelectionEnd = this.domNode.selectionEnd;
+		
+		var areaNode = this.domNode;
+		var offsetLeft = 0;
+		var offsetTop = 0;		
+		var coord = getCaretCoordinates(areaNode, areaNode.selectionStart);
+		var styleSize = getComputedStyle(areaNode).getPropertyValue('font-size');
+		var fontSize = parseFloat(styleSize); 
+
+		//var _left = (offsetLeft+areaNode.offsetLeft-areaNode.scrollLeft+coord.left);
+		var _left = (offsetLeft+areaNode.offsetLeft-areaNode.scrollLeft);
+		var _top;
+		if(coord.top &lt; fontSize *4) {
+			coord = getCaretCoordinates(areaNode, areaNode.selectionEnd);
+			_top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top+fontSize*2);
+		} else {
+			_top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top-fontSize*2);
+		}
+		var actionState = &quot;$:/state/floating-menu&quot;;
+		actionState = actionState + &quot;-&quot; + this.widget.getStateQualifier();
+		//console.log(qualifiedState);
+		
+		$tw.popup.triggerPopup({
+			domNode: null,
+			force: true,
+			noStateReference : true,
+			domNodeRect: {
+				left: _left,
+				top: _top,
+				width: 0,
+				height: 0
+			},
+			title: actionState,
+			wiki: this.widget.wiki
+		});
+		//var selectionEnd = areaNode.selectionEnd;
+		//this.widget.wiki.setText(this.actionState,&quot;selection-end&quot;,undefined,selectionEnd);
+
+		var tiddler = this.widget.wiki.getTiddler(actionState);
+		var fields = {
+			&quot;selection-end&quot; : areaNode.selectionEnd,
+			&quot;selection-start&quot;: areaNode.selectionStart,
+			&quot;selection&quot;: areaNode.value.substring(areaNode.selectionStart, areaNode.selectionEnd)
+		}
+		this.widget.wiki.addTiddler(new $tw.Tiddler(tiddler,fields));
+
+	} else {
+		this.lastSelectionEnd = null;
+		$tw.popup.cancel(0);
+	}
+}
+
+var getCaretCoordinates = require(&quot;$:/plugins/snowgoon88/edit-comptext/cursor-position.js&quot;);
+
+var old_sq_handleClickEvent = FramedEngine.prototype.handleClickEvent;
+FramedEngine.prototype.handleClickEvent = function(event) {
+	old_sq_handleClickEvent.apply(this,arguments);
+		this.lastSelectionEnd = null;
+		//$tw.popup.cancel(0);
+}
+
+
+exports.FramedCompEngine = FramedCompEngine;
+
+$tw.modules.types.library[&quot;$:/core/modules/editor/engines/framed.js&quot;].exports.FramedEngine = FramedCompEngine;
+
+
+})();</pre>
 </div>
-<div created="20200708072821784" modified="20200708073414168" tags="$:/tags/Stylesheet" title="styles">
+<div created="20200707044017523" modified="20200708184749304" module-type="startup" tags="" title="reveal-widget-tweak" type="application/javascript">
+<pre>var RevealWidget = require(&quot;$:/core/modules/widgets/reveal.js&quot;).reveal;
+
+RevealWidget.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	if(changedAttributes.state || changedAttributes.type || changedAttributes.text || changedAttributes.position || changedAttributes.positionAllowNegative || changedAttributes[&quot;default&quot;] || changedAttributes.animate || changedAttributes.stateTitle || changedAttributes.stateField || changedAttributes.stateIndex) {
+		this.refreshSelf();
+		return true;
+	} else {
+		var currentlyOpen = this.isOpen;
+		this.readState();
+		if(this.isOpen !== currentlyOpen) {
+			if(this.retain === &quot;yes&quot;) {
+				this.updateState();
+			} else {
+				this.refreshSelf();
+				return true;
+			}
+		} else if(changedTiddlers[this.state] || changedTiddlers[this.stateTitle]) {
+if(this.type == &quot;popup&quot;)
+			this.positionPopup(this.domNodes[0]);
+		}
+		
+		return this.refreshChildren(changedTiddlers);
+	}
+}</pre>
+</div>
+<div created="20130822170200000" list="[[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]" modified="20200708182401747" tags="TableOfContents" title="RikerIpsum" type="text/vnd.tiddlywiki">
+<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. 
+
+Why don't we just give everybody a promotion and call it a night - 'Commander'? Some dae feel one of those close to us, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes, I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress sandwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll ays you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as wlert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! 
+
+Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
+</div>
+<div created="20200708072821784" modified="20200708161002778" tags="$:/tags/Stylesheet" title="styles">
 <pre>.sq-float-editor-menu {
 	background: #fff;
 	border: 1px solid #ccc;
@@ -10093,7 +10259,23 @@ FramedEngine.prototype.handleClickEvent = function(event) {
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border: 0px solid #000000;
+}
+.toolbar-config-all-btn .tc-btn-invisible.tc-btn-mini {
+	display: none;
+}
+
+.toolbar-config-all-btn svg,
+.toolbar-config-enabled-btn svg {
+width: 18px;
+height: 18px;
 }</pre>
+</div>
+<div created="20200708135343786" modified="20200708143110006" tags="" title="toolbar-btn-config-template">
+<pre>\define removeBtnActions()
+&lt;$action-listops $tiddler=&quot;$:/config/sq/floating-toolbar/button-list&quot; $field=&quot;list&quot; $subfilter=&quot;-[&lt;currentTiddler&gt;]&quot;/&gt;
+\end
+
+&lt;div&gt;&lt;$button class=&quot;tc-btn-invisible tc-btn-mini&quot; actions=&lt;&lt;removeBtnActions&gt;&gt;&gt; {{$:/core/images/close-button}} &lt;/$button&gt;  &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt; {{!!caption}} &lt;$transclude tiddler={{!!icon}}/&gt;&lt;/$link&gt;&lt;/div&gt;</pre>
 </div>
 
 
