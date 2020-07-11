@@ -141,6 +141,8 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>$:/config/AutoSave</li>
+
 <li>$:/config/TiddlerInfo/Mode</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/info</li>
@@ -155,9 +157,13 @@ Error message and password prompt
 
 <li>$:/isEncrypted</li>
 
+<li>$:/plugins/EditorMagic/editor-operations/insert-completion.js</li>
+
 <li>$:/plugins/EditorMagic/framed-engine-tweak</li>
 
 <li>$:/plugins/EditorMagic/reveal-widget-tweak</li>
+
+<li>$:/plugins/EditorMagic/styles</li>
 
 <li>$:/plugins/EditorMagic/widgets/action-popupcaret</li>
 
@@ -168,6 +174,8 @@ Error message and password prompt
 <li>$:/SiteTitle</li>
 
 <li>$:/state/EditorMagicPopupState-1915274173</li>
+
+<li>$:/state/tab--1498284803</li>
 
 <li>$:/state/tab--1963855381</li>
 
@@ -223,6 +231,9 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div created="20200711132601870" modified="20200711132601870" title="$:/config/AutoSave">
+<pre>no</pre>
+</div>
 <div created="20200709082239855" modified="20200709082239855" title="$:/config/TiddlerInfo/Mode">
 <pre>sticky</pre>
 </div>
@@ -9693,7 +9704,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200706204638413" modified="20200709092414139" tags="$:/EditorMagic" title="$:/core/ui/EditTemplate/body/editor">
+<div created="20200711132459142" modified="20200711133426040" title="$:/core/ui/EditTemplate/body/editor">
 <pre>\define editorMagicActions()
 
 &lt;$action-popupcaret $state=&lt;&lt;qualify $:/state/EditorMagicPopupState&gt;&gt;/&gt;
@@ -9732,15 +9743,14 @@ Error message and password prompt
   tiddler=&quot;$:/core/ui/EditTemplate/body/toolbar/button&quot;
   mode=&quot;inline&quot;
 
-/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edit&gt;
-&lt;$vars editorMagicState=&lt;&lt;qualify $:/state/EditorMagicPopupState&gt;&gt; &gt;
-&lt;$reveal type=&quot;popup&quot; state=&lt;&lt;editorMagicState&gt;&gt;  class=&quot;xtc-popup-keep&quot;&gt;
+/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;$vars editorMagicState=&lt;&lt;qualify $:/state/EditorMagicPopupState&gt;&gt; &gt;
+&lt;$reveal type=&quot;popup&quot; state=&lt;&lt;editorMagicState&gt;&gt;  class=&quot;editormagic-popup&quot;&gt;
 &lt;div&gt;
 &lt;$set name=&quot;selectionEnd&quot; filter=&quot;[&lt;editorMagicState&gt;get[selection-end]]&quot; select=&quot;0&quot;&gt; 
 {{||EditorMagic/_Popup}}
 &lt;/$set&gt;&lt;/div&gt;
 &lt;/$reveal&gt;
-&lt;/$vars&gt;
+&lt;/$vars&gt;&lt;/$edit&gt;
 &lt;/div&gt;
 </pre>
 </div>
@@ -9754,6 +9764,30 @@ Error message and password prompt
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
+</div>
+<div created="20200711131357072" modified="20200711132742818" module-type="texteditoroperation" tags="$:/EditorMagic" title="$:/plugins/EditorMagic/editor-operations/insert-completion.js" type="application/javascript">
+<pre>/*\
+title: $:/plugins/EditorMagic/editor-operations/insert-completion.js
+type: application/javascript
+module-type: texteditoroperation
+Text editor operation to insert an autocompleted string
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+exports[&quot;insert-completion&quot;] = function(event,operation) {
+	operation.replacement = event.paramObject.text;
+	var precursor = event.paramObject.precursor ? event.paramObject.precursor : &quot;&quot;;
+	operation.cutStart = operation.selStart - precursor.length;
+	operation.cutEnd = operation.selEnd;
+	operation.newSelStart = operation.selStart - precursor.length + operation.replacement.length;
+	operation.newSelEnd = operation.selStart - precursor.length + operation.replacement.length;
+};
+
+})();</pre>
 </div>
 <div created="20200707145445363" modified="20200709092658703" module-type="startup" tags="$:/EditorMagic" title="$:/plugins/EditorMagic/framed-engine-tweak" type="application/javascript">
 <pre>var FramedEngine = require(&quot;$:/core/modules/editor/engines/framed.js&quot;).FramedEngine;
@@ -9789,6 +9823,17 @@ if(this.type == &quot;popup&quot;)
 		
 		return this.refreshChildren(changedTiddlers);
 	}
+}</pre>
+</div>
+<div created="20200711133428170" modified="20200711134102630" tags="$:/tags/Stylesheet $:/EditorMagic" title="$:/plugins/EditorMagic/styles">
+<pre>.tc-editor-toolbar .editormagic-popup button {
+	width: 100%;
+	background: transparent;
+	text-align: left;
+}
+
+.tc-editor-toolbar .editormagic-popup button:hover {
+	color: &lt;&lt;color foreground&gt;&gt;;
 }</pre>
 </div>
 <div created="20200706192706082" modified="20200709092343845" module-type="widget" tags="$:/EditorMagic" title="$:/plugins/EditorMagic/widgets/action-popupcaret" type="application/javascript">
@@ -10059,11 +10104,14 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div created="20200709092315987" modified="20200709092343622" selection-end="3003" title="$:/state/EditorMagicPopupState-1915274173">
 <pre>(4,2061,0,0)</pre>
 </div>
+<div created="20200711132444175" modified="20200711132444175" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+</div>
 <div created="20200709092438708" modified="20200709092439088" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Toolbars</pre>
 </div>
-<div created="20200709082234848" modified="20200709092952059" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20200709082234848" modified="20200711132600843" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
 <div created="20200709081557691" modified="20200709081557691" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
@@ -10074,11 +10122,11 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200709092950457" list="[[Draft of 'New Tiddler 1']] $:/state/EditorMagicPopupState-967701523 EditorMagic/_Popup $:/core/ui/EditTemplate/body/editor" modified="20200709092950457" title="$:/StoryList">
+<div list="$:/plugins/EditorMagic/styles $:/plugins/EditorMagic/editor-operations/insert-completion.js [[Draft of 'New Tiddler 1']] EditorMagic/_Popup $:/core/ui/EditTemplate/body/editor" title="$:/StoryList">
 <pre></pre>
 </div>
-<div created="20200709081344223" modified="20200709081541637" title="$:/temp/advancedsearch">
-<pre>[all[tiddlers]!is[shadow]] -$:/core -[prefix[$:/the]] -$:/StoryList -[prefix[$:/l]] -[prefix[$:/b]]</pre>
+<div created="20200709081344223" modified="20200711132450432" title="$:/temp/advancedsearch">
+<pre>$:/core/ui/Edit</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -10093,11 +10141,11 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200709092743050&quot;
+            &quot;text&quot;: &quot;20200711132746089&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/saq/Downloads/PR4725-empty.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/saq/Downloads/editormagic-popup.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10117,7 +10165,7 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/saq/Downloads/PR4725-empty.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/saq/Downloads/editormagic-popup.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10348,13 +10396,13 @@ if (typeof module != &quot;undefined&quot; &amp;&amp; typeof module.exports != &
     }
 }</pre>
 </div>
-<div created="20200709092508899" draft.of="New Tiddler 1" draft.title="RikerIpsum" modified="20200709092824316" tags="" title="Draft of 'New Tiddler 1'">
-<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. [[$:/theme
+<div created="20200709092508899" draft.of="New Tiddler 1" draft.title="RikerIpsum" modified="20200711134207334" tags="" title="Draft of 'New Tiddler 1'">
+<pre> I recommend you don't fire until you're within 40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. [[$:/themes/
 
 Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. 
 </pre>
 </div>
-<div created="20200210165054163" creator="Mat von TWaddle" modified="20200709092639371" modifier="Mat von TWaddle" tags="$:/EditorMagic" title="EditorMagic/_Popup">
+<div created="20200210165054163" creator="Mat von TWaddle" modified="20200711134153934" modifier="Mat von TWaddle" tags="$:/EditorMagic" title="EditorMagic/_Popup">
 <pre>\whitespace trim
 \define insert() $(trigger)$$(name)$$(trigger-end)$
 \define remove() $(trigger)$$(fragment)$
@@ -10378,12 +10426,12 @@ Sorry, Data. But the probability of making a six is no greater than that of roll
 			&lt;$list filter=&quot;&quot;&quot;[all[tiddlers]prefix&lt;fragment&gt;]&quot;&quot;&quot; variable=name&gt;
 				&lt;$button class=&quot;tc-btn-invisible tc-tiddlylink&quot;&gt;
 					&lt;$text text=&lt;&lt;name&gt;&gt;/&gt;
-					&lt;$vars fragment_length={{{[&lt;fragment&gt;length[]] }}}&gt;
-					&lt;$vars postamble={{{ [&lt;tid&gt;get[text]split[]rest&lt;selectionEnd&gt;join[]] }}}
-						preamble={{{ [&lt;text&gt;split[]butlast&lt;fragment_length&gt;join[]] }}}&gt;
-						&lt;$action-setfield $tiddler=&lt;&lt;tid&gt;&gt; text={{{ [&lt;preamble&gt;addsuffix&lt;name&gt;addsuffix&lt;trigger-end&gt;addsuffix&lt;postamble&gt;] }}} /&gt;
-					&lt;/$vars&gt;
-					&lt;/$vars&gt;
+						&lt;$action-sendmessage
+							$message=&quot;tm-edit-text-operation&quot;
+							$param=&quot;insert-completion&quot;
+							text={{{[&lt;name&gt;addsuffix&lt;trigger-end&gt;]}}}
+							precursor=&lt;&lt;fragment&gt;&gt;
+						/&gt;
 				&lt;/$button&gt;
 				&lt;br&gt;
 			&lt;/$list&gt;
