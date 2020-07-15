@@ -246,6 +246,8 @@ Error message and password prompt
 
 <li>$:/sq/ui/ViewTemplate/rename-tiddler</li>
 
+<li>$:/sq/widgets/action-log</li>
+
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
@@ -11156,10 +11158,175 @@ $:/config/EditTemplateFields/Visibility/$(currentField)$
 &lt;/div&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<div created="20200714161631838" modified="20200715184213054" module-type="widget" tags="" title="$:/sq/widgets/action-log" type="application/javascript">
+<pre>/*\
+title: $:/sq/widgets/action-log
+type: application/javascript
+module-type: widget
+
+Two widgets are provided (both accept the same attributes):
+$action-log for use in widgets that trigger actions
+$log for use outside of actions
+
+ATTRIBUTES
+$message: optional descriptive text used as heading
+$all : set to &quot;false&quot; to not log all variables, defaults to true
+$vars : space separated list of variables to log
+all other attributes will be logged as well, allowing you to use text references or filtered attributes
+
+Examples:
+
+&lt;$vars a=&quot;1&quot; b=&quot;2&quot; c={{action-log}}&gt;
+&lt;$log $message=debug text=&lt;&lt;c&gt;&gt; other=&lt;&lt;b&gt;&gt; $vars=&quot;currentTiddler storyTiddler tv-story-list&quot; /&gt;
+go
+&lt;/$vars&gt;
+
+OR
+
+&lt;$button&gt;
+&lt;$vars a=&quot;1&quot; b=&quot;2&quot; c={{action-log}}&gt;
+&lt;$action-log $message=debug text=&lt;&lt;c&gt;&gt; other=&lt;&lt;b&gt;&gt; $vars=&quot;currentTiddler storyTiddler tv-story-list&quot; /&gt;
+go
+&lt;/$vars&gt;
+&lt;/$button&gt;
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw:false, require:false, exports:false */
+&quot;use strict&quot;;
+
+var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
+
+var ActionLogWidget = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};
+
+/*
+Inherit from the base widget class
+*/
+ActionLogWidget.prototype = new Widget();
+
+/*
+Render this widget into the DOM
+*/
+ActionLogWidget.prototype.render = function(parent,nextSibling) {
+	this.computeAttributes();
+	this.execute();
+};
+
+/*
+Compute the internal state of the widget
+*/
+ActionLogWidget.prototype.execute = function() {
+	this.message = this.getAttribute(&quot;$message&quot;,&quot;debug&quot;);
+	this.logAllVariables = this.getAttribute(&quot;$all&quot;) == &quot;false&quot; ? false : true;
+	var vars = this.getAttribute(&quot;$vars&quot;);
+	if(vars) {
+		this.variablesToLog = vars.split(&quot; &quot;);
+	}
+}
+
+
+/*
+Invoke the action associated with this widget
+*/
+ActionLogWidget.prototype.invokeAction = function(triggeringWidget,event) {
+	this.log(triggeringWidget,event);
+}
+
+ActionLogWidget.prototype.log = function(triggeringWidget,event) {
+	console.group(this.message);
+	
+	var namedAttribs = {};
+	var namedAttribsFlag = false;
+	$tw.utils.each(this.attributes,function(attribute,name) {
+		if(name.charAt(0) !== &quot;$&quot;) {
+			//console.log(name + &quot;: &quot;,attribute);
+			namedAttribs[name] = attribute;
+			namedAttribsFlag = true;
+		}		
+	});
+	if(namedAttribsFlag) {
+		if(console.table) {
+			console.table(namedAttribs);
+		} else {
+			console.table(namedAttribs);
+		}
+	}	
+	
+	if(this.variablesToLog) {
+		console.group(&quot;NAMED VARIABLES ($vars)&quot;);		
+		var varsToLog = {};
+		for(var i=0; i&lt;this.variablesToLog.length; i++) {
+			varsToLog[this.variablesToLog[i]] = this.getVariable(this.variablesToLog[i]);
+		}
+		if(console.table) {
+			console.table(varsToLog);
+		} else {
+			console.table(varsToLog);
+		}
+		console.groupEnd();		
+	}
+	
+	if(this.logAllVariables) {
+		console.groupCollapsed(&quot;ALL VARIABLES&quot;);
+		var allVars = {};
+		for(var variable in this.variables) {
+			allVars[variable] = this.getVariable(variable);
+		}
+		
+		if(console.table) {
+			console.table(allVars);
+		} else {
+			console.log(allVars);
+		}
+		console.groupEnd();
+	}
+	
+	if(triggeringWidget) {
+		console.log(&quot;triggeringWidget: &quot;,triggeringWidget);
+	}
+	console.groupEnd();	
+}
+
+/*
+Refresh the widget by ensuring our attributes are up to date
+*/
+ActionLogWidget.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	if($tw.utils.count(changedAttributes) &gt; 0) {
+		this.refreshSelf();
+		return true;
+	}
+	return this.refreshChildren(changedTiddlers);
+};
+
+exports[&quot;action-log&quot;] = ActionLogWidget;
+
+var LogWidget = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};
+
+LogWidget.prototype = new ActionLogWidget();
+
+$tw.utils.extend(LogWidget.prototype,ActionLogWidget.prototype);
+
+LogWidget.prototype.render = function(parent,nextSibling) {
+	Object.getPrototypeOf(Object.getPrototypeOf(this)).render.call(this,parent,nextSibling);
+	Object.getPrototypeOf(Object.getPrototypeOf(this)).log.call(this);
+}
+
+exports[&quot;log&quot;] = LogWidget;
+
+
+})();</pre>
 </div>
-<div created="20200714115744874" list="GettingStarted" modified="20200714115744874" title="$:/StoryList">
+<div title="$:/status/RequireReloadDueToPluginChange">
+<pre>yes</pre>
+</div>
+<div created="20200715184654247" list="GettingStarted" modified="20200715184852849" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
@@ -11568,7 +11735,7 @@ Further ideas:
 * turn show-range-values macro into a template that can be called, so I still call the macro but all its doing is transcluding state tiddler with a template
 *customizable field names instead of low and high</pre>
 </div>
-<div created="20200522172703816" modified="20200627064226018" title="GettingStarted">
+<div created="20200522172703816" modified="20200715184842325" title="GettingStarted">
 <pre>@@background-color:yellow;
 !USE WITH CARE 
 
@@ -11592,6 +11759,7 @@ Your tiddlers may be exterminated.
 * [[DualRangeWidget|DualRangeDemo]] to set upper and lower bounds of a range
 * [[ContextMenu|$:/plugins/sq/streams/contextmenu/contextmenu]] usage similar to button widget, to trigger a popup or execute actions on right click.
 * [[DoubleClick|$:/plugins/sq/streams/btn-dblclick]] usage similar to button widget, execute actions on double click.
+* [[Debug logging|$:/sq/widgets/action-log]] - useful when working with/debugging complex macros.
 
 !!Plugins
 
