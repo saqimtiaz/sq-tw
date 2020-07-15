@@ -233,7 +233,7 @@ Error message and password prompt
 <div created="20200712062359109" modified="20200712062420933" tags="" title="$:/config/sq/EditorToolbar/width">
 <pre>300</pre>
 </div>
-<div created="20200708133423525" list="$:/core/ui/EditorToolbar/bold $:/core/ui/EditorToolbar/italic $:/core/ui/EditorToolbar/underline $:/core/ui/EditorToolbar/quote $:/core/ui/EditorToolbar/strikethrough $:/core/ui/EditorToolbar/list-bullet $:/core/ui/EditorToolbar/list-number" modified="20200712202906060" tags="" title="$:/config/sq/floating-toolbar/button-list">
+<div created="20200708133423525" list="$:/core/ui/EditorToolbar/bold $:/core/ui/EditorToolbar/paint $:/core/ui/EditorToolbar/italic $:/core/ui/EditorToolbar/underline $:/core/ui/EditorToolbar/strikethrough $:/core/ui/EditorToolbar/quote $:/core/ui/EditorToolbar/list-bullet $:/core/ui/EditorToolbar/list-number $:/core/ui/EditorToolbar/mono-block $:/core/ui/EditorToolbar/mono-line $:/core/ui/EditorToolbar/heading-1 $:/core/ui/EditorToolbar/heading-2 $:/core/ui/EditorToolbar/heading-3 $:/core/ui/EditorToolbar/opacity" modified="20200713212149147" tags="" title="$:/config/sq/floating-toolbar/button-list">
 <pre></pre>
 </div>
 <div created="20200708110348017" modified="20200708110348017" title="$:/config/TiddlerInfo/Mode">
@@ -9954,7 +9954,7 @@ dragTiddler={{!!title}}
 <div created="20200708072651315" modified="20200712075839740" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200708072649889" modified="20200712201219146" title="$:/state/tab/sidebar--595412856">
+<div created="20200708072649889" modified="20200713112904729" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200708161154999" modified="20200708161154999" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -9963,7 +9963,7 @@ dragTiddler={{!!title}}
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200712202701377" list="[[Draft of 'RikerIpsum']] config" modified="20200712202957888" title="$:/StoryList">
+<div created="20200715090315429" list="[[Draft of 'RikerIpsum']] config" modified="20200715090315429" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200708104200777" modified="20200712091233071" title="$:/temp/advancedsearch">
@@ -9982,7 +9982,7 @@ dragTiddler={{!!title}}
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200712202247728&quot;
+            &quot;text&quot;: &quot;20200715090301763&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10143,8 +10143,12 @@ dragTiddler={{!!title}}
     }
 }</pre>
 </div>
-<div created="20200708133716018" modified="20200712175419758" tags="" title="config">
+<div created="20200708133716018" modified="20200713211342821" tags="" title="config">
 <pre>\define list-links-draggable-drop-actions()
+&lt;$action-listops $tiddler=&lt;&lt;targetTiddler&gt;&gt; $field=&lt;&lt;targetField&gt;&gt; $subfilter=&quot;[&lt;actionTiddler&gt;] +[putafter&lt;currentTiddler&gt;]&quot;/&gt;
+\end
+
+\define list-links-draggable-predrop-actions()
 &lt;$action-listops $tiddler=&lt;&lt;targetTiddler&gt;&gt; $field=&lt;&lt;targetField&gt;&gt; $subfilter=&quot;+[insertbefore:currentTiddler&lt;actionTiddler&gt;]&quot;/&gt;
 \end
 
@@ -10153,9 +10157,15 @@ dragTiddler={{!!title}}
 &lt;span class=&quot;tc-links-draggable-list&quot;&gt;
 &lt;$vars targetTiddler=&quot;&quot;&quot;$tiddler$&quot;&quot;&quot; targetField=&quot;&quot;&quot;$field$&quot;&quot;&quot;&gt;
 &lt;$type$ class=&quot;$class$&quot;&gt;
+&lt;$tiddler tiddler={{{[list[$tiddler$!!$field$]first[]]}}}&gt;
+&lt;$droppable actions=&lt;&lt;list-links-draggable-predrop-actions&gt;&gt; tag=&lt;&lt;__subtype__&gt;&gt; enable=&lt;&lt;tv-enable-drag-and-drop&gt;&gt;&gt;
+&lt;div class=&quot;tc-droppable-placeholder&quot; style=&quot;display:block;width:2em;margin-left:-2em;height:2em;&quot;&gt;
+&amp;nbsp;
+&lt;/div&gt;
+&lt;/$droppable&gt;
+&lt;/$tiddler&gt;
 &lt;$list filter=&quot;[list[$tiddler$!!$field$]]&quot;&gt;
 &lt;$droppable actions=&lt;&lt;list-links-draggable-drop-actions&gt;&gt; tag=&quot;&quot;&quot;$subtype$&quot;&quot;&quot; enable=&lt;&lt;tv-enable-drag-and-drop&gt;&gt;&gt;
-&lt;div class=&quot;tc-droppable-placeholder&quot;/&gt;
 &lt;div&gt;
 &lt;$transclude tiddler=&quot;&quot;&quot;$itemTemplate$&quot;&quot;&quot;&gt;
 &lt;$link to={{!!title}}&gt;
@@ -10166,15 +10176,12 @@ dragTiddler={{!!title}}
 &lt;/$transclude&gt;
 &lt;/div&gt;
 &lt;/$droppable&gt;
-&lt;/$list&gt;
-&lt;$tiddler tiddler=&quot;&quot;&gt;
-&lt;$droppable actions=&lt;&lt;list-links-draggable-drop-actions&gt;&gt; tag=&lt;&lt;__subtype__&gt;&gt; enable=&lt;&lt;tv-enable-drag-and-drop&gt;&gt;&gt;
+&lt;$droppable actions=&lt;&lt;list-links-draggable-drop-actions&gt;&gt; tag=&quot;&quot;&quot;$subtype$&quot;&quot;&quot; enable=&lt;&lt;tv-enable-drag-and-drop&gt;&gt;&gt;
 &lt;div class=&quot;tc-droppable-placeholder&quot;&gt;
 &amp;nbsp;
 &lt;/div&gt;
-&lt;div style=&quot;height:0.5em; width:2em;&quot;/&gt;
 &lt;/$droppable&gt;
-&lt;/$tiddler&gt;
+&lt;/$list&gt;
 &lt;/$type$&gt;
 &lt;/$vars&gt;
 &lt;/span&gt;
@@ -10203,8 +10210,8 @@ To add/remove buttons to the toolbar, drag and drop from the list below:
 &lt;/div&gt;
 &lt;/$droppable&gt;</pre>
 </div>
-<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" modified="20200712201733314" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
-<pre> I recommend you don't fire until you're witFederation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. t marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talkabout the  assassination attempt onhin Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is wha40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The  Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. 
+<div created="20130822170200000" draft.of="RikerIpsum" draft.title="RikerIpsum" modified="20200713211407267" tags="TableOfContents" title="Draft of 'RikerIpsum'" type="text/vnd.tiddlywiki">
+<pre> I recommend you don't fire until you're witFederation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. t marks the difference between artistry and mere competence. We k. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is wha40,000 kilometers. The unexpected is our normal routine. They were just sucked into space. Fate pnow you're dealing in stolen ore. But I wanna talkabout the  assassination attempt onhin Sorry, Datarotects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The  Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know. 
 
 Why don't we just give everybody a promotion and call it a night - 'Commander'? Some dae feel one of those close to us I recognize it. You used to have it for me. Worf, It's better than music. It's jazz. Earl Grey tea, watercress s, human history would be far less bloody. Mr. Worf, you do remember how to fire phasers? The look in your eyes,andwiches... and Bularian canapés? Are you up for promotion? Wouldn't that bring about chaos? This is not about revenge. This is about justice. I'll ays you get the bear, and some days the bear gets you. Maybe if we felt any human loss as keenly as wlert the crew. Travel time to the nearest starbase? Ensign Babyface! What? We're not at all alike! 
 
@@ -10423,9 +10430,15 @@ $tw.modules.types.library[&quot;$:/core/modules/editor/engines/framed.js&quot;].
 
 })();</pre>
 </div>
-<div created="20200712175707067" modified="20200712201215846" tags="" title="ideas">
+<div created="20200712175707067" modified="20200712205155276" tags="" title="ideas">
 <pre>* floating menu only on certain kinds of tiddlers, based on filter
-** that's as a general plugin not for streams</pre>
+** that's as a general plugin not for streams
+
+Issues:
+
+* cutting selected txt leaves popup
+* worse on ff, even moving caret with kb leaves hanging popup with no selection
+* config: issues with drop in last place due to row wrapping</pre>
 </div>
 <div created="20200707044017523" modified="20200712080555003" module-type="startup" tags="" title="reveal-widget-tweak" type="application/javascript">
 <pre>var RevealWidget = require(&quot;$:/core/modules/widgets/reveal.js&quot;).reveal;
@@ -10490,7 +10503,7 @@ Why don't we just give everybody a promotion and call it a night - 'Commander'? 
 
 Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a computer-generated gin joint like this? Mr. Crusher, ready a collision course with the Borg ship. Fate. It protects fools, little children, and ships named &quot;Enterprise.&quot; Not if I weaken first. Fear is the true enemy, the only enemy. You bet I'm agitated! I may be surrounded by insanity, but I am not insane. Our neural pathways have become accustomed to your sensory input patterns. Yes, absolutely, I do indeed concur, wholeheartedly!</pre>
 </div>
-<div created="20200708072821784" modified="20200712202724654" tags="$:/tags/Stylesheet" title="styles">
+<div created="20200708072821784" modified="20200713211845389" tags="$:/tags/Stylesheet" title="styles">
 <pre>.sq-float-editor-menu {
 	background: #fff;
 	border: 1px solid #ccc;
@@ -10532,6 +10545,19 @@ Smooth as an android's bottom, eh, Data? What's a knock-out like you doing in a 
 .sq-config-editor-toolbar .tc-droppable.tc-dragover &gt; .tc-droppable-placeholder {
 	display: inline;
 	width: 2em;
+}
+
+.tc-droppable.tc-dragover + .tc-droppable .tc-droppable-placeholder {
+display:block !important;
+width: 2em;
+height: 2em;
+	border: 2px dashed &lt;&lt;colour dropzone-background&gt;&gt;;
+}
+
+.tc-editor-toolbar.sq-config-editor-toolbar &gt; .tc-droppable:last-child .tc-droppable-placeholder  {
+display: block;
+width: 2em;
+height: 2em;
 }</pre>
 </div>
 <div created="20200708135343786" modified="20200708143110006" tags="" title="toolbar-btn-config-template">
