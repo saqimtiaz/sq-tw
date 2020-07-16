@@ -11158,7 +11158,7 @@ $:/config/EditTemplateFields/Visibility/$(currentField)$
 &lt;/div&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div created="20200714161631838" modified="20200715184213054" module-type="widget" tags="" title="$:/sq/widgets/action-log" type="application/javascript">
+<div created="20200714161631838" modified="20200716193412212" module-type="widget" tags="" title="$:/sq/widgets/action-log" type="application/javascript">
 <pre>/*\
 title: $:/sq/widgets/action-log
 type: application/javascript
@@ -11226,6 +11226,7 @@ ActionLogWidget.prototype.execute = function() {
 	if(vars) {
 		this.variablesToLog = vars.split(&quot; &quot;);
 	}
+	this.logTriggeringWidget = this.getAttribute(&quot;trigger&quot;) == &quot;true&quot; ? true : false;
 }
 
 
@@ -11285,7 +11286,7 @@ ActionLogWidget.prototype.log = function(triggeringWidget,event) {
 		console.groupEnd();
 	}
 	
-	if(triggeringWidget) {
+	if(this.logTriggeringWidget &amp;&amp; triggeringWidget) {
 		console.log(&quot;triggeringWidget: &quot;,triggeringWidget);
 	}
 	console.groupEnd();	
@@ -11324,9 +11325,9 @@ exports[&quot;log&quot;] = LogWidget;
 })();</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
-<div list="GettingStarted" title="$:/StoryList">
+<div created="20200715221541053" list="GettingStarted $:/sq/widgets/action-log" modified="20200716202137645" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
