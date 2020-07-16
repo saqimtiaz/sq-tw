@@ -155,16 +155,6 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
-<li>$:/GitHub/Filename</li>
-
-<li>$:/GitHub/Path</li>
-
-<li>$:/GitHub/Repo</li>
-
-<li>$:/GitHub/Username</li>
-
-<li>$:/Import</li>
-
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/EditorMagic/editor-operations/insert-completion.js</li>
@@ -190,8 +180,6 @@ Error message and password prompt
 <li>$:/SiteTitle</li>
 
 <li>$:/sq/widgets/action-log</li>
-
-<li>$:/state/EditorMagicPopupState-1915274173</li>
 
 <li>$:/state/showeditpreview</li>
 
@@ -9769,10 +9757,10 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200711132459142" modified="20200716165234258" tags="$:/EditorMagic" title="$:/core/ui/EditTemplate/body/editor">
+<div created="20200711132459142" modified="20200716201421987" tags="$:/EditorMagic" title="$:/core/ui/EditTemplate/body/editor">
 <pre>\whitespace trim
 
-\define popupcaret()
+\define em-showPopup()
 &lt;$action-popupcaret $state=&lt;&lt;em-state&gt;&gt;/&gt;
 &lt;$action-setfield
    $tiddler=&lt;&lt;em-state&gt;&gt;
@@ -9782,22 +9770,22 @@ Error message and password prompt
 &lt;$action-setfield $tiddler=&quot;test&quot; state=&lt;&lt;em-state&gt;&gt;  /&gt;
 \end
 
-\define updatePopState()
+\define em-updatePopupState()
 &lt;$list filter=&quot;[&lt;matched&gt;match[false]]&quot;&gt;
 &lt;$action-deletetiddler $tiddler=&lt;&lt;em-state&gt;&gt;/&gt;
 &lt;/$list&gt;
 &lt;$list filter=&quot;[&lt;matched&gt;match[true]]&quot;&gt;
-&lt;&lt;popupcaret&gt;&gt;
+&lt;&lt;em-showPopup&gt;&gt;
 &lt;/$list&gt;
 \end
 
-\define processNextMagicActionsTiddler()
-	&lt;$list filter=&quot;&quot;&quot;[all[tiddlers]tag[$:/tags/EditorMagic]!has[draft.of]after&lt;template&gt;]&quot;&quot;&quot; emptyMessage=&lt;&lt;updatePopState&gt;&gt;&gt;
-		&lt;&lt;processMagicActionsTiddler&gt;&gt;
+\define em-checkNextTrigger()
+	&lt;$list filter=&quot;&quot;&quot;[all[tiddlers]tag[$:/tags/EditorMagic]!has[draft.of]after&lt;template&gt;]&quot;&quot;&quot; emptyMessage=&lt;&lt;em-updatePopupState&gt;&gt;&gt;
+		&lt;&lt;em-checkTrigger&gt;&gt;
 	&lt;/$list&gt;
 \end
 
-\define processMagicActionsTiddler() 
+\define em-checkTrigger() 
 &lt;$vars
        template={{!!title}}
        trigger={{!!trigger}}
@@ -9807,16 +9795,15 @@ Error message and password prompt
 	   before={{{ [&lt;text&gt;splitbefore{!!trigger}] }}}
 	   before-length={{{ [&lt;text&gt;splitbefore{!!trigger}length[]] }}}
 	   trigger-length={{{[{!!trigger}length[]]}}}
-	   magic-actions-tiddler=&lt;&lt;currentTiddler&gt;&gt;
 &gt;
 &lt;$action-log $message=&lt;&lt;template&gt;&gt;/&gt;
-&lt;$list filter=&quot;&quot;&quot;[&lt;text&gt;search&lt;trigger&gt;] +[splitregexp&lt;triggexp&gt;] +[!prefix[ ]!search::regexp&lt;triggendexp&gt;] +[last[]]&quot;&quot;&quot; emptyMessage=&lt;&lt;processNextMagicActionsTiddler&gt;&gt;&gt;
+&lt;$list filter=&quot;&quot;&quot;[&lt;text&gt;search&lt;trigger&gt;] +[splitregexp&lt;triggexp&gt;] +[!prefix[ ]!search::regexp&lt;triggendexp&gt;] +[last[]]&quot;&quot;&quot; emptyMessage=&lt;&lt;em-checkNextTrigger&gt;&gt;&gt;
 	&lt;$vars before-length={{{[&lt;text&gt;splitregexp&lt;triggexp&gt;butlast[]join&lt;trigger&gt;length[]]}}}&gt;
 	&lt;$action-log $message={{{[[detected: ]addsuffix&lt;template&gt;]}}}/&gt;
-	&lt;$list filter=&quot;[&lt;currentTiddler&gt;length[]add&lt;before-length&gt;add&lt;trigger-length&gt;match&lt;selectionEnd&gt;]&quot; variable=&quot;_NULL&quot; emptyMessage=&lt;&lt;processNextMagicActionsTiddler&gt;&gt;&gt;
-		&lt;$list filter=&quot;[&lt;currentTiddler&gt;length[]compare:number:lt&lt;fragmentLength&gt;]&quot; variable=&quot;_NULL&quot; emptyMessage=&lt;&lt;processNextMagicActionsTiddler&gt;&gt;&gt;
-			&lt;$vars matched=&quot;true&quot; fragmentLength={{{[&lt;currentTiddler&gt;length[]]}}} matchedFragment=&lt;&lt;currentTiddler&gt;&gt; matchedTemplate=&lt;&lt;template&gt;&gt; currentTiddler=&lt;&lt;template&gt;&gt;&gt;
-				&lt;&lt;processNextMagicActionsTiddler&gt;&gt;
+	&lt;$list filter=&quot;[&lt;currentTiddler&gt;length[]add&lt;before-length&gt;add&lt;trigger-length&gt;match&lt;selectionEnd&gt;]&quot; variable=&quot;_NULL&quot; emptyMessage=&lt;&lt;em-checkNextTrigger&gt;&gt;&gt;
+		&lt;$list filter=&quot;[&lt;currentTiddler&gt;length[]compare:number:lt&lt;fragmentLength&gt;]&quot; variable=&quot;_NULL&quot; emptyMessage=&lt;&lt;em-checkNextTrigger&gt;&gt;&gt;
+			&lt;$vars matched=&quot;true&quot; fragmentLength={{{[&lt;currentTiddler&gt;length[]]}}} matchedFragment=&lt;&lt;currentTiddler&gt;&gt; matchedTemplate=&lt;&lt;template&gt;&gt; &gt;
+				&lt;&lt;em-checkNextTrigger&gt;&gt;
 			&lt;/$vars&gt;
 			&lt;/$list&gt;
 	&lt;/$list&gt;
@@ -9825,22 +9812,22 @@ Error message and password prompt
 &lt;/$vars&gt;
 \end
 
-\define editorMagicActions()
+\define em-checkAllTriggers()
 &lt;$vars text={{{ [{!!text}split[]first&lt;selectionEnd&gt;join[]] }}} &gt;
 &lt;$list filter=&quot;&quot;&quot;[all[tiddlers]tag[$:/tags/EditorMagic]!has[draft.of]first[]]&quot;&quot;&quot;&gt;
 	&lt;$vars matched=&quot;false&quot; fragmentLength=&quot;9999999&quot;&gt;
-		&lt;&lt;processMagicActionsTiddler&gt;&gt;
+		&lt;&lt;em-checkTrigger&gt;&gt;
 	&lt;/$vars&gt;
 &lt;/$list&gt;
 &lt;/$vars&gt;
 \end
 
 
-\define inputActions()
-&lt;$action-withselection actions=&lt;&lt;editorMagicActions&gt;&gt; /&gt;
+\define em-inputActions()
+&lt;$action-withselection actions=&lt;&lt;em-checkAllTriggers&gt;&gt; /&gt;
 \end
 
-&lt;div style=&quot;position:relative;&quot;&gt;
+
 &lt;$set name=em-state value=&lt;&lt;qualify $:/state/EditorMagicPopupState&gt;&gt;&gt;
 &lt;$edit
 
@@ -9850,7 +9837,7 @@ Error message and password prompt
   tabindex={{$:/config/EditTabIndex}}
   focus={{{ [{$:/config/AutoFocus}match[text]then[true]] ~[[false]] }}}
   cancelPopups=&quot;yes&quot;
-	inputActions=&lt;&lt;inputActions&gt;&gt;
+	inputActions=&lt;&lt;em-inputActions&gt;&gt;
 
 &gt;
 &lt;$set
@@ -9884,28 +9871,10 @@ Error message and password prompt
 &lt;/$set&gt;&lt;/div&gt;
 &lt;/$reveal&gt;
 &lt;/$edit&gt;
-&lt;/$set&gt;
-&lt;/div&gt;</pre>
+&lt;/$set&gt;</pre>
 </div>
 <div created="20200709081632439" modified="20200709081632439" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
-</div>
-<div created="20200716170433508" modified="20200716170435144" title="$:/GitHub/Filename">
-<pre>em3.html</pre>
-</div>
-<div created="20200716170431522" modified="20200716170431522" title="$:/GitHub/Path">
-<pre>/</pre>
-</div>
-<div created="20200716170424142" modified="20200716170427894" title="$:/GitHub/Repo">
-<pre>saqimtiaz/sq-tw</pre>
-</div>
-<div created="20200716170419247" modified="20200716170422098" title="$:/GitHub/Username">
-<pre>saqimtiaz</pre>
-</div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[$:/sq/widgets/action-log]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -9981,7 +9950,7 @@ if(this.type == &quot;popup&quot;)
 	color: &lt;&lt;color foreground&gt;&gt;;
 }</pre>
 </div>
-<div created="20200706192706082" modified="20200709092343845" module-type="widget" tags="$:/EditorMagic" title="$:/plugins/EditorMagic/widgets/action-popupcaret" type="application/javascript">
+<div created="20200706192706082" modified="20200716192314063" module-type="widget" tags="$:/EditorMagic" title="$:/plugins/EditorMagic/widgets/action-popupcaret" type="application/javascript">
 <pre>/*\
 title: $:/core/modules/widgets/action-popupcaret.js
 type: application/javascript
@@ -10052,7 +10021,8 @@ ActionPopupWidget.prototype.invokeAction = function(triggeringWidget,event) {
 	var fontSize = parseFloat(styleSize); 
 	
 	var _left = (offsetLeft+areaNode.offsetLeft-areaNode.scrollLeft+coord.left);
-	var _top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top+fontSize*2);
+//	var _top = (offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top+fontSize*2);
+var _top=offsetTop+areaNode.offsetTop-areaNode.scrollTop+coord.top+fontSize;
 
 	// Trigger the popup
 	if(areaNode) {
@@ -10444,7 +10414,7 @@ exports[&quot;action-withselection&quot;] = WithSelectionWidget;
 <div created="20200709092954327" modified="20200716165807541" title="$:/SiteTitle">
 <pre>EditorMagic 3</pre>
 </div>
-<div created="20200714161631838" modified="20200715184213054" module-type="widget" tags="" title="$:/sq/widgets/action-log" type="application/javascript">
+<div created="20200714161631838" modified="20200716193412212" module-type="widget" tags="" title="$:/sq/widgets/action-log" type="application/javascript">
 <pre>/*\
 title: $:/sq/widgets/action-log
 type: application/javascript
@@ -10512,6 +10482,7 @@ ActionLogWidget.prototype.execute = function() {
 	if(vars) {
 		this.variablesToLog = vars.split(&quot; &quot;);
 	}
+	this.logTriggeringWidget = this.getAttribute(&quot;trigger&quot;) == &quot;true&quot; ? true : false;
 }
 
 
@@ -10571,7 +10542,7 @@ ActionLogWidget.prototype.log = function(triggeringWidget,event) {
 		console.groupEnd();
 	}
 	
-	if(triggeringWidget) {
+	if(this.logTriggeringWidget &amp;&amp; triggeringWidget) {
 		console.log(&quot;triggeringWidget: &quot;,triggeringWidget);
 	}
 	console.groupEnd();	
@@ -10609,9 +10580,6 @@ exports[&quot;log&quot;] = LogWidget;
 
 })();</pre>
 </div>
-<div created="20200709092315987" modified="20200709092343622" selection-end="3003" title="$:/state/EditorMagicPopupState-1915274173">
-<pre>(4,2061,0,0)</pre>
-</div>
 <div created="20200713201712577" modified="20200713202322682" title="$:/state/showeditpreview">
 <pre>no</pre>
 </div>
@@ -10621,8 +10589,8 @@ exports[&quot;log&quot;] = LogWidget;
 <div created="20200709092438708" modified="20200711171644120" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
 </div>
-<div created="20200709082234848" modified="20200716170416972" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Saving</pre>
+<div created="20200709082234848" modified="20200716165804392" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20200711154745115" modified="20200716163530816" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -10630,13 +10598,13 @@ exports[&quot;log&quot;] = LogWidget;
 <div created="20200709081557691" modified="20200709081557691" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200709081555737" modified="20200715190052292" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20200709081555737" modified="20200716191009459" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200716170415914" list="test [[Draft of 'RikerIpsum']] $:/core/ui/EditTemplate/body/editor" modified="20200716170415914" title="$:/StoryList">
+<div created="20200716200854316" list="$:/plugins/EditorMagic/framed-engine-tweak EditorMagic/TitlePicker test [[Draft of 'RikerIpsum']] $:/core/ui/EditTemplate/body/editor" modified="20200716200904345" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200716135103873" list="EditorMagic/WidgetDocs EditorMagic/HTMLtable EditorMagic/MacroPicker EditorMagic/TransINclude EditorMagic/TitlePicker EditorMagic/WidgetPicker" modified="20200716141158182" title="$:/tags/EditorMagic">
@@ -10661,23 +10629,23 @@ exports[&quot;log&quot;] = LogWidget;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200716170406536&quot;
+            &quot;text&quot;: &quot;20200716194130813&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;https://saqimtiaz.github.io/sq-tw/em3.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/saq/Dropbox/TW-dev/Editor%20Magic/em3.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;https:&quot;
+            &quot;text&quot;: &quot;file:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -10685,7 +10653,7 @@ exports[&quot;log&quot;] = LogWidget;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/sq-tw/em3.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/saq/Dropbox/TW-dev/Editor%20Magic/em3.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10693,7 +10661,7 @@ exports[&quot;log&quot;] = LogWidget;
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;https://saqimtiaz.github.io&quot;
+            &quot;text&quot;: &quot;file://&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
@@ -10922,10 +10890,13 @@ exports[&quot;log&quot;] = LogWidget;
 <div created="20200715195833916" modified="20200715195844212" title="$:/widgetselection">
 <pre>ActionCreateTiddler</pre>
 </div>
-<div created="20200709092508899" draft.of="RikerIpsum" draft.title="RikerIpsum" modified="20200716165244837" tags="" title="Draft of 'RikerIpsum'">
+<div created="20200709092508899" draft.of="RikerIpsum" draft.title="RikerIpsum" modified="20200716201428742" tags="" title="Draft of 'RikerIpsum'">
 <pre>you don't fire [[Edi]] fadsf [[$:/themes]] [[$:/the &lt;$ &lt;&lt; [[ &lt;$ [[ &lt;&lt; [[$:/theme &lt;$ac
 
-[[ &lt;&lt; &lt;$ ??tr &lt;&lt; [[ &lt;$ 
+[[ &lt;&lt; &lt;$ ??tr &lt;&lt; [[ &lt;$ [[$:/themes/ &lt;$ &lt;&lt;
+[[$
+
+[[$:/theme &lt;&lt; &lt;$ac
 
 [[Ed until you're within 40,000 kilometers. The unfsdfexpected is our normal routine. They were just sucked into space. Fate protects fools, little children and ships named Enterprise. I'll be sure to note that in my log. The Federation's gone; the Borg is everywhere! How long can two people talk about nothing? The game's not big enough unless it scares you a little. Commander William Riker of the Starship Enterprise. [[$:/the [[dum asdf adsf asfd sadf </pre>
 </div>
@@ -11282,7 +11253,7 @@ you don't fire until you're within 40,000 kilometers. The unexpected is our norm
 Sorry, Data. But the probability of making a six is no greater than that of rolling a seven. Well, I'll say this for him - he's sure of himself. You're going to be an interesting companion, Mr. Data. Now, how the hell do we defeat an enemy that knows us better than we know ourselves? Flair is what marks the difference between artistry and mere competence. We know you're dealing in stolen ore. But I wanna talk about the assassination attempt on Lieutenant Worf. I am your worst nightmare! Well, that's certainly good to know.  
 </pre>
 </div>
-<div created="20200713203655846" modified="20200716165244101" state="$:/state/EditorMagicPopupState-768443785" title="test">
+<div created="20200713203655846" modified="20200716201428759" state="$:/state/EditorMagicPopupState-768443785" title="test">
 <pre>template: &lt;$transclude tiddler={{!!state}} field=template /&gt;&lt;br&gt;
 state: {{!!state}}&lt;br&gt;
 fragment: &lt;$transclude tiddler={{!!state}} field=fragment /&gt;
