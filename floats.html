@@ -149,6 +149,14 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
+<li>$:/GitHub/Filename</li>
+
+<li>$:/GitHub/Path</li>
+
+<li>$:/GitHub/Repo</li>
+
+<li>$:/GitHub/Username</li>
+
 <li>$:/Import</li>
 
 <li>$:/isEncrypted</li>
@@ -184,6 +192,8 @@ Error message and password prompt
 <li>$:/state/tab--1963855381</li>
 
 <li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab-2065006209</li>
 
 <li>$:/state/tab/moresidebar-1850697562</li>
 
@@ -9696,15 +9706,27 @@ Error message and password prompt
 <div created="20200719203335162" modified="20200719203335162" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
+<div created="20200722194706586" modified="20200722194708686" title="$:/GitHub/Filename">
+<pre>floats.html</pre>
+</div>
+<div created="20200722194705480" modified="20200722194705480" title="$:/GitHub/Path">
+<pre>/</pre>
+</div>
+<div created="20200722194657686" modified="20200722194702758" title="$:/GitHub/Repo">
+<pre>saqimtiaz/sq-tw</pre>
+</div>
+<div created="20200722194654148" modified="20200722194656002" title="$:/GitHub/Username">
+<pre>saqimtiaz</pre>
+</div>
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/tiddlywiki/internals]]</pre>
+# [[$:/plugins/sq/floats/float-widget]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div created="20200719203420554" modified="20200722165518147" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
+<div created="20200719203420554" modified="20200722194600318" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
 <pre>(function(){
 
 /*jslint node: true, browser: true */
@@ -9813,7 +9835,8 @@ FloatWidget.prototype.drag = function(event) {
 		var _window = this.document.defaultView;
 		//var wrapperRect = this.wrapper.getBoundingClientRect();
 		
-		//event.preventDefault();
+		
+		event.preventDefault();
 		
 		var clientX = (event.type == &quot;touchmove&quot;) ? event.touches[0].clientX : event.clientX;
 		var clientY = (event.type == &quot;touchmove&quot;) ? event.touches[0].clientY : event.clientY;		
@@ -10218,8 +10241,11 @@ user-select: none;
 <div created="20200720142625261" modified="20200720142625261" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
 </div>
-<div created="20200719203332078" modified="20200720142624035" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20200719203332078" modified="20200722194652075" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
+</div>
+<div created="20200722194652852" modified="20200722194652852" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
 <div created="20200720045444729" modified="20200722083115194" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
@@ -10228,9 +10254,9 @@ user-select: none;
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
-<div created="20200722181611758" list="[[tm-float test]] notes" modified="20200722181630922" title="$:/StoryList">
+<div created="20200722194650820" list="[[tm-float test]] notes" modified="20200722194650820" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10246,23 +10272,23 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200722181551601&quot;
+            &quot;text&quot;: &quot;20200722194631643&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/saq/Dropbox/TW-dev/floats.html&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io/sq-tw/floats.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;file:&quot;
+            &quot;text&quot;: &quot;https:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -10270,7 +10296,7 @@ user-select: none;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/saq/Dropbox/TW-dev/floats.html&quot;
+            &quot;text&quot;: &quot;/sq-tw/floats.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10278,15 +10304,15 @@ user-select: none;
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;file://&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;2560&quot;
+            &quot;text&quot;: &quot;1920&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;1080&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
