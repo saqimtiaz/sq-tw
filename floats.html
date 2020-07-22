@@ -9721,7 +9721,7 @@ Error message and password prompt
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div created="20200719203420554" modified="20200722203155025" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
+<div created="20200719203420554" modified="20200722203612718" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
 <pre>(function(){
 
 /*jslint node: true, browser: true */
@@ -9808,8 +9808,8 @@ FloatWidget.prototype.render = function(parent,nextSibling) {
 FloatWidget.prototype.dragStart = function(event) {
 	if(event.target === this.dragItem || $tw.utils.domContains(this.dragItem,event.target)) {
 		
-		var ctrls = this.dragItem.querySelector(&quot;sq-float-header-ctrls&quot;);
-		if(!ctrls || !tw.utils.domContains(ctrls,event.target)) {
+		var ctrls = this.dragItem.querySelector(&quot;.sq-float-header-ctrls&quot;);
+		if(!ctrls || !$tw.utils.domContains(ctrls,event.target) ) {
 			event.preventDefault();
 		}
 		
@@ -10255,7 +10255,7 @@ user-select: none;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>yes</pre>
 </div>
-<div list="[[tm-float test]] notes" title="$:/StoryList">
+<div created="20200722203700533" list="[[tm-float test]] notes" modified="20200722203700533" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200722203233433" modified="20200722203233433" title="$:/temp/HidePluginWarning">
@@ -10274,7 +10274,7 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200722203214065&quot;
+            &quot;text&quot;: &quot;20200722203654702&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
