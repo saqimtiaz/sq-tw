@@ -157,8 +157,6 @@ Error message and password prompt
 
 <li>$:/GitHub/Username</li>
 
-<li>$:/Import</li>
-
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/sq/floats/float-widget</li>
@@ -202,6 +200,8 @@ Error message and password prompt
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
+
+<li>$:/temp/HidePluginWarning</li>
 
 <li>$:/temp/info-plugin</li>
 
@@ -9718,15 +9718,10 @@ Error message and password prompt
 <div created="20200722194654148" modified="20200722194656002" title="$:/GitHub/Username">
 <pre>saqimtiaz</pre>
 </div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[$:/plugins/sq/floats/float-widget]]</pre>
-</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div created="20200719203420554" modified="20200722195538898" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
+<div created="20200719203420554" modified="20200722203155025" module-type="widget" tags="" title="$:/plugins/sq/floats/float-widget" type="application/javascript">
 <pre>(function(){
 
 /*jslint node: true, browser: true */
@@ -9812,7 +9807,11 @@ FloatWidget.prototype.render = function(parent,nextSibling) {
 
 FloatWidget.prototype.dragStart = function(event) {
 	if(event.target === this.dragItem || $tw.utils.domContains(this.dragItem,event.target)) {
-		event.preventDefault();
+		
+		var ctrls = this.dragItem.querySelector(&quot;sq-float-header-ctrls&quot;);
+		if(!ctrls || !tw.utils.domContains(ctrls,event.target)) {
+			event.preventDefault();
+		}
 		
 		var clientX = (event.type == &quot;touchstart&quot;) ? event.touches[0].clientX : event.clientX;
 		var clientY = (event.type == &quot;touchstart&quot;) ? event.touches[0].clientY : event.clientY;
@@ -10102,8 +10101,8 @@ user-select: none;
 	line-height: 30px;
 }</pre>
 </div>
-<div created="20200719203951527" modified="20200722061557897" tags="" title="$:/plugins/sq/floats/window-template">
-<pre>&lt;div class=&quot;sq-float-header sq-float-draggable&quot;&gt;&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-close-float&quot; param=&lt;&lt;sq-float-state&gt;&gt; &gt;{{$:/core/images/close-button}}&lt;/$button&gt;&lt;h3&gt;&lt;$text text=&lt;&lt;sq-contentTiddler&gt;&gt;/&gt;&lt;/h3&gt;&lt;/div&gt;
+<div created="20200719203951527" modified="20200722201436730" tags="" title="$:/plugins/sq/floats/window-template">
+<pre>&lt;div class=&quot;sq-float-header sq-float-draggable&quot;&gt;&lt;div class=&quot;sq-float-header-ctrls&quot;&gt;&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-close-float&quot; param=&lt;&lt;sq-float-state&gt;&gt; &gt;{{$:/core/images/close-button}}&lt;/$button&gt;&lt;/div&gt;&lt;h3&gt;&lt;$text text=&lt;&lt;sq-contentTiddler&gt;&gt;/&gt;&lt;/h3&gt;&lt;/div&gt;
 &lt;div class=&quot;sq-float-body&quot;&gt;
 
 &lt;$transclude tiddler=&lt;&lt;sq-contentTiddler&gt;&gt;/&gt;
@@ -10254,10 +10253,13 @@ user-select: none;
 <pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
 <div list="[[tm-float test]] notes" title="$:/StoryList">
 <pre></pre>
+</div>
+<div created="20200722203233433" modified="20200722203233433" title="$:/temp/HidePluginWarning">
+<pre>yes</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -10272,7 +10274,7 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200722201934092&quot;
+            &quot;text&quot;: &quot;20200722203214065&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
