@@ -10058,7 +10058,7 @@ exports.floatmanager = FloatManagerWidget;
 <div created="20200722083110361" modified="20200722201947456" title="$:/plugins/sq/floats/state/floatmanager">
 <pre>{}</pre>
 </div>
-<div created="20200719210532573" modified="20200723164443265" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
+<div created="20200719210532573" modified="20200723164918176" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
 <pre>.sq-float-wrapper {
 	position:fixed;
 	top:0;
@@ -10122,7 +10122,13 @@ user-select: none;
 	line-height: 30px;
 }
 
+.sq-float-wrapper ::-webkit-scrollbar {
+    max-width: 8px;
+}
 
+.sq-float-wrapper ::-webkit-scrollbar-track {
+background: #fff;
+}
 
 /*
 
@@ -10329,7 +10335,7 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200723164504135&quot;
+            &quot;text&quot;: &quot;20200723164926609&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
