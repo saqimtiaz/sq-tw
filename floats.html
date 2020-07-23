@@ -217,6 +217,8 @@ Error message and password prompt
 
 <li>HelloThere</li>
 
+<li>mobile css</li>
+
 <li>notes</li>
 
 <li>tm-float test</li>
@@ -9723,7 +9725,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/sq/floats/styles]]</pre>
+# [[mobile css]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10335,7 +10337,7 @@ background: #fff;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200723164926609&quot;
+            &quot;text&quot;: &quot;20200723190922652&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10545,6 +10547,33 @@ Finding code that works flawlessly after just two or three years is magical enou
 &lt;div style=&quot;font-size:0.7em;text-align:center;margin:3em auto;&quot;&gt;
 &lt;a href=&quot;https://www.producthunt.com/posts/tiddlywiki-2?utm_source=badge-top-post-badge&amp;utm_medium=badge&amp;utm_souce=badge-tiddlywiki-2&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=193414&amp;theme=dark&amp;period=daily&quot; alt=&quot;TiddlyWiki - The open source non-linear notebook | Product Hunt Embed&quot; style=&quot;width: 250px; height: 54px;&quot; width=&quot;250px&quot; height=&quot;54px&quot; /&gt;&lt;/a&gt;
 &lt;/div&gt;</pre>
+</div>
+<div created="20200723190700352" modified="20200723190902235" tags="$:/tags/Stylesheet" title="mobile css">
+<pre>@media only screen and (min-width: 900px) {
+  /* For mobile phones: */
+.sq-float-wrapper ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+.sq-float-wrapper ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+/*
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+*/
+}
+ 
+/* Handle */
+.sq-float-wrapper ::-webkit-scrollbar-thumb {
+/*
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+*/
+    background: rgba(217,217,217,0.6); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+}</pre>
 </div>
 <div created="20200719215047372" modified="20200723125004431" tags="" title="notes">
 <pre>* ''make state parameter for tm-float optional''
