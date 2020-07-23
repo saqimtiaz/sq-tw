@@ -9723,7 +9723,6 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/sq/floats/float-widget]]
 # [[$:/plugins/sq/floats/styles]]</pre>
 </div>
 <div title="$:/isEncrypted">
@@ -10059,7 +10058,7 @@ exports.floatmanager = FloatManagerWidget;
 <div created="20200722083110361" modified="20200722201947456" title="$:/plugins/sq/floats/state/floatmanager">
 <pre>{}</pre>
 </div>
-<div created="20200719210532573" modified="20200723124646806" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
+<div created="20200719210532573" modified="20200723164221378" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
 <pre>.sq-float-wrapper {
 	position:fixed;
 	top:0;
@@ -10073,6 +10072,7 @@ exports.floatmanager = FloatManagerWidget;
 	min-height: 100px;
 	overflow: hidden;
 	resize: both;
+	padding-bottom: 10px;
 	&lt;&lt;box-shadow &quot;0 3px 7px rgba(0,0,0,0.3)&quot;&gt;&gt;
 }
 
@@ -10120,7 +10120,38 @@ user-select: none;
 .sq-float-header h3 {
 	margin: 0;
 	line-height: 30px;
-}</pre>
+}
+
+
+
+.sq-float-wrapper ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+.sq-float-wrapper ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+/*
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+*/
+}
+ 
+/* Handle */
+.sq-float-wrapper ::-webkit-scrollbar-thumb {
+/*
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+*/
+    background: rgba(217,217,217,0.6); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+/*
+.sq-float-wrapper ::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+*/</pre>
 </div>
 <div created="20200719203951527" modified="20200722201436730" tags="" title="$:/plugins/sq/floats/window-template">
 <pre>&lt;div class=&quot;sq-float-header sq-float-draggable&quot;&gt;&lt;div class=&quot;sq-float-header-ctrls&quot;&gt;&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-close-float&quot; param=&lt;&lt;sq-float-state&gt;&gt; &gt;{{$:/core/images/close-button}}&lt;/$button&gt;&lt;/div&gt;&lt;h3&gt;&lt;$text text=&lt;&lt;sq-contentTiddler&gt;&gt;/&gt;&lt;/h3&gt;&lt;/div&gt;
@@ -10295,7 +10326,7 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200723124958743&quot;
+            &quot;text&quot;: &quot;20200723164204250&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
