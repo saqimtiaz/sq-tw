@@ -221,6 +221,8 @@ Error message and password prompt
 
 <li>notes</li>
 
+<li>test scrollbar styles</li>
+
 <li>tm-float test</li>
 
 </ul>
@@ -9725,7 +9727,8 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[mobile css]]</pre>
+# [[$:/plugins/sq/floats/styles]]
+# [[test scrollbar styles]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10060,7 +10063,7 @@ exports.floatmanager = FloatManagerWidget;
 <div created="20200722083110361" modified="20200723195837495" title="$:/plugins/sq/floats/state/floatmanager">
 <pre>{}</pre>
 </div>
-<div created="20200719210532573" modified="20200723164918176" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
+<div created="20200719210532573" modified="20200724105505183" tags="$:/tags/Stylesheet" title="$:/plugins/sq/floats/styles">
 <pre>.sq-float-wrapper {
 	position:fixed;
 	top:0;
@@ -10124,45 +10127,7 @@ user-select: none;
 	line-height: 30px;
 }
 
-.sq-float-wrapper ::-webkit-scrollbar {
-    max-width: 8px;
-}
-
-.sq-float-wrapper ::-webkit-scrollbar-track {
-background: #fff;
-}
-
-/*
-
-.sq-float-wrapper ::-webkit-scrollbar {
-    width: 12px;
-}
- 
-/* Track */
-.sq-float-wrapper ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-/*
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-*/
-}
- 
-/* Handle */
-.sq-float-wrapper ::-webkit-scrollbar-thumb {
-/*
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-*/
-    background: rgba(217,217,217,0.6); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-}
-
-/*
-.sq-float-wrapper ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
-}
-*/
-*/</pre>
+</pre>
 </div>
 <div created="20200719203951527" modified="20200722201436730" tags="" title="$:/plugins/sq/floats/window-template">
 <pre>&lt;div class=&quot;sq-float-header sq-float-draggable&quot;&gt;&lt;div class=&quot;sq-float-header-ctrls&quot;&gt;&lt;$button class=&quot;tc-btn-invisible&quot; message=&quot;tm-close-float&quot; param=&lt;&lt;sq-float-state&gt;&gt; &gt;{{$:/core/images/close-button}}&lt;/$button&gt;&lt;/div&gt;&lt;h3&gt;&lt;$text text=&lt;&lt;sq-contentTiddler&gt;&gt;/&gt;&lt;/h3&gt;&lt;/div&gt;
@@ -10315,13 +10280,13 @@ background: #fff;
 <div created="20200720045444729" modified="20200722083115194" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200719214726799" modified="20200723194937577" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20200719214726799" modified="20200724105950653" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200723195839775" list="[[tm-float test]] notes" modified="20200723195839776" title="$:/StoryList">
+<div created="20200724105934040" list="[[tm-float test]] notes" modified="20200724105934040" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200722203233433" modified="20200722203233433" title="$:/temp/HidePluginWarning">
@@ -10340,7 +10305,7 @@ background: #fff;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200723195830373&quot;
+            &quot;text&quot;: &quot;20200724105929557&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10576,6 +10541,25 @@ Finding code that works flawlessly after just two or three years is magical enou
 
 ---
 </pre>
+</div>
+<div created="20200724105249741" modified="20200724105732374" tags="$:/tags/Stylesheet" title="test scrollbar styles">
+<pre>@media only screen and (min-width: 900px) {
+  /* For mobile phones: */
+.sq-float-wrapper ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+.sq-float-wrapper ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+/* Handle */
+.sq-float-wrapper ::-webkit-scrollbar-thumb {
+    background: rgba(217,217,217,0.6); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+}</pre>
 </div>
 <div created="20200722052606150" modified="20200722142715628" tags="" title="tm-float test">
 <pre>Click the buttons below, and drag and move the float windows by clicking their titles.
