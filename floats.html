@@ -153,6 +153,14 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
+<li>$:/GitHub/Filename</li>
+
+<li>$:/GitHub/Path</li>
+
+<li>$:/GitHub/Repo</li>
+
+<li>$:/GitHub/Username</li>
+
 <li>$:/Import</li>
 
 <li>$:/isEncrypted</li>
@@ -222,6 +230,8 @@ Error message and password prompt
 <li>$:/state/tab--2112689675</li>
 
 <li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab-2065006209</li>
 
 <li>$:/state/tab/moresidebar-1850697562</li>
 
@@ -9763,6 +9773,18 @@ TiddlyWiki for Scholars is a personal customization of TiddlyWiki 5.0.13-beta I 
 <div created="20200719203335162" modified="20200719203335162" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
+<div created="20200725130340756" modified="20200725130342628" title="$:/GitHub/Filename">
+<pre>floats.html</pre>
+</div>
+<div created="20200725130340192" modified="20200725130340192" title="$:/GitHub/Path">
+<pre>/</pre>
+</div>
+<div created="20200725130333502" modified="20200725130338228" title="$:/GitHub/Repo">
+<pre>saqimtiaz/sq-tw</pre>
+</div>
+<div created="20200725130329245" modified="20200725130331816" title="$:/GitHub/Username">
+<pre>saqimtiaz</pre>
+</div>
 <div plugin-type="import" status="pending" title="$:/Import" type="application/json">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -10542,19 +10564,22 @@ user-select: none;
 <div created="20200724203502204" modified="20200724203504733" title="$:/state/tab--2112689675">
 <pre>$:/core/ui/ControlPanel/Basics</pre>
 </div>
-<div created="20200719203332078" modified="20200724203506641" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Settings</pre>
+<div created="20200719203332078" modified="20200725130327180" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
+</div>
+<div created="20200725130328165" modified="20200725130328165" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
 <div created="20200720045444729" modified="20200724202558412" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200719214726799" modified="20200725103957382" title="$:/state/tab/sidebar--595412856">
+<div created="20200719214726799" modified="20200725130320978" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200725102730997" list="[[tm-float test]] HelloThere" modified="20200725104009142" title="$:/StoryList">
+<div created="20200725130318960" list="$:/ControlPanel [[tm-float test]] HelloThere" modified="20200725130325667" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10570,23 +10595,23 @@ user-select: none;
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200725102612485&quot;
+            &quot;text&quot;: &quot;20200725130316915&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/saq/Dropbox/TW-dev/floats.html&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io/sq-tw/floats.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;file:&quot;
+            &quot;text&quot;: &quot;https:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -10594,7 +10619,7 @@ user-select: none;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/saq/Dropbox/TW-dev/floats.html&quot;
+            &quot;text&quot;: &quot;/sq-tw/floats.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10602,15 +10627,15 @@ user-select: none;
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;file://&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;2560&quot;
+            &quot;text&quot;: &quot;1920&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;1080&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
