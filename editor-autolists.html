@@ -153,6 +153,8 @@ Error message and password prompt
 
 <li>$:/plugins/ahahn/tinka</li>
 
+<li>$:/plugins/ahahn/tinka/temp/helpTabSearch</li>
+
 <li>$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab</li>
 
 <li>$:/plugins/sq/editor-autolist</li>
@@ -188,6 +190,8 @@ Error message and password prompt
 <li>$:/temp/tinka/search</li>
 
 <li>$:/temp/tinka/searchTab--1633687565</li>
+
+<li>$:/temp/tinka/searchTab--803563735</li>
 
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
@@ -9917,7 +9921,10 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div caption="sq/editor-autolist - Help Tab" created="20200803173030034" modified="20200803173030034" tags="$:/tags/SideBar" title="$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab">
+<div created="20200803214831252" filtersearch="[prefix[$:/plugins/sq/editor-autolist]]" modified="20200803214844975" title="$:/plugins/ahahn/tinka/temp/helpTabSearch">
+<pre></pre>
+</div>
+<div caption="sq/editor-autolist - Help Tab" created="20200803173030034" extender="open" modified="20200803214908623" tags="$:/tags/SideBar" title="$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab">
 <pre>&lt;$set name=&quot;pluginPrefix&quot; value=&quot;$:/plugins/sq/editor-autolist&quot; &gt;
 &lt;$set name=&quot;currentTiddler&quot; value=&quot;$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab&quot; &gt;
 
@@ -9926,16 +9933,16 @@ Error message and password prompt
 &lt;/$set&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div author="Saq Imtiaz" created="20200803172923614" description="Editor AutoList - editor extension to automatically continue lists" modified="20200803173012976" name="Editor AutoList" plugin-type="plugin" title="$:/plugins/sq/editor-autolist" type="application/json" version="0.1.1">
+<div author="Saq Imtiaz" created="20200803172923614" description="Editor AutoList - editor extension to automatically continue lists" modified="20200803173012976" name="Editor AutoList" plugin-type="plugin" title="$:/plugins/sq/editor-autolist" type="application/json" version="0.1.5">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/sq/editor-autolist/editor-operation-autolist&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/editor-autolist/editor-operation-autolist.js\ntype: application/javascript\nmodule-type: texteditoroperation\nText editor operation to automate syntax for lists\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports[\&quot;autolist\&quot;] = function(event,operation) {\n\t\n\tvar prevLineStart = $tw.utils.findPrecedingLineBreak(operation.text,operation.selStart);\n\tvar prevLine = operation.text.substring(prevLineStart,operation.selStart);\n\t\n\tvar listPrefixRegex = /^((\\*|#)+).*/;\n\tvar match = prevLine.match(listPrefixRegex);\n\tif(match != null &amp;&amp; match[1]) {\n\t\tvar prefix = match[1];\n\t\toperation.replacement = \&quot;\\n\&quot; + prefix;\n\t\toperation.cutStart = operation.selStart;\n\t\toperation.cutEnd = operation.selStart;\n\t\toperation.newSelStart = operation.selStart + prefix.length + 1;\n\t\toperation.newSelEnd = operation.selEnd + prefix.length + 1;\n\t} else {\n\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\toperation.cutStart = operation.selStart;\n\t\toperation.cutEnd = operation.selEnd;\n\t\toperation.newSelStart = operation.selStart + 1;\n\t\toperation.newSelEnd = operation.selEnd + 1;\n\t}\n};\n\n})();&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/editor-autolist/editor-operation-autolist.js\ntype: application/javascript\nmodule-type: texteditoroperation\nText editor operation to automate syntax for lists\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports[\&quot;autolist\&quot;] = function(event,operation) {\n\t\n\tvar prevLineStart = $tw.utils.findPrecedingLineBreak(operation.text,operation.selStart);\n\tvar prevLine = operation.text.substring(prevLineStart,operation.selStart);\n\t\n\tvar listPrefixRegex = /^((\\*|#)+).*/;\n\tvar match = prevLine.match(listPrefixRegex);\n\tif(match != null &amp;&amp; match[1]) {\n\t\tvar trimmed = match[0].replace(/\\s\\s*$/, '');\n\t\tvar prefixRegEx = /^((\\*|#)+)$/;\n\t\tvar trimmedMatch = trimmed.match(prefixRegEx);\n\t\tif(trimmedMatch != null) {\n\t\t\tif(event.paramObject.mode === \&quot;indent\&quot;) {\n\t\t\t\toperation.replacement = trimmedMatch[0] + trimmedMatch[2] + \&quot; \&quot;;\n\t\t\t\toperation.cutStart = prevLineStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\toperation.newSelStart = prevLineStart + trimmedMatch[0].length + 2;\n\t\t\t\toperation.newSelEnd = prevLineStart + trimmedMatch[0].length + 2;\n\t\t\t} else {\t\t\t\n\t\t\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\t\t\toperation.cutStart = prevLineStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\toperation.newSelStart = prevLineStart + 1;\n\t\t\t\toperation.newSelEnd = prevLineStart + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tvar prefix = match[1];\n\t\t\toperation.replacement = \&quot;\\n\&quot; + prefix + \&quot; \&quot;;\n\t\t\toperation.cutStart = operation.selStart;\n\t\t\toperation.cutEnd = operation.selStart;\n\t\t\toperation.newSelStart = operation.selStart + prefix.length + 2;\n\t\t\toperation.newSelEnd = operation.selEnd + prefix.length + 2;\n\t\t}\n\t} else {\n\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\toperation.cutStart = operation.selStart;\n\t\toperation.cutEnd = operation.selEnd;\n\t\toperation.newSelStart = operation.selStart + 1;\n\t\toperation.newSelEnd = operation.selEnd + 1;\n\t}\n};\n\n})();&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/editor-operation-autolist&quot;,
             &quot;tags&quot;: &quot;&quot;,
             &quot;module-type&quot;: &quot;texteditoroperation&quot;,
-            &quot;modified&quot;: &quot;20200803172442586&quot;,
+            &quot;modified&quot;: &quot;20200803214636163&quot;,
             &quot;created&quot;: &quot;20200803160356743&quot;
         },
         &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist&quot;: {
@@ -9957,6 +9964,19 @@ Error message and password prompt
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
             &quot;modified&quot;: &quot;20200803172530073&quot;,
             &quot;created&quot;: &quot;20200803171440138&quot;
+        },
+        &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist-indent&quot;: {
+            &quot;text&quot;: &quot;&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;autolist\&quot;\n\tmode=\&quot;indent\&quot;\n/&gt;\n&quot;,
+            &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist-indent&quot;,
+            &quot;tags&quot;: &quot;$:/tags/EditorToolbar&quot;,
+            &quot;shortcuts&quot;: &quot;ctrl+tab&quot;,
+            &quot;modified&quot;: &quot;20200803214017683&quot;,
+            &quot;icon&quot;: &quot;$:/core/images/list-bullet&quot;,
+            &quot;description&quot;: &quot;&quot;,
+            &quot;created&quot;: &quot;20200803213912954&quot;,
+            &quot;condition&quot;: &quot;[&lt;targetTiddler&gt;!has[type]] [&lt;targetTiddler&gt;type[text/vnd.tiddlywiki]]&quot;,
+            &quot;caption&quot;: &quot;&quot;,
+            &quot;button-classes&quot;: &quot;sq-text-editor-btn-hidden&quot;
         }
     }
 }</pre>
@@ -9973,19 +9993,19 @@ Error message and password prompt
 <div created="20200803165449666" modified="20200803165449666" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
-<div created="20200803160125458" modified="20200803174318186" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20200803160125458" modified="20200803214916141" title="$:/state/tab-1749438307">
+<pre>$:/plugins/ahahn/tinka/controlPanelExtension</pre>
 </div>
 <div created="20200803172948617" modified="20200803174237464" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20200803172947689" modified="20200803174239466" title="$:/state/tab/sidebar--595412856">
+<div created="20200803172947689" modified="20200803214937291" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20200803174238554" list="[[Draft of 'New Tiddler']] $:/plugins/sq/editor-autolist" modified="20200803174315976" title="$:/StoryList">
+<div list="[[Draft of 'New Tiddler']] $:/plugins/sq/editor-autolist" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200803165447822" modified="20200803165447822" title="$:/temp/advancedsearch">
@@ -10004,11 +10024,11 @@ Error message and password prompt
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200803174232105&quot;
+            &quot;text&quot;: &quot;20200803214931823&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/saq/Dropbox/TW-dev/list-maker.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/saq/Dropbox/TW-dev/editor-autolists.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10028,7 +10048,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/saq/Dropbox/TW-dev/list-maker.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/saq/Dropbox/TW-dev/editor-autolists.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10066,6 +10086,9 @@ Error message and password prompt
 <pre>[prefix[$:/plugins/sq/editor-autolist]]</pre>
 </div>
 <div created="20200803172904499" modified="20200803172904499" title="$:/temp/tinka/searchTab--1633687565">
+<pre>$:/plugins/ahahn/tinka/search-filter</pre>
+</div>
+<div created="20200803214922277" modified="20200803214922277" title="$:/temp/tinka/searchTab--803563735">
 <pre>$:/plugins/ahahn/tinka/search-filter</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease">
@@ -10177,8 +10200,28 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200803174240365" draft.of="New Tiddler" draft.title="New Tiddler" modified="20200803174311284" tags="" title="Draft of 'New Tiddler'">
-<pre>* Hello, let's start a list</pre>
+<div created="20200803174240365" draft.of="New Tiddler" draft.title="New Tiddler" modified="20200803214805286" tags="" title="Draft of 'New Tiddler'">
+<pre>* hello
+* there
+* ok let's see
+** what now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
 </div>
 
 
