@@ -163,6 +163,12 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/dropdown/keyboardshortcut/autolist-indent-286565879</li>
+
+<li>$:/state/dropdown/keyboardshortcut/autolist-newline-286565879</li>
+
+<li>$:/state/dropdown/keyboardshortcut/autolist-unindent-286565879</li>
+
 <li>$:/state/plugin-info-429242540-$:/plugins/ahahn/tinka---1055664959</li>
 
 <li>$:/state/tab--1498284803</li>
@@ -9924,7 +9930,7 @@ Error message and password prompt
 <div created="20200803214831252" filtersearch="[prefix[$:/plugins/sq/editor-autolist]]" modified="20200803214844975" title="$:/plugins/ahahn/tinka/temp/helpTabSearch">
 <pre></pre>
 </div>
-<div caption="sq/editor-autolist - Help Tab" created="20200803173030034" extender="open" modified="20200803214908623" tags="$:/tags/SideBar" title="$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab">
+<div caption="sq/editor-autolist - Help Tab" created="20200803173030034" extender="open" modified="20200804124909474" tags="$:/tags/SideBar" title="$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab">
 <pre>&lt;$set name=&quot;pluginPrefix&quot; value=&quot;$:/plugins/sq/editor-autolist&quot; &gt;
 &lt;$set name=&quot;currentTiddler&quot; value=&quot;$:/plugins/ahahn/tinka/temp/sq/editor-autolist - Help Tab&quot; &gt;
 
@@ -9933,27 +9939,27 @@ Error message and password prompt
 &lt;/$set&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div author="Saq Imtiaz" created="20200803172923614" description="Editor AutoList - editor extension to automatically continue lists" modified="20200803173012976" name="Editor AutoList" plugin-type="plugin" title="$:/plugins/sq/editor-autolist" type="application/json" version="0.1.8">
+<div author="Saq Imtiaz" created="20200803172923614" description="Editor AutoList - editor extension to automatically continue lists" modified="20200803173012976" name="Editor AutoList" plugin-type="plugin" title="$:/plugins/sq/editor-autolist" type="application/json" version="0.1.10">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/sq/editor-autolist/editor-operation-autolist&quot;: {
-            &quot;created&quot;: &quot;20200803160356743&quot;,
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/editor-autolist/editor-operation-autolist.js\ntype: application/javascript\nmodule-type: texteditoroperation\nText editor operation to automate syntax for lists\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports[\&quot;autolist\&quot;] = function(event,operation) {\n\t\n\tvar prevLineStart = $tw.utils.findPrecedingLineBreak(operation.text,operation.selStart);\n\tvar prevLine = operation.text.substring(prevLineStart,operation.selStart);\n\t\n\tvar listPrefixRegex = /^((\\*|#)+).*/;\n\tvar match = prevLine.match(listPrefixRegex);\n\t//ensure we only handle lines starting with * or #\n\tif(match != null &amp;&amp; match[1]) {\n\t\tvar trimmed = match[0].replace(/\\s\\s*$/, '');\n\t\tvar prefixRegEx = /^((\\*|#)+)$/;\n\t\tvar trimmedMatch = trimmed.match(prefixRegEx);\n\t\tif(trimmedMatch != null) {\n\t\t\t// the line only contains * or # characters and optional whitespace\n\t\t\tif(event.paramObject.mode === \&quot;indent\&quot;) {\n\t\t\t\t//indent the line another level\n\t\t\t\toperation.replacement = trimmedMatch[0] + trimmedMatch[2] + \&quot; \&quot;;\n\t\t\t\toperation.cutStart = prevLineStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\toperation.newSelStart = prevLineStart + trimmedMatch[0].length + 2;\n\t\t\t\toperation.newSelEnd = prevLineStart + trimmedMatch[0].length + 2;\n\t\t\t} else {\n\t\t\t\t//terminate the list\n\t\t\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\t\t\toperation.cutStart = prevLineStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\toperation.newSelStart = prevLineStart + 1;\n\t\t\t\toperation.newSelEnd = prevLineStart + 1;\n\t\t\t}\n\t\t} else {\n\t\t\t// continue indent level on next line\n\t\t\tvar prefix = match[1];\n\t\t\toperation.replacement = \&quot;\\n\&quot; + prefix + \&quot; \&quot;;\n\t\t\toperation.cutStart = operation.selStart;\n\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\n\t\t\t//check if there is trailing whitespace on the line we are on\n\t\t\tvar lineEnd = $tw.utils.findFollowingLineBreak(operation.text,operation.selStart);\n\t\t\tvar trailingText = operation.text.substring(operation.selStart,lineEnd);\n\t\t\tif(trailingText.trim().length == 0) {\n\t\t\t\toperation.cutEnd = lineEnd;\n\t\t\t}\n\t\t\t\n\t\t\toperation.newSelStart = operation.selStart + prefix.length + 2;\n\t\t\toperation.newSelEnd = operation.selEnd + prefix.length + 2;\n\t\t}\n\t} else {\n\t\t// we need to manually add a linebreak for lines not starting with list markup\n\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\toperation.cutStart = operation.selStart;\n\t\toperation.cutEnd = operation.selEnd;\n\t\toperation.newSelStart = operation.selStart + 1;\n\t\toperation.newSelEnd = operation.selEnd + 1;\n\t}\n};\n\n})();&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/editor-autolist/editor-operation-autolist.js\ntype: application/javascript\nmodule-type: texteditoroperation\nText editor operation to automate syntax for lists\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports[\&quot;autolist\&quot;] = function(event,operation) {\n\t\n\tvar lineStart = $tw.utils.findPrecedingLineBreak(operation.text,operation.selStart);\n\tvar lineEnd = $tw.utils.findFollowingLineBreak(operation.text,operation.selStart);\n\tvar line = operation.text.substring(lineStart,lineEnd);\t\n\t\n\tvar listPrefixRegex = /^((\\*|#)+).*/;\n\tvar match = line.match(listPrefixRegex);\n\t\n\tvar mode = event.paramObject? event.paramObject.mode : undefined;\n\t\n\t//ensure we only handle lines starting with * or #\n\tif(match != null &amp;&amp; match[1]) {\n\t\t// check if we are handling indent level\n\t\tif(mode === \&quot;indent\&quot; || mode === \&quot;unindent\&quot;) {\n\t\t\tvar indentRegExp = /^((\\*|#)+)(.*)$/;\n\t\t\tvar indentMatch = line.match(indentRegExp);\n\t\t\tif(indentMatch != null) {\n\t\t\t\t//check if the line has content\n\t\t\t\tvar content = (indentMatch[3].trim().length != 0) ? indentMatch[3].trim() : \&quot;\&quot;;\n\t\t\t\toperation.cutStart = lineStart;\n\t\t\t\toperation.cutEnd = lineEnd;\n\t\t\t\tif(mode === \&quot;indent\&quot;) {\t\t\t\t\n\t\t\t\t\t//indent a line\n\t\t\t\t\toperation.replacement = indentMatch[1] + indentMatch[2] + \&quot; \&quot; + content;\n\t\t\t\t\toperation.newSelStart = operation.selStart + 1;\n\t\t\t\t\toperation.newSelEnd = operation.selEnd + 1;\n\t\t\t\t} else if(mode === \&quot;unindent\&quot;) {\n\t\t\t\t\t//unindent a line\n\t\t\t\t\toperation.replacement = indentMatch[1].substring(0,indentMatch[1].length - 1) + \&quot; \&quot; + content;\n\t\t\t\t\toperation.newSelStart = operation.selStart - 1;\n\t\t\t\t\toperation.newSelEnd = operation.selEnd - 1;\t\t\t\t\t\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\t//handle enter key, meaning new line\n\t\t\tvar trimmed = match[0].replace(/\\s\\s*$/, '');\n\t\t\tvar prefixRegEx = /^((\\*|#)+)$/;\n\t\t\tvar trimmedMatch = trimmed.match(prefixRegEx);\n\t\t\tif(trimmedMatch != null) {\n\t\t\t\t// the line only contains * or # characters and optional whitespace\n\t\t\t\t//terminate the list\n\t\t\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\t\t\toperation.cutStart = lineStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\toperation.newSelStart = lineStart + 1;\n\t\t\t\toperation.newSelEnd = lineStart + 1;\n\t\t\t} else {\n\t\t\t\t// continue indent level on next line\n\t\t\t\tvar prefix = match[1];\n\t\t\t\toperation.replacement = \&quot;\\n\&quot; + prefix + \&quot; \&quot;;\n\t\t\t\toperation.cutStart = operation.selStart;\n\t\t\t\toperation.cutEnd = operation.selStart;\n\t\t\t\t\n\t\t\t\t//check if there is trailing whitespace on the line we are on\n\t\t\t\tvar lineEnd = $tw.utils.findFollowingLineBreak(operation.text,operation.selStart);\n\t\t\t\tvar trailingText = operation.text.substring(operation.selStart,lineEnd);\n\t\t\t\tif(trailingText.trim().length == 0) {\n\t\t\t\t\toperation.cutEnd = lineEnd;\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\toperation.newSelStart = operation.selStart + prefix.length + 2;\n\t\t\t\toperation.newSelEnd = operation.selEnd + prefix.length + 2;\n\t\t\t}\n\t\t}\n\t} else if(mode != \&quot;indent\&quot; &amp;&amp; mode != \&quot;unindent\&quot;) {\n\t\t// we need to manually add a linebreak for lines not starting with list markup\n\t\toperation.replacement = \&quot;\\n\&quot;;\n\t\toperation.cutStart = operation.selStart;\n\t\toperation.cutEnd = operation.selEnd;\n\t\toperation.newSelStart = operation.selStart + 1;\n\t\toperation.newSelEnd = operation.selEnd + 1;\n\t}\n};\n\n})();&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/editor-operation-autolist&quot;,
             &quot;tags&quot;: &quot;&quot;,
             &quot;module-type&quot;: &quot;texteditoroperation&quot;,
-            &quot;modified&quot;: &quot;20200804062516775&quot;
+            &quot;modified&quot;: &quot;20200804125155562&quot;,
+            &quot;created&quot;: &quot;20200803160356743&quot;
         },
         &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist&quot;: {
+            &quot;created&quot;: &quot;20200803165453913&quot;,
             &quot;text&quot;: &quot;&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;autolist\&quot;\n/&gt;\n&quot;,
             &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist&quot;,
             &quot;tags&quot;: &quot;$:/tags/EditorToolbar&quot;,
-            &quot;shortcuts&quot;: &quot;Enter&quot;,
-            &quot;modified&quot;: &quot;20200803172518036&quot;,
+            &quot;shortcuts&quot;: &quot;((autolist-newline))&quot;,
+            &quot;modified&quot;: &quot;20200804124434675&quot;,
             &quot;icon&quot;: &quot;$:/core/images/list-bullet&quot;,
             &quot;description&quot;: &quot;&quot;,
-            &quot;created&quot;: &quot;20200803165453913&quot;,
             &quot;condition&quot;: &quot;[&lt;targetTiddler&gt;!has[type]] [&lt;targetTiddler&gt;type[text/vnd.tiddlywiki]]&quot;,
             &quot;caption&quot;: &quot;&quot;,
             &quot;button-classes&quot;: &quot;sq-text-editor-btn-hidden&quot;
@@ -9970,13 +9976,65 @@ Error message and password prompt
             &quot;text&quot;: &quot;&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;autolist\&quot;\n\tmode=\&quot;indent\&quot;\n/&gt;\n&quot;,
             &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist-indent&quot;,
             &quot;tags&quot;: &quot;$:/tags/EditorToolbar&quot;,
-            &quot;shortcuts&quot;: &quot;tab&quot;,
-            &quot;modified&quot;: &quot;20200803220237395&quot;,
+            &quot;shortcuts&quot;: &quot;((autolist-indent))&quot;,
+            &quot;modified&quot;: &quot;20200804124659294&quot;,
             &quot;icon&quot;: &quot;$:/core/images/list-bullet&quot;,
             &quot;description&quot;: &quot;&quot;,
             &quot;condition&quot;: &quot;[&lt;targetTiddler&gt;!has[type]] [&lt;targetTiddler&gt;type[text/vnd.tiddlywiki]]&quot;,
             &quot;caption&quot;: &quot;&quot;,
             &quot;button-classes&quot;: &quot;sq-text-editor-btn-hidden&quot;
+        },
+        &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist-unindent&quot;: {
+            &quot;created&quot;: &quot;20200804122848593&quot;,
+            &quot;text&quot;: &quot;&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;autolist\&quot;\n\tmode=\&quot;unindent\&quot;\n/&gt;\n&quot;,
+            &quot;title&quot;: &quot;$:/plugins/sq/editor-autolist/EditorToolbar-autolist-unindent&quot;,
+            &quot;tags&quot;: &quot;$:/tags/EditorToolbar&quot;,
+            &quot;shortcuts&quot;: &quot;((autolist-unindent))&quot;,
+            &quot;modified&quot;: &quot;20200804124808496&quot;,
+            &quot;icon&quot;: &quot;$:/core/images/list-bullet&quot;,
+            &quot;description&quot;: &quot;&quot;,
+            &quot;condition&quot;: &quot;[&lt;targetTiddler&gt;!has[type]] [&lt;targetTiddler&gt;type[text/vnd.tiddlywiki]]&quot;,
+            &quot;caption&quot;: &quot;&quot;,
+            &quot;button-classes&quot;: &quot;sq-text-editor-btn-hidden&quot;
+        },
+        &quot;$:/config/shortcuts/autolist-newline&quot;: {
+            &quot;created&quot;: &quot;20200804124551033&quot;,
+            &quot;title&quot;: &quot;$:/config/shortcuts/autolist-newline&quot;,
+            &quot;text&quot;: &quot;Enter&quot;,
+            &quot;modified&quot;: &quot;20200804124551033&quot;
+        },
+        &quot;$:/config/shortcuts/autolist-indent&quot;: {
+            &quot;created&quot;: &quot;20200804124746636&quot;,
+            &quot;title&quot;: &quot;$:/config/shortcuts/autolist-indent&quot;,
+            &quot;text&quot;: &quot;Tab&quot;,
+            &quot;modified&quot;: &quot;20200804124746636&quot;
+        },
+        &quot;$:/config/shortcuts/autolist-unindent&quot;: {
+            &quot;created&quot;: &quot;20200804124833452&quot;,
+            &quot;title&quot;: &quot;$:/config/shortcuts/autolist-unindent&quot;,
+            &quot;text&quot;: &quot;shift-Tab&quot;,
+            &quot;modified&quot;: &quot;20200804124833452&quot;
+        },
+        &quot;$:/config/ShortcutInfo/autolist-newline&quot;: {
+            &quot;created&quot;: &quot;20200804124436341&quot;,
+            &quot;text&quot;: &quot;Add a newline and list markup if in a list&quot;,
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;title&quot;: &quot;$:/config/ShortcutInfo/autolist-newline&quot;,
+            &quot;modified&quot;: &quot;20200804124533962&quot;
+        },
+        &quot;$:/config/ShortcutInfo/autolist-indent&quot;: {
+            &quot;created&quot;: &quot;20200804124703604&quot;,
+            &quot;text&quot;: &quot;Indent a line in a list&quot;,
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;title&quot;: &quot;$:/config/ShortcutInfo/autolist-indent&quot;,
+            &quot;modified&quot;: &quot;20200804124720020&quot;
+        },
+        &quot;$:/config/ShortcutInfo/autolist-unindent&quot;: {
+            &quot;created&quot;: &quot;20200804124811668&quot;,
+            &quot;text&quot;: &quot;Unindent a line in a list&quot;,
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;title&quot;: &quot;$:/config/ShortcutInfo/autolist-unindent&quot;,
+            &quot;modified&quot;: &quot;20200804124823040&quot;
         }
     }
 }</pre>
@@ -9987,19 +10045,28 @@ Error message and password prompt
 <div created="20200803160117891" modified="20200803174330841" title="$:/SiteTitle">
 <pre>Editor ~AutoLists</pre>
 </div>
+<div created="20200804124732174" modified="20200804124732174" title="$:/state/dropdown/keyboardshortcut/autolist-indent-286565879">
+<pre>open</pre>
+</div>
+<div created="20200804124543350" modified="20200804124730692" title="$:/state/dropdown/keyboardshortcut/autolist-newline-286565879">
+<pre>close</pre>
+</div>
+<div created="20200804124827533" modified="20200804124827533" title="$:/state/dropdown/keyboardshortcut/autolist-unindent-286565879">
+<pre>open</pre>
+</div>
 <div created="20200803172745795" modified="20200803172745795" title="$:/state/plugin-info-429242540-$:/plugins/ahahn/tinka---1055664959">
 <pre>usage</pre>
 </div>
 <div created="20200803165449666" modified="20200803165449666" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
-<div created="20200803160125458" modified="20200803214916141" title="$:/state/tab-1749438307">
+<div created="20200803160125458" modified="20200804124918478" title="$:/state/tab-1749438307">
 <pre>$:/plugins/ahahn/tinka/controlPanelExtension</pre>
 </div>
-<div created="20200803172948617" modified="20200803174237464" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/Plugins</pre>
+<div created="20200803172948617" modified="20200804124622525" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20200803172947689" modified="20200804062530596" title="$:/state/tab/sidebar--595412856">
+<div created="20200803172947689" modified="20200804125310008" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
@@ -10024,7 +10091,7 @@ Error message and password prompt
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200804062533404&quot;
+            &quot;text&quot;: &quot;20200804125312054&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10082,8 +10149,8 @@ Error message and password prompt
 <div created="20200803173022262" modified="20200803173022262" search="$:/plugins/sq/editor-autolist" title="$:/temp/tinka/ModifyPluginSearch">
 <pre></pre>
 </div>
-<div created="20200803172907178" modified="20200803172917458" title="$:/temp/tinka/search">
-<pre>[prefix[$:/plugins/sq/editor-autolist]]</pre>
+<div created="20200803172907178" modified="20200804125028698" title="$:/temp/tinka/search">
+<pre>[prefix[$:/plugins/sq/editor-autolist]] [prefix[$:/config/shortcuts/autolist]] [prefix[$:/config/ShortcutInfo/autolist]]</pre>
 </div>
 <div created="20200803172904499" modified="20200803172904499" title="$:/temp/tinka/searchTab--1633687565">
 <pre>$:/plugins/ahahn/tinka/search-filter</pre>
@@ -10200,12 +10267,26 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200803174240365" draft.of="New Tiddler" draft.title="New Tiddler" modified="20200804062545148" tags="" title="Draft of 'New Tiddler'">
+<div created="20200803174240365" draft.of="New Tiddler" draft.title="New Tiddler" modified="20200804125256409" tags="" title="Draft of 'New Tiddler'">
 <pre>* hello
 * there
 * ok let's see
-** what now
-** ok
+** what happens now
+** or now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
