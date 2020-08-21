@@ -11381,7 +11381,7 @@ wikilist-button-foreground: #000</pre>
     }
 }</pre>
 </div>
-<div author="Saq Imtiaz" bag="default" core-version="&gt;=5.1.22" dependents="" description="Streams addon: Search" list="" plugin-type="plugin" revision="0" source="" title="$:/plugins/sq/streams-search" type="application/json" version="0.0.01">
+<div author="Saq Imtiaz" bag="default" core-version="&gt;=5.1.22" dependents="" description="Streams addon: Search" list="" plugin-type="plugin" revision="0" source="" title="$:/plugins/sq/streams-search" type="application/json" version="0.0.02">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/config/SearchResults/Default&quot;: {
@@ -11394,7 +11394,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/plugins/sq/streams-search/stream-root-filter.js&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams-search/stream-root-filter.js&quot;,
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/streams-search/stream-root-filter.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports[\&quot;stream-root\&quot;] = function(source,operator,options) {\n\tvar results = [];\n\tsource(function(tiddler,title) {\n\t\tif(tiddler &amp;&amp; tiddler.fields[\&quot;parent\&quot;] &amp;&amp; tiddler.fields[\&quot;stream-type\&quot;]) {\t\t\t\n\n\t\t\tvar parentTiddler = tiddler;\n\t\t\t\n\t\t\twhile(parentTiddler &amp;&amp; parentTiddler.fields.parent) {\n\t\t\t\tparentTiddler = options.wiki.getTiddler(parentTiddler.fields.parent);\n\t\t\t}\n\t\t\tif(tiddler.fields.title.startsWith(parentTiddler.fields[\&quot;title\&quot;])) {\n\t\t\t\t$tw.utils.pushTop(results,parentTiddler.fields.title);\n\t\t\t} else {\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t\t\n\t\t} else {\n\t\t\tresults.push(title);\n\t\t}\n\t});\n\treturn results;\n};\n\n})();&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/streams-search/stream-root-filter.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports[\&quot;stream-root\&quot;] = function(source,operator,options) {\n\tvar results = [];\n\tsource(function(tiddler,title) {\n\t\tif(tiddler &amp;&amp; tiddler.fields[\&quot;parent\&quot;] &amp;&amp; tiddler.fields[\&quot;stream-type\&quot;]) {\t\t\t\n\n\t\t\tvar parentTiddler = tiddler;\n\t\t\t\n\t\t\twhile(parentTiddler &amp;&amp; parentTiddler.fields.parent) {\n\t\t\t\tparentTiddler = options.wiki.getTiddler(parentTiddler.fields.parent);\n\t\t\t}\n\t\t\tif(parentTiddler &amp;&amp; parentTiddler.fields &amp;&amp; tiddler.fields.title.startsWith(parentTiddler.fields[\&quot;title\&quot;])) {\n\t\t\t\t$tw.utils.pushTop(results,parentTiddler.fields.title);\n\t\t\t} else {\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t\t\n\t\t} else {\n\t\t\tresults.push(title);\n\t\t}\n\t});\n\treturn results;\n};\n\n})();&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
@@ -11507,7 +11507,7 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20200820181221330" list="Streams Demos [[Keyboard Shortcuts]]" modified="20200820181221330" title="$:/StoryList">
+<div list="Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" modified="20200706165333919" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -11529,7 +11529,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200820181204491&quot;
+            &quot;text&quot;: &quot;20200821184144116&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -11565,11 +11565,11 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1920&quot;
+            &quot;text&quot;: &quot;2560&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1080&quot;
+            &quot;text&quot;: &quot;1440&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
