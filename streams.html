@@ -237,6 +237,8 @@ Error message and password prompt
 
 <li>$:/plugins/sq/streams-search/StreamSearchResults</li>
 
+<li>$:/plugins/sq/streams-search/StreamSearchResults 1</li>
+
 <li>$:/plugins/tiddlywiki/highlight</li>
 
 <li>$:/plugins/wikilabs/tocP</li>
@@ -254,6 +256,20 @@ Error message and password prompt
 <li>$:/state/tab/moresidebar-1850697562</li>
 
 <li>$:/state/tab/sidebar--595412856</li>
+
+<li>$:/state/toc/Roadmap-Renaming child bullets--632660187</li>
+
+<li>$:/state/toc/Roadmap-Roadmap/20200603061628734--632660187</li>
+
+<li>$:/state/toc/Roadmap-Roadmap/20200603061644288--632660187</li>
+
+<li>$:/state/toc/Roadmap-Roadmap/20200603061701306--632660187</li>
+
+<li>$:/state/toc/Roadmap-Roadmap/20200603080031070--632660187</li>
+
+<li>$:/state/toc/Roadmap-Roadmap/20200603080053308--632660187</li>
+
+<li>$:/state/toc/Roadmap/Roadmap/20200603061644288-Roadmap/20200605084858221--632660187</li>
 
 <li>$:/status/IsAnonymous</li>
 
@@ -11452,6 +11468,28 @@ wikilist-button-foreground: #000</pre>
 \end
 &lt;&lt;searchResultList&gt;&gt;</pre>
 </div>
+<div caption="Streams2" created="20200822060811756" modified="20200822061858437" tags="$:/tags/SearchResults" title="$:/plugins/sq/streams-search/StreamSearchResults 1" type="text/vnd.tiddlywiki">
+<pre>\define searchResultList()
+//&lt;small&gt;{{$:/language/Search/Matches/Title}}&lt;/small&gt;//
+
+&lt;$list filter=&quot;[!is[system]search:title{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
+&lt;$macrocall $name=&quot;tocP-selective-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt;/&gt;
+&lt;/div&gt;
+&lt;/$list&gt;
+
+//&lt;small&gt;{{$:/language/Search/Matches/All}}&lt;/small&gt;//
+
+&lt;$list filter=&quot;[!is[system]search{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
+&lt;span class={{{[&lt;currentTiddler&gt;addsuffix[-secondaryList]] -[&lt;searchListState&gt;get[text]] +[then[]else[tc-list-item-selected]] }}}&gt;
+&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
+&lt;/span&gt;
+&lt;/$list&gt;
+
+\end
+&lt;&lt;searchResultList&gt;&gt;</pre>
+</div>
 <div author="Joao Bolila" bag="default" dependents="" description="Highlight.js syntax highlighting" list="readme usage howto license" name="Highlight" plugin-type="plugin" revision="0" title="$:/plugins/tiddlywiki/highlight" type="application/json" version="5.1.23-prerelease">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -11606,8 +11644,8 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" created="20200524075311048" modified="20200602185545744" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Streams</pre>
 </div>
-<div created="20200822060436840" modified="20200822060437432" title="$:/state/tab-1528275152">
-<pre>$:/plugins/sq/streams-search/StreamSearchResults</pre>
+<div created="20200822060436840" modified="20200822061946997" title="$:/state/tab-1528275152">
+<pre>$:/plugins/sq/streams-search/StreamSearchResults 1</pre>
 </div>
 <div created="20200820181222691" modified="20200820181222691" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -11620,6 +11658,27 @@ wikilist-button-foreground: #000</pre>
 </div>
 <div created="20200822054633823" modified="20200822055509024" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
+</div>
+<div created="20200822061534167" modified="20200822062016111" title="$:/state/toc/Roadmap-Renaming child bullets--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061535521" modified="20200822061815638" title="$:/state/toc/Roadmap-Roadmap/20200603061628734--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061805426" modified="20200822061952744" title="$:/state/toc/Roadmap-Roadmap/20200603061644288--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061749482" modified="20200822061750042" title="$:/state/toc/Roadmap-Roadmap/20200603061701306--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061817552" modified="20200822061818152" title="$:/state/toc/Roadmap-Roadmap/20200603080031070--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061747254" modified="20200822061748184" title="$:/state/toc/Roadmap-Roadmap/20200603080053308--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822061951450" modified="20200822061952082" title="$:/state/toc/Roadmap/Roadmap/20200603061644288-Roadmap/20200605084858221--632660187">
+<pre>close</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/IsAnonymous">
 <pre>yes</pre>
@@ -11636,7 +11695,7 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20200822054637549" list="$:/plugins/sq/streams-search $:/plugins/sq/streams-search/StreamSearchResults $:/plugins/sq/streams-search/stream-root-filter.js Streams Demos [[Keyboard Shortcuts]]" modified="20200822060446042" title="$:/StoryList">
+<div list="[[$:/plugins/sq/streams-search/StreamSearchResults 1]] $:/plugins/sq/streams-search $:/plugins/sq/streams-search/StreamSearchResults $:/plugins/sq/streams-search/stream-root-filter.js Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" modified="20200706165333919" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -11658,7 +11717,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200822054628800&quot;
+            &quot;text&quot;: &quot;20200822060737752&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -11707,11 +11766,11 @@ wikilist-button-foreground: #000</pre>
     }
 }</pre>
 </div>
-<div created="20200822055022746" modified="20200822060432883" title="$:/temp/search">
-<pre>tocp</pre>
+<div created="20200822055022746" modified="20200822061455144" title="$:/temp/search">
+<pre>Roadmap</pre>
 </div>
-<div created="20200822055022747" modified="20200822060432883" title="$:/temp/search/input">
-<pre>tocp</pre>
+<div created="20200822055022747" modified="20200822061455144" title="$:/temp/search/input">
+<pre>Roadmap</pre>
 </div>
 <div author="JeremyRuston" bag="default" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" revision="0" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease">
 <pre>{
