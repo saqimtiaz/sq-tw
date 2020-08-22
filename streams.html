@@ -235,13 +235,7 @@ Error message and password prompt
 
 <li>$:/plugins/sq/streams-search</li>
 
-<li>$:/plugins/sq/streams-search/StreamSearchResults2</li>
-
-<li>$:/plugins/sq/streams-search/StreamSearchResults3</li>
-
 <li>$:/plugins/tiddlywiki/highlight</li>
-
-<li>$:/plugins/wikilabs/tocP</li>
 
 <li>$:/SiteSubtitle</li>
 
@@ -258,6 +252,8 @@ Error message and password prompt
 <li>$:/state/tab/sidebar--595412856</li>
 
 <li>$:/state/toc/Roadmap-Renaming child bullets--632660187</li>
+
+<li>$:/state/toc/Roadmap-Renaming child bullets-933962725</li>
 
 <li>$:/state/toc/Roadmap-Roadmap/20200603061628734--632660187</li>
 
@@ -11440,56 +11436,6 @@ wikilist-button-foreground: #000</pre>
     }
 }</pre>
 </div>
-<div caption="Streams2" created="20200822062110146" modified="20200822062116909" tags="$:/tags/SearchResults" title="$:/plugins/sq/streams-search/StreamSearchResults2" type="text/vnd.tiddlywiki">
-<pre>\define searchResultList()
-//&lt;small&gt;{{$:/language/Search/Matches/Title}}&lt;/small&gt;//
-
-&lt;$list filter=&quot;[!is[system]search:title{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
-&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
-&lt;$vars stream-root=&lt;&lt;currentTiddler&gt;&gt;&gt;
-&lt;$list filter=&quot;[!is[system]search:title{$(searchTiddler)$}sort[title]limit[250]] -[&lt;stream-root&gt;]&quot;&gt;
-&lt;$list filter=&quot;[&lt;currentTiddler&gt;stream-root[]match&lt;stream-root&gt;]&quot; variable=&quot;_NULL&quot;&gt;
-&lt;div class=&quot;tc-menu-list-subitem&quot;&gt;
-&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
-&lt;/div&gt;
-&lt;/$list&gt;
-&lt;/$list&gt;
-&lt;/$vars&gt;
-&lt;/$list&gt;
-
-//&lt;small&gt;{{$:/language/Search/Matches/All}}&lt;/small&gt;//
-
-&lt;$list filter=&quot;[!is[system]search{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
-&lt;span class={{{[&lt;currentTiddler&gt;addsuffix[-secondaryList]] -[&lt;searchListState&gt;get[text]] +[then[]else[tc-list-item-selected]] }}}&gt;
-&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
-&lt;/span&gt;
-&lt;/$list&gt;
-
-\end
-&lt;&lt;searchResultList&gt;&gt;</pre>
-</div>
-<div caption="Streams3" created="20200822060811756" modified="20200822062105740" tags="$:/tags/SearchResults" title="$:/plugins/sq/streams-search/StreamSearchResults3" type="text/vnd.tiddlywiki">
-<pre>\define searchResultList()
-//&lt;small&gt;{{$:/language/Search/Matches/Title}}&lt;/small&gt;//
-
-&lt;$list filter=&quot;[!is[system]search:title{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
-&lt;div class=&quot;tc-table-of-contents&quot;&gt;
-&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
-&lt;$macrocall $name=&quot;tocP-selective-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt;/&gt;
-&lt;/div&gt;
-&lt;/$list&gt;
-
-//&lt;small&gt;{{$:/language/Search/Matches/All}}&lt;/small&gt;//
-
-&lt;$list filter=&quot;[!is[system]search{$(searchTiddler)$}sort[title]stream-root[]limit[250]]&quot;&gt;
-&lt;span class={{{[&lt;currentTiddler&gt;addsuffix[-secondaryList]] -[&lt;searchListState&gt;get[text]] +[then[]else[tc-list-item-selected]] }}}&gt;
-&lt;$transclude tiddler=&quot;$:/core/ui/ListItemTemplate&quot;/&gt;
-&lt;/span&gt;
-&lt;/$list&gt;
-
-\end
-&lt;&lt;searchResultList&gt;&gt;</pre>
-</div>
 <div author="Joao Bolila" bag="default" dependents="" description="Highlight.js syntax highlighting" list="readme usage howto license" name="Highlight" plugin-type="plugin" revision="0" title="$:/plugins/tiddlywiki/highlight" type="application/json" version="5.1.23-prerelease">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -11560,92 +11506,14 @@ wikilist-button-foreground: #000</pre>
     }
 }</pre>
 </div>
-<div author="Mario Pietsch" core-version="&gt;=5.1.13" dependents="" description="Table of Contents - parent field based" list="readme license history" plugin-type="plugin" title="$:/plugins/wikilabs/tocP" type="application/json" version="0.1.1">
-<pre>{
-    &quot;tiddlers&quot;: {
-        &quot;$:/plugins/wikilabs/tocP/macros&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/macros&quot;,
-            &quot;created&quot;: &quot;20170127103951869&quot;,
-            &quot;modified&quot;: &quot;20170202134116229&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Macro&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;\\define tocP-caption()\n&lt;$set name=\&quot;tv-wikilinks\&quot; value=\&quot;no\&quot;&gt;\n  &lt;$transclude field=\&quot;caption\&quot;&gt;\n    &lt;span title={{!!tooltip}}&gt;&lt;$view field=\&quot;title\&quot;/&gt;&lt;/span&gt;\n  &lt;/$transclude&gt;\n&lt;/$set&gt;\n\\end\n\n\\define tocP-body(tag,sort:\&quot;\&quot;,itemClassFilter,exclude,path,field:\&quot;parent\&quot;)\n&lt;ol class=\&quot;tc-toc\&quot;&gt;\n  &lt;$list filter=\&quot;\&quot;\&quot;[has[$field$]$field$[$tag$]!has[draft.of]$sort$] $exclude$\&quot;\&quot;\&quot;&gt;\n    &lt;$vars item=&lt;&lt;currentTiddler&gt;&gt; path=\&quot;\&quot;\&quot;$path$/$tag$\&quot;\&quot;\&quot; excluded=\&quot;\&quot;\&quot;$exclude$ -[[$tag$]]\&quot;\&quot;\&quot; field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;&gt;\n      &lt;$set name=\&quot;toc-item-class\&quot; filter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; emptyValue=\&quot;toc-item\&quot; value=\&quot;toc-item-selected\&quot;&gt;\n        &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;\n          &lt;$list filter=\&quot;[all[current]toc-link[no]]\&quot; emptyMessage=\&quot;&lt;$link tooltip={{!!tooltip}}&gt;&lt;$view field='caption'&gt;&lt;$view field='title'/&gt;&lt;/$view&gt;&lt;/$link&gt;\&quot;&gt;\n            &lt;&lt;tocP-caption&gt;&gt;\n          &lt;/$list&gt;\n          &lt;$transclude tiddler='$:/config/wikilabs/tocP/newChild'&gt;&lt;/$transclude&gt;\n          &lt;$macrocall $name=\&quot;tocP-body\&quot; tag=&lt;&lt;item&gt;&gt; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt; field=&lt;&lt;field&gt;&gt;/&gt;\n        &lt;/li&gt;\n      &lt;/$set&gt;\n    &lt;/$vars&gt;\n  &lt;/$list&gt;\n&lt;/ol&gt;\n\\end\n\n\\define tocP(tag,sort:\&quot;\&quot;,itemClassFilter:\&quot; \&quot;,field:\&quot;parent\&quot;)\n&lt;&lt;tocP-body tag:\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort:\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter:\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; field:\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;&gt;&gt;\n\\end\n\n\\define tocP-linked-expandable-body(tag,sort:\&quot;\&quot;,itemClassFilter,exclude,path,field:\&quot;parent\&quot;)\n&lt;!-- helper function --&gt;\n&lt;$set name=\&quot;toc-state\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;$:/state/toc$path$-$(currentTiddler)$\&quot;\&quot;\&quot;&gt;&gt;&gt;\n  &lt;$set name=\&quot;toc-item-class\&quot; filter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; emptyValue=\&quot;toc-item\&quot; value=\&quot;toc-item-selected\&quot;&gt;\n    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;\n    &lt;$link&gt;\n      &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;open\&quot; class=\&quot;tc-btn-invisible\&quot;&gt;\n          {{$:/core/images/right-arrow}}\n        &lt;/$button&gt;\n      &lt;/$reveal&gt;\n      &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;close\&quot; class=\&quot;tc-btn-invisible\&quot;&gt;\n          {{$:/core/images/down-arrow}}\n        &lt;/$button&gt;\n      &lt;/$reveal&gt;\n      &lt;&lt;tocP-caption&gt;&gt;\n    &lt;/$link&gt;\n    &lt;$transclude tiddler='$:/config/wikilabs/tocP/newChild'&gt;&lt;/$transclude&gt;\n    &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n      &lt;$macrocall $name=\&quot;tocP-expandable\&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=\&quot;\&quot;\&quot;$exclude$\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$\&quot;\&quot;\&quot;  field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;/&gt;\n    &lt;/$reveal&gt;\n    &lt;/li&gt;\n  &lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\\define tocP-unlinked-expandable-body(tag,sort:\&quot;\&quot;,itemClassFilter:\&quot; \&quot;,exclude,path,field:\&quot;parent\&quot;)\n&lt;!-- helper function --&gt;\n&lt;$set name=\&quot;toc-state\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;$:/state/toc$path$-$(currentTiddler)$\&quot;\&quot;\&quot;&gt;&gt;&gt;\n  &lt;$set name=\&quot;toc-item-class\&quot; filter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; emptyValue=\&quot;toc-item\&quot; value=\&quot;toc-item-selected\&quot;&gt;\n    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;\n      &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;open\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip={{!!tooltip}}&gt;\n          {{$:/core/images/right-arrow}}\n          &lt;&lt;tocP-caption&gt;&gt;\n        &lt;/$button&gt;\n      &lt;/$reveal&gt;\n      &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;close\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip={{!!tooltip}}&gt;\n          {{$:/core/images/down-arrow}}\n          &lt;&lt;tocP-caption&gt;&gt;\n        &lt;/$button&gt;\n      &lt;/$reveal&gt; \n      &lt;$transclude tiddler='$:/config/wikilabs/tocP/newChild'&gt;&lt;/$transclude&gt;\n      &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$macrocall $name=\&quot;tocP-expandable\&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=\&quot;\&quot;\&quot;$exclude$\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$\&quot;\&quot;\&quot; field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;/&gt;\n      &lt;/$reveal&gt;\n    &lt;/li&gt;\n  &lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\\define tocP-expandable-empty-message()\n&lt;&lt;tocP-linked-expandable-body tag:\&quot;\&quot;\&quot;$(tag)$\&quot;\&quot;\&quot; sort:\&quot;\&quot;\&quot;$(sort)$\&quot;\&quot;\&quot; itemClassFilter:\&quot;\&quot;\&quot;$(itemClassFilter)$\&quot;\&quot;\&quot; exclude:\&quot;\&quot;\&quot;$(excluded)$\&quot;\&quot;\&quot; path:\&quot;\&quot;\&quot;$(path)$\&quot;\&quot;\&quot; field:\&quot;\&quot;\&quot;$(field)$\&quot;\&quot;\&quot;&gt;&gt;\n\\end\n\n\\define tocP-expandable(tag,sort:\&quot;\&quot;,itemClassFilter:\&quot; \&quot;,exclude,path,field:\&quot;parent\&quot;)\n&lt;$vars tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; excluded=\&quot;\&quot;\&quot;$exclude$ -[[$tag$]]\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$/$tag$\&quot;\&quot;\&quot;  field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;&gt;\n  &lt;ol class=\&quot;tc-toc toc-expandable\&quot;&gt;\n    &lt;$list filter=\&quot;\&quot;\&quot;[has[$field$]$field$[$tag$]!has[draft.of]$sort$] $exclude$\&quot;\&quot;\&quot;&gt;\n      &lt;$list filter=\&quot;[all[current]toc-link[no]]\&quot; emptyMessage=&lt;&lt;tocP-expandable-empty-message&gt;&gt; &gt;\n        &lt;$macrocall $name=\&quot;tocP-unlinked-expandable-body\&quot; tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt; field=&lt;&lt;field&gt;&gt; /&gt;\n      &lt;/$list&gt;\n    &lt;/$list&gt;\n  &lt;/ol&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define tocP-linked-selective-expandable-body(tag,sort:\&quot;\&quot;,itemClassFilter:\&quot; \&quot;,exclude,path,field:\&quot;parent\&quot;)\n&lt;$set name=\&quot;toc-state\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;$:/state/toc$path$-$(currentTiddler)$\&quot;\&quot;\&quot;&gt;&gt;&gt;\n  &lt;$set name=\&quot;toc-item-class\&quot; filter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; emptyValue=\&quot;toc-item\&quot; value=\&quot;toc-item-selected\&quot;&gt;\n    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;\n      &lt;$link&gt;\n          &lt;$list filter=\&quot;\&quot;\&quot;[has[$field$]$field$&lt;currentTiddler&gt;limit[1]]\&quot;\&quot;\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;&lt;$button class='tc-btn-invisible'&gt;{{$:/core/images/blank}}&lt;/$button&gt;\&quot;&gt;\n          &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n            &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;open\&quot; class=\&quot;tc-btn-invisible\&quot;&gt;\n              {{$:/core/images/right-arrow}}\n            &lt;/$button&gt;\n          &lt;/$reveal&gt;\n          &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n            &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;close\&quot; class=\&quot;tc-btn-invisible\&quot;&gt;\n              {{$:/core/images/down-arrow}}\n            &lt;/$button&gt;\n          &lt;/$reveal&gt;\n        &lt;/$list&gt;\n        &lt;&lt;tocP-caption&gt;&gt; \n      &lt;/$link&gt;\n      &lt;$transclude tiddler='$:/config/wikilabs/tocP/newChild'&gt;&lt;/$transclude&gt;\n      &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$macrocall $name=\&quot;tocP-selective-expandable\&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=\&quot;\&quot;\&quot;$exclude$\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$\&quot;\&quot;\&quot;  field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;/&gt;\n      &lt;/$reveal&gt;\n    &lt;/li&gt;\n  &lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\\define tocP-unlinked-selective-expandable-body(tag,sort:\&quot;\&quot;,itemClassFilter:\&quot; \&quot;,exclude,path,field:\&quot;parent\&quot;)\n&lt;$set name=\&quot;toc-state\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;$:/state/toc$path$-$(currentTiddler)$\&quot;\&quot;\&quot;&gt;&gt;&gt;\n  &lt;$set name=\&quot;toc-item-class\&quot; filter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; emptyValue=\&quot;toc-item\&quot; value=\&quot;toc-item-selected\&quot;&gt;\n    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;\n      &lt;$list filter=\&quot;\&quot;\&quot;[has[$field$]$field$&lt;currentTiddler&gt;limit[1]]\&quot;\&quot;\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;&lt;$button class='tc-btn-invisible'&gt;{{$:/core/images/blank}}&lt;/$button&gt; &lt;$view field='caption'&gt;&lt;$view field='title'/&gt;&lt;/$view&gt;\&quot;&gt;\n        &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n          &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;open\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip={{!!tooltip}}&gt;\n            {{$:/core/images/right-arrow}}\n            &lt;&lt;tocP-caption&gt;&gt;\n          &lt;/$button&gt;\n        &lt;/$reveal&gt;\n        &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n          &lt;$button set=&lt;&lt;toc-state&gt;&gt; setTo=\&quot;close\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip={{!!tooltip}}&gt;\n            {{$:/core/images/down-arrow}}\n            &lt;&lt;tocP-caption&gt;&gt;\n          &lt;/$button&gt; \n        &lt;/$reveal&gt; \n      &lt;/$list&gt;\n      &lt;$transclude tiddler='$:/config/wikilabs/tocP/newChild'&gt;&lt;/$transclude&gt;\n      &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;toc-state&gt;&gt; text=\&quot;open\&quot;&gt;\n        &lt;$macrocall $name=\&quot;\&quot;\&quot;tocP-selective-expandable\&quot;\&quot;\&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=\&quot;\&quot;\&quot;$exclude$\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$\&quot;\&quot;\&quot;  field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;/&gt;\n      &lt;/$reveal&gt;\n    &lt;/li&gt;\n  &lt;/$set&gt;\n&lt;/$set&gt;\n\\end\n\n\\define tocP-selective-expandable-empty-message()\n&lt;&lt;tocP-linked-selective-expandable-body tag:\&quot;\&quot;\&quot;$(tag)$\&quot;\&quot;\&quot; sort:\&quot;\&quot;\&quot;$(sort)$\&quot;\&quot;\&quot; itemClassFilter:\&quot;\&quot;\&quot;$(itemClassFilter)$\&quot;\&quot;\&quot; exclude:\&quot;\&quot;\&quot;$(excluded)$\&quot;\&quot;\&quot; path:\&quot;\&quot;\&quot;$(path)$\&quot;\&quot;\&quot; field:\&quot;\&quot;\&quot;$(field)$\&quot;\&quot;\&quot;&gt;&gt;\n\\end\n\n\\define tocP-selective-expandable(tag,sort:\&quot;\&quot;,itemClassFilter,exclude,path,field:\&quot;parent\&quot;)\n&lt;$vars tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; excluded=\&quot;\&quot;\&quot;$exclude$ -[[$tag$]]\&quot;\&quot;\&quot; path=\&quot;\&quot;\&quot;$path$/$tag$\&quot;\&quot;\&quot; field=\&quot;\&quot;\&quot;$field$\&quot;\&quot;\&quot;&gt;\n  &lt;ol class=\&quot;tc-toc toc-selective-expandable\&quot;&gt;\n    &lt;$list filter=\&quot;\&quot;\&quot;[has[$field$]$field$[$tag$]!has[draft.of]$sort$] $exclude$\&quot;\&quot;\&quot;&gt;\n      &lt;$list filter=\&quot;[all[current]toc-link[no]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=&lt;&lt;tocP-selective-expandable-empty-message&gt;&gt; &gt;\n        &lt;$macrocall $name=tocP-unlinked-selective-expandable-body tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=\&quot;\&quot;\&quot;$itemClassFilter$\&quot;\&quot;\&quot; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt; field=&lt;&lt;field&gt;&gt; &gt;\n      &lt;/$list&gt;\n    &lt;/$list&gt;\n  &lt;/ol&gt;\n&lt;/$vars&gt;\n\\end\n\n\\define tocP-tabbed-selected-item-filter(selectedTiddler)\n[all[current]field:title{$selectedTiddler$}]\n\\end\n\n\\define tocP-tabbed-external-nav(tag,sort:\&quot;\&quot;,selectedTiddler:\&quot;$:/temp/toc/selectedTiddler\&quot;,unselectedText,missingText,template:\&quot;\&quot;)\n&lt;$tiddler tiddler={{$selectedTiddler$}}&gt;\n  &lt;div class=\&quot;tc-tabbed-table-of-contents\&quot;&gt;\n    &lt;$linkcatcher to=\&quot;$selectedTiddler$\&quot;&gt;\n      &lt;div class=\&quot;tc-table-of-contents\&quot;&gt;\n        &lt;$macrocall $name=\&quot;tocP-selective-expandable\&quot; tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; itemClassFilter=&lt;&lt;toc-tabbed-selected-item-filter selectedTiddler:\&quot;\&quot;\&quot;$selectedTiddler$\&quot;\&quot;\&quot;&gt;&gt;/&gt;\n      &lt;/div&gt;\n    &lt;/$linkcatcher&gt;\n    &lt;div class=\&quot;tc-tabbed-table-of-contents-content\&quot;&gt;\n      &lt;$reveal state=\&quot;\&quot;\&quot;$selectedTiddler$\&quot;\&quot;\&quot; type=\&quot;nomatch\&quot; text=\&quot;\&quot;&gt;\n        &lt;$transclude mode=\&quot;block\&quot; tiddler=\&quot;$template$\&quot;&gt;\n          &lt;h1&gt;&lt;&lt;tocP-caption&gt;&gt;&lt;/h1&gt;\n          &lt;$transclude mode=\&quot;block\&quot;&gt;$missingText$&lt;/$transclude&gt;\n        &lt;/$transclude&gt;\n      &lt;/$reveal&gt;\n      &lt;$reveal state=\&quot;\&quot;\&quot;$selectedTiddler$\&quot;\&quot;\&quot; type=\&quot;match\&quot; text=\&quot;\&quot;&gt;\n        $unselectedText$\n      &lt;/$reveal&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n&lt;/$tiddler&gt;\n\\end\n\n\\define tocP-tabbed-internal-nav(tag,sort:\&quot;\&quot;,selectedTiddler:\&quot;$:/temp/toc/selectedTiddler\&quot;,unselectedText,missingText,template:\&quot;\&quot;)\n&lt;$linkcatcher to=\&quot;\&quot;\&quot;$selectedTiddler$\&quot;\&quot;\&quot;&gt;\n  &lt;$macrocall $name=\&quot;tocP-tabbed-external-nav\&quot; tag=\&quot;\&quot;\&quot;$tag$\&quot;\&quot;\&quot; sort=\&quot;\&quot;\&quot;$sort$\&quot;\&quot;\&quot; selectedTiddler=\&quot;\&quot;\&quot;$selectedTiddler$\&quot;\&quot;\&quot; unselectedText=\&quot;\&quot;\&quot;$unselectedText$\&quot;\&quot;\&quot; missingText=\&quot;\&quot;\&quot;$missingText$\&quot;\&quot;\&quot; template=\&quot;\&quot;\&quot;$template$\&quot;\&quot;\&quot;/&gt;\n&lt;/$linkcatcher&gt;\n\\end\n\n&quot;
-        },
-        &quot;$:/plugins/wikilabs/tocP/Stylesheet&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/Stylesheet&quot;,
-            &quot;created&quot;: &quot;20170201173552575&quot;,
-            &quot;modified&quot;: &quot;20170201214003877&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
-            &quot;type&quot;: &quot;text/css&quot;,
-            &quot;text&quot;: &quot;.tc-tabbed-table-of-contents .wltc-btn-new-child {\n  display: none;\n}\n\n.tocp .tc-tiddlylink {\n  color: green;\n}&quot;
-        },
-        &quot;$:/plugins/wikilabs/tocP/toggle-new-child-button&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/toggle-new-child-button&quot;,
-            &quot;created&quot;: &quot;20170127145849380&quot;,
-            &quot;modified&quot;: &quot;20170201213725315&quot;,
-            &quot;tags&quot;: &quot;&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;&lt;$button&gt;\n&lt;$action-setfield $tiddler=\&quot;$:/config/wikilabs/tocP/newChild\&quot; text=\&quot;&lt;span class='wltc-btn-new-child'&gt;{{||$:/wikilabs/ui/buttons/new-child-alone}}&lt;/span&gt;\&quot;/&gt;\nEnable \&quot;New Child\&quot; buttons\n&lt;/$button&gt;\n&lt;$button&gt;\n&lt;$action-deletetiddler $tiddler=\&quot;$:/config/wikilabs/tocP/newChild\&quot;/&gt;\nDisable \&quot;New Child\&quot; buttons\n&lt;/$button&gt;&quot;
-        },
-        &quot;$:/wikilabs/images/new-child-alone&quot;: {
-            &quot;title&quot;: &quot;$:/wikilabs/images/new-child-alone&quot;,
-            &quot;created&quot;: &quot;20170127140027445&quot;,
-            &quot;modified&quot;: &quot;20170201213725304&quot;,
-            &quot;tags&quot;: &quot;&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;&lt;svg class=\&quot;tc-image-edit-button tc-image-button\&quot; viewBox=\&quot;0 0 128 128\&quot; width=\&quot;22pt\&quot; height=\&quot;22pt\&quot;&gt;\n\t&lt;path d=\&quot;m6.9,28a6.7,7,0,1,0,0,14h41a6.7,7,0,1,0,0,-14h-41z\&quot;/&gt;\n\t&lt;path d=\&quot;m27,4.6a6.7,7,0,0,0,-6.6,7v47a6.7,7,0,1,0,13,0v-47a6.7,7,0,0,0,-6,-7.4z\&quot;/&gt;\n\t&lt;path d=\&quot;m78,39c-12,0-22,10-22,22s10,22,22,22,22-10,22-22-10-22-22-22zm0,12c5.9,0,11,4.7,11,11,0,5.9-4.7,11-11,11-5.9,0-11-4.7-11-11,0-5.9,4.7-11,11-11z\&quot;/&gt;\n\t&lt;path d=\&quot;m78,79c-6.7,0-13,1.5-18,4.4s-9.2,7.9-9.2,14v24a6.6,6.6,0,1,0,13,0v-24c0-0.36,0.3-1.5,2.7-2.9s6.5-2.6,11-2.6c4.6,0,8.7,1.2,11,2.6,2.4,1.4,2.7,2.5,2.7,2.9v24a6.6,6.6,0,1,0,13,0v-24c0-6.3-4.3-11-9.2-14-5-2.9-11-4.4-18-4.4z\&quot;/&gt;\n&lt;/svg&gt;\n\n&quot;
-        },
-        &quot;$:/wikilabs/images/new-child&quot;: {
-            &quot;title&quot;: &quot;$:/wikilabs/images/new-child&quot;,
-            &quot;created&quot;: &quot;20170127121332632&quot;,
-            &quot;modified&quot;: &quot;20170201213725300&quot;,
-            &quot;tags&quot;: &quot;$:/tags/Image&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;&lt;svg class=\&quot;tc-image-edit-button tc-image-button\&quot; viewBox=\&quot;0 0 128 128\&quot; width=\&quot;22pt\&quot; height=\&quot;22pt\&quot;&gt;\n\t&lt;path d=\&quot;m86,21a5.8,6,0,1,0,0,12h36a5.8,6,0,1,0,0,-12h-36z\&quot;/&gt;\n\t&lt;path d=\&quot;M100,0.33a5.8,6,0,0,0,-2,6.1v40a5.8,6,0,1,0,12,0v-40a5.8,6,0,0,0,-5.9,-6.1z\&quot;/&gt;\n\t&lt;path d=\&quot;m-0.0099,62c2,0.41,4.1,0.66,6.2,0.66,17,0,31-14,31-31s-14-31-31-31c-2.1,0-4.2,0.22-6.2,0.62v15c1.9-0.74,4-1.2,6.2-1.2,9.5,0,17,7.6,17,17,0,9.5-7.6,17-17,17-2.2,0-4.3-0.45-6.2-1.2v15z\&quot;/&gt;\n\t&lt;path d=\&quot;M-0.0099,76h6.2c6.3,0,12,1.7,15,4,3.4,2.2,4.4,4.3,4.4,5.8v35a7.6,8,0,0,0,15,0v-35c0-8.4-5.2-15-12-19-6.4-4.2-14-6.4-23-6.4-2.1,0-4.2,0.12-6.2,0.38v16z\&quot;/&gt;\n\t&lt;path d=\&quot;m73,39c-12,0-22,10-22,22s10,22,22,22,22-10,22-22-10-22-22-22zm0,12c5.9,0,11,4.7,11,11,0,5.9-4.7,11-11,11-5.9,0-11-4.7-11-11,0-5.9,4.7-11,11-11z\&quot;/&gt;\n\t&lt;path d=\&quot;m73,79c-6.7,0-13,1.5-18,4.4s-9.2,7.9-9.2,14v24a6.6,6.6,0,1,0,13,0v-24c0-0.36,0.3-1.5,2.7-2.9s6.5-2.6,11-2.6c4.6,0,8.7,1.2,11,2.6,2.4,1.4,2.7,2.5,2.7,2.9v24a6.6,6.6,0,1,0,13,0v-24c0-6.3-4.3-11-9.2-14-5-2.9-11-4.4-18-4.4z\&quot;/&gt;\n&lt;/svg&gt;\n&quot;
-        },
-        &quot;$:/wikilabs/ui/buttons/new-child-alone&quot;: {
-            &quot;title&quot;: &quot;$:/wikilabs/ui/buttons/new-child-alone&quot;,
-            &quot;caption&quot;: &quot;{{$:/wikilabs/images/new-child-alone}} NewChildHere&quot;,
-            &quot;created&quot;: &quot;20170127140235853&quot;,
-            &quot;description&quot;: &quot;NewChildHere &amp; add parent field&quot;,
-            &quot;modified&quot;: &quot;20170202134649899&quot;,
-            &quot;tags&quot;: &quot;$:/tags/ViewToolbar&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;\\define newHereValue()\n$(currentTiddler)$\n\\end\n\n\\define newChildButton(field:\&quot;parent\&quot;)\n&lt;$button tooltip=\&quot;\&quot;\&quot;New Child -&gt; \&quot;$field$: $(currentTiddler)$\&quot; \&quot;\&quot;\&quot; aria-label=\&quot;new child here\&quot; class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot; $field$=&lt;&lt;newHereValue&gt;&gt;/&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]\&quot;&gt;\n{{$:/wikilabs/images/new-child-alone}}\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]\&quot;&gt;\n&lt;span class=\&quot;tc-btn-text\&quot;&gt;&lt;$text text=\&quot;New Child Here\&quot;/&gt;&lt;/span&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n\\end\n&lt;$macrocall $name=newChildButton field=&lt;&lt;field&gt;&gt; /&gt;&quot;
-        },
-        &quot;$:/wikilabs/ui/buttons/new-child-here&quot;: {
-            &quot;title&quot;: &quot;$:/wikilabs/ui/buttons/new-child-here&quot;,
-            &quot;caption&quot;: &quot;{{$:/wikilabs/images/new-child}} NewChildHere&quot;,
-            &quot;created&quot;: &quot;20170127114258607&quot;,
-            &quot;description&quot;: &quot;NewChildHere &amp; add parent field&quot;,
-            &quot;modified&quot;: &quot;20170201213725310&quot;,
-            &quot;tags&quot;: &quot;$:/tags/ViewToolbar&quot;,
-            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
-            &quot;text&quot;: &quot;\\define newHereValue()\n$(currentTiddler)$\n\\end\n\\define newChildButton()\n&lt;$button tooltip=\&quot;Create a new Child tiddler &amp; add 'parent' field\&quot; aria-label=\&quot;create a new child\&quot; class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot; parent=&lt;&lt;newHereValue&gt;&gt;/&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]\&quot;&gt;\n{{$:/wikilabs/images/new-child}}\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]\&quot;&gt;\n&lt;span class=\&quot;tc-btn-text\&quot;&gt;&lt;$text text=\&quot;New Child Here\&quot;/&gt;&lt;/span&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n\\end\n&lt;&lt;newChildButton&gt;&gt;&quot;
-        },
-        &quot;$:/plugins/wikilabs/tocP/history&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/history&quot;,
-            &quot;text&quot;: &quot;V 0.1.1 - 2020.01.19\n\n* Update license link/text\n\nV 0.1.0 - 2017\n\n* initial release\n** name: tocP\n&quot;
-        },
-        &quot;$:/plugins/wikilabs/tocP/license&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/license&quot;,
-            &quot;text&quot;: &quot;[[Parent Based TOC Plugin|https://wikilabs.github.io/#edition-tocP]] (c) Mario Pietsch - 2017-2020\n\nhttps://opensource.org/licenses/BSD-3-Clause\n&quot;
-        },
-        &quot;$:/plugins/wikilabs/tocP/readme&quot;: {
-            &quot;title&quot;: &quot;$:/plugins/wikilabs/tocP/readme&quot;,
-            &quot;text&quot;: &quot;This plugin contains several \&quot;Table of Content\&quot; macros, that have the same parameters as the core toc macro. The main difference is, that it doesn't use tags to create the TOC scructure. It uses a \&quot;parent\&quot; field in so called \&quot;child - tiddlers\&quot;.\n\n''Detailed Documentation''\n\nMore details about this plugin can be found at: https://wikilabs.github.io/editions/tocP\nMore plugins, themes and editions can be found at: https://wikilabs.github.io/\n\n''Important''\n\nThese macros are intended to be \&quot;drop in replacement\&quot; of the core macros. ... They have the exact same parameter names. Instead of \&quot;parent\&quot; it still uses \&quot;tag\&quot; as the first parameter. \n\n''Usage''\n\n```\n&lt;div class=\&quot;tocp tc-table-of-contents\&quot;&gt;\n&lt;&lt;tocP root&gt;&gt;\n&lt;/div&gt;\n\n&lt;div class=\&quot;tocp tc-table-of-contents\&quot;&gt;\n&lt;&lt;tocP-expandable root&gt;&gt;\n&lt;/div&gt;\n\n&lt;div class=\&quot;tocp tc-table-of-contents\&quot;&gt;\n&lt;&lt;tocP-selective-expandable root field:\&quot;any-name\&quot;&gt;&gt;\n&lt;/div&gt;\n\n&lt;div class=\&quot;tc-table-of-contents\&quot;&gt;\n&lt;&lt;tocP-tabbed-internal-nav root&gt;&gt;\n&lt;/div&gt;\n\n&lt;div class=\&quot;tc-table-of-contents\&quot;&gt;\n&lt;&lt;tocP-tabbed-external-nav root&gt;&gt;\n&lt;/div&gt;\n\n```\n\n''Simple Configuration''\n\n* Enable / Disable the inline \&quot;New Child\&quot; button\n** {{$:/plugins/wikilabs/tocP/toggle-new-child-button}}\n\n''Known Problems''\n\n* The \&quot;tabbed\&quot; versions don't show the \&quot;New Child\&quot; buttons\n* Color customisation isn't possible atm&quot;
-        }
-    }
-}</pre>
-</div>
 <div bag="default" created="20200524075313258" modified="20200525145358020" revision="0" title="$:/SiteSubtitle" type="text/vnd.tiddlywiki">
 <pre>draggy droppy keyboard friendly</pre>
 </div>
 <div bag="default" created="20200524075311048" modified="20200602185545744" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Streams</pre>
 </div>
-<div created="20200822060436840" modified="20200822062047829" title="$:/state/tab-1528275152">
-<pre>$:/plugins/sq/streams-search/StreamSearchResults</pre>
+<div created="20200822060436840" modified="20200822063557937" title="$:/state/tab-1528275152">
+<pre>$:/plugins/sq/streams-search/StreamSearchResults3</pre>
 </div>
 <div created="20200820181222691" modified="20200820181222691" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -11656,10 +11524,13 @@ wikilist-button-foreground: #000</pre>
 <div created="20200822054634864" modified="20200822054635328" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20200822054633823" modified="20200822055509024" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20200822054633823" modified="20200822110221607" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200822061534167" modified="20200822062016111" title="$:/state/toc/Roadmap-Renaming child bullets--632660187">
+<pre>close</pre>
+</div>
+<div created="20200822063549283" modified="20200822063550949" title="$:/state/toc/Roadmap-Renaming child bullets-933962725">
 <pre>close</pre>
 </div>
 <div created="20200822061535521" modified="20200822061815638" title="$:/state/toc/Roadmap-Roadmap/20200603061628734--632660187">
@@ -11695,7 +11566,7 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="$:/plugins/sq/streams-search/StreamSearchResults2 $:/plugins/sq/streams-search/StreamSearchResults3 $:/plugins/sq/streams-search $:/plugins/sq/streams-search/stream-root-filter.js Streams Demos [[Keyboard Shortcuts]]" title="$:/StoryList">
+<div created="20200822110220280" list="Streams Demos [[Keyboard Shortcuts]]" modified="20200822110220280" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" modified="20200706165333919" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
