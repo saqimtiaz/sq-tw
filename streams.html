@@ -235,6 +235,8 @@ Error message and password prompt
 
 <li>$:/plugins/sq/streams-search</li>
 
+<li>$:/plugins/sq/streams/selection-vars-tweak.js</li>
+
 <li>$:/plugins/tiddlywiki/highlight</li>
 
 <li>$:/SiteSubtitle</li>
@@ -11491,6 +11493,92 @@ wikilist-button-foreground: #000</pre>
     }
 }</pre>
 </div>
+<div created="20200906215809292" modified="20200906215811186" module-type="startup" title="$:/plugins/sq/streams/selection-vars-tweak.js" type="application/javascript">
+<pre>/*\
+title: $:/plugins/sq/streams/selection-vars-tweak.js
+type: application/javascript
+module-type: startup
+\*/
+var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
+var getCaretCoordinates = require(&quot;$:/plugins/snowgoon88/edit-comptext/cursor-position.js&quot;);
+
+Widget.prototype.selection_original_invokeActionString = Widget.prototype.invokeActionString;
+
+Widget.prototype.invokeActionString = function(actions,triggeringWidget,event,variables) {
+		
+	if(!variables) {
+		variables = {};
+	}
+
+	var editorActive = false;
+	var selection,
+		selectionStart,
+		selectionEnd,
+		caretX,
+		caretY;
+	
+	if(window.CodeMirror &amp;&amp; document.activeElement.closest(&quot;.CodeMirror&quot;)) {
+		var cm = document.activeElement.closest(&quot;.CodeMirror&quot;).CodeMirror;
+		var cursor = cm.getCursor(&quot;start&quot;);
+		var startRange = cm.getRange({&quot;line&quot;:0,&quot;ch&quot;:0},{&quot;line&quot;:cursor.line,&quot;ch&quot;:cursor.ch});
+		selectionStart = startRange.length;
+		selection = cm.getSelection();
+		selectionEnd = selectionStart + selection.length();
+		// https://codemirror.net/doc/manual.html#api_sizing
+		var coords = cm.cursorCoords(true,&quot;local&quot;);
+		caretX = coords[&quot;left&quot;];
+		caretY = coords[&quot;bottom&quot;];
+		editorActive = true;
+	}
+	
+	if(!editorActive) {	
+		var activeElement = document.activeElement;
+		var selectionObject;
+		if(activeElement &amp;&amp; activeElement.tagName === &quot;IFRAME&quot;) {
+			var idoc = activeElement.contentDocument || activeElement.contentWindow.document;
+			activeElement = idoc.activeElement;
+			selectionObject = idoc.getSelection();
+		} else {
+			selectionObject = window.getSelection();
+		}
+		
+		if(activeElement &amp;&amp; selectionObject &amp;&amp; (activeElement.tagName === &quot;INPUT&quot; || activeElement.tagName === &quot;TEXTAREA&quot;)) {
+			
+			var coords = getCaretCoordinates(activeElement, activeElement.selectionEnd);
+			var styleSize = getComputedStyle(areaNode).getPropertyValue('font-size');
+			var fontSize = parseFloat(styleSize);
+			var offsetTop = activeElement.offsetTop;
+			var offsetLeft = activeElement.offsetLeft;
+			caretX = (offsetLeft + activeElement.offsetLeft - activeElement.scrollLeft + coords.left);
+			caretY = offsetTop + activeElement.offsetTop - activeElement.scrollTop+ coords.top + fontSize;			
+			
+			selectionStart = activeElement.selectionStart.toString();
+			selectionEnd = activeElement.selectionEnd.toString();
+			selection = selectionObject.toString();
+			editorActive = true;
+		}	
+		
+	}
+	
+	
+	if(editorActive)) {
+		variables[&quot;selectionStart&quot;] = selectionStart;
+		variables[&quot;selectionEnd&quot;] = selectionEnd;
+		variables[&quot;selection&quot;] = selection;
+		variables[&quot;caretX&quot;] = caretX;
+		variables[&quot;caretY&quot;] = caretY;
+	}
+	
+	
+	this.selection_original_invokeActionString(actions,triggeringWidget,event,variables);
+}
+
+$tw.hooks.addHook(&quot;th-page-refreshed&quot;,function handleEvent() {
+	$tw.wiki.deleteTiddler(&quot;$:/state/sq/streams/caret-position&quot;);
+});
+
+</pre>
+</div>
 <div author="Joao Bolila" bag="default" dependents="" description="Highlight.js syntax highlighting" list="readme usage howto license" name="Highlight" plugin-type="plugin" revision="0" title="$:/plugins/tiddlywiki/highlight" type="application/json" version="5.1.23-prerelease">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -11579,8 +11667,8 @@ wikilist-button-foreground: #000</pre>
 <div created="20200826174318806" modified="20200826174441092" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20200826174317812" modified="20200826174508236" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200826174317812" modified="20200906215746620" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div bag="default" created="20200826174233092" modified="20200826174233916" revision="2" title="$:/state/toc/Roadmap-Renaming child bullets-933962725">
 <pre>close</pre>
@@ -11604,12 +11692,12 @@ wikilist-button-foreground: #000</pre>
 <pre>no</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20200828184900827" list="Streams Demos [[Keyboard Shortcuts]]" modified="20200828184900827" title="$:/StoryList">
+<div created="20200906215748486" list="$:/plugins/sq/streams $:/plugins/sq/streams/selection-vars-tweak.js Streams Demos [[Keyboard Shortcuts]]" modified="20200906215802816" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" modified="20200706165333919" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="Alt + f" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -11634,7 +11722,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200828184824756&quot;
+            &quot;text&quot;: &quot;20200906215739931&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -11670,11 +11758,11 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1920&quot;
+            &quot;text&quot;: &quot;2560&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1080&quot;
+            &quot;text&quot;: &quot;1440&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
