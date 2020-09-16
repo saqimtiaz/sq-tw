@@ -207,6 +207,16 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
+<li>$:/GitHub/Filename</li>
+
+<li>$:/GitHub/Path</li>
+
+<li>$:/GitHub/Repo</li>
+
+<li>$:/GitHub/Username</li>
+
+<li>$:/Import</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/palette</li>
@@ -232,6 +242,10 @@ Error message and password prompt
 <li>$:/SiteTitle</li>
 
 <li>$:/state/plugin-info--13644322-$:/plugins/sq/streams</li>
+
+<li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab-2065006209</li>
 
 <li>$:/state/tab/moresidebar-1850697562</li>
 
@@ -10129,6 +10143,23 @@ exports[&quot;action-createtiddler&quot;] = CreateTiddlerWidget;
 <div bag="default" created="20200524075324139" modified="20200524075325162" revision="0" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki">
 <pre>[list[$:/StoryList]]</pre>
 </div>
+<div created="20200916130133095" modified="20200916130135105" title="$:/GitHub/Filename">
+<pre>streams.html</pre>
+</div>
+<div created="20200916130132381" modified="20200916130132381" title="$:/GitHub/Path">
+<pre>/</pre>
+</div>
+<div created="20200916130125071" modified="20200916130128935" title="$:/GitHub/Repo">
+<pre>saqimtiaz/sq-tw</pre>
+</div>
+<div created="20200916130120802" modified="20200916130122659" title="$:/GitHub/Username">
+<pre>saqimtiaz</pre>
+</div>
+<div status="complete" title="$:/Import">
+<pre>The following tiddlers were imported:
+
+# [[$:/plugins/sq/streams]]</pre>
+</div>
 <div bag="default" revision="0" title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -11559,7 +11590,7 @@ wikilist-button-foreground: #000</pre>
             &quot;title&quot;: &quot;$:/plugins/sq/streams/nodes-list-template&quot;,
             &quot;created&quot;: &quot;20171022203553093&quot;,
             &quot;modified&quot;: &quot;20171122050808722&quot;,
-            &quot;text&quot;: &quot;\\import [[$:/plugins/sq/streams/action-macros]]\r\n\\whitespace trim\n\n\\define stream-row-template()\r\n\\whitespace trim\r\n&lt;$set name=\&quot;row-children-visibility-state\&quot; value=&lt;&lt;qualify \&quot;$:/state/sq/streams/visibility/$(currentTiddler)$\&quot;&gt;&gt; &gt;\r\n&lt;$set name=\&quot;enable-dnd-row\&quot; filter=\&quot;[&lt;drag-title-nextsibling-state&gt;get[text]match&lt;currentTiddler&gt;then[no]] ~[&lt;enable-dnd&gt;]\&quot;&gt;\r\n&lt;$droppable actions=&lt;&lt;stream-drop-actions&gt;&gt; tag=\&quot;div\&quot; enable=&lt;&lt;enable-dnd-row&gt;&gt; class={{{ stream-droppable [&lt;enable-dnd&gt;match[no]then[stream-node-disabled]] [&lt;contextmenu-state&gt;get[current]match&lt;currentTiddler&gt;then[stream-row-selected]else[]] +[join[ ]]}}} &gt;\r\n\t&lt;div class=\&quot;tc-droppable-placeholder\&quot;/&gt;\r\n\t&lt;div class={{{ stream-row [&lt;row-children-visibility-state&gt;get[text]match[hide]then[stream-row-children-collapsed]] [list[!!stream-list]is[tiddler]then[]else[stream-row-nochildren]] +[join[ ]]}}}&gt;\r\n\t\t&lt;$contextmenu popup=&lt;&lt;contextmenu-state&gt;&gt; class=\&quot;stream-node-control\&quot; tag=\&quot;div\&quot; set={{{[&lt;contextmenu-state&gt;addsuffix[!!current]]}}} setTo=&lt;&lt;currentTiddler&gt;&gt; selectedClass=\&quot;sq-contextmenu-active\&quot; &gt;\r\n\t\t\t&lt;div class=\&quot;stream-node-collapser\&quot;&gt;\r\n\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\r\n\t\t\t\t\t&lt;$action-setfield $tiddler=&lt;&lt;row-children-visibility-state&gt;&gt; text={{{ [&lt;row-children-visibility-state&gt;get[text]match[hide]then[show]else[hide]] }}} /&gt;\r\n\t\t\t\t\t{{$:/plugins/sq/streams/icons/node-expand-arrow}}\r\n\t\t\t\t&lt;/$button&gt;\r\n\t\t\t&lt;/div&gt;\r\n\t\t\t&lt;div class=\&quot;stream-node-handle-wrapper\&quot;&gt;\r\n\t\t\t\t&lt;$button tag=\&quot;div\&quot; to=&lt;&lt;currentTiddler&gt;&gt; class=\&quot;tc-btn-invisible\&quot; &gt;\r\n\t\t\t\t\t&lt;$draggable tag=\&quot;div\&quot; tiddler=&lt;&lt;currentTiddler&gt;&gt; startactions=&lt;&lt;node-drag-start-actions&gt;&gt; endactions=&lt;&lt;node-drag-end-actions&gt;&gt; class=\&quot;stream-node-handle\&quot;&gt;&lt;div class=\&quot;stream-node-handle-inner\&quot;/&gt;&lt;/$draggable&gt;\r\n\t\t\t\t&lt;/$button&gt;\r\n\t\t\t&lt;/div&gt;\t\r\n\t\t&lt;/$contextmenu&gt;\r\n\t\t&lt;$btn-dblclick tag=\&quot;div\&quot; class=\&quot;stream-node-block\&quot; &gt;\r\n\t\t\t&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; stateTitle=&lt;&lt;row-edit-state&gt;&gt; default=\&quot;view\&quot; text=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t\t\t\r\n\t\t\t\t\t&lt;$action-setfield $tiddler=&lt;&lt;row-edit-state&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt; /&gt;\r\n\t\t\t\t\r\n\t\t\t\t&lt;$transclude mode=\&quot;block\&quot;/&gt;\r\n\t\t\t&lt;/$reveal&gt;\r\n\t\t\t&lt;$reveal tag=\&quot;div\&quot; type=\&quot;match\&quot; stateTitle=&lt;&lt;row-edit-state&gt;&gt; default=\&quot;view\&quot; text=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t\t\t&lt;$keyboard-plus shortcutTag=\&quot;$:/tags/streams/keyboard-shortcuts\&quot;&gt;\r\n\t\t\t\t\t{{||$:/plugins/sq/streams/framed-editor-template}}\r\n\t\t\t\t&lt;/$keyboard-plus&gt;\t\r\n\t\t\t&lt;/$reveal&gt;\r\n\t\t&lt;/$btn-dblclick&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$droppable&gt;\r\n&lt;/$set&gt;\r\n&lt;$set name=\&quot;enable-dnd\&quot; filter=\&quot;[&lt;enable-dnd&gt;match[no]] ~[&lt;drag-title-state&gt;get[text]match&lt;currentTiddler&gt;then[no]]\&quot; select=\&quot;0\&quot;&gt;\r\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; stateTitle=&lt;&lt;row-children-visibility-state&gt;&gt; text=\&quot;hide\&quot;&gt;\r\n\t&lt;div class={{{ stream-row-children [&lt;currentTiddler&gt;!has[stream-list]then[stream-row-children-empty]] [&lt;enable-dnd&gt;match[no]then[stream-node-disabled]] +[join[ ]]}}} &gt;\r\n\t\t&lt;$macrocall $name=\&quot;stream\&quot;/&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$reveal&gt;\r\n&lt;/$set&gt;\r\n&lt;/$set&gt;\r\n\\end\n\n\r\n\\define stream()\r\n\\whitespace trim\r\n&lt;div class=\&quot;stream-list\&quot;&gt;\r\n\t&lt;$vars dropTargetTiddler=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t&lt;$list filter=\&quot;[list[!!stream-list]!is[missing]]\&quot;&gt;\r\n\t\t&lt;$set name=\&quot;enable-dnd\&quot; filter=\&quot;[&lt;enable-dnd&gt;match[no]] ~[&lt;drag-title-state&gt;get[text]match&lt;currentTiddler&gt;then[no]]\&quot; select=\&quot;0\&quot;&gt;\r\n\t\t\t&lt;&lt;stream-row-template&gt;&gt;\r\n\t\t&lt;/$set&gt;\r\n\t\t&lt;/$list&gt;\r\n\t\t&lt;$tiddler tiddler=\&quot;\&quot;&gt;\r\n\t\t\t&lt;!-- to drop after the last child of any list level--&gt;\r\n\t\t\t&lt;$droppable actions=&lt;&lt;stream-drop-actions&gt;&gt; tag=\&quot;div\&quot; enable=&lt;&lt;enable-dnd&gt;&gt; class=\&quot;stream-droppable\&quot;&gt;\r\n\t\t\t\t&lt;div class=\&quot;tc-droppable-placeholder\&quot;&gt;\r\n\t\t\t\t&amp;nbsp;\r\n\t\t\t\t&lt;/div&gt;&lt;!-- idea only want below div with height when its a child with no more children--&gt;\r\n\t\t\t\t&lt;$list filter=\&quot;[&lt;currentTiddler&gt;!has[stream-list]]\&quot; variable=\&quot;_NULL\&quot;&gt;&lt;div class=\&quot;stream-droppable-spacer\&quot;/&gt;&lt;/$list&gt;\r\n\t\t\t&lt;/$droppable&gt;\r\n\t\t&lt;/$tiddler&gt;\r\n\t\t&lt;$list filter=\&quot;[all[current]match&lt;stream-root-title&gt;]\&quot; variable=\&quot;_NULL\&quot;&gt;\r\n\t\t\t&lt;!-- if we are the root, add a button to add more nodes--&gt;\r\n\t\t\t&lt;div class=\&quot;stream-row\&quot;&gt;\r\n\t\t\t\t&lt;div class=\&quot;stream-node-control stream-node-control-addnew\&quot;&gt;\r\n\t\t\t\t\t&lt;div class=\&quot;stream-node-collapser\&quot;&gt;\r\n\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t&lt;div class=\&quot;stream-node-handle-wrapper\&quot;&gt;\r\n\t\t\t\t\t\t&lt;$button tag=\&quot;div\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;add node\&quot; actions=&lt;&lt;add-node-actions&gt;&gt; &gt;\r\n\t\t\t\t\t\t\t{{$:/plugins/sq/streams/icons/new-node-btn}}\r\n\t\t\t\t\t\t&lt;/$button&gt;\r\n\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t&lt;div class=\&quot;stream-node-block\&quot;&gt;\r\n\t\t\t\t\t&lt;!--consider moving last child dropzone in here, though thats for children too--&gt;\r\n\t\t\t\t&lt;/div&gt;\r\n\t\t\t&lt;/div&gt;\t\t\t\t\r\n\t\t\t&lt;$set name=\&quot;currentTiddler\&quot; filter={{{[&lt;contextmenu-state&gt;get[current]]}}}&gt;\r\n\t\t\t\t{{||$:/plugins/sq/streams/contextmenu/contextmenu-template}}\r\n\t\t\t&lt;/$set&gt;\r\n\t\t&lt;/$list&gt;\r\n\t&lt;/$vars&gt;\r\n&lt;/div&gt;\r\n\\end\n\n&lt;$vars stream-root-title=&lt;&lt;currentTiddler&gt;&gt;\r\n\tcontextmenu-state=&lt;&lt;qualify \&quot;$:/state/sq-context-popup/\&quot;&gt;&gt;\r\n\trow-edit-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-edit-tiddler\&quot;&gt;&gt;\r\n\tdrag-title-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-drag-title\&quot;&gt;&gt;\r\n\tdrag-title-nextsibling-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-drag-nextsibling\&quot;&gt;&gt; \r\n\t&gt;\r\n\t&lt;div class={{{ stream-root [{$:/state/sq/nodes/global-drag-state}match[yes]then[stream-dragactive]] [&lt;currentTiddler&gt;!has[stream-list]then[stream-newlist]] +[join[ ]] }}}&gt;\r\n\t\t&lt;$macrocall $name=\&quot;stream\&quot;/&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$vars&gt;\n\n\r\n&quot;
+            &quot;text&quot;: &quot;\\import [[$:/plugins/sq/streams/action-macros]] [all[shadows+tiddlers]tag[$:/tags/streams/actionmacros]]  [all[shadows+tiddlers]tag[$:/tags/streams/user-actionmacros]]\r\n\\whitespace trim\n\n\\define stream-row-template()\r\n\\whitespace trim\r\n&lt;$set name=\&quot;row-children-visibility-state\&quot; value=&lt;&lt;qualify \&quot;$:/state/sq/streams/visibility/$(currentTiddler)$\&quot;&gt;&gt; &gt;\r\n&lt;$set name=\&quot;enable-dnd-row\&quot; filter=\&quot;[&lt;drag-title-nextsibling-state&gt;get[text]match&lt;currentTiddler&gt;then[no]] ~[&lt;enable-dnd&gt;]\&quot;&gt;\r\n&lt;$droppable actions=&lt;&lt;stream-drop-actions&gt;&gt; tag=\&quot;div\&quot; enable=&lt;&lt;enable-dnd-row&gt;&gt; class={{{ stream-droppable [&lt;enable-dnd&gt;match[no]then[stream-node-disabled]] [&lt;contextmenu-state&gt;get[current]match&lt;currentTiddler&gt;then[stream-row-selected]else[]] +[join[ ]]}}} &gt;\r\n\t&lt;div class=\&quot;tc-droppable-placeholder\&quot;/&gt;\r\n\t&lt;div class={{{ stream-row [&lt;row-children-visibility-state&gt;get[text]match[hide]then[stream-row-children-collapsed]] [list[!!stream-list]is[tiddler]then[]else[stream-row-nochildren]] +[join[ ]]}}}&gt;\r\n\t\t&lt;$contextmenu popup=&lt;&lt;contextmenu-state&gt;&gt; class=\&quot;stream-node-control\&quot; tag=\&quot;div\&quot; set={{{[&lt;contextmenu-state&gt;addsuffix[!!current]]}}} setTo=&lt;&lt;currentTiddler&gt;&gt; selectedClass=\&quot;sq-contextmenu-active\&quot; &gt;\r\n\t\t\t&lt;div class=\&quot;stream-node-collapser\&quot;&gt;\r\n\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\r\n\t\t\t\t\t&lt;$action-setfield $tiddler=&lt;&lt;row-children-visibility-state&gt;&gt; text={{{ [&lt;row-children-visibility-state&gt;get[text]match[hide]then[show]else[hide]] }}} /&gt;\r\n\t\t\t\t\t{{$:/plugins/sq/streams/icons/node-expand-arrow}}\r\n\t\t\t\t&lt;/$button&gt;\r\n\t\t\t&lt;/div&gt;\r\n\t\t\t&lt;div class=\&quot;stream-node-handle-wrapper\&quot;&gt;\r\n\t\t\t\t&lt;$button tag=\&quot;div\&quot; to=&lt;&lt;currentTiddler&gt;&gt; class=\&quot;tc-btn-invisible\&quot; &gt;\r\n\t\t\t\t\t&lt;$draggable tag=\&quot;div\&quot; tiddler=&lt;&lt;currentTiddler&gt;&gt; startactions=&lt;&lt;node-drag-start-actions&gt;&gt; endactions=&lt;&lt;node-drag-end-actions&gt;&gt; class=\&quot;stream-node-handle\&quot;&gt;&lt;div class=\&quot;stream-node-handle-inner\&quot;/&gt;&lt;/$draggable&gt;\r\n\t\t\t\t&lt;/$button&gt;\r\n\t\t\t&lt;/div&gt;\t\r\n\t\t&lt;/$contextmenu&gt;\r\n\t\t&lt;$btn-dblclick tag=\&quot;div\&quot; class=\&quot;stream-node-block\&quot; &gt;\r\n\t\t\t&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; stateTitle=&lt;&lt;row-edit-state&gt;&gt; default=\&quot;view\&quot; text=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t\t\t\r\n\t\t\t\t\t&lt;$action-setfield $tiddler=&lt;&lt;row-edit-state&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt; /&gt;\r\n\t\t\t\t\r\n\t\t\t\t&lt;$transclude mode=\&quot;block\&quot;/&gt;\r\n\t\t\t&lt;/$reveal&gt;\r\n\t\t\t&lt;$reveal tag=\&quot;div\&quot; type=\&quot;match\&quot; stateTitle=&lt;&lt;row-edit-state&gt;&gt; default=\&quot;view\&quot; text=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t\t\t&lt;$keyboard-plus shortcutTag=\&quot;$:/tags/streams/keyboard-shortcuts\&quot;&gt;\r\n\t\t\t\t\t{{||$:/plugins/sq/streams/framed-editor-template}}\r\n\t\t\t\t&lt;/$keyboard-plus&gt;\t\r\n\t\t\t&lt;/$reveal&gt;\r\n\t\t&lt;/$btn-dblclick&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$droppable&gt;\r\n&lt;/$set&gt;\r\n&lt;$set name=\&quot;enable-dnd\&quot; filter=\&quot;[&lt;enable-dnd&gt;match[no]] ~[&lt;drag-title-state&gt;get[text]match&lt;currentTiddler&gt;then[no]]\&quot; select=\&quot;0\&quot;&gt;\r\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;nomatch\&quot; stateTitle=&lt;&lt;row-children-visibility-state&gt;&gt; text=\&quot;hide\&quot;&gt;\r\n\t&lt;div class={{{ stream-row-children [&lt;currentTiddler&gt;!has[stream-list]then[stream-row-children-empty]] [&lt;enable-dnd&gt;match[no]then[stream-node-disabled]] +[join[ ]]}}} &gt;\r\n\t\t&lt;$macrocall $name=\&quot;stream\&quot;/&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$reveal&gt;\r\n&lt;/$set&gt;\r\n&lt;/$set&gt;\r\n\\end\n\n\r\n\\define stream()\r\n\\whitespace trim\r\n&lt;div class=\&quot;stream-list\&quot;&gt;\r\n\t&lt;$vars dropTargetTiddler=&lt;&lt;currentTiddler&gt;&gt; &gt;\r\n\t\t&lt;$list filter=\&quot;[list[!!stream-list]!is[missing]]\&quot;&gt;\r\n\t\t&lt;$set name=\&quot;enable-dnd\&quot; filter=\&quot;[&lt;enable-dnd&gt;match[no]] ~[&lt;drag-title-state&gt;get[text]match&lt;currentTiddler&gt;then[no]]\&quot; select=\&quot;0\&quot;&gt;\r\n\t\t\t&lt;&lt;stream-row-template&gt;&gt;\r\n\t\t&lt;/$set&gt;\r\n\t\t&lt;/$list&gt;\r\n\t\t&lt;$tiddler tiddler=\&quot;\&quot;&gt;\r\n\t\t\t&lt;!-- to drop after the last child of any list level--&gt;\r\n\t\t\t&lt;$droppable actions=&lt;&lt;stream-drop-actions&gt;&gt; tag=\&quot;div\&quot; enable=&lt;&lt;enable-dnd&gt;&gt; class=\&quot;stream-droppable\&quot;&gt;\r\n\t\t\t\t&lt;div class=\&quot;tc-droppable-placeholder\&quot;&gt;\r\n\t\t\t\t&amp;nbsp;\r\n\t\t\t\t&lt;/div&gt;&lt;!-- idea only want below div with height when its a child with no more children--&gt;\r\n\t\t\t\t&lt;$list filter=\&quot;[&lt;currentTiddler&gt;!has[stream-list]]\&quot; variable=\&quot;_NULL\&quot;&gt;&lt;div class=\&quot;stream-droppable-spacer\&quot;/&gt;&lt;/$list&gt;\r\n\t\t\t&lt;/$droppable&gt;\r\n\t\t&lt;/$tiddler&gt;\r\n\t\t&lt;$list filter=\&quot;[all[current]match&lt;stream-root-title&gt;]\&quot; variable=\&quot;_NULL\&quot;&gt;\r\n\t\t\t&lt;!-- if we are the root, add a button to add more nodes--&gt;\r\n\t\t\t&lt;div class=\&quot;stream-row\&quot;&gt;\r\n\t\t\t\t&lt;div class=\&quot;stream-node-control stream-node-control-addnew\&quot;&gt;\r\n\t\t\t\t\t&lt;div class=\&quot;stream-node-collapser\&quot;&gt;\r\n\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t&lt;div class=\&quot;stream-node-handle-wrapper\&quot;&gt;\r\n\t\t\t\t\t\t&lt;$button tag=\&quot;div\&quot; class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;add node\&quot; actions=&lt;&lt;add-node-actions&gt;&gt; &gt;\r\n\t\t\t\t\t\t\t{{$:/plugins/sq/streams/icons/new-node-btn}}\r\n\t\t\t\t\t\t&lt;/$button&gt;\r\n\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t&lt;div class=\&quot;stream-node-block\&quot;&gt;\r\n\t\t\t\t\t&lt;!--consider moving last child dropzone in here, though thats for children too--&gt;\r\n\t\t\t\t&lt;/div&gt;\r\n\t\t\t&lt;/div&gt;\t\t\t\t\r\n\t\t\t&lt;$set name=\&quot;currentTiddler\&quot; filter={{{[&lt;contextmenu-state&gt;get[current]]}}}&gt;\r\n\t\t\t\t{{||$:/plugins/sq/streams/contextmenu/contextmenu-template}}\r\n\t\t\t&lt;/$set&gt;\r\n\t\t&lt;/$list&gt;\r\n\t&lt;/$vars&gt;\r\n&lt;/div&gt;\r\n\\end\n\n&lt;$vars stream-root-title=&lt;&lt;currentTiddler&gt;&gt;\r\n\tcontextmenu-state=&lt;&lt;qualify \&quot;$:/state/sq-context-popup/\&quot;&gt;&gt;\r\n\trow-edit-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-edit-tiddler\&quot;&gt;&gt;\r\n\tdrag-title-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-drag-title\&quot;&gt;&gt;\r\n\tdrag-title-nextsibling-state=&lt;&lt;qualify \&quot;$:/state/sq/streams/current-drag-nextsibling\&quot;&gt;&gt; \r\n\t&gt;\r\n\t&lt;div class={{{ stream-root [{$:/state/sq/nodes/global-drag-state}match[yes]then[stream-dragactive]] [&lt;currentTiddler&gt;!has[stream-list]then[stream-newlist]] +[join[ ]] }}}&gt;\r\n\t\t&lt;$macrocall $name=\&quot;stream\&quot;/&gt;\r\n\t&lt;/div&gt;\r\n&lt;/$vars&gt;\n\n\r\n&quot;
         },
         &quot;$:/config/flibbles/relink/fields/parent&quot;: {
             &quot;title&quot;: &quot;$:/config/flibbles/relink/fields/parent&quot;,
@@ -11763,11 +11794,17 @@ wikilist-button-foreground: #000</pre>
 <div created="20200915165802964" modified="20200915165802964" title="$:/state/plugin-info--13644322-$:/plugins/sq/streams">
 <pre>no</pre>
 </div>
+<div created="20200916130115596" modified="20200916130115596" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
+</div>
+<div created="20200916130117424" modified="20200916130117424" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
+</div>
 <div created="20200915165538052" modified="20200915165754088" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20200915165535569" modified="20200915165859964" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200915165535569" modified="20200916130151965" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/IsAnonymous">
 <pre>yes</pre>
@@ -11779,12 +11816,12 @@ wikilist-button-foreground: #000</pre>
 <pre>no</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="Streams Demos $:/plugins/sq/streams/info/keyboard-shortcuts" title="$:/StoryList">
+<div created="20200916130112939" list="Streams Demos $:/plugins/sq/streams/info/keyboard-shortcuts" modified="20200916130203765" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" key="alt+F" modified="20200914211911845" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="alt+F" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -11809,23 +11846,23 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20200915165853679&quot;
+            &quot;text&quot;: &quot;20200916130111166&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/saq/Downloads/streams.html&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io/sq-tw/streams.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;saqimtiaz.github.io&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;file:&quot;
+            &quot;text&quot;: &quot;https:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
@@ -11833,7 +11870,7 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/saq/Downloads/streams.html&quot;
+            &quot;text&quot;: &quot;/sq-tw/streams.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -11841,15 +11878,15 @@ wikilist-button-foreground: #000</pre>
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;file://&quot;
+            &quot;text&quot;: &quot;https://saqimtiaz.github.io&quot;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1920&quot;
+            &quot;text&quot;: &quot;2560&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1080&quot;
+            &quot;text&quot;: &quot;1440&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
