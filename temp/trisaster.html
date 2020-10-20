@@ -9813,34 +9813,35 @@ Error message and password prompt
 <div created="20201020083132170" modified="20201020083135246" tags="" title="D">
 <pre>[[ToDo]]</pre>
 </div>
-<div created="20201020083210741" modified="20201020120720523" tags="" title="E">
-<pre>[[Hello]] [[ToDo]]</pre>
+<div created="20201020083210741" modified="20201020152306120" tags="" title="E">
+<pre>[[Hello]]</pre>
 </div>
 <div created="20201020092934068" modified="20201020092944476" tags="" title="F">
 <pre>[[ToDo]] [[Hello]]</pre>
 </div>
-<div created="20201020120652442" modified="20201020120705085" tags="" title="G">
+<div created="20201020120652442" modified="20201020153100501" tags="done" title="G">
 <pre>[[ToDo]] [[Hello]] and something else [[Nothing]]</pre>
 </div>
-<div created="20201020083139156" modified="20201020121500943" tags="" title="Hello">
-<pre>Backlinks for ~ToDo
-
-{{{ [[ToDo]backlinks[]] }}}
-
----
-
-Backlinks for ~ToDo and Hello
-
-{{{ [[ToDo]backlinks[]] [all[current]backlinks[]] }}}
-
----
-
-Tiddlers with backlinks to ToDo and Hello:
-
-
-&lt;$list filter=&quot;[[ToDo]backlinks[]]&quot; variable=&quot;backlink&quot;&gt;
+<div created="20201020083139156" modified="20201020153037279" tags="" title="Hello">
+<pre>&lt;$list filter=&quot;[[ToDo]backlinks[]] +[!tag[hide]!tag[done]]&quot; variable=&quot;backlink&quot;&gt;
 &lt;$list filter=&quot;[all[current]backlinks[]allafter:include&lt;backlink&gt;first[]]&quot; variable=&quot;_NULL&quot;&gt;
-&lt;$link to=&lt;&lt;backlink&gt;&gt; /&gt;
+
+&lt;$tiddler tiddler=&lt;&lt;backlink&gt;&gt;&gt;
+&lt;$checkbox tag=&quot;done&quot;&gt; {{!!text}}&lt;br&gt;&lt;small&gt;&lt;$link/&gt;&lt;/small&gt;&lt;/$checkbox&gt;
+&lt;/$tiddler&gt;
+
+&lt;/$list&gt;
+&lt;/$list&gt;
+
+---
+
+&lt;$list filter=&quot;[[ToDo]backlinks[]] +[!tag[hide]tag[done]]&quot; variable=&quot;backlink&quot;&gt;
+&lt;$list filter=&quot;[all[current]backlinks[]allafter:include&lt;backlink&gt;first[]]&quot; variable=&quot;_NULL&quot;&gt;
+
+&lt;$tiddler tiddler=&lt;&lt;backlink&gt;&gt;&gt;
+&lt;$checkbox tag=&quot;done&quot;&gt; {{!!text}}&lt;br&gt;&lt;small&gt;&lt;$link/&gt;&lt;/small&gt;&lt;/$checkbox&gt;
+&lt;/$tiddler&gt;
+
 &lt;/$list&gt;
 &lt;/$list&gt;</pre>
 </div>
