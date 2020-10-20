@@ -177,9 +177,13 @@ Error message and password prompt
 
 <li>$:/temp/info-plugin</li>
 
+<li>$:/temp/NewTagName</li>
+
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
 <li>$:/themes/tiddlywiki/vanilla</li>
+
+<li>$:/TodoViewTemplate</li>
 
 <li>A</li>
 
@@ -9619,8 +9623,8 @@ Error message and password prompt
 <div created="20201020084630573" modified="20201020084630573" title="$:/state/edit/references--1411130193">
 <pre>show</pre>
 </div>
-<div created="20201020084350249" modified="20201020093537377" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Saving</pre>
+<div created="20201020084350249" modified="20201020153251636" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20201020084351661" modified="20201020093539109" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
@@ -9631,7 +9635,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="G F Hello E D C B A ToDo" title="$:/StoryList">
+<div created="20201020153247183" list="$:/TodoViewTemplate G F Hello E D C B A ToDo" modified="20201020153247183" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9691,6 +9695,9 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20201020153320727" modified="20201020153409648" title="$:/temp/NewTagName">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.22">
 <pre>{
@@ -9800,6 +9807,33 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20201020153256267" modified="20201020153401530" tags="$:/tags/ViewTemplate" title="$:/TodoViewTemplate">
+<pre>&lt;$list filter=&quot;[all[current]tag[Journal]]&quot;&gt;
+
+&lt;$list filter=&quot;[[ToDo]backlinks[]] +[!tag[hide]!tag[done]]&quot; variable=&quot;backlink&quot;&gt;
+&lt;$list filter=&quot;[all[current]backlinks[]allafter:include&lt;backlink&gt;first[]]&quot; variable=&quot;_NULL&quot;&gt;
+
+&lt;$tiddler tiddler=&lt;&lt;backlink&gt;&gt;&gt;
+&lt;$checkbox tag=&quot;done&quot;&gt; {{!!text}}&lt;br&gt;&lt;small&gt;&lt;$link/&gt;&lt;/small&gt;&lt;/$checkbox&gt;
+&lt;/$tiddler&gt;
+
+&lt;/$list&gt;
+&lt;/$list&gt;
+
+---
+
+&lt;$list filter=&quot;[[ToDo]backlinks[]] +[!tag[hide]tag[done]]&quot; variable=&quot;backlink&quot;&gt;
+&lt;$list filter=&quot;[all[current]backlinks[]allafter:include&lt;backlink&gt;first[]]&quot; variable=&quot;_NULL&quot;&gt;
+
+&lt;$tiddler tiddler=&lt;&lt;backlink&gt;&gt;&gt;
+&lt;$checkbox tag=&quot;done&quot;&gt; {{!!text}}&lt;br&gt;&lt;small&gt;&lt;$link/&gt;&lt;/small&gt;&lt;/$checkbox&gt;
+&lt;/$tiddler&gt;
+
+&lt;/$list&gt;
+&lt;/$list&gt;
+
+&lt;/$list&gt;</pre>
 </div>
 <div created="20201020083106522" modified="20201020083118834" tags="" title="A">
 <pre>[[ToDo]]</pre>
