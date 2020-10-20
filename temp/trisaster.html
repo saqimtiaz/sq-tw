@@ -141,6 +141,8 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>$:/config/AutoSave</li>
+
 <li>$:/config/RelinkOnRename</li>
 
 <li>$:/core</li>
@@ -209,6 +211,9 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div created="20201020093540624" modified="20201020093540624" title="$:/config/AutoSave">
+<pre>no</pre>
+</div>
 <div created="20201020084631693" modified="20201020084636685" title="$:/config/RelinkOnRename">
 <pre>no</pre>
 </div>
@@ -9612,11 +9617,11 @@ Error message and password prompt
 <div created="20201020084630573" modified="20201020084630573" title="$:/state/edit/references--1411130193">
 <pre>show</pre>
 </div>
-<div created="20201020084350249" modified="20201020084422769" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20201020084350249" modified="20201020093537377" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
-<div created="20201020084351661" modified="20201020084351661" title="$:/state/tab-2065006209">
-<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
+<div created="20201020084351661" modified="20201020093539109" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
 <div created="20201020084342741" modified="20201020084342741" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
@@ -9624,7 +9629,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="F Hello E D C B A ToDo" title="$:/StoryList">
+<div created="20201020093535990" list="F Hello E D C B A ToDo" modified="20201020093535990" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9812,7 +9817,7 @@ Error message and password prompt
 <div created="20201020092934068" modified="20201020092944476" tags="" title="F">
 <pre>[[ToDo]] [[Hello]]</pre>
 </div>
-<div created="20201020083139156" modified="20201020093515392" tags="" title="Hello">
+<div created="20201020083139156" modified="20201020095134733" tags="" title="Hello">
 <pre>Backlinks for ~ToDo
 
 {{{ [[ToDo]backlinks[]] }}}
@@ -9828,11 +9833,10 @@ Backlinks for ~ToDo and Hello
 Tiddlers with backlinks to ToDo and Hello:
 
 
-{{{ [[ToDo]backlinks[]] +[[Hello]backlinks[]]}}}
-
-
 &lt;$list filter=&quot;[[ToDo]backlinks[]]&quot; variable=&quot;backlink&quot;&gt;
-
+&lt;$list filter=&quot;[all[current]backlinks[]allafter:include&lt;backlink&gt;]&quot; variable=&quot;_NULL&quot;&gt;
+&lt;&lt;backlink&gt;&gt;
+&lt;/$list&gt;
 &lt;/$list&gt;</pre>
 </div>
 <div created="20201020083056971" modified="20201020092926666" tags="" title="ToDo">
