@@ -188,11 +188,15 @@ Error message and password prompt
 
 <li>$:/GitHub/Username</li>
 
+<li>$:/Import</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/sq/bullets/delete-hook/actions</li>
 
 <li>$:/plugins/sq/bullets/delete-hook/hook</li>
+
+<li>$:/plugins/sq/filters</li>
 
 <li>$:/plugins/sq/NodeJSExternalFiles</li>
 
@@ -10132,6 +10136,11 @@ mode=&quot;inline&quot;/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edi
 <div created="20200714114030769" modified="20200714114032734" title="$:/GitHub/Username">
 <pre>saqimtiaz</pre>
 </div>
+<div status="complete" title="$:/Import">
+<pre>The following tiddlers were imported:
+
+# [[$:/plugins/sq/filters]]</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10171,6 +10180,54 @@ mode=&quot;inline&quot;/&gt;&lt;/$reveal&gt;&lt;/$list&gt;&lt;/$set&gt;&lt;/$edi
 	executeDeleteHookTiddlers(&quot;$:/tags/deleteTiddlerAction&quot;);
 
 });</pre>
+</div>
+<div author="Saq Imtiaz" bag="default" core-version="&gt;=5.1.22" dependents="" description="Sq filter extensions" list="" plugin-type="plugin" revision="0" source="" title="$:/plugins/sq/filters" type="application/json" version="0.0.01">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/sq/filters/filters/mapfield.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/mapfield.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/mapfield.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.mapfield = function(source,operator,options) {\n    var results = [];\n    source(function(tiddler,title) {\n        if(tiddler) {\n            var value = tiddler.getFieldString(operator.operand);\n            if(value) {\n                results.push(value);\n            }\n            else{\n                results.push(title);\n            }\n        }\n    });\n    return results;\n};\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/sq/filters/filters/pad.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/pad.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/pad.js\ntype: application/javascript\nmodule-type: filteroperator\n\n[[1]pad:4[]]\n[[1]pad:4[a]]\n[[1]pad:4:suffix[a]]\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.pad = function(source,operator,options) {\n\tvar results = [];\n\tsource(function(tiddler,title) {\n\t\tif(title &amp;&amp; title.length) {\n\t\t\tvar fill = operator.operand === \&quot;\&quot; ? \&quot;0\&quot; : operator.operand;\n\t\t\tvar len = operator.suffix === \&quot;\&quot; ? title.length : operator.suffixes[0];\n\t\t\tlen = Math.max(title.length,len);\n\t\t\tvar pos = operator.suffixes[1] &amp;&amp; (operator.suffixes[1] == \&quot;suffix\&quot;) ? \&quot;suffix\&quot; : \&quot;prefix\&quot;;\n\t\t\t\n\t\t\twhile (len &gt; title.length) {\n\t\t\t\tif(pos == \&quot;prefix\&quot;) {\n\t\t\t\t\ttitle = fill + title;\n\t\t\t\t} else {\n\t\t\t\t\ttitle = title + fill;\n\t\t\t\t}\n\t\t\t}\n\t\t\tresults.push(title);\n\t\t}\n\t});\n\treturn results;\n}\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/sq/filters/filters/pluralize.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/pluralize.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/pluralize.js\ntype: application/javascript\nmodule-type: filteroperator\n\nconsole.log( pluralize( 1, 'the cat(+) live(-) outside' ) ) ;\n// the cat lives outside\nconsole.log( pluralize( 2, 'the child(+,ren) (is+,are) inside' ) ) ;\n// the children are inside\nconsole.log( pluralize( 0, '$1 dog(+), ($1+,$1,no) dog(+), ($1+,$1,no) dog(+,,)' ) ) ;\n// 0 dogs, no dogs, no dog\ndog(+,,)\n+ to indicate to add here for plural, next is what to add for plural case, next what to add for none\n//\nconsole.log( pluralize( 100, 1, '$1 penn(y+,ies) make(-1) $$$2' ) ) ;\n// 100 pennies make $1\nconsole.log( pluralize( 1, 0.01, '$1 penn(y+,ies) make(-1) $$$2' ) ) ;\n// 1 penny makes $0.01\n\n\n[[$1 dog(+), ($1+,$1,no) dog(+), ($1+,$1,no) dog(+,,)]pluralize[0]]\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.pluralize = function(source,operator,options) {\n\n\tfunction pluralize( /* n, [ n2, n3, ... ] str */ ) {\n\t\tvar n = Array.prototype.slice.call( arguments ) ;\n\t\tvar str = n.pop(), iMax = n.length - 1, i = -1, j ;\n\t\tstr = str.replace( /\\$\\$|\\$(\\d+)/g,\n\t\t\tfunction( m, p1 ) { return m == '$$' ? '$' : n[+p1-1] }\n\t\t) ;\n\t\treturn str.replace( /[(](.*?)([+-])(\\d*)(?:,([^,)]*))?(?:,([^)]*))?[)]/g,\n\t\t\tfunction( match, one, sign, abs, not1, zero ) {\n\t\t\t\t// if abs, use indicated element in the array of numbers\n\t\t\t\t// instead of using the next element in sequence\n\t\t\t\tabs ? ( j = +abs - 1 ) : ( i &lt; iMax &amp;&amp; i++, j = i ) ;\n\t\t\t\tif ( zero != undefined &amp;&amp; n[j] == 0 ) return zero ;\n\t\t\t\treturn ( n[j] != 1 ) == ( sign == '+' ) ? ( not1 || 's' ) : one ;\n\t\t\t}\n\t\t) ;  \n\t}\n\n\tvar results = [];\n\tsource(function(tiddler,title) {\n\t\tif(title &amp;&amp; title.length &amp;&amp; operator.operand) {\n\t\t\tif(operator.suffix &amp;&amp; operator.suffix === \&quot;blank\&quot; &amp;&amp; operator.operand === \&quot;0\&quot;) {\n\t\t\t\tresults.push(\&quot;\&quot;);\n\t\t\t} else {\n\t\t\t\tresults.push(pluralize(parseInt(operator.operand),title));\n\t\t\t}\n\t\t}\n\t});\n\treturn results;\n};\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/sq/filters/filters/printf.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/printf.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/printf.js\ntype: application/javascript\nmodule-type: filteroperator\n\n&lt;$vars name=Saq age=140&gt;\n&lt;$text text={{{ [[My name is %name% and my age is %age%.]printf[]] }}}/&gt;\n&lt;/$vars&gt;\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.printf = function(source,operator,options) {\n\tvar results = [];\n\t\n\tfunction substitute(str) {\n\t\tvar output = str.replace(/%([^%]+)%/g, function(match,varname) {\n\t\t\treturn options.widget.getVariable(varname,{defaultValue: \&quot;\&quot;})\n\t\t});\n\t\treturn(output);\n\t}\n\t\n\tsource(function(tiddler,title) {\n\t\tif(title) {\n\t\t\tresults.push(substitute(title));\n\t\t}\n\t});\n\treturn results;\n};\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/sq/filters/filterrunprefixes/then.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filterrunprefixes/then.js&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/sq/filters/filterrunprefixes/then.js\r\ntype: application/javascript\r\nmodule-type: filterrunprefix\r\n\r\nEquivalent to a filter run with no prefix.\r\n{{{ [tag[TableOfContents]] :then[enlist&lt;accumulator&gt;] }}}\r\n\\*/\r\n(function(){\r\n\r\n/*jslint node: true, browser: true */\r\n/*global $tw: false */\r\n\&quot;use strict\&quot;;\r\n\r\n/*\r\nExport our filter prefix function\r\n*/\r\nexports.then = function(operationSubFunction) {\r\n\treturn function(results,source,widget) {\r\n\t\tif(results.length &gt; 0) {\r\n\t\t\t/*\r\n\t\t\tif(widget.parentWidget) {\r\n\t\t\t\twidget.parentWidget.setVariable(\&quot;conditions\&quot;,$tw.utils.stringifyList(results));\r\n\t\t\t\t//widget.parentWidget.setVariable(\&quot;conditions\&quot;,results);\r\n\t\t\t}\r\n\t\t\t*/\r\n\t\t\tvar accumulator = $tw.utils.stringifyList(results);\r\n\t\t\t//var accumulator = results.slice();\r\n\t\t\tresults.splice(0,results.length);\r\n\t\t\tvar then = operationSubFunction(source,{\r\n\t\t\t\tgetVariable: function(name) {\r\n\t\t\t\t\tswitch(name) {\r\n\t\t\t\t\t\tcase \&quot;accumulator\&quot;:\r\n\t\t\t\t\t\t\treturn \&quot;\&quot; + accumulator;\r\n\t\t\t\t\t\tdefault:\r\n\t\t\t\t\t\t\treturn widget.getVariable(name);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t});\r\n\t\t\t$tw.utils.pushTop(results,then);\r\n\t\t}\r\n\t};\r\n};\r\n\r\n})();\r\n&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filterrunprefix&quot;
+        },
+        &quot;$:/plugins/sq/filters/filters/toggle.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/toggle.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/toggle.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operators for manipulating the current selection list\n\n&lt;$action-listops $field=\&quot;sqtc-activefilter-$storageField$\&quot; $tiddler=\&quot;$:/sqtc/state/overviewfilters\&quot; $subfilter=\&quot;+[toggle{!!$showField$}]\&quot; /&gt;\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.toggle = function(source,operator,options) {\n    var results = [];\n    var present = false;\n    source(function(tiddler,title) {\n        if(title === operator.operand) {\n            present = true;\n        } else {\n            results.push(title);\n        }\n    });\n    if(!present) {\n        results.push(operator.operand);\n    }\n    return results;\n};\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/sq/filters/filters/zeropad.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/sq/filters/filters/zeropad.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/filters/filters/zeropad.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.zeropad = function(source,operator,options) {\n\tvar results = [];\n\tsource(function(tiddler,v) {\n\t\tif(v &amp;&amp; v.length) {\n\t\t\tvar padCount = parseInt(operator.operand);\n\t\t\tvar len = Math.max(v.length, padCount);\n\t\t\twhile (len &gt; v.length) {\n\t\t\t\tv = \&quot;0\&quot; + v;\n\t\t\t}\n\t\t\tresults.push(v);\n\t\t}\n\t});\n\treturn results;\n};\n\n})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        }
+    }
+}</pre>
 </div>
 <div bag="default" core-version="&gt;=5.0.0" created="20200623132351412" dependents="" description="NodeJSExternalFiles: Import to files folder on node.js" list="" modified="20200628101618201" plugin-type="plugin" revision="3" title="$:/plugins/sq/NodeJSExternalFiles" type="application/json" version="0.20 alpha">
 <pre>{
@@ -11327,7 +11384,7 @@ exports[&quot;log&quot;] = LogWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>yes</pre>
 </div>
-<div created="20200715221541053" list="GettingStarted $:/sq/widgets/action-log" modified="20200716202137645" title="$:/StoryList">
+<div created="20201101215958007" list="$:/plugins/sq/filters GettingStarted $:/sq/widgets/action-log" modified="20201101220020589" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
@@ -11736,7 +11793,7 @@ Further ideas:
 * turn show-range-values macro into a template that can be called, so I still call the macro but all its doing is transcluding state tiddler with a template
 *customizable field names instead of low and high</pre>
 </div>
-<div created="20200522172703816" modified="20200715185326733" title="GettingStarted">
+<div created="20200522172703816" modified="20201101220139466" title="GettingStarted">
 <pre>@@background-color:yellow;
 !USE WITH CARE 
 
@@ -11785,15 +11842,13 @@ Your tiddlers may be exterminated.
 
 [img width=200 class=&quot;img-right&quot; [dalek.png]]
 
-!!! [[Core Filter Syntax Extensions|$:/core/modules/filters.js]]
+!!! [[Filters|$:/plugins/sq/filters]]
 
-overrides $:/core/modules/filters.js to extend core filter syntax with better support for if/then/else logic.
-
-New prefix for filter expressions `;`&lt;br&gt;
-If the filter output so far is not empty, it is saved to the variable `conditions` as a string, and the output of this filter replaces the output of any previous runs.
+New prefix for filter expressions `:then`&lt;br&gt;
+If the filter output so far is not empty, it is saved to the variable `accumulator` as a string, and the output of this filter replaces the output of any previous runs.
 Allows for inline if/then/else style filters 
 
-`[if-filter] ;[then-filter] ~[else-filter]`
+`[if-filter] :then[then-filter] :else[else-filter]`
 
 ---
 
