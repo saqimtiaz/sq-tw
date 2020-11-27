@@ -203,6 +203,8 @@ Error message and password prompt
 
 <li>$:/core</li>
 
+<li>$:/core/modules/savers/github.js</li>
+
 <li>$:/core/modules/widgets/action-createtiddler.js</li>
 
 <li>$:/DefaultTiddlers</li>
@@ -247,6 +249,8 @@ Error message and password prompt
 
 <li>$:/state/sq/streams/current-edit-tiddler--474284457</li>
 
+<li>$:/state/tab--1498284803</li>
+
 <li>$:/state/tab-1749438307</li>
 
 <li>$:/state/tab-2065006209</li>
@@ -270,6 +274,8 @@ Error message and password prompt
 <li>$:/streams/contextmenu/flatten</li>
 
 <li>$:/tags/SearchResults</li>
+
+<li>$:/temp/advancedsearch</li>
 
 <li>$:/temp/info-plugin</li>
 
@@ -10041,6 +10047,128 @@ Oh, would I could describe these conceptions, could impress upon paper all that 
     }
 }</pre>
 </div>
+<div created="20201127161439616" modified="20201127161445076" module-type="saver" title="$:/core/modules/savers/github.js" type="application/javascript">
+<pre>/*\
+title: $:/core/modules/savers/github.js
+type: application/javascript
+module-type: saver
+
+Saves wiki by pushing a commit to the GitHub v3 REST API
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+/*
+Select the appropriate saver module and set it up
+*/
+var GitHubSaver = function(wiki) {
+	this.wiki = wiki;
+};
+
+GitHubSaver.prototype.save = function(text,method,callback) {
+	var self = this,
+		username = this.wiki.getTiddlerText(&quot;$:/GitHub/Username&quot;),
+		password = $tw.utils.getPassword(&quot;github&quot;),
+		repo = this.wiki.getTiddlerText(&quot;$:/GitHub/Repo&quot;),
+		path = this.wiki.getTiddlerText(&quot;$:/GitHub/Path&quot;,&quot;&quot;),
+		filename = this.wiki.getTiddlerText(&quot;$:/GitHub/Filename&quot;),
+		branch = this.wiki.getTiddlerText(&quot;$:/GitHub/Branch&quot;) || &quot;master&quot;,
+		endpoint = this.wiki.getTiddlerText(&quot;$:/GitHub/ServerURL&quot;) || &quot;https://api.github.com&quot;,
+		headers = {
+			&quot;Accept&quot;: &quot;application/vnd.github.v3+json&quot;,
+			&quot;Content-Type&quot;: &quot;application/json;charset=UTF-8&quot;,
+			&quot;Authorization&quot;: &quot;Basic &quot; + window.btoa(username + &quot;:&quot; + password),
+'If-None-Match': ''
+		};
+	// Bail if we don't have everything we need
+	if(!username || !password || !repo || !path || !filename) {
+		return false;
+	}
+	// Make sure the path start and ends with a slash
+	if(path.substring(0,1) !== &quot;/&quot;) {
+		path = &quot;/&quot; + path;
+	}
+	if(path.substring(path.length - 1) !== &quot;/&quot;) {
+		path = path + &quot;/&quot;;
+	}
+	// Compose the base URI
+	var uri = endpoint + &quot;/repos/&quot; + repo + &quot;/contents&quot; + path;
+	// Perform a get request to get the details (inc shas) of files in the same path as our file
+	$tw.utils.httpRequest({
+		url: uri,
+		type: &quot;GET&quot;,
+		headers: headers,
+		data: {
+			ref: branch
+		},
+		callback: function(err,getResponseDataJson,xhr) {
+			var getResponseData,sha = &quot;&quot;;
+			if(err &amp;&amp; xhr.status !== 404) {
+				return callback(err);
+			}
+			if(xhr.status !== 404) {
+				getResponseData = JSON.parse(getResponseDataJson);
+				$tw.utils.each(getResponseData,function(details) {
+					if(details.name === filename) {
+						sha = details.sha;
+					}
+				});
+			}
+			var data = {
+				message: $tw.language.getRawString(&quot;ControlPanel/Saving/GitService/CommitMessage&quot;),
+				content: $tw.utils.base64Encode(text),
+				branch: branch,
+				sha: sha
+			};
+			// Perform a PUT request to save the file
+			$tw.utils.httpRequest({
+				url: uri + filename,
+				type: &quot;PUT&quot;,
+				headers: headers,
+				data: JSON.stringify(data),
+				callback: function(err,putResponseDataJson,xhr) {
+					if(err) {
+						return callback(err);
+					}
+					var putResponseData = JSON.parse(putResponseDataJson);
+					callback(null);
+				}
+			});
+		}
+	});
+	return true;
+};
+
+/*
+Information about this saver
+*/
+GitHubSaver.prototype.info = {
+	name: &quot;github&quot;,
+	priority: 2000,
+	capabilities: [&quot;save&quot;, &quot;autosave&quot;]
+};
+
+/*
+Static method that returns true if this saver is capable of working
+*/
+exports.canSave = function(wiki) {
+	return true;
+};
+
+/*
+Create an instance of this saver
+*/
+exports.create = function(wiki) {
+	return new GitHubSaver(wiki);
+};
+
+})();
+</pre>
+</div>
 <div bag="default" created="20200529192708161" modified="20200529192708161" module-type="widget" revision="0" title="$:/core/modules/widgets/action-createtiddler.js" type="application/javascript">
 <pre>/*\
 title: $:/core/modules/widgets/action-createtiddler.js
@@ -11879,6 +12007,9 @@ wikilist-button-foreground: #000</pre>
 <div created="20201019144055262" modified="20201019144057374" title="$:/state/sq/streams/current-edit-tiddler--474284457">
 <pre>Demos/20201019144057373</pre>
 </div>
+<div created="20201127161405321" modified="20201127161405321" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+</div>
 <div created="20200916130115596" modified="20200916130115596" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
@@ -11906,7 +12037,7 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20201127154426672" list="[[New Tiddler]] Notice" modified="20201127154426672" title="$:/StoryList">
+<div created="20201127154426672" list="$:/core/modules/savers/github.js [[New Tiddler]] Notice" modified="20201127161406883" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" key="alt+F" modified="20200914211911845" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="alt+F" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -11917,6 +12048,9 @@ wikilist-button-foreground: #000</pre>
 </div>
 <div bag="default" created="20200818212622477" list="StreamSearch $:/core/ui/DefaultSearchResultList" modified="20200818212622489" revision="0" title="$:/tags/SearchResults" type="text/vnd.tiddlywiki">
 <pre></pre>
+</div>
+<div created="20201127161403551" modified="20201127161403551" title="$:/temp/advancedsearch">
+<pre>github</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
