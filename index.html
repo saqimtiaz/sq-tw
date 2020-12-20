@@ -27,7 +27,7 @@ for (var files = [{% for url in site.static_files %}'{{ url.path | replace: "'",
                 parent = el
             }
     }
-    console.groupEnd(files[i])
+    console.groupEnd(files[i]);
 }
 document.title = document.querySelector("h1").innerHTML += " (" + files.length + " items)"
 </script>
