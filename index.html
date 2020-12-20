@@ -12,7 +12,7 @@ function escapeHtml(e) {
 
 for (var files = [{
             %
-            for url in site.html_files %
+            for url in site.static_files %
         }
         '{{ url.path | replace: "'
         ", "\
