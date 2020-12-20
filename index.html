@@ -10,16 +10,7 @@ function escapeHtml(e) {
     return e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
 }
 
-for (var files = [{
-            %
-            for url in site.static_files %
-        }
-        '{{ url.path | replace: "'
-        ", "\
-        '" }}', {
-            % endfor %
-        }
-    ], i = 0; i < files.length; i++) {
+for (var files = [{% for url in site.static_files %}'{{ url.path | replace: "'", "\'" }}',{% endfor %}], i = 0; i < files.length; i++) {
     var url = files[i].split("/").slice(1);
     console.group(files[i]);
     for (var x = 0; x < url.length; x++) {
