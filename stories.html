@@ -439,6 +439,8 @@ Error message and password prompt
 
 <li>Muffin!</li>
 
+<li>New Tiddler</li>
+
 <li>New tiddler linked here</li>
 
 <li>Recent updates to Stroll</li>
@@ -909,8 +911,8 @@ $:/config/ViewToolbarButtons/Visibility/$(listItem)$
 <pre>Built from branch 'tiddlywiki-com' at commit 1a6be5ae09de1289727e9a981560d295cf8f361a of https://github.com/Jermolene/TiddlyWiki5.git at 2020-04-15 15:19:44 UTC
 </pre>
 </div>
-<div bag="default" created="20170615081040584" modified="20200504143613685" revision="0" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki">
-<pre>yes</pre>
+<div bag="default" created="20170615081040584" modified="20210104073819255" revision="0" title="$:/config/_sq/Stories/story2" type="text/vnd.tiddlywiki">
+<pre>no</pre>
 </div>
 <div created="20200510024843460" modified="20200603121638626" tags="$:/giffmex/stroll $:/giffmex/blinks" title="$:/config/EditorTypeMappings/text/vnd.tiddlywiki">
 <pre>comptext</pre>
@@ -12086,8 +12088,8 @@ exports.context = contextWidget;
 <div created="20200503154024616" modified="20200521151623405" title="$:/state/folded/Welcome to Stroll">
 <pre>show</pre>
 </div>
-<div created="20200504201055477" modified="20200731104945631" title="$:/state/plugin-info--1660586530-$:/plugins/sq/Stories---1196877129">
-<pre>settings</pre>
+<div created="20200504201055477" modified="20210104073746094" title="$:/state/plugin-info--1660586530-$:/plugins/sq/Stories---1196877129">
+<pre>contents</pre>
 </div>
 <div created="20200504194742991" modified="20200504194742991" title="$:/state/plugin-info--1982238690-$:/plugins/snowgoon88/edit-comptext--1750175647">
 <pre>contents</pre>
@@ -12149,10 +12151,10 @@ exports.context = contextWidget;
 <div created="20200730050003538" modified="20200730050003538" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
-<div created="20200418122101344" modified="20200603185818358" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/System</pre>
+<div created="20200418122101344" modified="20210104073741432" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20200418121835270" modified="20200730050748659" title="$:/state/tab/sidebar--595412856">
+<div created="20200418121835270" modified="20210104073814848" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200504200956301" modified="20200504201043124" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -12171,12 +12173,12 @@ exports.context = contextWidget;
 <pre>no</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="$:/Import [[Welcome to Stroll]]" title="$:/StoryList">
+<div created="20210104073742779" list="[[New Tiddler]] $:/_sq/Stories/Templates/Story2Template $:/_sq/Stories/StoriesList $:/_sq/Stories/LinkKeybindings $:/plugins/sq/Stories [[Welcome to Stroll]]" modified="20210104073900428" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -12239,11 +12241,11 @@ exports.context = contextWidget;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;2560&quot;
+            &quot;text&quot;: &quot;3840&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;2160&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -12604,6 +12606,11 @@ One more thing about linking: if you change the name of a tiddler, all the links
 <pre>Clicking the various checkboxes in the {{$:/core/images/preview-open}} tab in the sidebar will change the appearance of the items in the references section (the list of backlinks) at the bottom of this tiddler. 
 
 When you are done playing with my dog, return to [[Welcome to Stroll]] to continue the tutorial.</pre>
+</div>
+<div created="20210104074021452" modified="20210104074117700" tags="" title="New Tiddler">
+<pre>&lt;$button&gt;
+&lt;$action-sendmessage $message=&quot;tm-open-window&quot; $param=&quot;$:/_sq/Stories/Templates/Story2Template&quot;/&gt;
+go&lt;/$button&gt;</pre>
 </div>
 <div created="20200423153701937" modified="20200521145920147" tags="$:/giffmex/tutorials" title="New tiddler linked here">
 <pre>The two blue buttons at the top create new tiddlers that link to the tiddler from which they were created.
