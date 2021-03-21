@@ -255,7 +255,11 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/advancedsearch/currentTab</li>
+
 <li>$:/state/sq/streams/visibility/$(currentTiddler)$-1912919603</li>
+
+<li>$:/state/tab--1498284803</li>
 
 <li>$:/state/tab-1749438307</li>
 
@@ -2007,6 +2011,8 @@ Error message and password prompt
 
 <li>dfe5c5b8-3c71-4b6a-a8f2-f686f378b095</li>
 
+<li>Draft of 'New Tiddler'</li>
+
 <li>e009d974-63ac-46a7-adae-64a4e85965f7</li>
 
 <li>e00dba28-7c6b-44ac-b1eb-031c9e810b7f</li>
@@ -2270,6 +2276,8 @@ Error message and password prompt
 <li>Kafka</li>
 
 <li>My Notes</li>
+
+<li>New Tiddler 1</li>
 
 <li>Roadmap</li>
 
@@ -14540,11 +14548,17 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" created="20200524075311048" modified="20200602185545744" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Streams</pre>
 </div>
+<div created="20210321204716113" modified="20210321204716113" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+</div>
 <div created="20201210163401237" modified="20201210163401237" title="$:/state/sq/streams/visibility/$(currentTiddler)$-1912919603">
 <pre>hide</pre>
 </div>
-<div created="20201210163343055" modified="20210105141843080" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Saving</pre>
+<div created="20210321204716113" modified="20210321204716113" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+</div>
+<div created="20201210163343055" modified="20210321204705101" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20210105141843966" modified="20210105141843966" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -14570,7 +14584,7 @@ wikilist-button-foreground: #000</pre>
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210105142211980" list="[[TiddlyWiki toolmap]]" modified="20210105142245732" title="$:/StoryList">
+<div created="20210321204701251" list="[[New Tiddler 1]] [[Draft of 'New Tiddler']] $:/AdvancedSearch [[TiddlyWiki toolmap]]" modified="20210321204857329" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20200706164134654" key="alt+F" modified="20200914211911845" revision="0" sq-contextmenu-name="Flatten" sq-contextmenu-subtitle="alt+F" title="$:/streams/contextmenu/flatten" type="text/vnd.tiddlywiki">
@@ -17355,6 +17369,14 @@ A stream visualized as a graph:
 <div parent="b9f327c8-1afc-41da-b51a-c0481d112e1c" stream-list="" stream-type="default" title="dfe5c5b8-3c71-4b6a-a8f2-f686f378b095" type="text/x-markdown">
 <pre>[Trashbin-mod](https://hchaase.github.io/TW-Trashbin-mod/) - A small modification of Kookma's trashbin plugin so it will be compatible with JD's Plain Revisions plugin.</pre>
 </div>
+<div created="20210321204743185" draft.of="New Tiddler" draft.title="New Tiddler" modified="20210321204814829" tags="" title="Draft of 'New Tiddler'">
+<pre>&lt;$button&gt;
+&lt;$list filter=&quot;[[08b1be7b-0b4e-4942-9098-3e7154cace19]get[stream-list]enlist-input[]]&quot;&gt;
+
+&lt;$action-setfield
+&lt;/$list&gt;
+&lt;/$button&gt;</pre>
+</div>
 <div parent="cbc47112-c9bc-4da3-97a8-599dc0ee165e" stream-list="" stream-type="default" title="e009d974-63ac-46a7-adae-64a4e85965f7" type="text/x-markdown">
 <pre>[Embedding Reddit comments](https://ibnishak.github.io/Tesseract/incomplete/embedding.html#Reddit)</pre>
 </div>
@@ -17769,6 +17791,9 @@ Also see [[Adding custom keyboard shortcuts]].</pre>
 </div>
 <div bag="default" created="20200526032024437" modified="20200601055851132" revision="0" title="My Notes" type="text/vnd.tiddlywiki">
 <pre></pre>
+</div>
+<div created="20210321205145367" modified="20210321205149196" tags="" title="New Tiddler 1">
+<pre>[[08b1be7b-0b4e-4942-9098-3e7154cace19]get[stream-list]enlist-input[]get[text]]</pre>
 </div>
 <div bag="default" created="20200529194255472" modified="20201210122524675" revision="0" stream-list="Roadmap/20200603061628734 Roadmap/20200603061644288 Roadmap/20200603080031070 Roadmap/20200603080053308 Roadmap/20200603061701306" stream-type="default" tags="" title="Roadmap" type="text/vnd.tiddlywiki">
 <pre></pre>
