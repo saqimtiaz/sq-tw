@@ -209,6 +209,8 @@ Error message and password prompt
 
 <li>Draft of 'Demo'</li>
 
+<li>New Tiddler</li>
+
 <li>View demo</li>
 
 </ul>
@@ -9945,11 +9947,11 @@ Error message and password prompt
 <div bag="default" created="20200815044906352" modified="20200816201415228" revision="2" title="$:/state/editpreviewtype">
 <pre>$:/plugins/tiddlywiki/internals/EditTemplate/body/preview/parse-tree</pre>
 </div>
-<div bag="default" created="20200816203924629" modified="20200816203927897" revision="4" title="$:/state/internals/preview/mode--951220344">
+<div bag="default" created="20200816203924629" modified="20210327132622674" revision="4" title="$:/state/internals/preview/mode--951220344">
 <pre>block</pre>
 </div>
-<div bag="default" created="20200815044905279" modified="20200819153332199" revision="2" title="$:/state/showeditpreview">
-<pre>no</pre>
+<div bag="default" created="20200815044905279" modified="20210327132602602" revision="2" title="$:/state/showeditpreview">
+<pre>yes</pre>
 </div>
 <div created="20210327084645371" modified="20210327084645371" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -9975,7 +9977,7 @@ Error message and password prompt
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210327084643985" list="[[Draft of 'Demo']] [[View demo]]" modified="20210327084643985" title="$:/StoryList">
+<div list="[[New Tiddler]] [[Draft of 'Demo']] [[View demo]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9991,7 +9993,7 @@ Error message and password prompt
         },
         &quot;$:/info/startup-timestamp&quot;: {
             &quot;title&quot;: &quot;$:/info/startup-timestamp&quot;,
-            &quot;text&quot;: &quot;20210327084609207&quot;
+            &quot;text&quot;: &quot;20210327132434677&quot;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
@@ -10027,11 +10029,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;2560&quot;
+            &quot;text&quot;: &quot;3840&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;2160&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -10229,6 +10231,43 @@ I have a very raw, incomplete and preliminary proof of concept demo of a visual 
 * Other editors considered but found lacking: ProseMirror (too complex to setup and maintain without a committed maintainer), Trumbowyg (no nested lists and Trix (divs instead of paragraphs). Editors relying on jquery / angular / vue were not considered. Trix is probably worth another look.
 * The conversion from HTML to markdown/tiddlywiki is by means of turndown:  https://github.com/domchristie/turndown
 * For the purpose of this  demo, this editor is only active for tiddlers with the type: text/typewriter</pre>
+</div>
+<div created="20210327132444301" modified="20210327132625609" tags="" title="New Tiddler" type="text/typewriter">
+<pre>&lt;h1&gt;Turndown Demo&lt;/h1&gt;
+
+&lt;p&gt;This demonstrates &lt;a href=&quot;https://github.com/domchristie/turndown&quot;&gt;turndown&lt;/a&gt; – an HTML to Markdown converter in JavaScript.&lt;/p&gt;
+
+&lt;h2&gt;Usage&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var turndownService = new TurndownService()
+
+console.log(
+
+turndownService.turndown('&amp;lt;h1&amp;gt;Hello world&amp;lt;/h1&amp;gt;')
+
+)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;It aims to be &lt;a href=&quot;http://commonmark.org/&quot;&gt;CommonMark&lt;/a&gt;
+
+compliant, and includes options to style the output. These options include:&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;headingStyle (setext or atx)&lt;/li&gt;
+
+&lt;li&gt;horizontalRule (*, -, or _)&lt;/li&gt;
+
+&lt;li&gt;bullet (*, -, or +)&lt;/li&gt;
+
+&lt;li&gt;codeBlockStyle (indented or fenced)&lt;/li&gt;
+
+&lt;li&gt;fence (` or ~)&lt;/li&gt;
+
+&lt;li&gt;emDelimiter (_ or *)&lt;/li&gt;
+
+&lt;li&gt;strongDelimiter (** or __)&lt;/li&gt; &lt;li&gt;linkStyle (inlined or referenced)&lt;/li&gt; &lt;li&gt;linkReferenceStyle (full, collapsed, or shortcut)&lt;/li&gt; &lt;/ul&gt;__</pre>
 </div>
 <div bag="default" created="20200811101544024" hide-body="yes" modified="20200815042033692" revision="0" tags="" title="View demo" type="text/vnd.tiddlywiki" view-typewriter="true">
 <pre>''This is a demo of using the same editor in the view template. Go ahead and click on this text and  edit it.''
