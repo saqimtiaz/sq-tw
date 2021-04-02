@@ -145,6 +145,16 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
+<li>$:/GitHub/Branch</li>
+
+<li>$:/GitHub/Filename</li>
+
+<li>$:/GitHub/Path</li>
+
+<li>$:/GitHub/Repo</li>
+
+<li>$:/GitHub/Username</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/sq/ImportToExternalFile</li>
@@ -152,6 +162,10 @@ Error message and password prompt
 <li>$:/SiteSubtitle</li>
 
 <li>$:/SiteTitle</li>
+
+<li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab-2065006209</li>
 
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
@@ -10044,6 +10058,21 @@ Error message and password prompt
 <div created="20210402064743203" modified="20210402064828432" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
+<div created="20210402070740518" modified="20210402070740655" title="$:/GitHub/Branch">
+<pre>master</pre>
+</div>
+<div created="20210402065145715" modified="20210402065157312" title="$:/GitHub/Filename">
+<pre>import-to-external-file.html</pre>
+</div>
+<div created="20210402065141984" modified="20210402065143558" title="$:/GitHub/Path">
+<pre>/temp/</pre>
+</div>
+<div created="20210402065129141" modified="20210402065139432" title="$:/GitHub/Repo">
+<pre>saqimtiaz/sq-tw</pre>
+</div>
+<div created="20210402065123914" modified="20210402065125795" title="$:/GitHub/Username">
+<pre>saqimtiaz</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10100,10 +10129,16 @@ Error message and password prompt
 <div created="20210402064727952" modified="20210402064731512" title="$:/SiteTitle">
 <pre>ImportToExternalFile</pre>
 </div>
+<div created="20210402065121347" modified="20210402065121347" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
+</div>
+<div created="20210402065122421" modified="20210402065122421" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
+</div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210402064826918" list="GettingStarted $:/plugins/sq/ImportToExternalFile" modified="20210402064826918" title="$:/StoryList">
+<div created="20210402065119889" list="GettingStarted $:/plugins/sq/ImportToExternalFile" modified="20210402070728221" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10215,8 +10250,14 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210402064758569" modified="20210402064825621" tags="" title="GettingStarted">
-<pre>To test, import files as usual via drag and drop.</pre>
+<div created="20210402064758569" modified="20210402070724279" tags="" title="GettingStarted">
+<pre>To test, import files as usual via drag and drop.
+
+To do:
+
+* error reporting and logging, in case of problems saving to the file system
+* allow a path within the files folder to be specified.
+* modularize choice of API</pre>
 </div>
 
 
