@@ -181,15 +181,9 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
-<li>ActionGetRemoteTiddler</li>
-
-<li>File types</li>
-
 <li>GettingStarted</li>
 
 <li>StartupFetchActions</li>
-
-<li>This is a demo</li>
 
 </ul>
 </p>
@@ -10129,7 +10123,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210404052401521" list="GettingStarted [[This is a demo]] ActionGetRemoteTiddler [[File types]]" modified="20210404052413869" title="$:/StoryList">
+<div created="20210404052401521" list="GettingStarted" modified="20210404052413869" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10241,19 +10235,6 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210404051310879" imported="20210404052356703" last-sync="20210404052356703" modified="20210404051634597" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="ActionGetRemoteTiddler">
-<pre>This is currently implemented as an action-widget called `action-getremotetiddler`
-
-This action widget can fetch content:
-
-* interactively where the fetched tiddlers are displayed in the normal import UI
-* or silently where the tiddlers are imported without any interaction
-
-The widget accepts a filter that can be used to determine which tiddlers to import, as well as attributes to specify whether to overwrite existing tiddlers or only overwrite existing tiddlers when the remote tiddler is newer than the local one.</pre>
-</div>
-<div created="20210404051238012" imported="20210404052356703" last-sync="20210404052356703" modified="20210404051258678" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="File types">
-<pre>It would be relatively simple to import other file types that TiddlyWiki understands</pre>
-</div>
 <div created="20210404050854354" modified="20210404051743851" title="GettingStarted">
 <pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin, and StartupFetchActions which triggers startup actions to fetch and import tiddlers.
 
@@ -10261,9 +10242,6 @@ When the wiki loads, startup actions fetch the below tiddlers from [[another wik
 </div>
 <div bag="default" created="20210403200205684" modified="20210404052226926" revision="0" tags="$:/tags/StartupAction/Browser" title="StartupFetchActions" type="text/vnd.tiddlywiki">
 <pre>&lt;$action-getremotetiddler $location=&quot;https://saqimtiaz.github.io/sq-tw/temp/content.html&quot;  $filter=&quot;[!is[system]]&quot; $overwrite=&quot;yes&quot; $neweronly=&quot;yes&quot;/&gt;</pre>
-</div>
-<div created="20210404051214866" imported="20210404052356703" last-sync="20210404052356703" modified="20210404051457332" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="This is a demo">
-<pre>This is a very raw and early demo. Please do not use it for anything other than testing</pre>
 </div>
 
 
