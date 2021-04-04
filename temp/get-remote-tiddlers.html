@@ -173,6 +173,8 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>Draft of 'StartupFetchActions'</li>
+
 <li>GettingStarted</li>
 
 <li>StartupFetchActions</li>
@@ -10100,7 +10102,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210404050957631" list="StartupFetchActions GettingStarted" modified="20210404051706135" title="$:/StoryList">
+<div created="20210404050957631" list="[[Draft of 'StartupFetchActions']] GettingStarted" modified="20210404051706135" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10212,8 +10214,11 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210404050854354" modified="20210404051107062" title="GettingStarted">
-<pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin.
+<div bag="default" created="20210403200205684" draft.of="StartupFetchActions" draft.title="StartupFetchActions" modified="20210404051710697" revision="0" tags="" title="Draft of 'StartupFetchActions'" type="text/vnd.tiddlywiki">
+<pre>&lt;$action-getremotetiddler $location=&quot;https://saqimtiaz.github.io/streams/index.html&quot; $filter=&quot;[prefix[$:/bullets/0]]&quot; $overwrite=&quot;yes&quot; $neweronly=&quot;yes&quot;/&gt;</pre>
+</div>
+<div created="20210404050854354" modified="20210404051743851" title="GettingStarted">
+<pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin, and StartupFetchActions which triggers startup actions to fetch and import tiddlers.
 
 When the wiki loads, startup actions fetch the below tiddlers from [[another wiki|https://saqimtiaz.github.io/sq-tw/temp/content.html]].</pre>
 </div>
