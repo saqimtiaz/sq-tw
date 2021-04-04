@@ -169,7 +169,7 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
-<li>Draft of 'New Tiddler'</li>
+<li>ActionGetRemoteTiddler</li>
 
 <li>File types</li>
 
@@ -10083,7 +10083,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210404051125868" list="[[Draft of 'New Tiddler']] [[File types]] [[This is a demo]]" modified="20210404051125868" title="$:/StoryList">
+<div created="20210404051125868" list="ActionGetRemoteTiddler [[File types]] [[This is a demo]]" modified="20210404051125868" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10195,12 +10195,14 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210404051310879" draft.of="New Tiddler" draft.title="ActionGetRemoteTiddler" modified="20210404051436383" tags="" title="Draft of 'New Tiddler'">
+<div created="20210404051310879" modified="20210404051617721" tags="" title="ActionGetRemoteTiddler">
 <pre>This is currently implemented as an action-widget called `action-getremotetiddler`
 
 This action widget can fetch content interactively:
-- where the fetched tiddlers are displayed in the normal import UI
-- </pre>
+* where the fetched tiddlers are displayed in the normal import UI
+* or silently where the tiddlers are imported without any interaction
+
+The widget accepts a filter that can be used to determine which tiddlers to import, as well as attributes to specify whether to overwrite existing tiddlers or only overwrite existing tiddlers when the remote tiddler is newer than the local one.</pre>
 </div>
 <div created="20210404051238012" modified="20210404051258678" tags="" title="File types">
 <pre>It would be relatively simple to import other file types that TiddlyWiki understands</pre>
