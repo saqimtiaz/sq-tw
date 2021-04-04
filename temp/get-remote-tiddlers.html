@@ -177,6 +177,8 @@ Error message and password prompt
 
 <li>GettingStarted</li>
 
+<li>StartupFetchActions</li>
+
 </ul>
 </p>
 
@@ -10073,7 +10075,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/sq/GetRemoteTiddlers]]</pre>
+# [[StartupFetchActions]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10105,7 +10107,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210404050957631" list="GettingStarted" modified="20210404051027567" title="$:/StoryList">
+<div created="20210404050957631" list="$:/Import GettingStarted" modified="20210404051027567" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10221,6 +10223,9 @@ Error message and password prompt
 <pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin.
 
 When the wiki loads, startup actions fetch the below tiddlers from [[another wiki|https://saqimtiaz.github.io/sq-tw/temp/content.html]].</pre>
+</div>
+<div bag="default" created="20210403200205684" modified="20210403200727551" revision="0" tags="" title="StartupFetchActions" type="text/vnd.tiddlywiki">
+<pre>&lt;$action-getremotetiddler $location=&quot;https://saqimtiaz.github.io/streams/index.html&quot; $filter=&quot;[prefix[$:/bullets/0]]&quot; $overwrite=&quot;yes&quot; $neweronly=&quot;yes&quot;/&gt;</pre>
 </div>
 
 
