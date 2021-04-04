@@ -175,6 +175,8 @@ Error message and password prompt
 
 <li>File types</li>
 
+<li>Interactive import</li>
+
 <li>This is a demo</li>
 
 </ul>
@@ -10088,7 +10090,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210404051125868" list="ActionGetRemoteTiddler [[File types]] [[This is a demo]]" modified="20210404052737390" title="$:/StoryList">
+<div created="20210404051125868" list="ActionGetRemoteTiddler [[File types]] [[This is a demo]] [[Interactive import]]" modified="20210404052813836" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10212,6 +10214,13 @@ The widget accepts a filter that can be used to determine which tiddlers to impo
 </div>
 <div created="20210404051238012" modified="20210404051258678" tags="" title="File types">
 <pre>It would be relatively simple to import other file types that TiddlyWiki understands</pre>
+</div>
+<div created="20210404052805039" modified="20210404053013926" tags="" title="Interactive import">
+<pre>This is an example of fetching tiddlers from another wiki interactively, in this case from the Tamasha wiki by kookma:
+
+&lt;$button&gt; fetch
+&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Tamasha/index.html&quot; $showui=&quot;yes&quot; $overwrite=&quot;no&quot;/&gt;
+&lt;/$button&gt;</pre>
 </div>
 <div created="20210404051214866" modified="20210404052722540" tags="" title="This is a demo">
 <pre>This tiddler is from the wiki at https://saqimtiaz.github.io/sq-tw/temp/content.html and has been fetched on startup. 
