@@ -181,19 +181,11 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
-<li>ActionGetRemoteTiddler</li>
-
-<li>File types</li>
+<li>Create index for Search wikis</li>
 
 <li>GettingStarted</li>
 
-<li>Interactive import</li>
-
 <li>StartupFetchActions</li>
-
-<li>test get index</li>
-
-<li>This is a demo</li>
 
 </ul>
 </p>
@@ -10128,13 +10120,13 @@ Error message and password prompt
 <div created="20210404052103988" modified="20210406071757052" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20210404052031540" modified="20210406071755530" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/More</pre>
+<div created="20210404052031540" modified="20210406071933497" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
-<div created="20210406071822481" list="GettingStarted [[This is a demo]] ActionGetRemoteTiddler [[File types]] [[Interactive import]]" modified="20210406071842444" title="$:/StoryList">
+<div created="20210406071937833" list="[[Create index for Search wikis]] GettingStarted" modified="20210406071937833" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10246,44 +10238,29 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210404051310879" imported="20210406071749982" last-sync="20210406071749982" modified="20210404051634597" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="ActionGetRemoteTiddler">
-<pre>This is currently implemented as an action-widget called `action-getremotetiddler`
+<div bag="default" created="20210406064510909" modified="20210406072222373" revision="0" tags="" title="Create index for Search wikis" type="text/vnd.tiddlywiki">
+<pre>Creating an index for Shiraz:
 
-This action widget can fetch content:
+&lt;$button&gt; create index
+&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Shiraz/index.html&quot; $makeindex=&quot;yes&quot; $indextitle=&quot;$:/stw/index/shiraz&quot;/&gt;
+&lt;/$button&gt;
 
-* interactively where the fetched tiddlers are displayed in the normal import UI
-* or silently where the tiddlers are imported without any interaction
+[[$:/stw/index/shiraz]]
 
-The widget accepts a filter that can be used to determine which tiddlers to import, as well as attributes to specify whether to overwrite existing tiddlers or only overwrite existing tiddlers when the remote tiddler is newer than the local one.</pre>
-</div>
-<div created="20210404051238012" imported="20210406071749982" last-sync="20210406071749982" modified="20210404053225121" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="File types">
-<pre>It would be relatively simple to import other file types that TiddlyWiki understands as long as the server supports CORS</pre>
+Not implemented:
+
+* getting the wiki title
+* different format for stw_last_update field
+
+Right now this is a part of action-getremotetiddler but it should really be a separate widget. The widget now works with entire wiki files and also JSON files. Note that the URL must include the full filename, for example including index.html</pre>
 </div>
 <div created="20210404050854354" modified="20210404051743851" title="GettingStarted">
 <pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin, and StartupFetchActions which triggers startup actions to fetch and import tiddlers.
 
 When the wiki loads, startup actions fetch the below tiddlers from [[another wiki|https://saqimtiaz.github.io/sq-tw/temp/content.html]].</pre>
 </div>
-<div created="20210404052805039" imported="20210406071749982" last-sync="20210406071749982" modified="20210404053013926" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="Interactive import">
-<pre>This is an example of fetching tiddlers from another wiki interactively, in this case from the Tamasha wiki by kookma:
-
-&lt;$button&gt; fetch
-&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Tamasha/index.html&quot; $showui=&quot;yes&quot; $overwrite=&quot;no&quot;/&gt;
-&lt;/$button&gt;</pre>
-</div>
 <div bag="default" created="20210403200205684" modified="20210404052226926" revision="0" tags="$:/tags/StartupAction/Browser" title="StartupFetchActions" type="text/vnd.tiddlywiki">
 <pre>&lt;$action-getremotetiddler $location=&quot;https://saqimtiaz.github.io/sq-tw/temp/content.html&quot;  $filter=&quot;[!is[system]]&quot; $overwrite=&quot;yes&quot; $neweronly=&quot;yes&quot;/&gt;</pre>
-</div>
-<div bag="default" created="20210406064510909" modified="20210406071639335" revision="0" tags="" title="test get index" type="text/vnd.tiddlywiki">
-<pre>&lt;$button&gt; fetch
-
-&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Shiraz/index.html&quot; $makeindex=&quot;yes&quot; $indextitle=&quot;$:/stw/index/shiraz&quot;/&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div created="20210404051214866" imported="20210406071749982" last-sync="20210406071749982" modified="20210404052722540" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="This is a demo">
-<pre>This tiddler is from the wiki at https://saqimtiaz.github.io/sq-tw/temp/content.html and has been fetched on startup. 
-
-This is a very raw and early demo. Please do not use it for anything other than testing.</pre>
 </div>
 
 
