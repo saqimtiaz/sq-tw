@@ -181,9 +181,19 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>ActionGetRemoteTiddler</li>
+
+<li>File types</li>
+
 <li>GettingStarted</li>
 
+<li>Interactive import</li>
+
 <li>StartupFetchActions</li>
+
+<li>test get index</li>
+
+<li>This is a demo</li>
 
 </ul>
 </p>
@@ -10096,7 +10106,7 @@ Error message and password prompt
     &quot;tiddlers&quot;: {
         &quot;$:/core/modules/widgets/action-getremotetiddler.js&quot;: {
             &quot;title&quot;: &quot;$:/core/modules/widgets/action-getremotetiddler.js&quot;,
-            &quot;text&quot;: &quot;/*\\\n\ntitle: $:/core/modules/widgets/action-getremotetiddler.js\ntype: application/javascript\nmodule-type: widget\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar Widget = require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget;\n\nvar GetRemoteTiddlerWidget = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\n/*\nInherit from the base widget class\n*/\nGetRemoteTiddlerWidget.prototype = new Widget();\n\n/*\nRender this widget into the DOM\n*/\nGetRemoteTiddlerWidget.prototype.render = function(parent,nextSibling) {\n\tthis.computeAttributes();\n\tthis.execute();\n//\tthis.parentDomNode = parent;\n//\tthis.renderChildren(parent,nextSibling);\n};\n\n/*\nCompute the internal state of the widget\n*/\nGetRemoteTiddlerWidget.prototype.execute = function() {\n\tthis.location = this.getAttribute(\&quot;$location\&quot;);\n\tthis.filter = this.getAttribute(\&quot;$filter\&quot;);\n\tthis.showui = (this.getAttribute(\&quot;$showui\&quot;,\&quot;no\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.overwrite = (this.getAttribute(\&quot;$overwrite\&quot;,\&quot;no\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.newerOnly = (this.getAttribute(\&quot;$neweronly\&quot;,\&quot;yes\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.makeChildWidgets();\n};\n\n/*\nRefresh the widget by ensuring our attributes are up to date\n*/\nGetRemoteTiddlerWidget.prototype.refresh = function(changedTiddlers) {\n\tvar changedAttributes = this.computeAttributes();\n\tif(changedAttributes[\&quot;$location\&quot;]) {\n\t\tthis.refreshSelf();\n\t\treturn true;\n\t}\n\treturn this.refreshChildren(changedTiddlers);\n};\n\n/*\nInvoke the action associated with this widget\n*/\nGetRemoteTiddlerWidget.prototype.invokeAction = function(triggeringWidget,event) {\n\tif(!this.location) {\n\t\treturn true;\n\t}\n\tvar self = this;\n\tfunction reqListener () {\n\t  //console.log(this.responseText);\n\t}\n\n\tvar oReq = new XMLHttpRequest();\n\toReq.addEventListener(\&quot;load\&quot;, reqListener);\n\toReq.onreadystatechange = function() {\n\t\tif(this.readyState === 4) {\n\t\t\tif(this.status === 200 || this.status === 201 || this.status === 204) {\n\t\t\t\t// Success!\n\t\t\t\tconsole.log(this);\n\t\t\t\tvar tiddlers = self.wiki.deserializeTiddlers(\&quot;text/html\&quot;,this.responseText,{});\n\t\t\t\tconsole.log(tiddlers);\n\t\t\t\tvar titles = tiddlers.map(x =&gt; x.title);\n\t\t\t\tif(self.filter) {\n\t\t\t\t\ttitles = self.wiki.filterTiddlers(self.filter,$tw.rootWidget,self.wiki.makeTiddlerIterator(titles));\n\t\t\t\t\t//console.log(filteredTitles);\n\t\t\t\t}\n\t\t\t\tconsole.log(titles);\n\t\t\t\t\n\t\t\t\tvar filteredTiddlers = tiddlers.filter(tiddler =&gt; titles.includes(tiddler.title));\n\t\t\t\tfor (var t of filteredTiddlers) {\n\t\t\t\t\tt.source = self.location;\n\t\t\t\t\tt[\&quot;last-sync\&quot;] = $tw.utils.stringifyDate(new Date());\n\t\t\t\t\tt.imported = $tw.utils.stringifyDate(new Date());\n\t\t\t\t}\n\t\t\t\tconsole.log(filteredTiddlers);\n\t\t\t\t\n\t\t\t\t//if we should show UI\n\t\t\t\tif(self.showui) {\n\t\t\t\t\tvar importTitle = \&quot;$:/Import\&quot;;\n\t\t\t\t\tvar importTiddler = self.wiki.getTiddler(importTitle);\n\t\t\t\t\tvar importData = self.wiki.getTiddlerData(importTitle,{tiddlers:{}});\n\t\t\t\t\t\n\t/*\t\t\t\tvar importData = {\n\t\t\t\t\t\ttiddlers: {}\n\t\t\t\t\t};\n\t*/\t\t\t\t\n\t\t\t\t\t$tw.utils.each(filteredTiddlers,function(tiddler) {\n\t\t\t\t\t\timportData.tiddlers[tiddler.title] = tiddler;\n\t\t\t\t\t});\n\t\t\t\t\tconsole.log(\&quot;importData\&quot;,importData);\n\t\t\t\t\t\n\t\t\t\t\tvar newFields = new Object({\n\t\t\t\t\t\ttitle: importTitle,\n\t\t\t\t\t\ttype: \&quot;application/json\&quot;,\n\t\t\t\t\t\t\&quot;plugin-type\&quot;: \&quot;import\&quot;,\n\t\t\t\t\t\t\&quot;status\&quot;: \&quot;pending\&quot;\n\t\t\t\t\t});\n\t\t\t\t\tnewFields.text = JSON.stringify(importData,null,$tw.config.preferences.jsonSpaces);\n\t\t\t\t\tself.wiki.addTiddler(new $tw.Tiddler(importTiddler,newFields));\n\t\t\t\t\t// Update the story and history details\n\t\t\t\t\tvar autoOpenOnImport = self.getVariable(\&quot;tv-auto-open-on-import\&quot;);\n\t\t\t\t\tvar bounds = triggeringWidget &amp;&amp; triggeringWidget.getBoundingClientRect &amp;&amp; triggeringWidget.getBoundingClientRect();\n//\t\t\t\t\tif(autoOpenOnImport !== \&quot;no\&quot;) {\n\t\t\t\t\t\tself.dispatchEvent({\n\t\t\t\t\t\t\ttype: \&quot;tm-navigate\&quot;,\n\t\t\t\t\t\t\tnavigateTo: importTitle,\n\t\t\t\t\t\t\tnavigateFromTitle: self.getVariable(\&quot;storyTiddler\&quot;),\n\t\t\t\t\t\t\tnavigateFromNode: triggeringWidget,\n\t\t\t\t\t\t\tnavigateFromClientRect: bounds &amp;&amp; { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height},\n\t\t\t\t\t\t\tnavigateSuppressNavigation: false\n\t\t\t\t\t\t});\n//\t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\tfor (var tiddler of filteredTiddlers) {\n\t\t\t\t\t\tvar oldTiddler = self.wiki.getTiddler(tiddler.title);\n\t\t\t\t\t\tif(!oldTiddler || self.overwrite) {\n\t\t\t\t\t\t\tif((oldTiddler &amp;&amp; self.newerOnly &amp;&amp; ($tw.utils.parseDate(oldTiddler.modified) &lt; $tw.utils.parseDate(tiddler.modified))) || !oldTiddler || !self.newerOnly) { //compare to imported or last sync field instead of old tiddlers modified?\n\t\t\t\t\t\t\t\tself.wiki.addTiddler(new $tw.Tiddler(tiddler));\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn;\n\t\t\t\t\n\t\t\t}\n\t\t// Something went wrong\n\t\tconsole.log(\&quot;error\&quot;,this);\n\t\t}\n\t};\n\toReq.open(\&quot;GET\&quot;, this.location ,true);\n\toReq.send();\n    return true;\n};\n\nGetRemoteTiddlerWidget.prototype.allowActionPropagation = function() {\n\treturn false;\n};\n\nexports[\&quot;action-getremotetiddler\&quot;] = GetRemoteTiddlerWidget;\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\n\ntitle: $:/core/modules/widgets/action-getremotetiddler.js\ntype: application/javascript\nmodule-type: widget\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar Widget = require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget;\n\nvar GetRemoteTiddlerWidget = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\n/*\nInherit from the base widget class\n*/\nGetRemoteTiddlerWidget.prototype = new Widget();\n\n/*\nRender this widget into the DOM\n*/\nGetRemoteTiddlerWidget.prototype.render = function(parent,nextSibling) {\n\tthis.computeAttributes();\n\tthis.execute();\n//\tthis.parentDomNode = parent;\n//\tthis.renderChildren(parent,nextSibling);\n};\n\n/*\nCompute the internal state of the widget\n*/\nGetRemoteTiddlerWidget.prototype.execute = function() {\n\tthis.location = this.getAttribute(\&quot;$location\&quot;);\n\tthis.filter = this.getAttribute(\&quot;$filter\&quot;);\n\tthis.showui = (this.getAttribute(\&quot;$showui\&quot;,\&quot;no\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.overwrite = (this.getAttribute(\&quot;$overwrite\&quot;,\&quot;no\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.newerOnly = (this.getAttribute(\&quot;$neweronly\&quot;,\&quot;yes\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.makeIndex = (this.getAttribute(\&quot;$makeindex\&quot;,\&quot;no\&quot;) == \&quot;yes\&quot; ? true : false);\n\tthis.indexTitle = (this.getAttribute(\&quot;$indextitle\&quot;));\n\tthis.makeChildWidgets();\n};\n\n/*\nRefresh the widget by ensuring our attributes are up to date\n*/\nGetRemoteTiddlerWidget.prototype.refresh = function(changedTiddlers) {\n\tvar changedAttributes = this.computeAttributes();\n\tif(changedAttributes[\&quot;$location\&quot;]) {\n\t\tthis.refreshSelf();\n\t\treturn true;\n\t}\n\treturn this.refreshChildren(changedTiddlers);\n};\n\n/*\nInvoke the action associated with this widget\n*/\nGetRemoteTiddlerWidget.prototype.invokeAction = function(triggeringWidget,event) {\n\tif(!this.location) {\n\t\treturn true;\n\t}\n\tvar self = this;\n\tfunction reqListener () {\n\t  //console.log(this.responseText);\n\t}\n\n\tvar oReq = new XMLHttpRequest();\n\toReq.addEventListener(\&quot;load\&quot;, reqListener);\n\toReq.onreadystatechange = function() {\n\t\tif(this.readyState === 4) {\n\t\t\tif(this.status === 200 || this.status === 201 || this.status === 204) {\n\t\t\t\t// Success!\n\t\t\t\tconsole.log(this);\n\t\t\t\t//can pass in default field values in third parameter here instead of adding them later\n\t\t\t\tvar type = self.location.split(\&quot;.\&quot;).pop().toLowerCase() === \&quot;json\&quot; ? \&quot;application/json\&quot; : \&quot;text/html\&quot;;\n\t\t\t\tvar tiddlers = self.wiki.deserializeTiddlers(type,this.responseText,{});\n\t\t\t\tconsole.log(tiddlers);\n\t\t\t\tvar titles = tiddlers.map(x =&gt; x.title);\n\t\t\t\tif(self.filter) {\n\t\t\t\t\ttitles = self.wiki.filterTiddlers(self.filter,$tw.rootWidget,self.wiki.makeTiddlerIterator(titles));\n\t\t\t\t\t//console.log(filteredTitles);\n\t\t\t\t}\n\t\t\t\tconsole.log(titles);\n\t\t\t\t\n\t\t\t\tvar filteredTiddlers = tiddlers.filter(tiddler =&gt; titles.includes(tiddler.title));\n\t\t\t\tfor (var t of filteredTiddlers) {\n\t\t\t\t\tt.source = self.location;\n\t\t\t\t\tt[\&quot;last-sync\&quot;] = $tw.utils.stringifyDate(new Date());\n\t\t\t\t\tt.imported = $tw.utils.stringifyDate(new Date());\n\t\t\t\t}\n\t\t\t\tconsole.log(filteredTiddlers);\n\t\t\t\t\n\t\t\t\t//if we should show UI\n\t\t\t\tif(self.showui) {\n\t\t\t\t\tvar importTitle = \&quot;$:/Import\&quot;;\n\t\t\t\t\tvar importTiddler = self.wiki.getTiddler(importTitle);\n\t\t\t\t\tvar importData = self.wiki.getTiddlerData(importTitle,{tiddlers:{}});\n\t\t\t\t\t\n\t/*\t\t\t\tvar importData = {\n\t\t\t\t\t\ttiddlers: {}\n\t\t\t\t\t};\n\t*/\t\t\t\t\n\t\t\t\t\t$tw.utils.each(filteredTiddlers,function(tiddler) {\n\t\t\t\t\t\timportData.tiddlers[tiddler.title] = tiddler;\n\t\t\t\t\t});\n\t\t\t\t\tconsole.log(\&quot;importData\&quot;,importData);\n\t\t\t\t\t\n\t\t\t\t\tvar newFields = new Object({\n\t\t\t\t\t\ttitle: importTitle,\n\t\t\t\t\t\ttype: \&quot;application/json\&quot;,\n\t\t\t\t\t\t\&quot;plugin-type\&quot;: \&quot;import\&quot;,\n\t\t\t\t\t\t\&quot;status\&quot;: \&quot;pending\&quot;\n\t\t\t\t\t});\n\t\t\t\t\tnewFields.text = JSON.stringify(importData,null,$tw.config.preferences.jsonSpaces);\n\t\t\t\t\tself.wiki.addTiddler(new $tw.Tiddler(importTiddler,newFields));\n\t\t\t\t\t// Update the story and history details\n\t\t\t\t\tvar autoOpenOnImport = self.getVariable(\&quot;tv-auto-open-on-import\&quot;);\n\t\t\t\t\tvar bounds = triggeringWidget &amp;&amp; triggeringWidget.getBoundingClientRect &amp;&amp; triggeringWidget.getBoundingClientRect();\n//\t\t\t\t\tif(autoOpenOnImport !== \&quot;no\&quot;) {\n\t\t\t\t\t\tself.dispatchEvent({\n\t\t\t\t\t\t\ttype: \&quot;tm-navigate\&quot;,\n\t\t\t\t\t\t\tnavigateTo: importTitle,\n\t\t\t\t\t\t\tnavigateFromTitle: self.getVariable(\&quot;storyTiddler\&quot;),\n\t\t\t\t\t\t\tnavigateFromNode: triggeringWidget,\n\t\t\t\t\t\t\tnavigateFromClientRect: bounds &amp;&amp; { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height},\n\t\t\t\t\t\t\tnavigateSuppressNavigation: false\n\t\t\t\t\t\t});\n//\t\t\t\t\t}\n\t\t\t\t} else if(self.makeIndex &amp;&amp; self.indexTitle) {\n\t\t\t\t\tvar indexData = {};\n\t\t\t\t\tfor (var t of filteredTiddlers) {\n\t\t\t\t\t\tif(t.title.indexOf(\&quot;$:/\&quot;) !== 0) {\n\t\t\t\t\t\t\tvar text = t.title + \&quot;|\&quot; + (t.caption || \&quot;\&quot;) + \&quot;|\&quot; + (t.tags || \&quot;\&quot;);\n\t\t\t\t\t\t\tindexData[t.title] = text;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tconsole.log(indexData);\n\t\t\t\t\tself.wiki.addTiddler(new $tw.Tiddler({\n\t\t\t\t\t\ttitle: self.indexTitle,\n\t\t\t\t\t\ttags: \&quot;$:/tags/SearchWikis\&quot;,\n\t\t\t\t\t\tstw_wiki_url: self.location,\n\t\t\t\t\t\tstw_wiki_title: self.location,\n\t\t\t\t\t\tstw_last_update: $tw.utils.stringifyDate(new Date()),\n\t\t\t\t\t\ttype: \&quot;application/json\&quot;,\n\t\t\t\t\t\ttext: JSON.stringify(indexData,null,$tw.config.preferences.jsonSpaces)\n\t\t\t\t\t},self.wiki.getCreationFields(),self.wiki.getModificationFields()));\n\t\t\t\t} else {\n\t\t\t\t\tfor (var tiddler of filteredTiddlers) {\n\t\t\t\t\t\tvar oldTiddler = self.wiki.getTiddler(tiddler.title);\n\t\t\t\t\t\tif(!oldTiddler || self.overwrite) {\n\t\t\t\t\t\t\tif((oldTiddler &amp;&amp; self.newerOnly &amp;&amp; ($tw.utils.parseDate(oldTiddler.modified) &lt; $tw.utils.parseDate(tiddler.modified))) || !oldTiddler || !self.newerOnly) { //compare to imported or last sync field instead of old tiddlers modified?\n\t\t\t\t\t\t\t\tself.wiki.addTiddler(new $tw.Tiddler(tiddler));\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn;\n\t\t\t\t\n\t\t\t}\n\t\t// Something went wrong\n\t\tconsole.log(\&quot;error\&quot;,this);\n\t\t}\n\t};\n\toReq.open(\&quot;GET\&quot;, this.location + \&quot;?\&quot; + Date.now()  ,true);\n\toReq.send();\n    return true;\n};\n\nGetRemoteTiddlerWidget.prototype.allowActionPropagation = function() {\n\treturn false;\n};\n\nexports[\&quot;action-getremotetiddler\&quot;] = GetRemoteTiddlerWidget;\n\n})();\n&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget&quot;
         }
@@ -10115,16 +10125,16 @@ Error message and password prompt
 <div created="20210404051000211" modified="20210404052253169" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20210404052103988" modified="20210404052156160" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/All</pre>
+<div created="20210404052103988" modified="20210406071757052" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20210404052031540" modified="20210404053200557" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20210404052031540" modified="20210406071755530" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
-<div created="20210404053131765" list="GettingStarted" modified="20210404053131765" title="$:/StoryList">
+<div created="20210406071822481" list="GettingStarted [[This is a demo]] ActionGetRemoteTiddler [[File types]] [[Interactive import]]" modified="20210406071842444" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10236,13 +10246,44 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div created="20210404051310879" imported="20210406071749982" last-sync="20210406071749982" modified="20210404051634597" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="ActionGetRemoteTiddler">
+<pre>This is currently implemented as an action-widget called `action-getremotetiddler`
+
+This action widget can fetch content:
+
+* interactively where the fetched tiddlers are displayed in the normal import UI
+* or silently where the tiddlers are imported without any interaction
+
+The widget accepts a filter that can be used to determine which tiddlers to import, as well as attributes to specify whether to overwrite existing tiddlers or only overwrite existing tiddlers when the remote tiddler is newer than the local one.</pre>
+</div>
+<div created="20210404051238012" imported="20210406071749982" last-sync="20210406071749982" modified="20210404053225121" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="File types">
+<pre>It would be relatively simple to import other file types that TiddlyWiki understands as long as the server supports CORS</pre>
+</div>
 <div created="20210404050854354" modified="20210404051743851" title="GettingStarted">
 <pre>This TiddlyWiki contains no tiddlers apart from this one and the installed plugin, and StartupFetchActions which triggers startup actions to fetch and import tiddlers.
 
 When the wiki loads, startup actions fetch the below tiddlers from [[another wiki|https://saqimtiaz.github.io/sq-tw/temp/content.html]].</pre>
 </div>
+<div created="20210404052805039" imported="20210406071749982" last-sync="20210406071749982" modified="20210404053013926" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="Interactive import">
+<pre>This is an example of fetching tiddlers from another wiki interactively, in this case from the Tamasha wiki by kookma:
+
+&lt;$button&gt; fetch
+&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Tamasha/index.html&quot; $showui=&quot;yes&quot; $overwrite=&quot;no&quot;/&gt;
+&lt;/$button&gt;</pre>
+</div>
 <div bag="default" created="20210403200205684" modified="20210404052226926" revision="0" tags="$:/tags/StartupAction/Browser" title="StartupFetchActions" type="text/vnd.tiddlywiki">
 <pre>&lt;$action-getremotetiddler $location=&quot;https://saqimtiaz.github.io/sq-tw/temp/content.html&quot;  $filter=&quot;[!is[system]]&quot; $overwrite=&quot;yes&quot; $neweronly=&quot;yes&quot;/&gt;</pre>
+</div>
+<div bag="default" created="20210406064510909" modified="20210406071639335" revision="0" tags="" title="test get index" type="text/vnd.tiddlywiki">
+<pre>&lt;$button&gt; fetch
+
+&lt;$action-getremotetiddler $location=&quot;https://kookma.github.io/TW-Shiraz/index.html&quot; $makeindex=&quot;yes&quot; $indextitle=&quot;$:/stw/index/shiraz&quot;/&gt;
+&lt;/$button&gt;</pre>
+</div>
+<div created="20210404051214866" imported="20210406071749982" last-sync="20210406071749982" modified="20210404052722540" source="https://saqimtiaz.github.io/sq-tw/temp/content.html" tags="" title="This is a demo">
+<pre>This tiddler is from the wiki at https://saqimtiaz.github.io/sq-tw/temp/content.html and has been fetched on startup. 
+
+This is a very raw and early demo. Please do not use it for anything other than testing.</pre>
 </div>
 
 
