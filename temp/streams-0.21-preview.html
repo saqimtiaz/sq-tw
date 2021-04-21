@@ -10893,9 +10893,8 @@ Error message and password prompt
 <div created="20210421050713973" modified="20210421050721592" tags="" title="caee" what="case">
 <pre></pre>
 </div>
-<div created="20210421050652115" modified="20210421050711592" tags="$:/tags/ViewTemplate" title="case template">
-<pre>&lt;$list filter=&quot;[all[current]what[case]!has[stream-list]]&quot;&gt;
-\define myactions()    
+<div created="20210421050652115" modified="20210421050804651" tags="$:/tags/ViewTemplate" title="case template">
+<pre>\define myactions()    
 &lt;$vars nodeSuffixes=&quot;Pathology [[X ray findings]] Treatment&quot;
     root=&lt;&lt;currentTiddler&gt;&gt;
 &gt;    
@@ -10912,6 +10911,7 @@ Error message and password prompt
 &lt;/$vars&gt;
 \end
 
+&lt;$list filter=&quot;[all[current]what[case]!has[stream-list]]&quot;&gt;
 &lt;$button actions=&lt;&lt;myactions&gt;&gt;&gt;
 new case
 &lt;/$button&gt;
