@@ -157,6 +157,8 @@ Error message and password prompt
 
 <li>$:/GitHub/Username</li>
 
+<li>$:/Import</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/sq/streams</li>
@@ -10146,6 +10148,11 @@ Error message and password prompt
 <div created="20210420184258618" modified="20210420184300509" title="$:/GitHub/Username">
 <pre>saqimtiaz</pre>
 </div>
+<div status="complete" title="$:/Import">
+<pre>The following tiddlers were imported:
+
+# [[$:/plugins/sq/streams]]</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10517,7 +10524,7 @@ Error message and password prompt
         },
         &quot;$:/plugins/sq/streams/filters/get-stream-root.js&quot;: {
             &quot;title&quot;: &quot;$:/plugins/sq/streams/filters/get-stream-root.js&quot;,
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/streams/filters/get-stream-root.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n\n//\t[[xyz]get-stream-root[]]\n//\t[[xyz]get-stream-root:matchtitles[]]\n//\t[[xyz]get-stream-root:includeall,matchtitles[]]\n\n*/\nexports[\&quot;get-stream-root\&quot;] = function(source,operator,options) {\n\tvar results = [],\n        suffixes = (operator.suffixes || []),\n\t\tincludeAll = (suffixes[0] || []).indexOf(\&quot;includeall\&quot;) !== -1,\n\t\tmatchTitles = (suffixes[0] || []).indexOf(\&quot;matchtitles\&quot;) !== -1;\n\n\tsource(function(tiddler,title) {\n\t\tif(tiddler &amp;&amp; tiddler.fields[\&quot;parent\&quot;] &amp;&amp; tiddler.fields[\&quot;stream-type\&quot;]) {\n\t\t\tvar parentTiddler = tiddler;\n\t\t\twhile(parentTiddler &amp;&amp; parentTiddler.fields.parent) {\n\t\t\t\tif(includeAll) {\n\t\t\t\t\tif(tiddler.fields.title.startsWith(parentTiddler.fields[\&quot;title\&quot;]) || !matchTitles ) {\n\t\t\t\t\t\t//$tw.utils.pushTop(results,parentTiddler.fields.title);\n\t\t\t\t\t\tresults.unshift(parentTiddler.fields.title);\n\t\t\t\t\t} else {\n\t\t\t\t\t\t//results.push(title);\n\t\t\t\t\t\tresults.unshift(title);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tparentTiddler = options.wiki.getTiddler(parentTiddler.fields.parent);\n\t\t\t}\n\t\t\tif(!includeAll) {\n\t\t\t\tif(parentTiddler &amp;&amp; parentTiddler.fields &amp;&amp; ( tiddler.fields.title.startsWith(parentTiddler.fields[\&quot;title\&quot;]) || !matchTitles ) ) {\n\t\t\t\t\t$tw.utils.pushTop(results,parentTiddler.fields.title);\n\t\t\t\t} else {\n\t\t\t\t\tresults.push(title);\n\t\t\t\t}\t\t\t\t\n\t\t\t}\n\t\t} else {\n\t\t\tresults.push(title);\n\t\t}\n\t});\n\treturn results;\n};\n\n})();\n\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/sq/streams/filters/get-stream-root.js\ntype: application/javascript\nmodule-type: filteroperator\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n\n//\t[[xyz]get-stream-root[]]\n//\t[[xyz]get-stream-root:matchtitles[]]\n//\t[[xyz]get-stream-root:includeall,matchtitles[]]\n\n*/\nexports[\&quot;get-stream-root\&quot;] = function(source,operator,options) {\n\tvar results = [],\n        suffixes = (operator.suffixes || []),\n\t\tincludeAll = (suffixes[0] || []).indexOf(\&quot;includeall\&quot;) !== -1,\n\t\tmatchTitles = (suffixes[0] || []).indexOf(\&quot;matchtitles\&quot;) !== -1;\n\n\tsource(function(tiddler,title) {\n\t\tif(tiddler &amp;&amp; tiddler.fields[\&quot;parent\&quot;] &amp;&amp; tiddler.fields[\&quot;stream-type\&quot;]) {\n\t\t\tvar parentTiddler = tiddler;\n\t\t\twhile(parentTiddler) {\n\t\t\t\t\tif(tiddler.fields.title.startsWith(parentTiddler.fields[\&quot;title\&quot;].split(\&quot;/\&quot;)[0]) || !matchTitles ) {\n\t\t\t\t\t\tresults.unshift(parentTiddler.fields.title);\n\t\t\t\t\t} else {\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\tif(parentTiddler.fields.parent) {\t\n\t\t\t\t\tparentTiddler = options.wiki.getTiddler(parentTiddler.fields.parent);\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tresults.push(title);\n\t\t}\n\t\tif(!includeAll) {\n\t\t\tresults.splice(1);\n\t\t}\t\t\n\t});\n\treturn results;\n};\n\n})();\n\n&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
@@ -10773,16 +10780,16 @@ Error message and password prompt
 <div created="20210420184256053" modified="20210423062649309" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20210420151247006" modified="20210420151247006" title="$:/state/tab/moresidebar-1850697562">
+<div created="20210420151247006" modified="20210423091107250" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20210420151232926" modified="20210423062638483" title="$:/state/tab/sidebar--595412856">
+<div created="20210420151232926" modified="20210423091123024" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
-<div created="20210423062647163" list="[[Streams 0.2 preview]] $:/plugins/sq/streams" modified="20210423062647163" title="$:/StoryList">
+<div created="20210423091120124" list="[[Streams 0.2 preview]]" modified="20210423091120124" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
