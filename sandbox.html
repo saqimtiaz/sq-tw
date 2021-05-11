@@ -166,6 +166,8 @@ Error message and password prompt
 
 <li>$:/core</li>
 
+<li>$:/core/macros/tag-picker</li>
+
 <li>$:/core/ui/Buttons/close</li>
 
 <li>$:/core/ui/EditorToolbar/picture-dropdown</li>
@@ -10011,6 +10013,109 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div created="20210511203959653" first-search-filter="[tags[]!is[system]search:title&lt;userInput&gt;sort[]]" modified="20210511204203393" second-search-filter="[tags[]is[system]search:title&lt;userInput&gt;sort[]] :filter[&lt;userInput&gt;prefix[$]]" tags="$:/tags/Macro" title="$:/core/macros/tag-picker">
+<pre>\define get-tagpicker-focus-selector() [data-tiddler-title=&quot;$(currentTiddlerCSSEscaped)$&quot;] .tc-add-tag-name input
+
+\define delete-tag-state-tiddlers() &lt;$action-deletetiddler $filter=&quot;[&lt;newTagNameTiddler&gt;] [&lt;storeTitle&gt;] [&lt;tagSelectionState&gt;]&quot;/&gt;
+
+\define add-tag-actions(actions)
+&lt;$set name=&quot;tag&quot; value={{{ [&lt;__tiddler__&gt;get[text]] }}}&gt;
+&lt;$list filter=&quot;[&lt;currentTiddler&gt;!tag&lt;tag&gt;]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&quot;&quot;
+&lt;$action-sendmessage $message=&quot;tm-remove-tag&quot; $param=&lt;&lt;tag&gt;&gt;/&gt;
+&quot;&quot;&quot;&gt;
+&lt;$action-sendmessage $message=&quot;tm-add-tag&quot; $param=&lt;&lt;tag&gt;&gt;/&gt;
+$actions$
+&lt;/$list&gt;
+&lt;/$set&gt;
+&lt;&lt;delete-tag-state-tiddlers&gt;&gt;
+&lt;$action-setfield $tiddler=&lt;&lt;refreshTitle&gt;&gt; text=&quot;yes&quot;/&gt;
+\end
+
+\define tag-button(actions,selectedClass)
+&lt;$button class=&quot;tc-btn-invisible $selectedClass$&quot; tag=&quot;a&quot; tooltip={{$:/language/EditTemplate/Tags/Add/Button/Hint}}&gt;
+&lt;$action-sendmessage $message=&quot;tm-add-tag&quot; $param=&lt;&lt;tag&gt;&gt;/&gt;
+&lt;$set name=&quot;currentTiddlerCSSEscaped&quot; value={{{ [&lt;storyTiddler&gt;escapecss[]] }}}&gt;
+&lt;$action-sendmessage $message=&quot;tm-focus-selector&quot; $param=&lt;&lt;get-tagpicker-focus-selector&gt;&gt; preventScroll=&quot;true&quot;/&gt;
+&lt;/$set&gt;
+&lt;&lt;delete-tag-state-tiddlers&gt;&gt;
+$actions$
+&lt;$macrocall $name=&quot;tag-pill&quot; tag=&lt;&lt;tag&gt;&gt;/&gt;
+&lt;/$button&gt;
+\end
+
+\define clear-tags-actions-inner()
+&lt;$list filter=&quot;[&lt;storeTitle&gt;has[text]] [&lt;newTagNameTiddler&gt;has[text]]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&quot;&quot;&lt;&lt;delete-tag-state-tiddlers&gt;&gt;&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;&quot;&quot;&quot;&gt;
+&lt;&lt;delete-tag-state-tiddlers&gt;&gt;
+&lt;/$list&gt;
+\end
+
+\define clear-tags-actions()
+&lt;$set name=&quot;userInput&quot; value={{{ [&lt;storeTitle&gt;get[text]] }}}&gt;
+&lt;$list filter=&quot;[&lt;newTagNameTiddler&gt;get[text]!match&lt;userInput&gt;]&quot; emptyMessage=&quot;&quot;&quot;&lt;&lt;clear-tags-actions-inner&gt;&gt;&quot;&quot;&quot;&gt;
+&lt;$action-setfield $tiddler=&lt;&lt;newTagNameTiddler&gt;&gt; text=&lt;&lt;userInput&gt;&gt;/&gt;&lt;$action-setfield $tiddler=&lt;&lt;refreshTitle&gt;&gt; text=&quot;yes&quot;/&gt;
+&lt;/$list&gt;
+&lt;/$set&gt;
+\end
+
+\define tag-picker-inner(actions)
+\whitespace trim
+&lt;$vars tagSelectionState=&lt;&lt;qualify &quot;$:/state/selected-tag&quot;&gt;&gt; storeTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/input&quot;&gt;&gt; refreshTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/refresh&quot;&gt;&gt; nonSystemTagsFilter=&quot;[tags[]!is[system]search:title&lt;userInput&gt;sort[]]&quot; systemTagsFilter=&quot;[tags[]is[system]search:title&lt;userInput&gt;sort[]]&quot;&gt;
+&lt;div class=&quot;tc-edit-add-tag&quot;&gt;
+&lt;div&gt;
+&lt;span class=&quot;tc-add-tag-name tc-small-gap-right&quot;&gt;
+&lt;$macrocall $name=&quot;keyboard-driven-input&quot; tiddler=&lt;&lt;newTagNameTiddler&gt;&gt; storeTitle=&lt;&lt;storeTitle&gt;&gt; refreshTitle=&lt;&lt;refreshTitle&gt;&gt;
+		selectionStateTitle=&lt;&lt;tagSelectionState&gt;&gt; inputAcceptActions=&quot;&quot;&quot;&lt;$macrocall $name=&quot;add-tag-actions&quot; actions=&lt;&lt;__actions__&gt;&gt;/&gt;&quot;&quot;&quot;
+		inputCancelActions=&lt;&lt;clear-tags-actions&gt;&gt; tag=&quot;input&quot; placeholder={{$:/language/EditTemplate/Tags/Add/Placeholder}}
+		focusPopup=&lt;&lt;qualify &quot;$:/state/popup/tags-auto-complete&quot;&gt;&gt; class=&quot;tc-edit-texteditor tc-popup-handle&quot; tabindex=&lt;&lt;tabIndex&gt;&gt; 
+		focus={{{ [{$:/config/AutoFocus}match[tags]then[true]] ~[[false]] }}} filterMinLength={{$:/config/Tags/MinLength}} 
+		cancelPopups=&lt;&lt;cancelPopups&gt;&gt; configTiddlerFilter=&quot;[[$:/core/macros/tag-picker]]&quot;/&gt;
+&lt;/span&gt;&lt;$button popup=&lt;&lt;qualify &quot;$:/state/popup/tags-auto-complete&quot;&gt;&gt; class=&quot;tc-btn-invisible tc-btn-dropdown&quot; tooltip={{$:/language/EditTemplate/Tags/Dropdown/Hint}} aria-label={{$:/language/EditTemplate/Tags/Dropdown/Caption}}&gt;{{$:/core/images/down-arrow}}&lt;/$button&gt;&lt;span class=&quot;tc-add-tag-button tc-small-gap-left&quot;&gt;
+&lt;$set name=&quot;tag&quot; value={{{ [&lt;newTagNameTiddler&gt;get[text]] }}}&gt;
+&lt;$button set=&lt;&lt;newTagNameTiddler&gt;&gt; setTo=&quot;&quot; class=&quot;&quot;&gt;
+&lt;$action-sendmessage $message=&quot;tm-add-tag&quot; $param=&lt;&lt;tag&gt;&gt;/&gt;
+$actions$
+&lt;$set name=&quot;currentTiddlerCSSEscaped&quot; value={{{ [&lt;currentTiddler&gt;escapecss[]] }}}&gt;
+&lt;&lt;delete-tag-state-tiddlers&gt;&gt;&lt;$action-sendmessage $message=&quot;tm-focus-selector&quot; $param=&lt;&lt;get-tagpicker-focus-selector&gt;&gt;/&gt;
+&lt;/$set&gt;
+{{$:/language/EditTemplate/Tags/Add/Button}}
+&lt;/$button&gt;
+&lt;/$set&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-block-dropdown-wrapper&quot;&gt;
+&lt;$reveal state=&lt;&lt;qualify &quot;$:/state/popup/tags-auto-complete&quot;&gt;&gt; type=&quot;nomatch&quot; text=&quot;&quot; default=&quot;&quot;&gt;
+&lt;div class=&quot;tc-block-dropdown tc-block-tags-dropdown&quot;&gt;
+&lt;$set name=&quot;userInput&quot; value={{{ [&lt;storeTitle&gt;get[text]] }}}&gt;
+&lt;$list filter=&quot;[&lt;userInput&gt;minlength{$:/config/Tags/MinLength}limit[1]]&quot; emptyMessage=&quot;&quot;&quot;&lt;div class=&quot;tc-search-results&quot;&gt;{{$:/language/Search/Search/TooShort}}&lt;/div&gt;&quot;&quot;&quot; variable=&quot;listItem&quot;&gt;
+&lt;$list filter=&lt;&lt;nonSystemTagsFilter&gt;&gt; variable=&quot;tag&quot;&gt;
+&lt;$list filter=&quot;[&lt;tag&gt;addsuffix[-primaryList]] -[&lt;tagSelectionState&gt;get[text]]&quot; emptyMessage=&quot;&quot;&quot;&lt;$macrocall $name=&quot;tag-button&quot; actions=&lt;&lt;__actions__&gt;&gt; selectedClass=&quot;tc-tag-button-selected&quot;/&gt;&quot;&quot;&quot;&gt;
+&lt;$macrocall $name=&quot;tag-button&quot; actions=&lt;&lt;__actions__&gt;&gt;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;&lt;/$list&gt;
+&lt;hr&gt;
+&lt;$list filter=&quot;[&lt;userInput&gt;minlength{$:/config/Tags/MinLength}limit[1]]&quot; emptyMessage=&quot;&quot;&quot;&lt;div class=&quot;tc-search-results&quot;&gt;{{$:/language/Search/Search/TooShort}}&lt;/div&gt;&quot;&quot;&quot; variable=&quot;listItem&quot;&gt;
+&lt;$list filter={{$:/core/macros/tag-picker!!second-search-filter}} variable=&quot;tag&quot;&gt;
+&lt;$list filter=&quot;[&lt;tag&gt;addsuffix[-secondaryList]] -[&lt;tagSelectionState&gt;get[text]]&quot; emptyMessage=&quot;&quot;&quot;&lt;$macrocall $name=&quot;tag-button&quot; actions=&lt;&lt;__actions__&gt;&gt; selectedClass=&quot;tc-tag-button-selected&quot;/&gt;&quot;&quot;&quot;&gt;
+&lt;$macrocall $name=&quot;tag-button&quot; actions=&lt;&lt;__actions__&gt;&gt;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;&lt;/$list&gt;
+&lt;/$set&gt;
+&lt;/div&gt;
+&lt;/$reveal&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/$vars&gt;
+\end
+\define tag-picker(actions)
+\whitespace trim
+&lt;$list filter=&quot;[&lt;newTagNameTiddler&gt;match[]]&quot; emptyMessage=&quot;&quot;&quot;&lt;$macrocall $name=&quot;tag-picker-inner&quot; actions=&lt;&lt;__actions__&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
+&lt;$set name=&quot;newTagNameTiddler&quot; value=&lt;&lt;qualify &quot;$:/temp/NewTagName&quot;&gt;&gt;&gt;
+&lt;$macrocall $name=&quot;tag-picker-inner&quot; actions=&lt;&lt;__actions__&gt;&gt;/&gt;
+&lt;/$set&gt;
+&lt;/$list&gt;
+\end
+</pre>
+</div>
 <div caption="{{$:/core/images/close-button}} {{$:/language/Buttons/Close/Caption}}" created="20200618174227658" description="{{$:/language/Buttons/Close/Hint}}" modified="20200619061550834" tags="$:/tags/ViewToolbar $:/sq/ui" title="$:/core/ui/Buttons/close">
 <pre>\define close-btn()
 \whitespace trim
@@ -11350,7 +11455,7 @@ exports[&quot;log&quot;] = LogWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201215181550517" list="GettingStarted" modified="20201215181550517" title="$:/StoryList">
+<div created="20210511180434494" list="$:/core/macros/tag-picker GettingStarted" modified="20210511180449284" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
