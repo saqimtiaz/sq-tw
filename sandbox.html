@@ -10013,7 +10013,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210511203959653" first-search-filter="[tags[]!is[system]search:title&lt;userInput&gt;sort[]]" modified="20210511204958568" second-search-filter="[tags[]is[system]search:title&lt;userInput&gt;sort[]] :filter[&lt;userInput&gt;prefix[$]]" tags="$:/tags/Macro" title="$:/core/macros/tag-picker">
+<div created="20210511203959653" first-search-filter="[tags[]!is[system]search:title&lt;userInput&gt;sort[]] -[all[current]tags[]]" modified="20210710224137161" second-search-filter="[tags[]is[system]search:title&lt;userInput&gt;sort[]] :filter[&lt;userInput&gt;prefix[$]] -[all[current]tags[]]" tags="$:/tags/Macro" title="$:/core/macros/tag-picker">
 <pre>\define get-tagpicker-focus-selector() [data-tiddler-title=&quot;$(currentTiddlerCSSEscaped)$&quot;] .tc-add-tag-name input
 
 \define delete-tag-state-tiddlers() &lt;$action-deletetiddler $filter=&quot;[&lt;newTagNameTiddler&gt;] [&lt;storeTitle&gt;] [&lt;tagSelectionState&gt;]&quot;/&gt;
@@ -10059,7 +10059,7 @@ $actions$
 
 \define tag-picker-inner(actions)
 \whitespace trim
-&lt;$vars tagSelectionState=&lt;&lt;qualify &quot;$:/state/selected-tag&quot;&gt;&gt; storeTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/input&quot;&gt;&gt; refreshTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/refresh&quot;&gt;&gt; nonSystemTagsFilter=&quot;[tags[]!is[system]search:title&lt;userInput&gt;sort[]]&quot; systemTagsFilter=&quot;[tags[]is[system]search:title&lt;userInput&gt;sort[]]&quot;&gt;
+&lt;$vars tagSelectionState=&lt;&lt;qualify &quot;$:/state/selected-tag&quot;&gt;&gt; storeTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/input&quot;&gt;&gt; refreshTitle=&lt;&lt;qualify &quot;$:/temp/NewTagName/refresh&quot;&gt;&gt; nonSystemTagsFilter={{$:/core/macros/tag-picker!!first-search-filter}} systemTagsFilter={{$:/core/macros/tag-picker!!second-search-filter}}&gt;
 &lt;div class=&quot;tc-edit-add-tag&quot;&gt;
 &lt;div&gt;
 &lt;span class=&quot;tc-add-tag-name tc-small-gap-right&quot;&gt;
@@ -11454,7 +11454,7 @@ exports[&quot;log&quot;] = LogWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210616122917156" list="GettingStarted $:/plugins/sq/filters DualRangeDemo" modified="20210616122917156" title="$:/StoryList">
+<div created="20210710223110378" list="GettingStarted $:/plugins/sq/filters DualRangeDemo" modified="20210710224154432" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200619190041074" list="$:/core/ui/TiddlerInfo/Advanced $:/core/ui/TiddlerInfo/Tools $:/core/ui/TiddlerInfo/References $:/core/ui/TiddlerInfo/Tagging $:/core/ui/TiddlerInfo/List $:/core/ui/TiddlerInfo/Listed $:/core/ui/TiddlerInfo/Fields $:/sq/ui/ViewTemplate/rename-tiddler" modified="20200619190058952" tags="$:/sq/ui" title="$:/tags/TiddlerInfo">
