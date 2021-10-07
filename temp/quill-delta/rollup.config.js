@@ -5,7 +5,7 @@ export default {
   input: 'dist/Delta.js',
   output: {
     file: 'delta-rollup.js',
-    format: 'amd',
+    format: 'umd',
     name: 'quill-delta',
     sourcemap: 'inline'
 },
