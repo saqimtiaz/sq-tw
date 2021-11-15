@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 // this isn't foolproof in how it handles encoding special characters in the tiddler title, so there might be some false positives //
 
 <$list filter="[all[tiddlers]!is[system]filter<cascadeFilter>]">
-<$let oldPath={{{ [[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>removeprefix[../../tw5.com/tiddlers/]] }}}
+<$let oldPath={{{ [[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>] }}}
 			newPath={{{ [<currentTiddler>] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]] +[search-replace:g:regexp<sanitize>,[_]addsuffix[.tid]] }}}>
 			<$list filter="[<oldPath>!match<newPath>]" variable="null">
 			

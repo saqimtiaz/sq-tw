@@ -4,4 +4,4 @@ tags:
 title: Original Paths of all tiddlers
 type: text/vnd.tiddlywiki
 
-{{{ [all[tiddlers]!is[system]] :map[[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>removeprefix[../../tw5.com/tiddlers/]] +[sort[]] }}}
+{{{ [all[tiddlers]!is[system]] :map[[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>] +[sort[]] }}}
