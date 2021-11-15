@@ -6,7 +6,9 @@ on:
     - cron:  '4/15 * * * *'
   push:
     branches:
-      - main
+      - master
+    paths:
+      - temp/tw5-paths/**
   workflow_dispatch:
 
 jobs:
@@ -42,5 +44,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: master
           publish_dir: ./output
-          destination_dir: /temp/tw5paths-testing/
+          destination_dir: temp/tw5paths-testing/
           keep_files: true   
