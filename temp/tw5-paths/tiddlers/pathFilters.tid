@@ -1,0 +1,137 @@
+created: 20211112180928852
+modified: 20211115212711201
+tags: 
+title: pathFilters
+type: text/vnd.tiddlywiki
+
+[is[draft]addprefix[drafts/]]
+[tag[About]addprefix[about/]]
+
+[tag[Commands]addprefix[commands/]]
+
+[tag[Community]addprefix[community/]]
+[tag[Articles]addprefix[community/articles/]]
+[tag[Community Editions]addprefix[community/editions/]]
+[tag[Examples]addprefix[community/examples/]]
+[tag[Community Palettes]addprefix[community/palettes/]]
+[tag[Community Plugins]addprefix[community/plugins/]]
+[tag[Other Resources]addprefix[community/resources/]]
+[tag[Community Themes]addprefix[community/themes/]]
+[tag[Tutorials]addprefix[community/tutorials/]]
+[tag[Meetups]addprefix[community/]]
+
+[tag[Concepts]addprefix[concepts/]]
+
+[tag[Customise TiddlyWiki]addprefix[customising/]]
+
+[tag[Definitions]addprefix[definitions/]]
+[tag[table-of-contents-example]addprefix[demonstrations/]]
+[tag[Table-of-Contents Demonstrations]addprefix[demonstrations/TableOfContents/]]
+TODO check demonstrations directory
+[tag[Editions]addprefix[editions/]]
+
+[tag[Features]addprefix[features/]]
+
+[tag[Fields]addprefix[fields/]]
+
+[tag[TiddlyWiki on Node.js]addprefix[fileformats/]]
+
+[tag[Filter Operators]addprefix[filters/]]
+[tag[Filters]addprefix[filters/]]
+[tag[Filter Syntax]addprefix[filters/syntax/]]
+[tag[Operator Examples]addprefix[filters/examples/]]
+[tag[shopping]addprefix[filters/examples/]]
+
+TODO -- The following is a new tag. PR has been submitted
+[tag[GettingStarted]addprefix[gettingstarted/]]
+
+[tag[HelloThere]addprefix[hellothere/]]
+[tag[HelloThumbnail]addprefix[hellothere/thumbnails/]]
+[tag[?????]addprefix[hellothere/badges/]] 
+TODO check hellothere dir again!
+
+[tag[Hidden Settings]addprefix[hiddensettings/]]
+
+[tag[How to apply custom styles]addprefix[howtos/]]
+[tag[Editor toolbar]addprefix[howtos/]]
+[tag[Custom Styles FAQ]addprefix[howtos/faq/]]
+TODO check `howtos` directory again 
+
+[tag[picture]addprefix[images/]]
+TODO check `images` directory again 
+
+[tag[Languages]addprefix[languages/]]
+
+[tag[Learning]addprefix[learning/]]
+
+[tag[Core Macros]addprefix[macros/]]
+[tag[Macros]addprefix[macros/]]
+[tag[Macro Examples]addprefix[macros/examples/]]
+
+[tag[Macro Syntax]addprefix[macros/syntax/]]
+
+TODO check `macros/import` directory again
+
+[tag[Mechanisms]addprefix[mechanisms/]]
+[tag[RefreshThrottling]addprefix[mechanisms/]]
+
+TODO check `menubar` dir again
+
+[tag[Messages]addprefix[messages/]]
+
+[tag[TiddlyWiki on Node.js]addprefix[nodejs/]]
+
+[tag[Platforms]addprefix[platforms/]]
+
+[tag[OfficialPlugins]addprefix[plugins/]]
+
+TODO check `readme` dir again
+
+TODO check `reference` dir again
+
+[tag[ReleaseNotes]addprefix[releasenotes/]]
+
+[tag[AlphaReleaseNotes]addprefix[releasenotes/alpha/]]
+
+[tag[BetaReleaseNotes]addprefix[releasenotes/beta/]]
+[tag[Release 5.0.8-beta]addprefix[releasenotes/beta/]]
+[tag[Release 5.0.9-beta]addprefix[releasenotes/beta/]]
+[tag[Release 5.0.11-beta]addprefix[releasenotes/beta/]]
+
+TODO check the tags in the release notes again. They are not consistent
+
+[tag[Saving]addprefix[saving/]]
+TODO chekc `roadmap` again
+
+TODO check the tags in the `saving` dir again. They are not consistent
+
+[tag[Improving TiddlyWiki Documentation]addprefix[styleguide/]]
+TODO may be there should be a tag `Styleguide`
+
+TODO check the tags in the `system` dir again. They are not consistent or not there at all
+
+[tag[SystemTags]addprefix[systemtags/]]
+
+[tag[TiddlyDesktop]addprefix[tiddlydesktop/]]
+
+[tag[Variable Examples]addprefix[variables/examples/]]
+[tag[Variables]addprefix[variables/]]
+
+
+TODO check `variables/examples` again .. they have not tags
+
+[tag[Video]addprefix[videos/]]
+
+[tag[Widgets]addprefix[widgets/]]
+TODO check `widgets` dir again .. some tags are missing or wrong
+
+[tag[WikiText]addprefix[wikitext/]]
+
+[tag[Working with TiddlyWiki]addprefix[workingwithtw/]]
+[tag[WebServer Authentication]addprefix[webserver/]]
+[tag[WebServer Guides]addprefix[webserver/]]
+[tag[WebServer Parameters]addprefix[webserver/]]
+[tag[WebServer]addprefix[webserver/]]
+[tag[WebServer API]addprefix[webserver/]]
+
+TODO check all the tags in the real source editor ... There is more work to do !!

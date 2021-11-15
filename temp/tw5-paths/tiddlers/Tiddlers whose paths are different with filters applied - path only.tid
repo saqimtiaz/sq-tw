@@ -1,0 +1,22 @@
+created: 20211112223209073
+modified: 20211115212711192
+tags: 
+title: Tiddlers whose paths are different with filters applied - path only
+type: text/vnd.tiddlywiki
+
+\define cascadeFilter() [<currentTiddler>] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]] +[!is[blank]]
+
+\define sanitize() <|>|~|\:|\"|\||\?|\*|\^|\/
+
+<$list filter="[all[tiddlers]!is[system]filter<cascadeFilter>]">
+<$let oldPath={{{ [[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>removeprefix[../../tw5.com/tiddlers/]split[/]butlast[]join[/]] }}}
+			newPath={{{ [<currentTiddler>] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]!is[blank]] +[removesuffix<currentTiddler>removesuffix[/]]  }}}>
+			<$list filter="[<oldPath>!match<newPath>]" variable="null">
+			
+			* Tiddler: <$link/>
+><pre>old path: <$text text=<<oldPath>>/>
+new path: <$text text=<<newPath>>/></pre>
+			
+			</$list>
+</$let>
+</$list>

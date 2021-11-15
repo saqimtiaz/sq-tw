@@ -1,0 +1,12 @@
+created: 20211112181632283
+modified: 20211115212711181
+tags: 
+title: Paths for tiddlers matching a filter
+type: text/vnd.tiddlywiki
+
+
+{{{ [all[tiddlers]!is[system]] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]] +[sort[]] }}}
+
+
+
+

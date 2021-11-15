@@ -1,0 +1,12 @@
+created: 20211112182633163
+modified: 20211115212711177
+tags: 
+title: Tiddlers not matching a filter
+type: text/vnd.tiddlywiki
+
+\define cascadeFilter() [<currentTiddler>] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]] +[is[blank]]
+
+Tiddlers that do not match a filter:
+
+
+{{{ [all[tiddlers]!is[system]filter<cascadeFilter>] -[enlist{Hello}] }}}
