@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 \define sanitize() <|>|~|\:|\"|\||\?|\*|\^|\/
 
 <$list filter="[all[tiddlers]!is[system]filter<cascadeFilter>]">
-<$let oldPath={{{ [[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>]split[/]butlast[]join[/]] }}}
+<$let oldPath={{{ [[$:/config/OriginalTiddlerPaths]getindex<currentTiddler>split[/]butlast[]join[/]] }}}
 			newPath={{{ [<currentTiddler>] :cascade[{pathFilters}splitregexp[\n]!prefix[TODO]!is[blank]] +[removesuffix<currentTiddler>removesuffix[/]]  }}}>
 			<$list filter="[<oldPath>!match<newPath>]" variable="null">
 			
