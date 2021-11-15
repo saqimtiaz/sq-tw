@@ -25,7 +25,7 @@ jobs:
         with:
             repository: jermolene/TiddlyWiki5
             ref: tiddlywiki-com
-            path: tiddlywiki
+            path: tiddlywiki-com
 
       - name: Setup node
         uses: actions/setup-node@v2-beta
@@ -34,8 +34,9 @@ jobs:
         
       - name: Build
         run: |
-            cp -fr ./sq-tw/temp/tw5-paths/tiddlers ./tiddlywiki/editions/tw5.com/tiddlers
-            node tiddlywiki/tiddlywiki ./tiddlywiki/editions/tw5.com --output ./output --build index
+            npm install Jermolene/TiddlyWiki5
+            cp -fr ./sq-tw/temp/tw5-paths/tiddlers ./tiddlywiki-com/editions/tw5.com/tiddlers
+            npx tiddlywiki ./tiddlywiki-com/editions/tw5.com --output ./output --build index
             ls
 
       - name: Deploy
