@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '4/15 * * * *'
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout sq-tw   
+        uses: actions/checkout@v2
+        with:
+            path: sq-tw
+
+      - name: Checkout TW branch tiddlywiki-com
+        uses: actions/checkout@v2
+        with:
+            repository: jermolene/TiddlyWiki5
+            ref: tiddlywiki-com
+            path: tiddlywiki
+
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+        
+      - name: Build
+        run: |
+            cp -fr ./sq-tw/temp/tw5-paths/tiddlers ./tiddlywiki/editions/tw5.com/tiddlers
+            node tiddlywiki/tiddlywiki ./tiddlywiki/editions/tw5.com --output ./output --build index
+            ls
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./output
+          destination_dir: /temp/tw5paths-testing/
+          keep_files: true   
