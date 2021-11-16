@@ -27,6 +27,9 @@ type: text/vnd.tiddlywiki
 [tag[Definitions]addprefix[definitions/]]
 [tag[table-of-contents-example]addprefix[demonstrations/]]
 [tag[Table-of-Contents Demonstrations]addprefix[demonstrations/TableOfContents/]]
+[tag[TaskManagementExample]addprefix[demonstrations/Tasks/]]
+[tag[Demonstrations]addprefix[demonstrations/]]
+
 TODO check demonstrations directory
 [tag[Editions]addprefix[editions/]]
 
@@ -41,7 +44,6 @@ TODO check demonstrations directory
 [tag[Filter Syntax]addprefix[filters/syntax/]]
 [tag[Operator Examples]addprefix[filters/examples/]]
 [tag[shopping]addprefix[filters/examples/]]
-
 TODO -- The following is a new tag. PR has been submitted
 [tag[GettingStarted]addprefix[gettingstarted/]]
 
@@ -55,17 +57,20 @@ TODO check hellothere dir again!
 [tag[How to apply custom styles]addprefix[howtos/]]
 [tag[Editor toolbar]addprefix[howtos/]]
 [tag[Custom Styles FAQ]addprefix[howtos/faq/]]
+[tag[Hard Linebreaks in WikiText]addprefix[howto/]]
 TODO check `howtos` directory again 
 
 [tag[picture]addprefix[images/]]
 TODO check `images` directory again 
 
+[tag[Language]tag[Icon]addprefix[languages/icons]]
 [tag[Languages]addprefix[languages/]]
 
 [tag[Learning]addprefix[learning/]]
 
 [tag[Core Macros]addprefix[macros/]]
 [tag[Macros]addprefix[macros/]]
+[tag[sampletab]addprefix[macros/examples/]]
 [tag[Macro Examples]addprefix[macros/examples/]]
 
 [tag[Macro Syntax]addprefix[macros/syntax/]]
@@ -80,10 +85,13 @@ TODO check `menubar` dir again
 [tag[Messages]addprefix[messages/]]
 
 [tag[TiddlyWiki on Node.js]addprefix[nodejs/]]
+[tag[TiddlyWikiFolders]addprefix[nodejs/]]
 
 [tag[Platforms]addprefix[platforms/]]
 
 [tag[OfficialPlugins]addprefix[plugins/]]
+[tag[PluginMechanism]addprefix[plugins/]]
+[tag[Plugins]addprefix[plugins/]]
 
 TODO check `readme` dir again
 
@@ -100,6 +108,7 @@ TODO check `reference` dir again
 
 TODO check the tags in the release notes again. They are not consistent
 
+
 [tag[Saving]addprefix[saving/]]
 TODO chekc `roadmap` again
 
@@ -114,17 +123,24 @@ TODO check the tags in the `system` dir again. They are not consistent or not th
 
 [tag[TiddlyDesktop]addprefix[tiddlydesktop/]]
 
-[tag[Variable Examples]addprefix[variables/examples/]]
 [tag[Variables]addprefix[variables/]]
-
+[tag[Variable Examples]addprefix[variables/examples/]]
 
 TODO check `variables/examples` again .. they have not tags
 
 [tag[Video]addprefix[videos/]]
 
+[tag[RangeWidget]addprefix[widgets/]]
+[tag[RadioWidget]addprefix[widgets/]]
+[tag[ListWidget]addprefix[widgets/]]
+[tag[KeyboardWidget]addprefix[widgets/]]
+[tag[Widget Examples]addprefix[widgets/]]
 [tag[Widgets]addprefix[widgets/]]
+
 TODO check `widgets` dir again .. some tags are missing or wrong
 
+[tag[Transclusion in WikiText]addprefix[wikitext/]]
+[tag[HTML in WikiText]addprefix[wikitext/]]
 [tag[WikiText]addprefix[wikitext/]]
 
 [tag[Working with TiddlyWiki]addprefix[workingwithtw/]]
