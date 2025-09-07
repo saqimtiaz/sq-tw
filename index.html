@@ -29,167 +29,102 @@
 	<ul id="file-tree" class="tree"></ul>
 
 	<script>
-		/* === CONFIG ===
-		   Change these to match your repo */
-		const repoOwner = "saqimtiaz"
-		const repoName  = "sq-tw";
-		const branch    = "master";
+	const repoOwner = "saqimtiaz";
+	const repoName  = "sq-tw";
+	const branch    = "master";
+	const token     = (typeof window !== "undefined" && window.GITHUB_TOKEN) ? window.GITHUB_TOKEN : null;
 
-		/* Optional: if you have a token (to avoid rate limits), set it like:
-		   window.GITHUB_TOKEN = "ghp_xxx"; 
-		   Do NOT commit tokens into public repos. */
-		const token = (typeof window !== "undefined" && window.GITHUB_TOKEN) ? window.GITHUB_TOKEN : null;
+	const treeRoot = document.getElementById("file-tree");
+	const noticeEl = document.getElementById("notice");
 
-		const treeRoot = document.getElementById("file-tree");
-		const noticeEl = document.getElementById("notice");
+	function escapeHtml(e){
+		return String(e).replace(/&/g,"&amp;")
+				.replace(/</g,"&lt;")
+				.replace(/>/g,"&gt;")
+				.replace(/"/g,"&quot;")
+				.replace(/'/g,"&#039;");
+	}
 
-		function escapeHtml(e){
-			return e.replace(/&/g,"&amp;")
-					.replace(/</g,"&lt;")
-					.replace(/>/g,"&gt;")
-					.replace(/"/g,"&quot;")
-					.replace(/'/g,"&#039;");
-		}
+	function showNotice(msg){
+		noticeEl.style.display = msg ? "block" : "none";
+		noticeEl.textContent = msg || "";
+	}
 
-		function showNotice(msg){
-			noticeEl.style.display = msg ? "block" : "none";
-			noticeEl.textContent = msg || "";
-		}
+	function childrenArray(node){
+		if(!node.children) return [];
+		return Object.values(node.children).sort((a,b)=>{
+			if(a.type !== b.type) return a.type === "dir" ? -1 : 1;
+			return a.name.localeCompare(b.name, undefined, {sensitivity:"base"});
+		});
+	}
 
-		/* Build nested tree object that only contains directories and .html files (case-insensitive) */
-		function addPathToTree(root, parts, fullPath){
-			let cur = root;
-			for(let i=0;i<parts.length;i++){
-				const name = parts[i];
-				const isFile = (i === parts.length - 1);
-				if(isFile){
-					// leaf file
-					cur.children[name] = { type: "file", name, path: fullPath };
-				} else {
-					if(!cur.children[name]) cur.children[name] = { type: "dir", name, children: {} };
-					cur = cur.children[name].children ? cur.children[name].children : (cur.children[name].children = {});
-					// descend to children
-					// ensure cur refers to the 'children' map
-					if(cur && cur.type) { /* no-op */ }
-				}
+	function renderNode(node, parentEl, pathParts=[]){
+		const items = childrenArray(node);
+		items.forEach(item=>{
+			const li = document.createElement("li");
+			li.className = item.type === "dir" ? "folder" : "file";
+
+			const a = document.createElement("a");
+			a.innerHTML = escapeHtml(item.name);
+
+			if(item.type === "file"){
+				const filePath = pathParts.concat(item.name).join("/");
+				a.href = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${filePath}`;
+				a.target = "_blank";
+				li.appendChild(a);
+			}else{
+				a.href = "#";
+				li.appendChild(a);
+				const childUl = document.createElement("ul");
+				renderNode(item, childUl, pathParts.concat(item.name)); // recurse immediately
+				li.appendChild(childUl);
 			}
-		}
+			parentEl.appendChild(li);
+		});
+	}
 
-		/* Convert children map to sorted array for rendering */
-		function childrenArray(node){
-			if(!node.children) return [];
-			return Object.values(node.children).sort((a,b)=>{
-				// dirs first, then files; then alphabetically
-				if(a.type !== b.type) return a.type === "dir" ? -1 : 1;
-				return a.name.localeCompare(b.name, undefined, {sensitivity:'base'});
-			});
-		}
+	(async function(){
+		showNotice("Loading file list…");
+		const headers = token ? { "Authorization": "token " + token } : {};
+		const treeUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`;
 
-		/* Render nested tree into the DOM */
-		function renderNode(node, parentEl, pathParts=[]){
-			const items = childrenArray(node);
-			items.forEach(item=>{
-				const li = document.createElement("li");
-				li.className = item.type === "dir" ? "folder" : "file";
+		try{
+			const res = await fetch(treeUrl, { headers });
+			if(!res.ok){
+				showNotice(`GitHub API error ${res.status}`);
+				return;
+			}
+			const json = await res.json();
+			const tree = json.tree || [];
+			const htmlRegex = /\.html$/i;
+			const root = { type: "dir", name: "", children: {} };
 
-				const a = document.createElement("a");
-				a.innerHTML = escapeHtml(item.name);
-
-				if(item.type === "file"){
-					const filePath = pathParts.concat(item.name).join("/");
-					a.href = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${filePath}`;
-					a.target = "_blank";
-					li.appendChild(a);
-				} else {
-					// dir
-					a.href = "#";
-					li.appendChild(a);
-					const childUl = document.createElement("ul");
-					childUl.style.display = "none"; // collapsed by default
-
-					// expand/collapse on click; lazy render children on first expand
-					a.addEventListener("click", (e)=>{
-						e.preventDefault();
-						if(childUl.childElementCount === 0){
-							// render the dir's children
-							renderNode({ children: item.children }, childUl, pathParts.concat(item.name));
-						}
-						childUl.style.display = childUl.style.display === "none" ? "block" : "none";
-					});
-
-					li.appendChild(childUl);
-				}
-				parentEl.appendChild(li);
-			});
-		}
-
-		/* Main — fetch the entire tree recursively, filter for .html (case-insensitive),
-		   build a nested structure and render it. */
-		(async function(){
-			showNotice("Loading file list…");
-
-			const headers = token ? { "Authorization": "token " + token } : {};
-			const treeUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`;
-
-			try{
-				const res = await fetch(treeUrl, { headers });
-				if(!res.ok){
-					const txt = await res.text();
-					showNotice(`GitHub API error ${res.status}: ${txt}`);
-					console.error("GitHub API error", res.status, txt);
-					return;
-				}
-
-				const json = await res.json();
-				if(json.truncated){
-					showNotice("Warning: repository tree response was truncated by GitHub. If files are still missing try using a personal access token or a different method.");
-					console.warn("Tree response truncated — some files may be missing.");
-				}
-
-				// json.tree is an array with objects { path, mode, type: 'blob'|'tree', sha, size? }
-				const tree = json.tree || [];
-				// create root node
-				const root = { type: "dir", name: "", children: {} };
-
-				// build nested structure but only for .html files (case-insensitive)
-				const htmlRegex = /\.html$/i;
-				let htmlCount = 0;
-				tree.forEach(item=>{
-					if(item.type === "blob" && htmlRegex.test(item.path)){
-						htmlCount++;
-						const parts = item.path.split("/");
-						// ensure directories exist along the path
-						let cur = root;
-						for(let i=0;i<parts.length;i++){
-							const name = parts[i];
-							const isFile = (i === parts.length - 1);
-							if(isFile){
-								if(!cur.children) cur.children = {};
-								cur.children[name] = { type: "file", name, path: item.path };
-							} else {
-								if(!cur.children) cur.children = {};
-								if(!cur.children[name]) cur.children[name] = { type: "dir", name, children: {} };
-								// descend
-								cur = cur.children[name].children;
-							}
+			tree.forEach(item=>{
+				if(item.type === "blob" && htmlRegex.test(item.path)){
+					const parts = item.path.split("/");
+					let cur = root;
+					for(let i=0;i<parts.length;i++){
+						const name = parts[i];
+						const isFile = (i === parts.length-1);
+						if(isFile){
+							if(!cur.children) cur.children = {};
+							cur.children[name] = { type:"file", name, path:item.path };
+						}else{
+							if(!cur.children) cur.children = {};
+							if(!cur.children[name]) cur.children[name] = { type:"dir", name, children:{} };
+							cur = cur.children[name];
 						}
 					}
-				});
-
-				if(htmlCount === 0){
-					showNotice("No .html files found in this repository/branch.");
-					return;
 				}
+			});
 
-				// clear notice and render
-				showNotice("");
-				renderNode(root, treeRoot, []);
-				console.log("Found .html files:", htmlCount);
-			}catch(err){
-				showNotice("Unexpected error fetching repository tree. See console for details.");
-				console.error(err);
-			}
-		})();
+			showNotice("");
+			renderNode(root, treeRoot, []);
+		}catch(err){
+			showNotice("Unexpected error — see console");
+			console.error(err);
+		}
+	})();
 	</script>
 </body>
 </html>
